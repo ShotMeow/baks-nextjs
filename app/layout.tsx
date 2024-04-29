@@ -4,7 +4,12 @@ import { Readex_Pro } from "next/font/google";
 
 import "./globals.css";
 
-const readexPro = Readex_Pro({ subsets: ["latin"], weight: ["500", "600"] });
+import { Header } from "@/src/widgets/header";
+
+const readexPro = Readex_Pro({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Phygital Basketball",
@@ -15,7 +20,10 @@ export const metadata: Metadata = {
 const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <html lang="ru">
-      <body className={readexPro.className}>{children}</body>
+      <body className={readexPro.className}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 };
