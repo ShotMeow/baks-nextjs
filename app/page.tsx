@@ -1,5 +1,7 @@
-import Image from "next/image";
+import type { NextPage } from "next";
 
-export default function Home() {
+const HomePage: NextPage = () => {
   return <main></main>;
-}
+};
+
+export default HomePage;
