@@ -1,6 +1,6 @@
 {
   "name": "fitgital-nextjs-new",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.3.0",
+    "@supabase/supabase-js": "^2.42.7",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18"
