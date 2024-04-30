@@ -5,3 +5,7 @@
 body {
     @apply bg-black text-white;
 }
+
+section {
+    @apply my-24;
+}
