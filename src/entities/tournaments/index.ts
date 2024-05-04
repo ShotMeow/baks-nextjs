@@ -1,0 +1,1 @@
+export { getTournaments } from "./api";
