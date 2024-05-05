@@ -8,6 +8,7 @@ import "swiper/css";
 
 import Button from "@/src/shared/ui/Button";
 import { getNews } from "@/src/entities/news";
+import { Autoplay } from "swiper/modules";
 
 const Slider: FC = () => {
   const [activeSlide, setActiveSlide] = useState<number>(0);
@@ -16,6 +17,10 @@ const Slider: FC = () => {
     <div className="my-10 overflow-x-hidden">
       <Swiper
         className="container !overflow-visible"
+        modules={[Autoplay]}
+        autoplay={{
+          delay: 5000,
+        }}
         spaceBetween={60}
         slidesPerView={1}
         onSlideChange={({ activeIndex }) => setActiveSlide(activeIndex)}
@@ -37,10 +42,10 @@ const Slider: FC = () => {
             />
             <div className="absolute inset-x-6 bottom-6 flex flex-col gap-6 md:inset-x-20 md:bottom-20 lg:flex-row lg:items-end">
               <div className="space-y-4 lg:space-y-8">
-                <h2 className="text-xl line-clamp-2 lg:text-4xl font-bold">
+                <h2 className="line-clamp-2 text-xl font-bold lg:text-4xl">
                   {news.title}
                 </h2>
-                <p className="lg:text-lg line-clamp-3">{news.description}</p>
+                <p className="line-clamp-3 lg:text-lg">{news.description}</p>
               </div>
               <Button variant="transparent">Подробнее</Button>
             </div>
@@ -53,8 +58,9 @@ const Slider: FC = () => {
             className={classNames(
               {
                 "w-8 bg-yellow": index === activeSlide,
+                "bg-zinc-800": index !== activeSlide,
               },
-              "h-1 w-4 rounded-full bg-zinc-800 transition-all duration-500",
+              "h-1 w-4 rounded-full transition-all duration-500",
             )}
             key={news.id}
           />

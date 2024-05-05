@@ -1,4 +1,4 @@
-export interface TournamentType {
+export interface StreamType {
   id: number;
   title: string;
   description: string;

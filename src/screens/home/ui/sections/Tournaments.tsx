@@ -87,7 +87,7 @@ const Tournaments: FC = () => {
                       {tournament.prize}
                       {index === 0 ? (
                         <>
-                          <span className="hidden 2xl:inline">рублей</span>
+                          <span className="hidden 2xl:inline"> рублей</span>
                           <span className="inline 2xl:hidden">р</span>
                         </>
                       ) : (

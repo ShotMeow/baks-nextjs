@@ -1,6 +1,6 @@
-import { TournamentType } from "@/src/entities/tournaments/types";
+import { StreamType } from "@/src/entities/tournaments/types";
 
-export const tournamentData: TournamentType[] = [
+export const tournamentData: StreamType[] = [
   {
     id: 1,
     title: "Цифровое доминирование",
