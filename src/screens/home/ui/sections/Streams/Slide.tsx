@@ -44,6 +44,7 @@ const Slide: FC<Props> = ({ poster_url, stream_url, description, title }) => {
         "before:absolute before:left-0 before:top-0 before:size-full before:bg-gradient-to-t before:from-black/70 before:via-transparent before:to-transparent":
           !isPlaying,
       })}
+      onClick={handleClick}
       onMouseMove={handleMouseMove}
     >
       <video ref={videoRef} muted className="size-full" poster={poster_url}>
