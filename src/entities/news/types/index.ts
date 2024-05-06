@@ -4,5 +4,6 @@ export interface NewsType {
   description: string;
   body: string;
   artwork_url: string;
+  tags: string[];
   created_at: Date;
 }

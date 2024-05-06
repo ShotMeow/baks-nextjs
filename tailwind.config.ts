@@ -7,6 +7,7 @@ const config: Config = {
       colors: {
         yellow: "#F0F424",
         lilac: "#FFC5F0",
+        green: "#075D44",
         black: "#070707",
       },
     },

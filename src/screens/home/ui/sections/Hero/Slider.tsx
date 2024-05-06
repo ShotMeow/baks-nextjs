@@ -22,11 +22,13 @@ const Slider: FC = () => {
       slidesPerView={1}
       onSlideChange={({ activeIndex }) => setActiveIndex(activeIndex)}
     >
-      {getNews().map((news) => (
-        <SwiperSlide key={news.id}>
-          <Slide {...news} />
-        </SwiperSlide>
-      ))}
+      {getNews()
+        .slice(0, 5)
+        .map((news) => (
+          <SwiperSlide key={news.id}>
+            <Slide {...news} />
+          </SwiperSlide>
+        ))}
       <Pagination activeIndex={activeIndex} />
     </Swiper>
   );
