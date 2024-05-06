@@ -18,7 +18,6 @@ const Slider: FC = () => {
     <Swiper
       effect="coverflow"
       className="my-14 w-full"
-      loop
       coverflowEffect={{
         rotate: 50,
         stretch: 0,
@@ -29,7 +28,7 @@ const Slider: FC = () => {
       centeredSlides={true}
       modules={[EffectCoverflow]}
       slidesPerView="auto"
-      onSlideChange={({ realIndex }) => setActiveIndex(realIndex)}
+      onSlideChange={({ activeIndex }) => setActiveIndex(activeIndex)}
     >
       {getStreams().map((stream, index) => (
         <SwiperSlide className="relative !max-w-[1100px]" key={stream.id}>

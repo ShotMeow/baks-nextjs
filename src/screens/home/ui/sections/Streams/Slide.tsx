@@ -27,13 +27,15 @@ const Slide: FC<Props> = ({ poster_url, stream_url, description, title }) => {
   };
 
   const handleMouseMove = () => {
-    if (!isPlaying) return;
-
     timer !== null && window.clearTimeout(timer);
+    if (!isPlaying) {
+      setButtonShown(true);
+      return;
+    }
 
     timer = window.setTimeout(() => {
       setButtonShown(false);
-    }, 5000);
+    }, 3000);
 
     setButtonShown(true);
   };
@@ -47,7 +49,14 @@ const Slide: FC<Props> = ({ poster_url, stream_url, description, title }) => {
       onClick={handleClick}
       onMouseMove={handleMouseMove}
     >
-      <video ref={videoRef} muted className="size-full" poster={poster_url}>
+      <video
+        width={736}
+        height={414}
+        ref={videoRef}
+        muted
+        className="h-[200px] w-full object-cover sm:h-[400px] lg:h-[600px]"
+        poster={poster_url}
+      >
         <source src={stream_url} type="video/mp4" />
       </video>
       <button
@@ -56,7 +65,7 @@ const Slide: FC<Props> = ({ poster_url, stream_url, description, title }) => {
           {
             "opacity-0": !buttonShown,
           },
-          "absolute left-1/2 top-1/2 flex size-32 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-b from-white/30 to-transparent backdrop-blur-md transition-all duration-500",
+          "absolute z-10 left-1/2 top-1/2 flex size-24 lg:size-32 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-b from-white/30 to-transparent backdrop-blur-md transition-all duration-500",
         )}
       >
         {!isPlaying ? (
