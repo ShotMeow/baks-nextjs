@@ -8,7 +8,7 @@ import Youtube from "@/src/shared/ui/icons/Youtube";
 import Vkontakte from "@/src/shared/ui/icons/Vkontakte";
 import Tiktok from "@/src/shared/ui/icons/Tiktok";
 
-const Hero: FC = () => {
+const About: FC = () => {
   return (
     <section className="container grid items-center gap-10 md:grid-cols-2">
       <Image
@@ -68,4 +68,4 @@ const Hero: FC = () => {
   );
 };
 
-export default Hero;
+export default About;

@@ -1,15 +1,15 @@
 import type { FC } from "react";
 
-import Hero from "./sections/Hero";
-import Slider from "./sections/Slider";
+import About from "./sections/About";
+import Index from "./sections/Hero";
 import Tournaments from "./sections/Tournaments";
 import Streams from "./sections/Streams";
 
 const Home: FC = () => {
   return (
     <main>
-      <Slider />
-      <Hero />
+      <Index />
+      <About />
       <Tournaments />
       <Streams />
     </main>
