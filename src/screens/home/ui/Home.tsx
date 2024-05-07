@@ -4,7 +4,8 @@ import About from "./sections/About";
 import Hero from "./sections/Hero";
 import Tournaments from "./sections/Tournaments";
 import Streams from "./sections/Streams";
-import News from "@/src/screens/home/ui/sections/News";
+import News from "./sections/News";
+import Shop from "./sections/Shop";
 
 const Home: FC = () => {
   return (
@@ -14,6 +15,7 @@ const Home: FC = () => {
       <Tournaments />
       <Streams />
       <News />
+      <Shop />
     </main>
   );
 };

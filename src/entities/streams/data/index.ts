@@ -1,4 +1,4 @@
-import { StreamType } from "../types";
+import type { StreamType } from "../types";
 
 export const streamData: StreamType[] = [
   {

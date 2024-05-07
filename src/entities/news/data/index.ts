@@ -1,4 +1,4 @@
-import { NewsType } from "@/src/entities/news/types";
+import type { NewsType } from "../types";
 
 export const newsData: NewsType[] = [
   {

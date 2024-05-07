@@ -1,4 +1,4 @@
-import { StreamType } from "@/src/entities/tournaments/types";
+import type { StreamType } from "../types";
 
 export const tournamentData: StreamType[] = [
   {
