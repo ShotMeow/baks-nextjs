@@ -16,7 +16,6 @@ const Slider: FC = () => {
       autoplay={{
         delay: 5000,
       }}
-      scrollbar={{ hide: true }}
       spaceBetween={10}
       slidesPerView="auto"
     >
