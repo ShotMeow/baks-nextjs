@@ -20,7 +20,10 @@ const Slider: FC = () => {
       slidesPerView="auto"
     >
       {getNews().map((news) => (
-        <SwiperSlide className="bg-white/5 sm:!w-[400px]" key={news.id}>
+        <SwiperSlide
+          className="bg-white/5 !transition-all !duration-500 sm:!w-[350px] hover:sm:!w-[600px]"
+          key={news.id}
+        >
           <Slide {...news} />
         </SwiperSlide>
       ))}

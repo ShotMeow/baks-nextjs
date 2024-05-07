@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   artwork_url: string;
@@ -10,9 +11,9 @@ interface Props {
 
 const Slide: FC<Props> = ({ artwork_url, title, tags, created_at }) => {
   return (
-    <>
+    <Link href="#">
       <Image
-        className="w-full p-2"
+        className="h-[200px] w-full object-cover p-2"
         src={artwork_url}
         alt={title}
         width={1256}
@@ -27,7 +28,7 @@ const Slide: FC<Props> = ({ artwork_url, title, tags, created_at }) => {
           })}
         </p>
         <h2 className="line-clamp-3 text-xl">{title}</h2>
-        <div className="mt-6 flex items-center gap-2 text-sm">
+        <div className="mt-6 flex items-center gap-2 text-xs">
           {tags.map((tag) => (
             <span
               key={tag}
@@ -38,7 +39,7 @@ const Slide: FC<Props> = ({ artwork_url, title, tags, created_at }) => {
           ))}
         </div>
       </div>
-    </>
+    </Link>
   );
 };
 
