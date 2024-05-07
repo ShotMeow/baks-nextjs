@@ -19,7 +19,7 @@ const Slide: FC<Props> = ({ artwork_url, title, tags, created_at }) => {
         height={600}
       />
       <div className="p-4 font-semibold">
-        <p className="text-green mb-2">
+        <p className="mb-2 text-green">
           {created_at.toLocaleDateString("ru", {
             year: "numeric",
             month: "short",
@@ -27,9 +27,12 @@ const Slide: FC<Props> = ({ artwork_url, title, tags, created_at }) => {
           })}
         </p>
         <h2 className="line-clamp-3 text-xl">{title}</h2>
-        <div className="flex items-center gap-2 mt-6 text-sm">
+        <div className="mt-6 flex items-center gap-2 text-sm">
           {tags.map((tag) => (
-            <span className="bg-white/5 rounded-full px-4 py-2 text-zinc-400 uppercase mr-2 mt-2">
+            <span
+              key={tag}
+              className="mr-2 mt-2 rounded-full bg-white/5 px-4 py-2 uppercase text-zinc-400"
+            >
               {tag}
             </span>
           ))}
