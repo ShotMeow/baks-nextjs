@@ -4,9 +4,9 @@ import Slider from "./Slider";
 
 const Hero: FC = () => {
   return (
-    <div className="my-10 overflow-x-hidden">
+    <section className="my-10">
       <Slider />
-    </div>
+    </section>
   );
 };
 

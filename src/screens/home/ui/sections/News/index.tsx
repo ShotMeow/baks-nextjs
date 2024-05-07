@@ -5,7 +5,7 @@ import Slider from "./Slider";
 
 const News: FC = () => {
   return (
-    <section className="container overflow-hidden">
+    <section className="container">
       <div className="flex items-center gap-6">
         <h2>Новости</h2>
         <Button variant="more">Посмотреть все</Button>

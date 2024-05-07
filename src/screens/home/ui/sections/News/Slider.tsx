@@ -16,12 +16,13 @@ const Slider: FC = () => {
       autoplay={{
         delay: 5000,
       }}
+      scrollbar={{ hide: true }}
       spaceBetween={10}
       slidesPerView="auto"
     >
       {getNews().map((news) => (
         <SwiperSlide
-          className="bg-white/5 !transition-all !duration-500 sm:!w-[350px] hover:sm:!w-[600px]"
+          className="!w-full bg-white/5 !transition-all !duration-700 lg:!w-[350px] hover:lg:!w-[600px]"
           key={news.id}
         >
           <Slide {...news} />
