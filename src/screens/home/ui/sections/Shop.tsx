@@ -12,7 +12,7 @@ const Shop: FC = () => {
         <h2>Магазин</h2>
         <Button variant="more">Посмотреть все</Button>
       </div>
-      <div className="my-10 grid-cols-12 grid-rows-[1fr,200px,1fr,1fr] justify-items-center gap-6 space-y-4 md:space-y-0 md:grid lg:grid-rows-6">
+      <div className="my-10 grid-cols-12 grid-rows-[1fr,200px,1fr,1fr] justify-items-center gap-6 space-y-4 md:grid md:space-y-0 lg:grid-rows-6">
         {getProducts().map((product, index) => (
           <div
             className={classNames(
