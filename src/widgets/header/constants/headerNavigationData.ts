@@ -1,6 +1,6 @@
-import { NavigationItemType } from "../types/navigation.types";
+import { HeaderNavigationItemType } from "../types/navigation.types";
 
-export const navigation: NavigationItemType[] = [
+export const headerNavigationData: HeaderNavigationItemType[] = [
   {
     title: "Новости",
     url: "/news",

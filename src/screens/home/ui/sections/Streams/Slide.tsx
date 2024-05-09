@@ -60,6 +60,7 @@ const Slide: FC<Props> = ({ poster_url, stream_url, description, title }) => {
         <source src={stream_url} type="video/mp4" />
       </video>
       <button
+        aria-label="Включить/выключить видео"
         onClick={handleClick}
         className={classNames(
           {

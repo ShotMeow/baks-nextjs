@@ -15,16 +15,16 @@ const Button: FC<PropsWithChildren<Props>> = ({
     <button
       className={classNames(
         {
-          "bg-gradient-to-r from-yellow to-lilac px-10 py-3 rounded-full font-semibold":
+          "bg-gradient-to-r from-yellow to-lilac rounded-full font-semibold":
             variant === "primary",
-          "bg-lilac rounded-full text-lg font-semibold py-3":
+          "bg-lilac rounded-full text-lg font-semibold":
             variant === "secondary",
-          "text-yellow text-xl backdrop-blur-lg px-10 py-3 bg-yellow/20 rounded-full":
+          "text-yellow text-xl backdrop-blur-lg bg-yellow/20 rounded-full":
             variant === "transparent",
           "text-yellow bg-zinc-800/50 px-6 py-3 rounded-r-full":
             variant === "more",
         },
-        "flex items-center text-center justify-center gap-2 text-black",
+        "flex items-center text-center justify-center px-10 py-3 gap-2 text-black",
         className,
       )}
       {...props}

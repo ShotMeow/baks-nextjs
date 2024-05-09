@@ -33,32 +33,34 @@ const About: FC = () => {
           баскетбола, где цифровой мир расширяет границы возможного и приглашает
           каждого стать частью глобальной спортивной революции.
         </p>
-        <ul className="flex flex-wrap items-center justify-between gap-8 md:justify-start">
+        <ul className="flex flex-wrap items-center justify-between gap-8 text-black md:justify-start">
           <li>
-            <Link href="#">
+            <Link aria-label="Ссылка на сообщество" href="#">
               <Message width={60} height={60} />
             </Link>
           </li>
           <li>
-            <Link href="#">
+            <Link aria-label="Ссылка на Instagram" href="#">
               <Instagram width={60} height={60} />
             </Link>
           </li>
           <li>
-            <Link href="#">
+            <Link aria-label="Ссылка на Telegram" href="#">
               <Telegram width={60} height={60} />
             </Link>
           </li>
           <li>
-            <Youtube width={60} height={60} />
+            <Link aria-label="Ссылка на Youtube" href="#">
+              <Youtube width={60} height={60} />
+            </Link>
           </li>
           <li>
-            <Link href="#">
+            <Link aria-label="Ссылка на Vkontakte" href="#">
               <Vkontakte width={60} height={60} />
             </Link>
           </li>
           <li>
-            <Link href="#">
+            <Link aria-label="Ссылка на Tiktok" href="#">
               <Tiktok width={60} height={60} />
             </Link>
           </li>

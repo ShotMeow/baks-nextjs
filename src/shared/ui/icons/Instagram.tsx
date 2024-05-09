@@ -7,71 +7,71 @@ const Instagram: FC<Props> = ({ width = 33, height = 36, ...props }) => {
     <svg
       width={width}
       height={height}
-      viewBox="0 0 33 36"
+      viewBox="0 0 39 43"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <line
-        x1="12.0768"
-        y1="32.1459"
-        x2="21.6409"
-        y2="32.1459"
+        x1="14.2331"
+        y1="38.6549"
+        x2="25.5643"
+        y2="38.6549"
         stroke="#FF5383"
-        strokeWidth="6.23749"
+        strokeWidth="7.38994"
         strokeLinecap="round"
       />
-      <g filter="url(#filter0_bii_4017_31720)">
+      <g filter="url(#filter0_bii_4065_30910)">
         <rect
-          x="0.849609"
-          y="0.230713"
-          width="32.0191"
-          height="32.0191"
-          rx="9.56415"
-          fill="white"
-          fillOpacity="0.08"
+          x="0.931641"
+          y="0.843018"
+          width="37.935"
+          height="37.935"
+          rx="11.3312"
+          fill="black"
+          fillOpacity="0.59"
         />
       </g>
-      <g filter="url(#filter1_bi_4017_31720)">
+      <g filter="url(#filter1_bi_4065_30910)">
         <circle
-          cx="25.7991"
-          cy="7.2998"
-          r="1.66333"
+          cx="30.4912"
+          cy="9.21821"
+          r="1.97065"
           fill="white"
-          fillOpacity="0.27"
+          fillOpacity="0.38"
         />
       </g>
-      <g filter="url(#filter2_bi_4017_31720)">
+      <g filter="url(#filter2_bi_4065_30910)">
         <circle
-          cx="16.8587"
-          cy="16.2403"
-          r="6.75728"
+          cx="19.8989"
+          cy="19.8105"
+          r="8.00577"
           stroke="white"
-          strokeOpacity="0.27"
-          strokeWidth="2.70291"
+          strokeOpacity="0.38"
+          strokeWidth="3.20231"
         />
       </g>
       <defs>
         <filter
-          id="filter0_bii_4017_31720"
-          x="-57.2141"
-          y="-57.833"
-          width="148.147"
-          height="148.146"
+          id="filter0_bii_4065_30910"
+          x="-85.0684"
+          y="-85.157"
+          width="209.935"
+          height="209.935"
           filterUnits="userSpaceOnUse"
           colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feGaussianBlur in="BackgroundImageFix" stdDeviation="29.0318" />
+          <feGaussianBlur in="BackgroundImageFix" stdDeviation="43" />
           <feComposite
             in2="SourceAlpha"
             operator="in"
-            result="effect1_backgroundBlur_4017_31720"
+            result="effect1_backgroundBlur_4065_30910"
           />
           <feBlend
             mode="normal"
             in="SourceGraphic"
-            in2="effect1_backgroundBlur_4017_31720"
+            in2="effect1_backgroundBlur_4065_30910"
             result="shape"
           />
           <feColorMatrix
@@ -80,8 +80,8 @@ const Instagram: FC<Props> = ({ width = 33, height = 36, ...props }) => {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
             result="hardAlpha"
           />
-          <feOffset dy="2.70064" />
-          <feGaussianBlur stdDeviation="1.35032" />
+          <feOffset dy="4" />
+          <feGaussianBlur stdDeviation="2" />
           <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
           <feColorMatrix
             type="matrix"
@@ -90,7 +90,7 @@ const Instagram: FC<Props> = ({ width = 33, height = 36, ...props }) => {
           <feBlend
             mode="normal"
             in2="shape"
-            result="effect2_innerShadow_4017_31720"
+            result="effect2_innerShadow_4065_30910"
           />
           <feColorMatrix
             in="SourceAlpha"
@@ -99,7 +99,7 @@ const Instagram: FC<Props> = ({ width = 33, height = 36, ...props }) => {
             result="hardAlpha"
           />
           <feOffset />
-          <feGaussianBlur stdDeviation="22.9554" />
+          <feGaussianBlur stdDeviation="34" />
           <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
           <feColorMatrix
             type="matrix"
@@ -107,30 +107,30 @@ const Instagram: FC<Props> = ({ width = 33, height = 36, ...props }) => {
           />
           <feBlend
             mode="normal"
-            in2="effect2_innerShadow_4017_31720"
-            result="effect3_innerShadow_4017_31720"
+            in2="effect2_innerShadow_4065_30910"
+            result="effect3_innerShadow_4065_30910"
           />
         </filter>
         <filter
-          id="filter1_bi_4017_31720"
-          x="-35.2783"
-          y="-53.7775"
-          width="122.155"
-          height="122.155"
+          id="filter1_bi_4065_30910"
+          x="-59.4795"
+          y="-80.7524"
+          width="179.941"
+          height="179.941"
           filterUnits="userSpaceOnUse"
           colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feGaussianBlur in="BackgroundImageFix" stdDeviation="29.707" />
+          <feGaussianBlur in="BackgroundImageFix" stdDeviation="44" />
           <feComposite
             in2="SourceAlpha"
             operator="in"
-            result="effect1_backgroundBlur_4017_31720"
+            result="effect1_backgroundBlur_4065_30910"
           />
           <feBlend
             mode="normal"
             in="SourceGraphic"
-            in2="effect1_backgroundBlur_4017_31720"
+            in2="effect1_backgroundBlur_4065_30910"
             result="shape"
           />
           <feColorMatrix
@@ -139,8 +139,8 @@ const Instagram: FC<Props> = ({ width = 33, height = 36, ...props }) => {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
             result="hardAlpha"
           />
-          <feOffset dy="1.35032" />
-          <feGaussianBlur stdDeviation="0.675159" />
+          <feOffset dy="2" />
+          <feGaussianBlur stdDeviation="1" />
           <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
           <feColorMatrix
             type="matrix"
@@ -149,29 +149,29 @@ const Instagram: FC<Props> = ({ width = 33, height = 36, ...props }) => {
           <feBlend
             mode="normal"
             in2="shape"
-            result="effect2_innerShadow_4017_31720"
+            result="effect2_innerShadow_4065_30910"
           />
         </filter>
         <filter
-          id="filter2_bi_4017_31720"
-          x="-50.664"
-          y="-51.2824"
-          width="135.046"
-          height="135.046"
+          id="filter2_bi_4065_30910"
+          x="-77.708"
+          y="-77.7964"
+          width="195.214"
+          height="195.214"
           filterUnits="userSpaceOnUse"
           colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feGaussianBlur in="BackgroundImageFix" stdDeviation="29.707" />
+          <feGaussianBlur in="BackgroundImageFix" stdDeviation="44" />
           <feComposite
             in2="SourceAlpha"
             operator="in"
-            result="effect1_backgroundBlur_4017_31720"
+            result="effect1_backgroundBlur_4065_30910"
           />
           <feBlend
             mode="normal"
             in="SourceGraphic"
-            in2="effect1_backgroundBlur_4017_31720"
+            in2="effect1_backgroundBlur_4065_30910"
             result="shape"
           />
           <feColorMatrix
@@ -180,8 +180,8 @@ const Instagram: FC<Props> = ({ width = 33, height = 36, ...props }) => {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
             result="hardAlpha"
           />
-          <feOffset dy="1.35032" />
-          <feGaussianBlur stdDeviation="0.675159" />
+          <feOffset dy="2" />
+          <feGaussianBlur stdDeviation="1" />
           <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
           <feColorMatrix
             type="matrix"
@@ -190,7 +190,7 @@ const Instagram: FC<Props> = ({ width = 33, height = 36, ...props }) => {
           <feBlend
             mode="normal"
             in2="shape"
-            result="effect2_innerShadow_4017_31720"
+            result="effect2_innerShadow_4065_30910"
           />
         </filter>
       </defs>

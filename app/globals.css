@@ -13,3 +13,7 @@ section {
 h2 {
     @apply text-3xl md:text-5xl font-semibold;
 }
+
+h3 {
+    @apply text-xl md:text-4xl font-semibold;
+}

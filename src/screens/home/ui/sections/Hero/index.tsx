@@ -4,7 +4,7 @@ import Slider from "./Slider";
 
 const Hero: FC = () => {
   return (
-    <section className="my-10">
+    <section className="my-10 overflow-x-hidden">
       <Slider />
     </section>
   );

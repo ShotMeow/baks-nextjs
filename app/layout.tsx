@@ -5,6 +5,7 @@ import { Readex_Pro } from "next/font/google";
 import "./globals.css";
 
 import { Header } from "@/src/widgets/header";
+import { Footer } from "@/src/widgets/footer";
 
 const readexPro = Readex_Pro({
   subsets: ["latin"],
@@ -23,6 +24,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
       <body className={readexPro.className}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
