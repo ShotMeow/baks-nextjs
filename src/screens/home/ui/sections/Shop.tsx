@@ -3,7 +3,7 @@ import Image from "next/image";
 import classNames from "classnames";
 
 import Button from "@/src/shared/ui/Button";
-import { getProducts } from "@/src/entities/products/api";
+import { getProducts } from "@/src/entities/products";
 
 const Shop: FC = () => {
   return (

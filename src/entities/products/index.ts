@@ -1,1 +1,1 @@
-export { getNews } from "./api";
+export { getProducts } from "./api";
