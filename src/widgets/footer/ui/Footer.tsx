@@ -17,7 +17,7 @@ const Footer: FC = () => {
             <Logo width={100} height={100} className="shrink-0" />
             <span>phygital basketball</span>
           </Link>
-          <p className="text-center font-semibold">
+          <p className="text-center font-semibold xl:text-left">
             - это инновационная платформа, которая сочетает в себе баскетбол и
             цифровые технологии, позволяя игрокам всех уровней улучшать свои
             навыки через виртуальные и дополненные реальности. Мы предлагаем
