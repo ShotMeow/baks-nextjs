@@ -2,6 +2,7 @@ import type { FC } from "react";
 import Field from "@/src/shared/ui/Field";
 import Button from "@/src/shared/ui/Button";
 import Image from "next/image";
+import Link from "next/link";
 
 const Form: FC = () => {
   return (
@@ -18,7 +19,10 @@ const Form: FC = () => {
             <Button variant="secondary">Подписаться</Button>
             <p className="text-zinc-600">
               Нажимая кнопку «Подписаться», вы соглашаетесь с политикой
-              обработки <span className="text-green">персональных данных</span>
+              обработки{" "}
+              <Link href="#" className="text-green">
+                персональных данных
+              </Link>
             </p>
           </div>
         </form>
