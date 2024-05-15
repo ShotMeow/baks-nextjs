@@ -1,6 +1,6 @@
 {
   "name": "fitgital-nextjs-new",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.0.3",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
