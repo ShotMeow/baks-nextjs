@@ -1,12 +1,14 @@
+"use client";
 import type { FC } from "react";
 import Image from "next/image";
 import classNames from "classnames";
 
 import Button from "@/src/shared/ui/Button";
-import { getProducts } from "@/src/entities/products";
+import { useGetProducts } from "@/src/entities/products";
 import Link from "next/link";
 
 const Shop: FC = () => {
+  const { data: products } = useGetProducts();
   return (
     <section className="container">
       <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
@@ -14,7 +16,7 @@ const Shop: FC = () => {
         <Button variant="more">Посмотреть все</Button>
       </div>
       <div className="my-10 grid-cols-12 grid-rows-[1fr,200px,1fr,1fr] justify-items-center gap-6 space-y-4 md:grid md:space-y-0 lg:grid-rows-6">
-        {getProducts().map((product, index) => (
+        {products?.map((product, index) => (
           <Link
             href="#"
             className={classNames(
@@ -37,10 +39,10 @@ const Shop: FC = () => {
             key={product.id}
           >
             <Image
-              src={product.artwork_url}
+              src={product.pictureUrl}
               width={400}
               height={350}
-              alt={product.title}
+              alt={product.name}
               className={classNames(
                 {
                   "p-10 sm:p-20": index === 0,
@@ -49,7 +51,7 @@ const Shop: FC = () => {
               )}
             />
             <div className="flex w-full items-center justify-between gap-10">
-              <p className="line-clamp-1 lg:text-xl">{product.title}</p>
+              <p className="line-clamp-1 lg:text-xl">{product.name}</p>
               <p className="text-lg text-yellow">{product.price}р</p>
             </div>
           </Link>

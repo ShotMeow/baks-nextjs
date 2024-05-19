@@ -1,11 +1,13 @@
+"use client";
 import type { FC } from "react";
-import { getTournaments } from "@/src/entities/tournaments";
+import { useGetTournaments } from "@/src/entities/tournaments";
 import Button from "@/src/shared/ui/Button";
 import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
 
 const Tournaments: FC = () => {
+  const { data: tournaments } = useGetTournaments();
   return (
     <section className="container">
       <div className="my-10 flex flex-col items-center justify-between gap-8 sm:flex-row">
@@ -13,7 +15,7 @@ const Tournaments: FC = () => {
         <Button variant="more">Посмотреть все</Button>
       </div>
       <div className="grid gap-6 lg:grid-cols-2 2xl:grid-cols-3">
-        {getTournaments().map((tournament, index) => (
+        {tournaments?.map((tournament, index) => (
           <Link
             className={classNames({
               "2xl:col-span-3": index === 0,
@@ -36,8 +38,8 @@ const Tournaments: FC = () => {
                   },
                   "w-full h-full object-cover",
                 )}
-                src={tournament.artwork_url}
-                alt={tournament.title}
+                src={tournament.artworkUrl}
+                alt={tournament.name}
                 width={388}
                 height={211}
               />
@@ -51,7 +53,7 @@ const Tournaments: FC = () => {
               >
                 <div className="space-y-4">
                   <h3 className="text-xl font-semibold sm:text-3xl">
-                    {tournament.title}
+                    {tournament.name}
                   </h3>
                   {index === 0 && (
                     <p className="line-clamp-2 hidden text-zinc-500 2xl:block">
@@ -110,18 +112,16 @@ const Tournaments: FC = () => {
                   </p>
                   <p className="text-zinc-500">
                     Регистрация <br />
-                    {!tournament.price && (
-                      <span
-                        className={classNames(
-                          {
-                            "2xl:text-4xl 2xl:font-bold": index === 0,
-                          },
-                          "text-white sm:text-xl font-semibold",
-                        )}
-                      >
-                        Бесплатная
-                      </span>
-                    )}
+                    <span
+                      className={classNames(
+                        {
+                          "2xl:text-4xl 2xl:font-bold": index === 0,
+                        },
+                        "text-white sm:text-xl font-semibold",
+                      )}
+                    >
+                      {tournament.type === "closed" ? "Закрытая" : "Бесплатная"}
+                    </span>
                   </p>
                   {index === 0 && (
                     <Button

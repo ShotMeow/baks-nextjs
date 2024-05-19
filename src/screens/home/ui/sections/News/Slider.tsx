@@ -12,7 +12,7 @@ const Slider: FC = () => {
   const { data } = useGetNews();
   return (
     <Swiper
-      className="container my-10 !overflow-visible"
+      className="container my-10 h-[440px] !overflow-visible"
       modules={[Autoplay]}
       autoplay={{
         delay: 5000,
@@ -22,7 +22,7 @@ const Slider: FC = () => {
     >
       {data?.map((news) => (
         <SwiperSlide
-          className="!w-full bg-white/5 !transition-all !duration-700 lg:!w-[350px] hover:lg:!w-[600px]"
+          className="bg-white/5 !transition-all !duration-700 lg:!w-[350px] hover:lg:!w-[600px]"
           key={news.id}
         >
           <Slide {...news} />

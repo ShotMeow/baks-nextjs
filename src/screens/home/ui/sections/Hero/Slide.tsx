@@ -5,14 +5,11 @@ import classNames from "classnames";
 import { useSwiperSlide } from "swiper/react";
 
 import Button from "@/src/shared/ui/Button";
+import { NewsType } from "@/src/entities/news";
 
-interface Props {
-  artwork_url: string;
-  title: string;
-  description: string;
-}
+interface Props extends NewsType {}
 
-const Slide: FC<Props> = ({ artwork_url, title, description }) => {
+const Slide: FC<Props> = ({ artworkUrl, title, description }) => {
   const { isActive } = useSwiperSlide();
   return (
     <>
@@ -22,9 +19,9 @@ const Slide: FC<Props> = ({ artwork_url, title, description }) => {
           {
             "grayscale opacity-20": !isActive,
           },
-          "-z-10 w-full transition-all duration-700 h-[300px] md:h-auto object-cover",
+          "-z-10 w-full transition-all duration-700 h-[300px] md:h-[600px] object-cover",
         )}
-        src={artwork_url}
+        src={artworkUrl}
         alt={title}
         width={1256}
         height={600}

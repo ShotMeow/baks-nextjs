@@ -1,14 +1,10 @@
 import { FC, useRef, useState } from "react";
 import classNames from "classnames";
+import { StreamType } from "@/src/entities/streams";
 
-interface Props {
-  stream_url: string;
-  poster_url: string;
-  title: string;
-  description: string;
-}
+interface Props extends StreamType {}
 
-const Slide: FC<Props> = ({ poster_url, stream_url, description, title }) => {
+const Slide: FC<Props> = ({ posterUrl, streamUrl, description, title }) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [buttonShown, setButtonShown] = useState<boolean>(true);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -55,9 +51,9 @@ const Slide: FC<Props> = ({ poster_url, stream_url, description, title }) => {
         ref={videoRef}
         muted
         className="h-[200px] w-full object-cover sm:h-[400px] lg:h-[600px]"
-        poster={poster_url}
+        poster={posterUrl}
       >
-        <source src={stream_url} type="video/mp4" />
+        <source src={streamUrl} type="video/mp4" />
       </video>
       <button
         aria-label="Включить/выключить видео"

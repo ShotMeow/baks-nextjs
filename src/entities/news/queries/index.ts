@@ -10,7 +10,7 @@ export const useGetNews = () => {
 };
 
 export const useGetNewsById = (id: NewsType["id"]) => {
-  return useQuery({
+  return useQuery<NewsType>({
     queryKey: ["news", id],
     queryFn: () => getNewsById(id),
   });

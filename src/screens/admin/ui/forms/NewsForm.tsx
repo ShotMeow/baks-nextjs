@@ -83,7 +83,9 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <DialogTitle className="text-xl font-bold">Новый пост</DialogTitle>
+      <DialogTitle className="text-xl font-bold">
+        {type === "create" ? "Добавить новость" : "Редактировать статью"}
+      </DialogTitle>
       <Field>
         <Label className="text-sm/6 font-medium text-white">Название</Label>
         <Input
@@ -96,7 +98,13 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
       </Field>
       <Field>
         <Label className="text-sm/6 font-medium text-white">Описание</Label>
-        <Input className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25" />
+        <Input
+          value={formState.description}
+          onChange={(event) =>
+            setFormState({ ...formState, description: event.target.value })
+          }
+          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+        />
       </Field>
       <Field>
         <Label className="text-sm/6 font-medium text-white">

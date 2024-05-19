@@ -6,14 +6,14 @@ import { EffectCoverflow } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 
-import { getStreams } from "@/src/entities/streams";
+import { getStreams, useGetStreams } from "@/src/entities/streams";
 
 import Slide from "./Slide";
 import Pagination from "./Pagination";
 
 const Slider: FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0); // Инициализируем начальный индекс
-
+  const { data: streams } = useGetStreams();
   return (
     <Swiper
       effect="coverflow"
@@ -30,7 +30,7 @@ const Slider: FC = () => {
       slidesPerView="auto"
       onSlideChange={({ activeIndex }) => setActiveIndex(activeIndex)}
     >
-      {getStreams().map((stream, index) => (
+      {streams?.map((stream) => (
         <SwiperSlide className="relative !max-w-[1100px]" key={stream.id}>
           <Slide {...stream} />
         </SwiperSlide>
