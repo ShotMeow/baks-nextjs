@@ -4,7 +4,7 @@ import Login from "./Login";
 import Editor from "./Editor";
 
 const Admin: FC = () => {
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(true);
 
   return (
     <main className="container my-20">

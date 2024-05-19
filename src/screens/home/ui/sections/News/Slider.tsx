@@ -1,6 +1,6 @@
 "use client";
 import type { FC } from "react";
-import { getNews } from "@/src/entities/news";
+import { useGetNews } from "@/src/entities/news";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -9,6 +9,7 @@ import "swiper/css";
 import Slide from "./Slide";
 
 const Slider: FC = () => {
+  const { data } = useGetNews();
   return (
     <Swiper
       className="container my-10 !overflow-visible"
@@ -19,7 +20,7 @@ const Slider: FC = () => {
       spaceBetween={10}
       slidesPerView="auto"
     >
-      {getNews().map((news) => (
+      {data?.map((news) => (
         <SwiperSlide
           className="!w-full bg-white/5 !transition-all !duration-700 lg:!w-[350px] hover:lg:!w-[600px]"
           key={news.id}

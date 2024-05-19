@@ -1,4 +1,10 @@
-import { Dispatch, FC, FormEvent, SetStateAction, useState } from "react";
+import {
+  type Dispatch,
+  type FC,
+  type FormEvent,
+  type SetStateAction,
+  useState,
+} from "react";
 import Field from "@/src/shared/ui/Field";
 import Button from "@/src/shared/ui/Button";
 

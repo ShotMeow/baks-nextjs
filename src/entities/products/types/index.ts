@@ -1,7 +1,17 @@
 export interface ProductType {
   id: number;
-  title: string;
-  artwork_url: string;
+  name: string;
+  pictureUrl: string;
   price: number;
   created_at: Date;
+}
+
+export interface CreateProductType {
+  name: string;
+  pictureUrl: string;
+  price: number;
+}
+
+export interface UpdateProductType extends CreateProductType {
+  id: number;
 }

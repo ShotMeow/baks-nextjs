@@ -2,9 +2,10 @@ import { type FC, useState } from "react";
 import Button from "@/src/shared/ui/Button";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 
-import Modal from "./Modal";
+import FormModal from "./modals/FormModal";
 import { tabsData } from "../constants/tabs";
 import { getTabPanelButton } from "../utils/getTabPanels";
+import List from "./List";
 
 const Tabs: FC = () => {
   const [modalShown, setModalShown] = useState<boolean>(false);
@@ -26,6 +27,7 @@ const Tabs: FC = () => {
         <TabPanels className="mt-10">
           {tabsData.map((tab) => (
             <TabPanel key={tab.type}>
+              <List type={tab.type} />
               <Button
                 onClick={() => {
                   setModalShown(true);
@@ -39,7 +41,11 @@ const Tabs: FC = () => {
           ))}
         </TabPanels>
       </TabGroup>
-      <Modal activeTab={activeTab} open={modalShown} onClose={setModalShown} />
+      <FormModal
+        activeTab={activeTab}
+        open={modalShown}
+        onClose={setModalShown}
+      />
     </>
   );
 };

@@ -1,16 +1,16 @@
-import { FC, useState } from "react";
+import { type FC, useState } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
-import { getNews } from "@/src/entities/news";
+import { useGetNews } from "@/src/entities/news";
 import Slide from "./Slide";
 import Pagination from "./Pagination";
 
 const Slider: FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0); // Инициализируем начальный индекс
-
+  const { data } = useGetNews();
   return (
     <Swiper
       className="container !overflow-visible"
@@ -22,13 +22,11 @@ const Slider: FC = () => {
       slidesPerView={1}
       onSlideChange={({ activeIndex }) => setActiveIndex(activeIndex)}
     >
-      {getNews()
-        .slice(0, 5)
-        .map((news) => (
-          <SwiperSlide key={news.id}>
-            <Slide {...news} />
-          </SwiperSlide>
-        ))}
+      {data?.slice(0, 5).map((news) => (
+        <SwiperSlide key={news.id}>
+          <Slide {...news} />
+        </SwiperSlide>
+      ))}
       <Pagination activeIndex={activeIndex} />
     </Swiper>
   );

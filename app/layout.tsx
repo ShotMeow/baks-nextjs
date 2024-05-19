@@ -6,6 +6,7 @@ import "./globals.css";
 
 import { Header } from "@/src/widgets/header";
 import { Footer } from "@/src/widgets/footer";
+import QueryProvider from "@/src/shared/libs/tanstack-query/QueryProvider";
 
 const readexPro = Readex_Pro({
   subsets: ["latin"],
@@ -22,9 +23,11 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <html lang="ru">
       <body className={readexPro.className}>
-        <Header />
-        {children}
-        <Footer />
+        <QueryProvider>
+          <Header />
+          {children}
+          <Footer />
+        </QueryProvider>
       </body>
     </html>
   );

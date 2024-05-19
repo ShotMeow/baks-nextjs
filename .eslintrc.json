@@ -3,6 +3,7 @@
     "next/core-web-vitals",
     "standard",
     "plugin:tailwindcss/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
     "prettier"
   ],
   "rules": {

@@ -1,25 +1,28 @@
-import NewsForm from "@/src/screens/admin/ui/forms/NewsForm";
-import TagsForm from "@/src/screens/admin/ui/forms/TagsForm";
-import TeamsForm from "@/src/screens/admin/ui/forms/TeamsForm";
-import StreamsForm from "@/src/screens/admin/ui/forms/StreamsForm";
-import TournamentsForm from "@/src/screens/admin/ui/forms/TournamentsForm";
-import ProductsForm from "@/src/screens/admin/ui/forms/ProductsForm";
-import type { ReactElement } from "react";
+import type { Dispatch, ReactElement, SetStateAction } from "react";
+import NewsForm from "../ui/forms/NewsForm";
+import TagsForm from "../ui/forms/TagsForm";
+import TeamsForm from "../ui/forms/TeamsForm";
+import StreamsForm from "../ui/forms/StreamsForm";
+import TournamentsForm from "../ui/forms/TournamentsForm";
+import ProductsForm from "../ui/forms/ProductsForm";
 
-export const getCurrentForm = (tabType: string): ReactElement => {
+export const getCurrentForm = (
+  tabType: string,
+  onClose: Dispatch<SetStateAction<boolean>>,
+): ReactElement => {
   switch (tabType) {
     case "news":
-      return <NewsForm />;
+      return <NewsForm type="create" onClose={onClose} />;
     case "tags":
-      return <TagsForm />;
+      return <TagsForm type="create" onClose={onClose} />;
     case "streams":
-      return <StreamsForm />;
+      return <StreamsForm type="create" onClose={onClose} />;
     case "teams":
-      return <TeamsForm />;
+      return <TeamsForm type="create" onClose={onClose} />;
     case "tournaments":
-      return <TournamentsForm />;
+      return <TournamentsForm type="create" onClose={onClose} />;
     case "products":
-      return <ProductsForm />;
+      return <ProductsForm type="create" onClose={onClose} />;
     default:
       return <></>;
   }

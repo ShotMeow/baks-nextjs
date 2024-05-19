@@ -1,10 +1,30 @@
-export interface StreamType {
+import { TeamType } from "@/src/entities/teams";
+
+export interface TournamentType {
   id: number;
-  title: string;
+  name: string;
   description: string;
   prize: number;
   mode: string;
-  artwork_url: string;
-  price?: number;
-  created_at: Date;
+  type: string;
+  artworkUrl: string;
+  teams: TeamType[];
+  address: string;
+  eventDate: Date;
+  createdAt: Date;
+}
+
+export interface CreateTournamentType {
+  name: string;
+  description: string;
+  prize: number;
+  mode: string;
+  type: string;
+  artworkUrl: string;
+  address: string;
+  eventDate: Date;
+}
+
+export interface UpdateTournamentType extends CreateTournamentType {
+  id: number;
 }
