@@ -31,7 +31,7 @@ const StreamsList: FC<Props> = ({
               className="h-60 w-full object-cover"
               src={stream.posterUrl}
               alt={stream.title}
-              width={600}
+              width={320}
               height={400}
             />
             <div className="space-y-2">
