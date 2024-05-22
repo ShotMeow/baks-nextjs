@@ -28,7 +28,7 @@ const StreamsForm: FC<Props> = ({ onClose, stream, type }) => {
   const [formState, setFormState] = useState<CreateStreamType>({
     title: stream?.title ?? "",
     description: stream?.description ?? "",
-    streamUrl: stream?.streamUrl ?? "",
+    channel: stream?.channel ?? "",
     posterUrl: stream?.posterUrl ?? "",
   });
 
@@ -73,13 +73,11 @@ const StreamsForm: FC<Props> = ({ onClose, stream, type }) => {
         />
       </Field>
       <Field>
-        <Label className="text-sm/6 font-medium text-white">
-          Ссылка на трансляцию
-        </Label>
+        <Label className="text-sm/6 font-medium text-white">Twitch-канал</Label>
         <Input
-          value={formState.streamUrl}
+          value={formState.channel}
           onChange={(event) =>
-            setFormState({ ...formState, streamUrl: event.target.value })
+            setFormState({ ...formState, channel: event.target.value })
           }
           className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
         />

@@ -2,7 +2,7 @@ export interface StreamType {
   id: number;
   title: string;
   description: string;
-  streamUrl: string;
+  channel: string;
   posterUrl: string;
   created_at: Date;
 }
@@ -10,7 +10,7 @@ export interface StreamType {
 export interface CreateStreamType {
   title: string;
   description: string;
-  streamUrl: string;
+  channel: string;
   posterUrl: string;
 }
 

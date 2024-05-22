@@ -1,39 +1,15 @@
-import { FC, useRef, useState } from "react";
+import { type FC, useState } from "react";
 import classNames from "classnames";
-import { StreamType } from "@/src/entities/streams";
+import type { StreamType } from "@/src/entities/streams";
+import Image from "next/image";
+import { TwitchPlayer } from "react-twitch-embed";
 
 interface Props extends StreamType {}
 
-const Slide: FC<Props> = ({ posterUrl, streamUrl, description, title }) => {
+const Slide: FC<Props> = ({ posterUrl, channel, description, title }) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [buttonShown, setButtonShown] = useState<boolean>(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  let timer: number | null = null;
-
   const handleClick = () => {
-    if (!videoRef.current) return;
-
-    if (isPlaying) {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      videoRef.current.play();
-      setIsPlaying(true);
-    }
-  };
-
-  const handleMouseMove = () => {
-    timer !== null && window.clearTimeout(timer);
-    if (!isPlaying) {
-      setButtonShown(true);
-      return;
-    }
-
-    timer = window.setTimeout(() => {
-      setButtonShown(false);
-    }, 3000);
-
-    setButtonShown(true);
+    setIsPlaying(!isPlaying);
   };
 
   return (
@@ -42,25 +18,31 @@ const Slide: FC<Props> = ({ posterUrl, streamUrl, description, title }) => {
         "before:absolute before:left-0 before:top-0 before:size-full before:bg-gradient-to-t before:from-black/70 before:via-transparent before:to-transparent":
           !isPlaying,
       })}
-      onClick={handleClick}
-      onMouseMove={handleMouseMove}
     >
-      <video
-        width={736}
-        height={414}
-        ref={videoRef}
-        muted
-        className="h-[200px] w-full object-cover sm:h-[400px] lg:h-[600px]"
-        poster={posterUrl}
-      >
-        <source src={streamUrl} type="video/mp4" />
-      </video>
+      <div className="h-[200px] sm:h-[400px] lg:h-[600px]">
+        {isPlaying ? (
+          <TwitchPlayer
+            onPause={handleClick}
+            channel={channel}
+            width="100%"
+            height="100%"
+          />
+        ) : (
+          <Image
+            className="w-full h-full object-cover"
+            width={1920}
+            height={1080}
+            src={posterUrl}
+            alt={title}
+          />
+        )}
+      </div>
       <button
-        aria-label="Включить/выключить видео"
+        aria-label="Включить стрим"
         onClick={handleClick}
         className={classNames(
           {
-            "opacity-0": !buttonShown,
+            "opacity-0": isPlaying,
           },
           "absolute z-10 left-1/2 top-1/2 flex size-24 lg:size-32 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-b from-white/30 to-transparent backdrop-blur-md transition-all duration-500",
         )}
