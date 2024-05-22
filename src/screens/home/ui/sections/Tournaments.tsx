@@ -5,14 +5,19 @@ import Button from "@/src/shared/ui/Button";
 import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Tournaments: FC = () => {
+  const router = useRouter();
   const { data: tournaments } = useGetTournaments();
+
   return (
     <section className="container">
       <div className="my-10 flex flex-col items-center justify-between gap-8 sm:flex-row">
         <h2>Турниры</h2>
-        <Button variant="more">Посмотреть все</Button>
+        <Button onClick={() => router.push("/tournaments")} variant="more">
+          Посмотреть все
+        </Button>
       </div>
       <div className="grid gap-6 lg:grid-cols-2 2xl:grid-cols-3">
         {tournaments?.map((tournament, index) => (

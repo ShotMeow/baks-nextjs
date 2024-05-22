@@ -6,14 +6,19 @@ import classNames from "classnames";
 import Button from "@/src/shared/ui/Button";
 import { useGetProducts } from "@/src/entities/products";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Shop: FC = () => {
+  const router = useRouter();
   const { data: products } = useGetProducts();
+
   return (
     <section className="container">
       <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
         <h2>Магазин</h2>
-        <Button variant="more">Посмотреть все</Button>
+        <Button onClick={() => router.push("/shop")} variant="more">
+          Посмотреть все
+        </Button>
       </div>
       <div className="my-10 grid-cols-12 grid-rows-[1fr,200px,1fr,1fr] justify-items-center gap-6 space-y-4 md:grid md:space-y-0 lg:grid-rows-6">
         {products?.map((product, index) => (

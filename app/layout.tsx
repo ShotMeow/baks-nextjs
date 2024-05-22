@@ -24,9 +24,13 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
     <html lang="ru">
       <body className={readexPro.className}>
         <QueryProvider>
-          <Header />
-          {children}
-          <Footer />
+          <div className="flex flex-col justify-between h-full">
+            <div>
+              <Header />
+              {children}
+            </div>
+            <Footer />
+          </div>
         </QueryProvider>
       </body>
     </html>
