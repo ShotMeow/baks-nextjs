@@ -5,9 +5,9 @@ import { NewsType } from "@/src/entities/news";
 
 interface Props extends NewsType {}
 
-const Slide: FC<Props> = ({ artworkUrl, title, tags, createdAt }) => {
+const Slide: FC<Props> = ({ id, artworkUrl, title, tags, createdAt }) => {
   return (
-    <Link className="flex h-full flex-col justify-between" href="#">
+    <Link className="flex h-full flex-col justify-between" href={`/news/${id}`}>
       <Image
         className="h-[200px] w-full object-cover p-2"
         src={artworkUrl}

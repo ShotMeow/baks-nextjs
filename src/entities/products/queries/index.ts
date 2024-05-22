@@ -10,7 +10,7 @@ export const useGetProducts = () => {
 };
 
 export const useGetProductById = (id: ProductType["id"]) => {
-  return useQuery({
+  return useQuery<ProductType>({
     queryKey: ["products", id],
     queryFn: () => getProductById(id),
   });

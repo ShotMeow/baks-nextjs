@@ -37,7 +37,7 @@ const Post: FC<Props> = ({ slug }) => {
                     post.tags.map((tag) => (
                       <span
                         key={tag.id}
-                        className="mr-2 rounded-full bg-white/5 px-4 py-2 uppercase text-zinc-400"
+                        className="mr-2 rounded-full bg-white/5 px-4 py-2 uppercase text-zinc-400 backdrop-blur-lg"
                       >
                         {tag.name}
                       </span>

@@ -6,13 +6,14 @@ import { useSwiperSlide } from "swiper/react";
 
 import Button from "@/src/shared/ui/Button";
 import { NewsType } from "@/src/entities/news";
+import Link from "next/link";
 
 interface Props extends NewsType {}
 
-const Slide: FC<Props> = ({ artworkUrl, title, description }) => {
+const Slide: FC<Props> = ({ id, artworkUrl, title, description }) => {
   const { isActive } = useSwiperSlide();
   return (
-    <>
+    <Link href={`/news/${id}`}>
       <div className="absolute left-0 top-0 size-full bg-gradient-to-t from-black/50 to-transparent" />
       <Image
         className={classNames(
@@ -35,7 +36,7 @@ const Slide: FC<Props> = ({ artworkUrl, title, description }) => {
         </div>
         <Button variant="transparent">Подробнее</Button>
       </div>
-    </>
+    </Link>
   );
 };
 
