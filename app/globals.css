@@ -2,12 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+html,body {
     @apply h-full;
+    scrollbar-gutter: stable;
 }
 
 body {
-    @apply bg-black text-white h-full;
+    @apply bg-black text-white;
+}
+
+main {
+    @apply my-32;
 }
 
 section {

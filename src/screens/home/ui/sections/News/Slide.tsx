@@ -27,7 +27,7 @@ const Slide: FC<Props> = ({ id, artworkUrl, title, tags, createdAt }) => {
           <h2 className="line-clamp-3 text-xl">{title}</h2>
         </div>
         <div className="mt-6 flex items-center gap-2 text-xs">
-          {tags.map((tag) => (
+          {tags?.map((tag) => (
             <span
               key={tag.id}
               className="mr-2 mt-2 rounded-full bg-white/5 px-4 py-2 uppercase text-zinc-400"

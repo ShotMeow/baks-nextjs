@@ -20,6 +20,7 @@ export interface CreateTournamentType {
   prize: number;
   mode: string;
   type: string;
+  teams: number[];
   artworkUrl: string;
   address: string;
   eventDate: Date;

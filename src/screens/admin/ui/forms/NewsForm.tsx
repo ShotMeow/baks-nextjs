@@ -58,10 +58,7 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
     switch (type) {
       case "create":
         createNewsMutation({
-          title: formState.title,
-          description: formState.description,
-          body: formState.body,
-          artworkUrl: formState.artworkUrl,
+          ...formState,
           tags: formState.tags.map((tag) => tag.id),
         });
         break;
@@ -69,10 +66,7 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
         news &&
           updateNewsMutation({
             id: news.id,
-            title: formState.title,
-            description: formState.description,
-            body: formState.body,
-            artworkUrl: formState.artworkUrl,
+            ...formState,
             tags: formState.tags.map((tag) => tag.id),
           });
         break;

@@ -8,7 +8,7 @@ import Image from "next/image";
 const Shop: FC = () => {
   const { data } = useGetProducts();
   return (
-    <main className="container my-20">
+    <main className="container">
       <div className="my-10 grid-cols-12 justify-items-center gap-6 space-y-4 md:grid md:space-y-0 lg:grid-rows-6">
         {data?.map((product, index) => (
           <Link

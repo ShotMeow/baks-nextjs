@@ -11,7 +11,7 @@ interface Props {
 const Post: FC<Props> = ({ slug }) => {
   const { data: post } = useGetNewsById(+slug);
   return (
-    <main className="container my-20">
+    <main className="container">
       {post && (
         <article>
           <div className="relative">

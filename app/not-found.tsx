@@ -8,7 +8,7 @@ const ErrorPage: NextPage = () => {
   const router = useRouter();
 
   return (
-    <main className="container my-10 flex flex-col items-center gap-4 bg-white/5 p-4 lg:flex-row lg:gap-0">
+    <main className="container my-36 flex flex-col items-center gap-4 bg-white/5 p-4 lg:flex-row lg:gap-0">
       <Image
         src="/images/404.jpg"
         alt="404 Error image"

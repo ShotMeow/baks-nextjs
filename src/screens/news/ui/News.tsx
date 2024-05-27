@@ -8,7 +8,7 @@ import classNames from "classnames";
 const News: FC = () => {
   const { data: news } = useGetNews();
   return (
-    <main className="container my-20">
+    <main className="container">
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {news?.map((post, index) => (
           <Link

@@ -4,9 +4,8 @@ import Link from "next/link";
 import Logo from "@/src/shared/ui/icons/Logo";
 
 import Navigation from "./Navigation";
-import Button from "@/src/shared/ui/Button";
-import Smile from "@/src/shared/ui/icons/Smile";
 import MobileNavbar from "@/src/widgets/header/ui/MobileNavbar";
+import Account from "@/src/widgets/header/ui/Account";
 
 const Header: FC = () => {
   return (
@@ -21,10 +20,7 @@ const Header: FC = () => {
               </span>
             </Link>
             <Navigation />
-            <Button variant="primary">
-              <Smile />
-              Войти
-            </Button>
+            <Account />
           </div>
         </div>
       </header>

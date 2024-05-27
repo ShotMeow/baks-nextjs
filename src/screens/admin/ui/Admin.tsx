@@ -7,7 +7,7 @@ const Admin: FC = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true);
 
   return (
-    <main className="container my-20">
+    <main className="container">
       <h2>Админ-панель</h2>
       {!isLogin ? <Login setIsLogin={setIsLogin} /> : <Editor />}
     </main>

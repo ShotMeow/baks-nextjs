@@ -13,7 +13,7 @@ const Streams: FC = () => {
   }, [streams]);
 
   return (
-    <main className="container my-20">
+    <main className="container">
       {activeStream && <ActiveStream {...activeStream} />}
       {streams && activeStream && (
         <StreamsList

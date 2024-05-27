@@ -15,7 +15,7 @@ export const headerNavigationData: HeaderNavigationItemType[] = [
   },
   {
     title: "Турниры",
-    url: "/championships",
+    url: "/tournaments",
   },
   {
     title: "Магазин",

@@ -2,7 +2,7 @@
 import type { FC } from "react";
 
 const Tournaments: FC = () => {
-  return <main className="container my-20"></main>;
+  return <main className="container"></main>;
 };
 
 export default Tournaments;

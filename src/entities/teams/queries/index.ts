@@ -10,7 +10,7 @@ export const useGetTeams = () => {
 };
 
 export const useGetTeamById = (id: TeamType["id"]) => {
-  return useQuery({
+  return useQuery<TeamType>({
     queryKey: ["teams", id],
     queryFn: () => getTeamById(id),
   });
