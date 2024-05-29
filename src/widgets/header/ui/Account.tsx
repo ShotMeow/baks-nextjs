@@ -9,7 +9,7 @@ const Account: FC = () => {
   const [authModalShown, setAuthModalShown] = useState<boolean>(false);
   const router = useRouter();
   const pathname = usePathname();
-  const { isAuth } = useAuth();
+  const { token } = useAuth();
 
   const handleLogout = () => {
     logOut();
@@ -18,7 +18,7 @@ const Account: FC = () => {
 
   return (
     <>
-      {isAuth ? (
+      {token ? (
         pathname.includes("/profile") ? (
           <Button onClick={() => handleLogout()} variant="primary">
             <Smile />

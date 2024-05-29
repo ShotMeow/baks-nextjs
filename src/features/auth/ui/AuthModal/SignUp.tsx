@@ -1,16 +1,16 @@
 import {
-  Dispatch,
-  FC,
-  FormEvent,
-  SetStateAction,
+  type Dispatch,
+  type FC,
+  type FormEvent,
+  type SetStateAction,
   useEffect,
   useState,
 } from "react";
 import { DialogTitle, Field, Input, Label, Select } from "@headlessui/react";
 import Button from "@/src/shared/ui/Button";
-import { useSignUp } from "@/src/features/auth/mutations";
-import { SignUpType } from "@/src/features/auth/types";
 import Error from "@/src/shared/ui/Error";
+import { useSignUp } from "../../mutations";
+import type { SignUpType } from "../../types";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -22,7 +22,7 @@ const SignUp: FC<Props> = ({ onClose }) => {
     password: "",
     nickname: "",
     name: "",
-    role: "",
+    role: "tank",
   });
   const [formError, setFormError] = useState<string | null>(null);
   const { mutate, error } = useSignUp();

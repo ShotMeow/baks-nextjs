@@ -1,16 +1,15 @@
 import {
-  Dispatch,
-  FC,
-  FormEvent,
-  SetStateAction,
-  useEffect,
+  type Dispatch,
+  type FC,
+  type FormEvent,
+  type SetStateAction,
   useState,
 } from "react";
 import { DialogTitle, Field, Input, Label } from "@headlessui/react";
 import Button from "@/src/shared/ui/Button";
-import { useSignIn } from "@/src/features/auth/mutations";
-import { SignInType } from "@/src/features/auth/types";
 import Error from "@/src/shared/ui/Error";
+import { useSignIn } from "../../mutations";
+import type { SignInType } from "../../types";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;

@@ -19,7 +19,7 @@ const Slide: FC<Props> = ({ posterUrl, channel, description, title }) => {
           !isPlaying,
       })}
     >
-      <div className="h-[200px] sm:h-[400px] lg:h-[600px]">
+      <div className="h-full">
         {isPlaying ? (
           <TwitchPlayer
             onPause={handleClick}
@@ -29,7 +29,7 @@ const Slide: FC<Props> = ({ posterUrl, channel, description, title }) => {
           />
         ) : (
           <Image
-            className="w-full h-full object-cover"
+            className="size-full object-cover"
             width={1920}
             height={1080}
             src={posterUrl}

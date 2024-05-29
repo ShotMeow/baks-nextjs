@@ -5,13 +5,13 @@ import { useAuth } from "@/src/shared/hooks/useAuth";
 
 const PrivateRoute: FC<PropsWithChildren> = ({ children }) => {
   const router = useRouter();
-  const { isAuth } = useAuth();
+  const { token } = useAuth();
 
   useEffect(() => {
-    if (!isAuth && isAuth !== null) {
+    if (!token && token !== null) {
       router.push("/");
     }
-  }, [isAuth, router]);
+  }, [token, router]);
 
   return <>{children}</>;
 };

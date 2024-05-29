@@ -38,9 +38,9 @@ const TagsForm: FC<Props> = ({ onClose, tag, type }) => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <DialogTitle className="text-xl font-bold">
+      <h4 className="text-xl font-bold">
         {type === "create" ? "Добавить тег" : "Изменить тег"}
-      </DialogTitle>
+      </h4>
       <Field>
         <Label className="text-sm/6 font-medium text-white">Название</Label>
         <Input

@@ -1,13 +1,12 @@
-import { Dispatch, FC, SetStateAction, useState } from "react";
+import { type Dispatch, type FC, type SetStateAction, useState } from "react";
 import {
   Dialog,
   DialogPanel,
   Transition,
   TransitionChild,
 } from "@headlessui/react";
-import { getCurrentForm } from "@/src/screens/admin/utils/getCurrentForm";
-import SignIn from "@/src/features/auth/ui/AuthModal/SignIn";
-import SignUp from "@/src/features/auth/ui/AuthModal/SignUp";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 
 interface Props {
   open: boolean;

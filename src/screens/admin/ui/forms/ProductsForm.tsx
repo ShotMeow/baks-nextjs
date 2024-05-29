@@ -47,12 +47,13 @@ const ProductsForm: FC<Props> = ({ onClose, product, type }) => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <DialogTitle className="text-xl font-bold">
+      <h4 className="text-xl font-bold">
         {type === "create" ? "Добавить товар" : "Редактировать товар"}
-      </DialogTitle>
+      </h4>
       <Field>
         <Label className="text-sm/6 font-medium text-white">Название</Label>
         <Input
+          required
           value={formState.name}
           onChange={(event) =>
             setFormState({ ...formState, name: event.target.value })
@@ -63,6 +64,7 @@ const ProductsForm: FC<Props> = ({ onClose, product, type }) => {
       <Field>
         <Label className="text-sm/6 font-medium text-white">Цена</Label>
         <Input
+          required
           value={formState.price}
           onChange={(event) =>
             setFormState({ ...formState, price: +event.target.value })
@@ -76,6 +78,7 @@ const ProductsForm: FC<Props> = ({ onClose, product, type }) => {
           Ссылка на изображение
         </Label>
         <Input
+          required
           value={formState.pictureUrl}
           onChange={(event) =>
             setFormState({ ...formState, pictureUrl: event.target.value })

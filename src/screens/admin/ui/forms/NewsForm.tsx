@@ -10,7 +10,6 @@ import {
   ComboboxInput,
   ComboboxOption,
   ComboboxOptions,
-  DialogTitle,
   Field,
   Input,
   Label,
@@ -20,7 +19,11 @@ import MDEditor from "@uiw/react-md-editor";
 
 import Button from "@/src/shared/ui/Button";
 import { useGetTags } from "@/src/entities/tags";
-import { NewsType, useCreateNews, useUpdateNews } from "@/src/entities/news";
+import {
+  type NewsType,
+  useCreateNews,
+  useUpdateNews,
+} from "@/src/entities/news";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -54,7 +57,6 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     switch (type) {
       case "create":
         createNewsMutation({
@@ -77,12 +79,13 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <DialogTitle className="text-xl font-bold">
+      <h4 className="text-xl font-bold">
         {type === "create" ? "Добавить новость" : "Редактировать статью"}
-      </DialogTitle>
+      </h4>
       <Field>
         <Label className="text-sm/6 font-medium text-white">Название</Label>
         <Input
+          required
           value={formState.title}
           onChange={(event) =>
             setFormState({ ...formState, title: event.target.value })
@@ -93,6 +96,7 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
       <Field>
         <Label className="text-sm/6 font-medium text-white">Описание</Label>
         <Input
+          required
           value={formState.description}
           onChange={(event) =>
             setFormState({ ...formState, description: event.target.value })

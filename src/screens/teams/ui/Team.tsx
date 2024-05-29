@@ -32,7 +32,7 @@ const Team: FC<Props> = ({ slug }) => {
                 )}
                 <h4 className="text-2xl">{team.name}</h4>
               </div>
-              <div className="flex items-center flex-wrap gap-4">
+              <div className="flex flex-wrap items-center gap-4">
                 {team.winsPercent ? (
                   <p className="bg-white/5 p-2">
                     Процент побед | {team.winsPercent}%

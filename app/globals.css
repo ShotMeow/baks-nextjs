@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --g-color-line-brand: #F0F424;
+}
+
 html,body {
     @apply h-full;
     scrollbar-gutter: stable;
@@ -25,4 +29,18 @@ h2 {
 
 h3 {
     @apply text-xl md:text-4xl font-semibold;
+}
+
+*::-webkit-scrollbar {
+    @apply size-1;
+}
+
+*::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+*::-webkit-scrollbar-thumb {
+    @apply bg-yellow;
+    border-radius: 0;
 }

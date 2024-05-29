@@ -1,16 +1,16 @@
 import type { FC } from "react";
-import { useGetNews } from "@/src/entities/news";
+import type { NewsType } from "@/src/entities/news";
 import classNames from "classnames";
 
 interface Props {
   activeIndex: number;
+  news: NewsType[];
 }
 
-const Pagination: FC<Props> = ({ activeIndex }) => {
-  const { data } = useGetNews();
+const Pagination: FC<Props> = ({ activeIndex, news }) => {
   return (
-    <div className="mt-6 flex items-center justify-center gap-4">
-      {data?.slice(0, 5).map((news, index) => (
+    <div className="flex items-center justify-center gap-4">
+      {news.map((post, index) => (
         <div
           className={classNames(
             {
@@ -19,7 +19,7 @@ const Pagination: FC<Props> = ({ activeIndex }) => {
             },
             "h-1 w-4 rounded-full transition-all duration-500",
           )}
-          key={news.id}
+          key={post.id}
         />
       ))}
     </div>

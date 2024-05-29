@@ -28,3 +28,16 @@ export const deleteUser = async (id: UserType["id"]) => {
   });
   return response.json();
 };
+
+export const getAuthUser = async (jwtToken: string | null) => {
+  if (!jwtToken) {
+    throw new Error("JWT token is missing");
+  }
+
+  const response = await fetch(`${API_URL}/profile`, {
+    headers: {
+      Authorization: `Bearer ${jwtToken}`,
+    },
+  });
+  return response.json();
+};

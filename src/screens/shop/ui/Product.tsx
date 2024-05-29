@@ -11,7 +11,7 @@ interface Props {
 const Product: FC<Props> = ({ slug }) => {
   const { data: product } = useGetProductById(+slug);
   return (
-    <main className="container my-10">
+    <main className="container">
       {product && (
         <div className="grid lg:grid-cols-2 lg:gap-10">
           <div className="bg-white/5 p-6">

@@ -1,4 +1,4 @@
-import { TagType } from "@/src/entities/tags";
+import type { TagType } from "@/src/entities/tags";
 
 export interface NewsType {
   id: number;

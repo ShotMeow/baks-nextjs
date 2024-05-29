@@ -7,9 +7,10 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
 import Slide from "./Slide";
+import { Spin } from "@gravity-ui/uikit";
 
 const Slider: FC = () => {
-  const { data } = useGetNews();
+  const { data: news } = useGetNews();
   return (
     <Swiper
       className="container my-10 h-[440px] !overflow-visible"
@@ -20,14 +21,20 @@ const Slider: FC = () => {
       spaceBetween={10}
       slidesPerView="auto"
     >
-      {data?.map((news) => (
-        <SwiperSlide
-          className="bg-white/5 !transition-all !duration-700 lg:!w-[350px] hover:lg:!w-[600px]"
-          key={news.id}
-        >
-          <Slide {...news} />
+      {news ? (
+        news?.slice(0, 8).map((post) => (
+          <SwiperSlide
+            className="bg-white/5 !transition-all !duration-700 lg:!w-[350px] hover:lg:!w-[600px]"
+            key={post.id}
+          >
+            <Slide {...post} />
+          </SwiperSlide>
+        ))
+      ) : (
+        <SwiperSlide className="!flex items-center justify-center">
+          <Spin size="xl" />
         </SwiperSlide>
-      ))}
+      )}
     </Swiper>
   );
 };

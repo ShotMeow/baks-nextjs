@@ -1,11 +1,7 @@
 import type { Dispatch, FC, PropsWithChildren, SetStateAction } from "react";
-import {
-  Dialog,
-  DialogPanel,
-  Transition,
-  TransitionChild,
-} from "@headlessui/react";
+
 import { getCurrentForm } from "@/src/screens/admin/utils/getCurrentForm";
+import { Modal } from "@gravity-ui/uikit";
 
 interface Props {
   open: boolean;
@@ -20,30 +16,11 @@ const FormModal: FC<PropsWithChildren<Props>> = ({
   onClose,
 }) => {
   return (
-    <Transition appear show={open}>
-      <Dialog
-        open={open}
-        onClose={onClose}
-        className="relative z-50 focus:outline-none"
-      >
-        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4">
-            <TransitionChild
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 transform-[scale(95%)]"
-              enterTo="opacity-100 transform-[scale(100%)]"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 transform-[scale(100%)]"
-              leaveTo="opacity-0 transform-[scale(95%)]"
-            >
-              <DialogPanel className="w-full max-w-md rounded-xl bg-black p-6">
-                {children ?? getCurrentForm(activeTab, onClose)}
-              </DialogPanel>
-            </TransitionChild>
-          </div>
-        </div>
-      </Dialog>
-    </Transition>
+    <Modal open={open} onClose={() => onClose}>
+      <div className="rounded-xl bg-black p-6">
+        {children ?? getCurrentForm(activeTab, onClose)}
+      </div>
+    </Modal>
   );
 };
 

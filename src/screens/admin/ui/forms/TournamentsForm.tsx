@@ -25,6 +25,7 @@ import {
   useUpdateTournament,
 } from "@/src/entities/tournaments";
 import { useGetTeams } from "@/src/entities/teams";
+import MDEditor from "@uiw/react-md-editor";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -41,9 +42,10 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
   >({
     name: tournament?.name ?? "",
     description: tournament?.description ?? "",
+    body: tournament?.body ?? "",
     prize: tournament?.prize ?? 0,
-    mode: tournament?.mode ?? "",
-    type: tournament?.type ?? "",
+    mode: tournament?.mode ?? "1x1",
+    type: tournament?.type ?? "opened",
     teams: tournament?.teams ?? [],
     artworkUrl: tournament?.artworkUrl ?? "",
     address: tournament?.address ?? "",
@@ -84,10 +86,15 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <DialogTitle className="text-xl font-bold">Новый турнир</DialogTitle>
+      <h4 className="text-xl font-bold">
+        {type === "create"
+          ? "Новый турнир"
+          : `Редактировать турнир ${tournament?.name}`}
+      </h4>
       <Field>
         <Label className="text-sm/6 font-medium text-white">Название</Label>
         <Input
+          required
           value={formState.name}
           onChange={(event) =>
             setFormState({ ...formState, name: event.target.value })
@@ -98,6 +105,7 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
       <Field>
         <Label className="text-sm/6 font-medium text-white">Описание</Label>
         <Input
+          required
           value={formState.description}
           onChange={(event) =>
             setFormState({ ...formState, description: event.target.value })
@@ -107,9 +115,21 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
       </Field>
       <Field>
         <Label className="text-sm/6 font-medium text-white">
+          Подробное описание
+        </Label>
+        <MDEditor
+          value={formState.body}
+          onChange={(value) =>
+            setFormState({ ...formState, body: value ?? "" })
+          }
+        />
+      </Field>
+      <Field>
+        <Label className="text-sm/6 font-medium text-white">
           Ссылка на изображение
         </Label>
         <Input
+          required
           value={formState.artworkUrl}
           onChange={(event) =>
             setFormState({ ...formState, artworkUrl: event.target.value })
@@ -120,6 +140,7 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
       <Field>
         <Label className="text-sm/6 font-medium text-white">Приз</Label>
         <Input
+          required
           value={formState.prize}
           onChange={(event) =>
             setFormState({ ...formState, prize: +event.target.value })
@@ -201,6 +222,7 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
           Адрес проведения
         </Label>
         <Input
+          required
           value={formState.address}
           onChange={(event) =>
             setFormState({ ...formState, address: event.target.value })
@@ -213,6 +235,7 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
           Дата проведения
         </Label>
         <Input
+          required
           onChange={(event) =>
             setFormState({
               ...formState,

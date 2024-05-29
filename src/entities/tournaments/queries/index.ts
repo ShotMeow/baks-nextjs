@@ -10,7 +10,7 @@ export const useGetTournaments = () => {
 };
 
 export const useGetTournamentById = (id: TournamentType["id"]) => {
-  return useQuery({
+  return useQuery<TournamentType>({
     queryKey: ["tournaments", id],
     queryFn: () => getTournamentById(id),
   });

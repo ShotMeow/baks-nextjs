@@ -49,12 +49,13 @@ const StreamsForm: FC<Props> = ({ onClose, stream, type }) => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <DialogTitle className="text-xl font-bold">
+      <h4 className="text-xl font-bold">
         {type === "create" ? "Новая трансляция" : "Редактировать трансляцию"}
-      </DialogTitle>
+      </h4>
       <Field>
         <Label className="text-sm/6 font-medium text-white">Название</Label>
         <Input
+          required
           value={formState.title}
           onChange={(event) =>
             setFormState({ ...formState, title: event.target.value })
@@ -65,6 +66,7 @@ const StreamsForm: FC<Props> = ({ onClose, stream, type }) => {
       <Field>
         <Label className="text-sm/6 font-medium text-white">Описание</Label>
         <Textarea
+          required
           value={formState.description}
           onChange={(event) =>
             setFormState({ ...formState, description: event.target.value })
@@ -75,6 +77,7 @@ const StreamsForm: FC<Props> = ({ onClose, stream, type }) => {
       <Field>
         <Label className="text-sm/6 font-medium text-white">Twitch-канал</Label>
         <Input
+          required
           value={formState.channel}
           onChange={(event) =>
             setFormState({ ...formState, channel: event.target.value })
@@ -87,6 +90,7 @@ const StreamsForm: FC<Props> = ({ onClose, stream, type }) => {
           Ссылка на постер
         </Label>
         <Input
+          required
           value={formState.posterUrl}
           onChange={(event) =>
             setFormState({ ...formState, posterUrl: event.target.value })

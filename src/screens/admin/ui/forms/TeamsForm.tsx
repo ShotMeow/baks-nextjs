@@ -10,7 +10,6 @@ import {
   ComboboxInput,
   ComboboxOption,
   ComboboxOptions,
-  DialogTitle,
   Field,
   Input,
   Label,
@@ -102,10 +101,15 @@ const TeamsForm: FC<Props> = ({ onClose, team, type }) => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <DialogTitle className="text-xl font-bold">Новая команда</DialogTitle>
+      <h4 className="text-xl font-bold">
+        {type === "create"
+          ? "Новая команда"
+          : `Редактировать команду ${team?.name}`}
+      </h4>
       <Field>
         <Label className="text-sm/6 font-medium text-white">Название</Label>
         <Input
+          required
           value={formState.name}
           onChange={(event) =>
             setFormState({ ...formState, name: event.target.value })

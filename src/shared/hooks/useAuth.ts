@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
 export const useAuth = () => {
-  const [isAuth, setIsAuth] = useState<boolean | null>(null);
+  const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
     const storageEventHandler = () => {
       const jwtLocal = localStorage.getItem("jwtToken");
-      setIsAuth(!!jwtLocal);
+      setToken(jwtLocal);
     };
     storageEventHandler();
 
@@ -16,5 +16,5 @@ export const useAuth = () => {
     };
   }, []);
 
-  return { isAuth };
+  return { token };
 };
