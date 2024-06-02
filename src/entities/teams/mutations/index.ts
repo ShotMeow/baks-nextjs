@@ -1,14 +1,18 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 import { createTeam, deleteTeam, updateTeam } from "../api";
-import type { CreateTeamType, UpdateTeamType } from "../types";
+import type { TeamFormType } from "../types";
 
 export const useCreateTeam = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (team: CreateTeamType) => createTeam(team),
+    mutationFn: (data: TeamFormType) => createTeam(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["teams", "users"] });
+      Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["teams"] }),
+        queryClient.invalidateQueries({ queryKey: ["users"] }),
+      ]);
     },
   });
 };
@@ -17,7 +21,8 @@ export const useUpdateTeam = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (team: UpdateTeamType) => updateTeam(team),
+    mutationFn: ({ id, data }: { id: number; data: TeamFormType }) =>
+      updateTeam(id, data),
     onSuccess: () =>
       Promise.all([
         queryClient.invalidateQueries({ queryKey: ["teams"] }),

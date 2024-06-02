@@ -145,7 +145,7 @@ const Tournaments: FC = () => {
             </Link>
           ))
         ) : (
-          <div className="col-span-full row-span-full flex items-center justify-center h-screen">
+          <div className="col-span-full row-span-full flex h-screen items-center justify-center">
             <Spin size="xl" />
           </div>
         )}

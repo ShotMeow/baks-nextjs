@@ -1,10 +1,11 @@
 "use client";
 import type { FC } from "react";
-import { useGetProducts } from "@/src/entities/products";
 import Link from "next/link";
 import classNames from "classnames";
 import Image from "next/image";
 import { Spin } from "@gravity-ui/uikit";
+
+import { useGetProducts } from "@/src/entities/products";
 
 const Shop: FC = () => {
   const { data: products } = useGetProducts();
@@ -47,7 +48,7 @@ const Shop: FC = () => {
             </Link>
           ))
         ) : (
-          <div className="col-span-full row-span-full flex items-center justify-center h-[60vh]">
+          <div className="col-span-full row-span-full flex h-[60vh] items-center justify-center">
             <Spin size="xl" />
           </div>
         )}

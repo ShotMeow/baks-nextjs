@@ -6,6 +6,7 @@ import "./globals.css";
 
 import { Header } from "@/src/widgets/header";
 import { Footer } from "@/src/widgets/footer";
+
 import QueryProvider from "@/src/shared/libs/tanstack-query/QueryProvider";
 import GravityThemeProvider from "@/src/shared/libs/gravity-ui/GravityThemeProvider";
 

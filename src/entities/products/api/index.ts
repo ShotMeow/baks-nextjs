@@ -1,5 +1,7 @@
 import { API_URL } from "@/src/shared/constants";
-import type { CreateProductType, UpdateProductType } from "../types";
+import { createFormData } from "@/src/shared/utils/createFormData";
+
+import type { ProductFormType } from "../types";
 
 export const getProducts = async () => {
   const response = await fetch(`${API_URL}/products`);
@@ -11,24 +13,20 @@ export const getProductById = async (id: number) => {
   return response.json();
 };
 
-export const createProduct = async (product: CreateProductType) => {
+export const createProduct = async (data: ProductFormType) => {
+  const formData = createFormData(data);
   const response = await fetch(`${API_URL}/products`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(product),
+    body: formData,
   });
   return response.json();
 };
 
-export const updateProduct = async (product: UpdateProductType) => {
-  const response = await fetch(`${API_URL}/products/${product.id}`, {
+export const updateProduct = async (id: number, data: ProductFormType) => {
+  const formData = createFormData(data);
+  const response = await fetch(`${API_URL}/products/${id}`, {
     method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(product),
+    body: formData,
   });
   return response.json();
 };

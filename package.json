@@ -1,6 +1,6 @@
 {
   "name": "fitgital-nextjs-new",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -17,11 +17,13 @@
     "nextjs-progressbar": "^0.0.16",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.51.5",
     "react-markdown": "^9.0.1",
     "react-twitch-embed": "^3.0.2",
     "swiper": "^11.1.1"
   },
   "devDependencies": {
+    "@gravity-ui/date-components": "^2.4.0",
     "@gravity-ui/uikit": "^6.16.0",
     "@tailwindcss/typography": "^0.5.13",
     "@tanstack/eslint-plugin-query": "^5.35.6",

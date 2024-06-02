@@ -6,6 +6,7 @@ export interface SignInType {
 export interface SignUpType {
   email: string;
   password: string;
+  repeatPassword: string;
   nickname: string;
   name: string;
   role: string;

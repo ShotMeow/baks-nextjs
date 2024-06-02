@@ -12,7 +12,7 @@ export const getTabPanelButton = (tabType: string): string => {
       return "Создать новый турнир";
     case "products":
       return "Создать новый товар";
-    default:
-      return "";
   }
+
+  return "";
 };

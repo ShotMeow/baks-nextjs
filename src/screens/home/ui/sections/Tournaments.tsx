@@ -1,13 +1,14 @@
 "use client";
 import type { FC } from "react";
-import { useGetTournaments } from "@/src/entities/tournaments";
-import Button from "@/src/shared/ui/Button";
 import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Star from "@/src/shared/ui/icons/Star";
 import { Spin } from "@gravity-ui/uikit";
+
+import { useGetTournaments } from "@/src/entities/tournaments";
+import Button from "@/src/shared/ui/Button";
+import Star from "@/src/shared/ui/icons/Star";
 
 const Tournaments: FC = () => {
   const router = useRouter();
@@ -153,7 +154,7 @@ const Tournaments: FC = () => {
             </Link>
           ))
         ) : (
-          <div className="flex items-center justify-center col-span-full row-span-full">
+          <div className="col-span-full row-span-full flex items-center justify-center">
             <Spin size="xl" />
           </div>
         )}

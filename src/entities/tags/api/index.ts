@@ -1,5 +1,7 @@
 import { API_URL } from "@/src/shared/constants";
-import type { CreateTagType, UpdateTagType } from "../types";
+import { createFormData } from "@/src/shared/utils/createFormData";
+
+import type { TagsFormType } from "../types";
 
 export const getTags = async () => {
   const response = await fetch(`${API_URL}/tags`);
@@ -11,24 +13,20 @@ export const getTagById = async (id: number) => {
   return response.json();
 };
 
-export const createTag = async (tag: CreateTagType) => {
+export const createTag = async (data: TagsFormType) => {
+  const formData = createFormData(data);
   const response = await fetch(`${API_URL}/tags`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ name: tag.name }),
+    body: formData,
   });
   return response.json();
 };
 
-export const updateTag = async (tag: UpdateTagType) => {
-  const response = await fetch(`${API_URL}/tags/${tag.id}`, {
+export const updateTag = async (id: number, data: TagsFormType) => {
+  const formData = createFormData(data);
+  const response = await fetch(`${API_URL}/tags/${id}`, {
     method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(tag),
+    body: formData,
   });
   return response.json();
 };

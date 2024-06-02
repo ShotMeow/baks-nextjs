@@ -2,12 +2,12 @@
 import type { FC } from "react";
 import Image from "next/image";
 import classNames from "classnames";
-
-import Button from "@/src/shared/ui/Button";
-import { useGetProducts } from "@/src/entities/products";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Spin } from "@gravity-ui/uikit";
+
+import Button from "@/src/shared/ui/Button";
+import { useGetProducts } from "@/src/entities/products";
 
 const Shop: FC = () => {
   const router = useRouter();

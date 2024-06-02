@@ -1,8 +1,9 @@
 "use client";
 import type { NextPage } from "next";
-import Image from "next/image";
-import Button from "@/src/shared/ui/Button";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+
+import Button from "@/src/shared/ui/Button";
 
 const ErrorPage: NextPage = () => {
   const router = useRouter();

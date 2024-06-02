@@ -1,10 +1,11 @@
 "use client";
 import type { FC } from "react";
-import { useGetTeams } from "@/src/entities/teams";
 import Image from "next/image";
-import Button from "@/src/shared/ui/Button";
-import { useRouter } from "next/navigation";
 import { Spin } from "@gravity-ui/uikit";
+import { useRouter } from "next/navigation";
+
+import { useGetTeams } from "@/src/entities/teams";
+import Button from "@/src/shared/ui/Button";
 
 const Teams: FC = () => {
   const router = useRouter();
@@ -47,7 +48,7 @@ const Teams: FC = () => {
           </article>
         ))
       ) : (
-        <div className="col-span-full row-span-full flex items-center justify-center h-screen">
+        <div className="col-span-full row-span-full flex h-screen items-center justify-center">
           <Spin size="xl" />
         </div>
       )}

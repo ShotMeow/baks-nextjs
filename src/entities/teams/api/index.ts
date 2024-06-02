@@ -1,5 +1,7 @@
 import { API_URL } from "@/src/shared/constants";
-import type { CreateTeamType, TeamType, UpdateTeamType } from "../types";
+import { createFormData } from "@/src/shared/utils/createFormData";
+
+import type { TeamFormType, TeamType } from "../types";
 
 export const getTeams = async () => {
   const response = await fetch(`${API_URL}/teams`);
@@ -11,24 +13,28 @@ export const getTeamById = async (id: TeamType["id"]) => {
   return response.json();
 };
 
-export const createTeam = async (team: CreateTeamType) => {
+export const createTeam = async (data: TeamFormType) => {
+  const formData = createFormData({
+    ...data,
+    players: data.players?.map((player) => player.id),
+    tournaments: data.tournaments?.map((tournament) => tournament.id),
+  });
   const response = await fetch(`${API_URL}/teams`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(team),
+    body: formData,
   });
   return response.json();
 };
 
-export const updateTeam = async (team: UpdateTeamType) => {
-  const response = await fetch(`${API_URL}/teams/${team.id}`, {
+export const updateTeam = async (id: number, data: TeamFormType) => {
+  const formData = createFormData({
+    ...data,
+    players: data.players.map((player) => player.id),
+    tournaments: data.tournaments.map((tournament) => tournament.id),
+  });
+  const response = await fetch(`${API_URL}/teams/${id}`, {
     method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(team),
+    body: formData,
   });
   return response.json();
 };

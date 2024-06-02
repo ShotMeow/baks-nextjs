@@ -1,9 +1,7 @@
 import { API_URL } from "@/src/shared/constants";
-import type {
-  CreateTournamentType,
-  TournamentType,
-  UpdateTournamentType,
-} from "../types";
+import { createFormData } from "@/src/shared/utils/createFormData";
+
+import type { TournamentFormType, TournamentType } from "../types";
 
 export const getTournaments = async () => {
   const response = await fetch(`${API_URL}/tournaments`);
@@ -15,24 +13,29 @@ export const getTournamentById = async (id: TournamentType["id"]) => {
   return response.json();
 };
 
-export const createTournament = async (tournament: CreateTournamentType) => {
+export const createTournament = async (data: TournamentFormType) => {
+  const formData = createFormData({
+    ...data,
+    teams: data.teams?.map((team) => team.id),
+  });
   const response = await fetch(`${API_URL}/tournaments`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(tournament),
+    body: formData,
   });
   return response.json();
 };
 
-export const updateTournament = async (tournament: UpdateTournamentType) => {
-  const response = await fetch(`${API_URL}/tournaments/${tournament.id}`, {
+export const updateTournament = async (
+  id: number,
+  data: TournamentFormType,
+) => {
+  const formData = createFormData({
+    ...data,
+    teams: data.teams?.map((team) => team.id),
+  });
+  const response = await fetch(`${API_URL}/tournaments/${id}`, {
     method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(tournament),
+    body: formData,
   });
   return response.json();
 };

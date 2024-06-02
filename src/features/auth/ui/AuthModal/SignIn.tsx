@@ -1,13 +1,9 @@
-import {
-  type Dispatch,
-  type FC,
-  type FormEvent,
-  type SetStateAction,
-  useState,
-} from "react";
-import { DialogTitle, Field, Input, Label } from "@headlessui/react";
+import { type Dispatch, type FC, type SetStateAction } from "react";
+import { type SubmitHandler, useForm } from "react-hook-form";
+import { TextInput } from "@gravity-ui/uikit";
+
 import Button from "@/src/shared/ui/Button";
-import Error from "@/src/shared/ui/Error";
+
 import { useSignIn } from "../../mutations";
 import type { SignInType } from "../../types";
 
@@ -16,50 +12,57 @@ interface Props {
 }
 
 const SignIn: FC<Props> = ({ onClose }) => {
-  const [formState, setFormState] = useState<SignInType>({
-    email: "",
-    password: "",
-  });
-  const [formError, setFormError] = useState<string | null>(null);
-  const { mutate } = useSignIn();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<SignInType>();
+  const { mutate: signIn } = useSignIn();
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    mutate(formState);
+  const onSubmit: SubmitHandler<SignInType> = (data) => {
+    signIn(data);
     onClose(false);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <DialogTitle className="text-xl font-bold">Авторизация</DialogTitle>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">E-mail</Label>
-        <Input
-          required
-          value={formState.email}
-          onChange={(event) =>
-            setFormState({ ...formState, email: event.target.value })
-          }
-          name="email"
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+      <h3 className="text-xl font-bold">Авторизация</h3>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">E-mail</span>
+        <TextInput
+          {...register("email", {
+            required: "E-mail обязателен для заполнения",
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: "Неверный формат E-mail",
+            },
+          })}
+          errorPlacement="inside"
+          validationState={errors?.email && "invalid"}
+          errorMessage={errors?.email?.message}
           type="email"
-          placeholder="E-mail"
-          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+          view="clear"
+          className="rounded-md bg-white/5 px-2 py-1"
         />
-      </Field>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">Пароль</Label>
-        <Input
-          required
-          value={formState.password}
-          onChange={(event) =>
-            setFormState({ ...formState, password: event.target.value })
-          }
-          name="password"
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Пароль</span>
+        <TextInput
+          {...register("password", {
+            required: "Пароль обязателен для заполнения",
+            minLength: {
+              value: 6,
+              message: "Пароль должен быть не менее 6 символов",
+            },
+          })}
+          errorPlacement="inside"
+          validationState={errors?.password && "invalid"}
+          errorMessage={errors?.password?.message}
           type="password"
-          placeholder="Пароль"
-          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+          view="clear"
+          className="rounded-md bg-white/5 px-2 py-1"
         />
-      </Field>
+      </label>
       <div className="mt-4 flex flex-col gap-4 sm:flex-row">
         <Button
           type="button"
@@ -72,9 +75,6 @@ const SignIn: FC<Props> = ({ onClose }) => {
           Войти
         </Button>
       </div>
-      {formError && (
-        <Error message={formError} onClose={() => setFormError(null)} />
-      )}
     </form>
   );
 };

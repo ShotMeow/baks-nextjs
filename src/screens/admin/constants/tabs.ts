@@ -1,4 +1,4 @@
-import { TabType } from "@/src/screens/admin/types/tabs.types";
+import { TabType } from "../types/tabs.types";
 
 export const tabsData: TabType[] = [
   {

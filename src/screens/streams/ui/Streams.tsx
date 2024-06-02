@@ -1,9 +1,10 @@
 "use client";
-import { FC, useEffect, useState } from "react";
-import { StreamType, useGetStreams } from "@/src/entities/streams";
-import StreamsList from "@/src/screens/streams/ui/StreamsList";
-import ActiveStream from "@/src/screens/streams/ui/ActiveStream";
+import { type FC, useEffect, useState } from "react";
 import { Spin } from "@gravity-ui/uikit";
+import { type StreamType, useGetStreams } from "@/src/entities/streams";
+
+import StreamsList from "./StreamsList";
+import ActiveStream from "./ActiveStream";
 
 const Streams: FC = () => {
   const [activeStream, setActiveStream] = useState<StreamType | null>(null);
@@ -27,7 +28,7 @@ const Streams: FC = () => {
           )}
         </>
       ) : (
-        <div className="flex items-center justify-center h-screen">
+        <div className="flex h-screen items-center justify-center">
           <Spin size="xl" />
         </div>
       )}

@@ -1,19 +1,16 @@
-import {
-  type Dispatch,
-  type FC,
-  type FormEvent,
-  type SetStateAction,
-  useState,
-} from "react";
-import { DialogTitle, Field, Input, Label, Textarea } from "@headlessui/react";
+import { type Dispatch, type FC, type SetStateAction, useState } from "react";
+import Image from "next/image";
+import { TextArea, TextInput } from "@gravity-ui/uikit";
+import { Controller, type SubmitHandler, useForm } from "react-hook-form";
 
 import Button from "@/src/shared/ui/Button";
 import {
-  type CreateStreamType,
   type StreamType,
+  type StreamFormType,
   useCreateStream,
   useUpdateStream,
 } from "@/src/entities/streams";
+import { API_URL } from "@/src/shared/constants";
 
 interface Props {
   stream?: StreamType;
@@ -22,25 +19,32 @@ interface Props {
 }
 
 const StreamsForm: FC<Props> = ({ onClose, stream, type }) => {
+  const {
+    register,
+    formState: { errors },
+    control,
+    handleSubmit,
+  } = useForm<StreamFormType>({
+    defaultValues: {
+      title: stream?.title,
+      description: stream?.description,
+      channel: stream?.channel,
+    },
+  });
+  const [imageUrl, setImageUrl] = useState<string | null>(
+    stream?.posterUrl ? `${API_URL}/images/${stream?.posterUrl}` : null,
+  );
+
   const { mutate: createStreamMutation } = useCreateStream();
   const { mutate: updateStreamMutation } = useUpdateStream();
 
-  const [formState, setFormState] = useState<CreateStreamType>({
-    title: stream?.title ?? "",
-    description: stream?.description ?? "",
-    channel: stream?.channel ?? "",
-    posterUrl: stream?.posterUrl ?? "",
-  });
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const onSubmit: SubmitHandler<StreamFormType> = (data) => {
     switch (type) {
       case "create":
-        createStreamMutation({ ...formState });
+        createStreamMutation(data);
         break;
       case "edit":
-        stream && updateStreamMutation({ id: stream.id, ...formState });
+        stream && updateStreamMutation({ id: stream.id, data });
         break;
     }
 
@@ -48,56 +52,75 @@ const StreamsForm: FC<Props> = ({ onClose, stream, type }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <h4 className="text-xl font-bold">
         {type === "create" ? "Новая трансляция" : "Редактировать трансляцию"}
       </h4>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">Название</Label>
-        <Input
-          required
-          value={formState.title}
-          onChange={(event) =>
-            setFormState({ ...formState, title: event.target.value })
-          }
-          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Название</span>
+        <TextInput
+          {...register("title", {
+            required: "Название трансляции не может быть пустым",
+          })}
+          errorPlacement="inside"
+          validationState={errors?.title && "invalid"}
+          errorMessage={errors?.title?.message}
+          view="clear"
+          className="rounded-md bg-white/5 px-2 py-1"
         />
-      </Field>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">Описание</Label>
-        <Textarea
-          required
-          value={formState.description}
-          onChange={(event) =>
-            setFormState({ ...formState, description: event.target.value })
-          }
-          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Описание</span>
+        <TextArea
+          {...register("description")}
+          view="clear"
+          className="rounded-md bg-white/5 px-2 py-1"
         />
-      </Field>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">Twitch-канал</Label>
-        <Input
-          required
-          value={formState.channel}
-          onChange={(event) =>
-            setFormState({ ...formState, channel: event.target.value })
-          }
-          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Twitch-канал</span>
+        <TextInput
+          {...register("channel", {
+            required: "Название канала не может быть пустым",
+          })}
+          errorPlacement="inside"
+          validationState={errors?.channel && "invalid"}
+          errorMessage={errors?.channel?.message}
+          view="clear"
+          className="rounded-md bg-white/5 px-2 py-1"
         />
-      </Field>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">
-          Ссылка на постер
-        </Label>
-        <Input
-          required
-          value={formState.posterUrl}
-          onChange={(event) =>
-            setFormState({ ...formState, posterUrl: event.target.value })
-          }
-          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Постер</span>
+        <Controller
+          render={({ field: { value, onChange, ...field } }) => (
+            <input
+              {...field}
+              onChange={(event) => {
+                const file = event.target.files?.[0] as File;
+                onChange(file);
+                setImageUrl(URL.createObjectURL(file));
+              }}
+              type="file"
+              accept="image/*"
+              className="rounded-md bg-white/5 px-2 py-1"
+            />
+          )}
+          name="imageFile"
+          control={control}
         />
-      </Field>
+        <div className="h-[270px] w-[480px]">
+          {imageUrl && (
+            <Image
+              src={imageUrl}
+              alt="Предпросмотр постера"
+              width={480}
+              height={270}
+              className="size-full rounded-lg object-cover"
+            />
+          )}
+        </div>
+      </label>
       <div className="mt-4 flex gap-4">
         <Button
           type="button"

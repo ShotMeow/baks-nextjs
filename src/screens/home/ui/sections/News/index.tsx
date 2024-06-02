@@ -1,9 +1,10 @@
 "use client";
 import type { FC } from "react";
+import { useRouter } from "next/navigation";
 
 import Button from "@/src/shared/ui/Button";
+
 import Slider from "./Slider";
-import { useRouter } from "next/navigation";
 
 const News: FC = () => {
   const router = useRouter();

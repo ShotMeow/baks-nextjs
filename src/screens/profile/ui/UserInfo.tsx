@@ -1,11 +1,12 @@
 import type { FC } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+
 import { UserType } from "@/src/entities/users";
 import Button from "@/src/shared/ui/Button";
 import { logOut } from "@/src/features/auth";
 import Avatar from "@/src/shared/ui/icons/Avatar";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
 
 interface Props extends Omit<UserType, "createdAt"> {}
 
@@ -17,14 +18,14 @@ const UserInfo: FC<Props> = ({ nickname, name, pictureUrl, team }) => {
   };
 
   return (
-    <aside className="flex flex-col items-center justify-center gap-8 rounded-xl bg-white/5 p-10 text-center lg:col-span-1 w-full">
+    <aside className="flex w-full flex-col items-center justify-center gap-8 rounded-xl bg-white/5 p-10 text-center lg:col-span-1">
       <div className="flex flex-col items-center gap-4">
         <Avatar />
         <div>
           <h3 className="text-xl font-semibold">
             {nickname} - {name}
           </h3>
-          {team && (
+          {team?.name && (
             <div className="mt-10">
               <p className="text-zinc-400">Команда</p>
               <Link

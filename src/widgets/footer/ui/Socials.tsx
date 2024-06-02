@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import Link from "next/link";
+
 import Message from "@/src/shared/ui/icons/Message";
 import Instagram from "@/src/shared/ui/icons/Instagram";
 import Telegram from "@/src/shared/ui/icons/Telegram";

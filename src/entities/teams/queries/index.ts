@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { getTeamById, getTeams } from "../api";
-import { TeamType } from "../types";
+import type { TeamType } from "../types";
 
 export const useGetTeams = () => {
   return useQuery<TeamType[]>({

@@ -1,6 +1,7 @@
 import type { FC } from "react";
-import type { NewsType } from "@/src/entities/news";
 import classNames from "classnames";
+
+import type { NewsType } from "@/src/entities/news";
 
 interface Props {
   activeIndex: number;

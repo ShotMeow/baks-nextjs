@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { getTournamentById, getTournaments } from "../api";
 import { TournamentType } from "../types";
 

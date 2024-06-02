@@ -4,8 +4,8 @@ import Link from "next/link";
 import Logo from "@/src/shared/ui/icons/Logo";
 
 import Navigation from "./Navigation";
-import MobileNavbar from "@/src/widgets/header/ui/MobileNavbar";
-import Account from "@/src/widgets/header/ui/Account";
+import MobileNavbar from "./MobileNavbar";
+import Account from "./Account";
 
 const Header: FC = () => {
   return (

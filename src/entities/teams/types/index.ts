@@ -1,5 +1,6 @@
 import type { UserType } from "@/src/entities/users";
 import type { TournamentType } from "@/src/entities/tournaments";
+import type { DateTime } from "@gravity-ui/date-utils";
 
 export interface TeamType {
   id: number;
@@ -10,17 +11,11 @@ export interface TeamType {
   logoUrl?: string;
   players: UserType[];
   tournaments: TournamentType[];
-  lastMatch?: Date;
+  lastMatch?: DateTime;
   createdAt: Date;
 }
 
-export interface CreateTeamType {
-  name: string;
-  body: string;
-  tournaments: number[];
-  players: number[];
-}
-
-export interface UpdateTeamType extends CreateTeamType {
-  id: number;
+export interface TeamFormType
+  extends Omit<TeamType, "id" | "createdAt" | "logoUrl"> {
+  imageFile: File;
 }

@@ -1,13 +1,14 @@
 import { type FC, useState } from "react";
+import { Spin } from "@gravity-ui/uikit";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
 import { useGetNews } from "@/src/entities/news";
+
 import Slide from "./Slide";
 import Pagination from "./Pagination";
-import { Spin } from "@gravity-ui/uikit";
 
 const Slider: FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0); // Инициализируем начальный индекс

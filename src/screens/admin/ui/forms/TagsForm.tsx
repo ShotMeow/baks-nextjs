@@ -1,14 +1,14 @@
-import {
-  type Dispatch,
-  type FC,
-  type FormEvent,
-  type SetStateAction,
-  useState,
-} from "react";
-import { DialogTitle, Field, Input, Label } from "@headlessui/react";
+import type { Dispatch, FC, SetStateAction } from "react";
+import { type SubmitHandler, useForm } from "react-hook-form";
+import { TextInput } from "@gravity-ui/uikit";
 
 import Button from "@/src/shared/ui/Button";
-import { type TagType, useCreateTag, useUpdateTag } from "@/src/entities/tags";
+import {
+  type TagsFormType,
+  type TagType,
+  useCreateTag,
+  useUpdateTag,
+} from "@/src/entities/tags";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -17,19 +17,26 @@ interface Props {
 }
 
 const TagsForm: FC<Props> = ({ onClose, tag, type }) => {
-  const [name, setName] = useState<string>(tag?.name ?? "");
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<TagsFormType>({
+    defaultValues: {
+      name: tag?.name,
+    },
+  });
+
   const { mutate: createTagMutation } = useCreateTag();
   const { mutate: updateTagMutation } = useUpdateTag();
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const onSubmit: SubmitHandler<TagsFormType> = (data) => {
     switch (type) {
       case "create":
-        createTagMutation({ name });
+        createTagMutation(data);
         break;
       case "edit":
-        tag && updateTagMutation({ id: tag.id, name });
+        tag && updateTagMutation({ id: tag.id, data });
         break;
     }
 
@@ -37,19 +44,23 @@ const TagsForm: FC<Props> = ({ onClose, tag, type }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <h4 className="text-xl font-bold">
         {type === "create" ? "Добавить тег" : "Изменить тег"}
       </h4>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">Название</Label>
-        <Input
-          name="name"
-          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Название</span>
+        <TextInput
+          {...register("name", {
+            required: "Название не может быть пустым",
+          })}
+          errorPlacement="inside"
+          validationState={errors?.name && "invalid"}
+          errorMessage={errors?.name?.message}
+          view="clear"
+          className="rounded-md bg-white/5 px-2 py-1"
         />
-      </Field>
+      </label>
       <div className="mt-4 flex gap-4">
         <Button
           type="button"

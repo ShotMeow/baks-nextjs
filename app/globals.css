@@ -44,3 +44,12 @@ h3 {
     @apply bg-yellow;
     border-radius: 0;
 }
+
+.g-popup {
+    @apply bg-zinc-900 rounded-b-lg;
+}
+
+.g-text-input__error-icon {
+    @apply absolute right-0 top-0;
+    color: var(--g-color-line-brand) !important;
+}

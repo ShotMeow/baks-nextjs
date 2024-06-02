@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { getAuthUser, getUserById, getUsers } from "../api";
 import type { UserType } from "../types";
 

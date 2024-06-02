@@ -1,16 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 import { createTag, deleteTag, updateTag } from "../api";
-import type {
-  CreateTagType,
-  TagType,
-  UpdateTagType,
-} from "@/src/entities/tags/types";
+import type { TagsFormType, TagType } from "../types";
 
 export const useCreateTag = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (tag: CreateTagType) => createTag({ name: tag.name }),
+    mutationFn: (data: TagsFormType) => createTag(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tags"] });
     },
@@ -21,7 +18,8 @@ export const useUpdateTag = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (tag: UpdateTagType) => updateTag(tag),
+    mutationFn: ({ id, data }: { id: number; data: TagsFormType }) =>
+      updateTag(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tags"] });
     },

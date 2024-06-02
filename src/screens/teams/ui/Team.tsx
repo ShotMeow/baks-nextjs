@@ -1,10 +1,12 @@
 "use client";
 import type { FC } from "react";
-import { useGetTeamById } from "@/src/entities/teams";
 import Image from "next/image";
-import { getRoleIcon } from "@/src/screens/teams/utils/getRoleIcon";
-import { numberFloater } from "@/src/screens/teams/utils/numberFloater";
 import ReactMarkdown from "react-markdown";
+
+import { useGetTeamById } from "@/src/entities/teams";
+
+import { getRoleIcon } from "../utils/getRoleIcon";
+import { numberFloater } from "../utils/numberFloater";
 
 interface Props {
   slug: string;
@@ -50,11 +52,14 @@ const Team: FC<Props> = ({ slug }) => {
                 {team.lastMatch && (
                   <p className="bg-white/5 p-2">
                     Последний матч |{" "}
-                    {new Date(team.lastMatch).toLocaleDateString("ru", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
+                    {new Date(team.lastMatch.toDate()).toLocaleDateString(
+                      "ru",
+                      {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      },
+                    )}
                   </p>
                 )}
               </div>

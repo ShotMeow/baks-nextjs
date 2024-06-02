@@ -1,10 +1,11 @@
 "use client";
 import type { FC } from "react";
-import { useGetNews } from "@/src/entities/news";
 import Link from "next/link";
 import Image from "next/image";
 import classNames from "classnames";
 import { Spin } from "@gravity-ui/uikit";
+
+import { useGetNews } from "@/src/entities/news";
 
 const News: FC = () => {
   const { data: news } = useGetNews();

@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { getStreamById, getStreams } from "../api";
 import type { StreamType } from "../types";
 

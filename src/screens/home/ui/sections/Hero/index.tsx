@@ -1,5 +1,5 @@
 "use client";
-import { type FC } from "react";
+import type { FC } from "react";
 import Slider from "./Slider";
 
 const Hero: FC = () => {

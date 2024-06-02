@@ -1,7 +1,7 @@
 import type { Dispatch, FC, PropsWithChildren, SetStateAction } from "react";
-
-import { getCurrentForm } from "@/src/screens/admin/utils/getCurrentForm";
 import { Modal } from "@gravity-ui/uikit";
+
+import { getCurrentForm } from "../../utils/getCurrentForm";
 
 interface Props {
   open: boolean;

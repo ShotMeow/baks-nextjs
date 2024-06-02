@@ -1,31 +1,19 @@
-import {
-  type Dispatch,
-  type FC,
-  type FormEvent,
-  type SetStateAction,
-  useState,
-} from "react";
-import {
-  Combobox,
-  ComboboxInput,
-  ComboboxOption,
-  ComboboxOptions,
-  DialogTitle,
-  Field,
-  Input,
-  Label,
-  Select,
-  Transition,
-} from "@headlessui/react";
-import Button from "@/src/shared/ui/Button";
+import { type Dispatch, type FC, type SetStateAction, useState } from "react";
+import { TextInput, Select } from "@gravity-ui/uikit";
+import Image from "next/image";
+import { DatePicker } from "@gravity-ui/date-components";
+import MDEditor from "@uiw/react-md-editor";
+import { Controller, type SubmitHandler, useForm } from "react-hook-form";
 
+import Button from "@/src/shared/ui/Button";
 import {
   type TournamentType,
+  type TournamentFormType,
   useCreateTournament,
   useUpdateTournament,
 } from "@/src/entities/tournaments";
 import { useGetTeams } from "@/src/entities/teams";
-import MDEditor from "@uiw/react-md-editor";
+import { API_URL } from "@/src/shared/constants";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -34,49 +22,45 @@ interface Props {
 }
 
 const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
+  const {
+    register,
+    formState: { errors },
+    setValue,
+    control,
+    handleSubmit,
+  } = useForm<TournamentFormType>({
+    defaultValues: {
+      name: tournament?.name,
+      description: tournament?.description,
+      body: tournament?.body,
+      prize: tournament?.prize,
+      mode: tournament?.mode,
+      type: tournament?.type,
+      teams: tournament?.teams,
+      address: tournament?.address,
+      eventDate: tournament?.eventDate,
+    },
+  });
+  const [imageUrl, setImageUrl] = useState<string | null>(
+    tournament?.artworkUrl
+      ? `${API_URL}/images/${tournament?.artworkUrl}`
+      : null,
+  );
+
   const { mutate: createTournamentMutation } = useCreateTournament();
   const { mutate: updateTournamentMutation } = useUpdateTournament();
   const { data: teams } = useGetTeams();
-  const [formState, setFormState] = useState<
-    Omit<TournamentType, "id" | "createdAt">
-  >({
-    name: tournament?.name ?? "",
-    description: tournament?.description ?? "",
-    body: tournament?.body ?? "",
-    prize: tournament?.prize ?? 0,
-    mode: tournament?.mode ?? "1x1",
-    type: tournament?.type ?? "opened",
-    teams: tournament?.teams ?? [],
-    artworkUrl: tournament?.artworkUrl ?? "",
-    address: tournament?.address ?? "",
-    eventDate: tournament?.eventDate ?? new Date(),
-  });
 
-  const [queryTeams, setQueryTeams] = useState("");
-  const filteredTeams =
-    teams &&
-    (queryTeams === ""
-      ? teams
-      : teams?.filter((team) => {
-          return team.name.toLowerCase().includes(queryTeams.toLowerCase());
-        }));
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const onSubmit: SubmitHandler<TournamentFormType> = (data) => {
     switch (type) {
       case "create":
-        createTournamentMutation({
-          ...formState,
-          teams: formState.teams.map((team) => team.id),
-        });
+        createTournamentMutation(data);
         break;
       case "edit":
         tournament &&
           updateTournamentMutation({
             id: tournament.id,
-            ...formState,
-            teams: formState.teams.map((team) => team.id),
+            data,
           });
         break;
     }
@@ -85,167 +69,189 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <h4 className="text-xl font-bold">
         {type === "create"
           ? "Новый турнир"
           : `Редактировать турнир ${tournament?.name}`}
       </h4>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">Название</Label>
-        <Input
-          required
-          value={formState.name}
-          onChange={(event) =>
-            setFormState({ ...formState, name: event.target.value })
-          }
-          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Название</span>
+        <TextInput
+          {...register("name", {
+            required: "Название турнира не может быть пустым",
+          })}
+          errorPlacement="inside"
+          validationState={errors?.name && "invalid"}
+          errorMessage={errors?.name?.message}
+          view="clear"
+          className="rounded-md bg-white/5 px-2 py-1"
         />
-      </Field>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">Описание</Label>
-        <Input
-          required
-          value={formState.description}
-          onChange={(event) =>
-            setFormState({ ...formState, description: event.target.value })
-          }
-          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Описание</span>
+        <TextInput
+          {...register("description", {
+            required: "Описание турнира не может быть пустым",
+          })}
+          errorPlacement="inside"
+          validationState={errors?.description && "invalid"}
+          errorMessage={errors?.description?.message}
+          view="clear"
+          className="rounded-md bg-white/5 px-2 py-1"
         />
-      </Field>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">
-          Подробное описание
-        </Label>
-        <MDEditor
-          value={formState.body}
-          onChange={(value) =>
-            setFormState({ ...formState, body: value ?? "" })
-          }
-        />
-      </Field>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">
-          Ссылка на изображение
-        </Label>
-        <Input
-          required
-          value={formState.artworkUrl}
-          onChange={(event) =>
-            setFormState({ ...formState, artworkUrl: event.target.value })
-          }
-          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
-        />
-      </Field>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">Приз</Label>
-        <Input
-          required
-          value={formState.prize}
-          onChange={(event) =>
-            setFormState({ ...formState, prize: +event.target.value })
-          }
-          type="number"
-          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
-        />
-      </Field>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">Режим игры</Label>
-        <Select
-          value={formState.mode}
-          onChange={(event) =>
-            setFormState({ ...formState, mode: event.target.value })
-          }
-          className="mt-3 block w-full appearance-none rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25 [&>option]:bg-black"
-        >
-          <option value="1x1">1x1</option>
-          <option value="2x2">2x2</option>
-          <option value="5x5">5x5</option>
-        </Select>
-      </Field>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">Тип игры</Label>
-        <Select
-          value={formState.type}
-          onChange={(event) =>
-            setFormState({ ...formState, type: event.target.value })
-          }
-          className="mt-3 block w-full appearance-none rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
-        >
-          <option value="opened">Открытый</option>
-          <option value="closed">Закрытый</option>
-        </Select>
-      </Field>
-      <Combobox
-        multiple
-        value={formState.teams}
-        onChange={(value) => setFormState({ ...formState, teams: value })}
-      >
-        <label className="text-sm/6 font-medium text-white">Команды</label>
-        <div className="relative">
-          {teams && teams.length > 0 && formState.teams && (
-            <ul className="mb-4 flex h-8 items-center gap-2">
-              {formState.teams.map((team) => (
-                <li key={team.id}>{team.name}</li>
-              ))}
-            </ul>
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Описание</span>
+        <Controller
+          render={({ field }) => (
+            <MDEditor
+              {...field}
+              onChange={(value) =>
+                setValue("body", String(value), { shouldValidate: true })
+              }
+            />
           )}
-          <ComboboxInput
-            className="w-full rounded-lg border-none bg-white/5 py-1.5 pl-3 pr-8 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
-            onChange={(event) => setQueryTeams(event.target.value)}
-          />
+          name="body"
+          control={control}
+        />
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Изображение</span>
+        <Controller
+          render={({ field: { value, onChange, ...field } }) => (
+            <input
+              {...field}
+              onChange={(event) => {
+                const file = event.target.files?.[0] as File;
+                onChange(file);
+                setImageUrl(URL.createObjectURL(file));
+              }}
+              type="file"
+              accept="image/*"
+              className="rounded-md bg-white/5 px-2 py-1"
+            />
+          )}
+          name="imageFile"
+          control={control}
+        />
+        <div className="h-[270px] w-[480px]">
+          {imageUrl && (
+            <Image
+              src={imageUrl}
+              alt="Предпросмотр изображения"
+              width={480}
+              height={270}
+              className="size-full rounded-lg object-cover"
+            />
+          )}
         </div>
-        <Transition
-          leave="transition ease-in duration-100"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-          afterLeave={() => setQueryTeams("")}
-        >
-          <ComboboxOptions
-            anchor="bottom"
-            className="z-50 w-[var(--input-width)] rounded-xl border border-white/5 bg-black p-1 [--anchor-gap:var(--spacing-1)] empty:hidden"
-          >
-            {filteredTeams?.map((team) => (
-              <ComboboxOption
-                key={team.id}
-                value={team}
-                className="group flex cursor-default select-none items-center gap-2 rounded-lg px-3 py-1.5 data-[focus]:bg-white/10 data-[selected]:bg-white/10"
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Приз</span>
+        <TextInput
+          {...register("prize", {
+            valueAsNumber: true,
+          })}
+          view="clear"
+          type="number"
+          className="rounded-md bg-white/5 px-2 py-1"
+        />
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Режим</span>
+        <Controller
+          render={({ field: { value, ...field } }) => (
+            <Select
+              {...field}
+              filterable
+              className="rounded-md bg-white/5 px-2 py-1"
+              onUpdate={(value) => setValue("mode", value[0])}
+            >
+              <Select.Option value="1x1">1x1</Select.Option>
+              <Select.Option value="2x2">2x2</Select.Option>
+              <Select.Option value="5x5">5x5</Select.Option>
+            </Select>
+          )}
+          name="mode"
+          control={control}
+        />
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Режим</span>
+        <Controller
+          render={({ field: { value, ...field } }) => (
+            <Select
+              {...field}
+              filterable
+              className="rounded-md bg-white/5 px-2 py-1"
+              onUpdate={(value) => setValue("type", value[0])}
+            >
+              <Select.Option value="opened">Открытый</Select.Option>
+              <Select.Option value="closed">Закрытый</Select.Option>
+            </Select>
+          )}
+          name="type"
+          control={control}
+        />
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Команды</span>
+        {teams && (
+          <Controller
+            render={({ field: { value, ...field } }) => (
+              <Select
+                {...field}
+                multiple
+                filterable
+                className="rounded-md bg-white/5 px-2 py-1"
+                defaultValue={value?.map((team) => String(team.id))}
+                onUpdate={(value) =>
+                  setValue(
+                    "teams",
+                    teams.filter((team) => value.includes(String(team.id))),
+                  )
+                }
               >
-                <div className="text-sm/6 text-white">{team.name}</div>
-              </ComboboxOption>
-            ))}
-          </ComboboxOptions>
-        </Transition>
-      </Combobox>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">
+                {teams.map((team) => (
+                  <Select.Option value={String(team.id)} key={team.id}>
+                    {team.name}
+                  </Select.Option>
+                ))}
+              </Select>
+            )}
+            name="teams"
+            control={control}
+          />
+        )}
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">
           Адрес проведения
-        </Label>
-        <Input
-          required
-          value={formState.address}
-          onChange={(event) =>
-            setFormState({ ...formState, address: event.target.value })
-          }
-          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+        </span>
+        <TextInput
+          {...register("address")}
+          view="clear"
+          className="rounded-md bg-white/5 px-2 py-1"
         />
-      </Field>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">
-          Дата проведения
-        </Label>
-        <Input
-          required
-          onChange={(event) =>
-            setFormState({
-              ...formState,
-              eventDate: new Date(event.target.value),
-            })
-          }
-          type="date"
-          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">
+          Дата проведения турнира
+        </span>
+        <Controller
+          render={({ field }) => (
+            <DatePicker
+              {...field}
+              view="clear"
+              format="DD.MM.YYYY"
+              className="rounded-md bg-white/5 px-2 py-1"
+            />
+          )}
+          name="eventDate"
+          control={control}
         />
-      </Field>
+      </label>
       <div className="mt-4 flex gap-4">
         <Button
           type="button"

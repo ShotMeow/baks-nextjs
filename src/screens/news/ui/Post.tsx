@@ -1,8 +1,9 @@
 "use client";
 import type { FC } from "react";
-import { useGetNewsById } from "@/src/entities/news";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
+
+import { useGetNewsById } from "@/src/entities/news";
 
 interface Props {
   slug: string;

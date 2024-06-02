@@ -1,7 +1,8 @@
 import type { Dispatch, FC, SetStateAction } from "react";
-import { StreamType } from "@/src/entities/streams";
 import Image from "next/image";
 import classNames from "classnames";
+
+import { StreamType } from "@/src/entities/streams";
 
 interface Props {
   streams: StreamType[];

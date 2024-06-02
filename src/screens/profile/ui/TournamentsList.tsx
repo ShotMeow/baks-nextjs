@@ -1,8 +1,9 @@
 import type { FC } from "react";
-import { TournamentType } from "@/src/entities/tournaments";
 import Link from "next/link";
 import classNames from "classnames";
 import Image from "next/image";
+
+import { TournamentType } from "@/src/entities/tournaments";
 import Button from "@/src/shared/ui/Button";
 
 interface Props {
@@ -10,7 +11,6 @@ interface Props {
 }
 
 const TournamentsList: FC<Props> = ({ tournaments }) => {
-  console.log(tournaments);
   return (
     <div className="lg:col-span-2">
       {tournaments.map((tournament, index) => (
@@ -21,14 +21,17 @@ const TournamentsList: FC<Props> = ({ tournaments }) => {
           key={tournament.id}
           href={`/tournaments/${tournament.id}`}
         >
-          <article className="bg-white/5 flex flex-col relative">
+          <article className="relative flex flex-col bg-white/5">
             <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-yellow px-4 py-2 text-sm font-semibold uppercase text-black">
               <span>
-                {new Date(tournament.eventDate).toLocaleDateString("ru", {
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                })}
+                {new Date(tournament.eventDate.toDate()).toLocaleDateString(
+                  "ru",
+                  {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  },
+                )}
               </span>
             </div>
             <Image

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { getTagById, getTags } from "../api";
 import type { TagType } from "../types";
-import type { StreamType } from "@/src/entities/streams";
 
 export const useGetTags = () => {
   return useQuery<TagType[]>({
@@ -10,7 +10,7 @@ export const useGetTags = () => {
   });
 };
 
-export const useGetTagById = (id: StreamType["id"]) => {
+export const useGetTagById = (id: TagType["id"]) => {
   return useQuery({
     queryKey: ["tags", id],
     queryFn: () => getTagById(id),

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import classNames from "classnames";
 
-import { StreamType, useGetStreams } from "@/src/entities/streams";
+import type { StreamType } from "@/src/entities/streams";
 
 interface Props {
   streams: StreamType[];

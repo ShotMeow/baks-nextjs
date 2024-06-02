@@ -1,9 +1,10 @@
 "use client";
 import type { FC } from "react";
-import UserInfo from "@/src/screens/profile/ui/UserInfo";
-import { useGetAuthUser } from "@/src/entities/users/queries";
+import { useGetAuthUser } from "@/src/entities/users";
 import { useAuth } from "@/src/shared/hooks/useAuth";
-import TournamentsList from "@/src/screens/profile/ui/TournamentsList";
+
+import UserInfo from "./UserInfo";
+import TournamentsList from "./TournamentsList";
 
 const Profile: FC = () => {
   const { token } = useAuth();

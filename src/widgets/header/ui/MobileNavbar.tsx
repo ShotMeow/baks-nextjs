@@ -1,11 +1,11 @@
 "use client";
 import type { FC } from "react";
 import Link from "next/link";
+import classNames from "classnames";
+import { usePathname } from "next/navigation";
 
 import { headerNavigationData } from "../constants/headerNavigationData";
 import { getIcon } from "../utils/getIcon";
-import classNames from "classnames";
-import { usePathname } from "next/navigation";
 
 const MobileNavbar: FC = () => {
   const pathname = usePathname();

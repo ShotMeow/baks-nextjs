@@ -1,7 +1,8 @@
 import type { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { NewsType } from "@/src/entities/news";
+
+import type { NewsType } from "@/src/entities/news";
 
 interface Props extends NewsType {}
 

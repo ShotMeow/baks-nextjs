@@ -1,13 +1,7 @@
 export interface TagType {
   id: number;
   name: string;
-  created_at: Date;
+  createdAt: Date;
 }
 
-export interface CreateTagType {
-  name: string;
-}
-
-export interface UpdateTagType extends CreateTagType {
-  id: number;
-}
+export interface TagsFormType extends Omit<TagType, "id" | "createdAt"> {}

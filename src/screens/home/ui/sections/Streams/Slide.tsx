@@ -1,8 +1,10 @@
 import { type FC, useState } from "react";
 import classNames from "classnames";
-import type { StreamType } from "@/src/entities/streams";
 import Image from "next/image";
 import { TwitchPlayer } from "react-twitch-embed";
+
+import type { StreamType } from "@/src/entities/streams";
+import { API_URL } from "@/src/shared/constants";
 
 interface Props extends StreamType {}
 
@@ -14,10 +16,13 @@ const Slide: FC<Props> = ({ posterUrl, channel, description, title }) => {
 
   return (
     <div
-      className={classNames({
-        "before:absolute before:left-0 before:top-0 before:size-full before:bg-gradient-to-t before:from-black/70 before:via-transparent before:to-transparent":
-          !isPlaying,
-      })}
+      className={classNames(
+        {
+          "before:absolute before:left-0 before:top-0 before:size-full before:bg-gradient-to-t before:from-black/70 before:via-transparent before:to-transparent":
+            !isPlaying,
+        },
+        "h-full",
+      )}
     >
       <div className="h-full">
         {isPlaying ? (
@@ -32,7 +37,7 @@ const Slide: FC<Props> = ({ posterUrl, channel, description, title }) => {
             className="size-full object-cover"
             width={1920}
             height={1080}
-            src={posterUrl}
+            src={`${API_URL}/images/${posterUrl}`}
             alt={title}
           />
         )}

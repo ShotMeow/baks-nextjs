@@ -18,7 +18,7 @@ const Tournament: FC<Props> = ({ slug }) => {
 
   useEffect(() => {
     isSuccess && setActiveTeam(tournament.teams[0].id);
-  }, [isSuccess]);
+  }, [setActiveTeam, isSuccess, tournament?.teams]);
 
   return (
     <main className="relative">
@@ -37,11 +37,14 @@ const Tournament: FC<Props> = ({ slug }) => {
             <div>
               <div className="bg-white/5 px-6 py-14 backdrop-blur-md md:px-10 md:py-20">
                 <p>
-                  {new Date(tournament.eventDate).toLocaleDateString("ru", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
+                  {new Date(tournament.eventDate.toDate()).toLocaleDateString(
+                    "ru",
+                    {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    },
+                  )}
                 </p>
                 <h1 className="mt-6 text-5xl">{tournament.name}</h1>
                 <p className="mt-4">{tournament.description}</p>

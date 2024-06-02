@@ -1,5 +1,7 @@
 import { API_URL } from "@/src/shared/constants";
-import type { CreateStreamType, UpdateStreamType } from "../types";
+import { createFormData } from "@/src/shared/utils/createFormData";
+
+import type { StreamFormType } from "../types";
 
 export const getStreams = async () => {
   const response = await fetch(`${API_URL}/streams`);
@@ -11,24 +13,22 @@ export const getStreamById = async (id: number) => {
   return response.json();
 };
 
-export const createStream = async (stream: CreateStreamType) => {
+export const createStream = async (data: StreamFormType) => {
+  const formData = createFormData(data);
+
   const response = await fetch(`${API_URL}/streams`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(stream),
+    body: formData,
   });
   return response.json();
 };
 
-export const updateStream = async (stream: UpdateStreamType) => {
-  const response = await fetch(`${API_URL}/streams/${stream.id}`, {
+export const updateStream = async (id: number, data: StreamFormType) => {
+  const formData = createFormData(data);
+
+  const response = await fetch(`${API_URL}/streams/${id}`, {
     method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(stream),
+    body: formData,
   });
   return response.json();
 };

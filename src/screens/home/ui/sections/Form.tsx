@@ -1,8 +1,8 @@
 import type { FC } from "react";
-import Field from "@/src/shared/ui/Field";
-import Button from "@/src/shared/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
+import Field from "@/src/shared/ui/Field";
+import Button from "@/src/shared/ui/Button";
 
 const Form: FC = () => {
   return (

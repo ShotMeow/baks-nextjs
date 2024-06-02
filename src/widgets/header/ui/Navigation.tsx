@@ -1,10 +1,10 @@
 "use client";
 import type { FC } from "react";
 import Link from "next/link";
-
-import { headerNavigationData } from "../constants/headerNavigationData";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
+
+import { headerNavigationData } from "../constants/headerNavigationData";
 
 const Navigation: FC = () => {
   const pathname = usePathname();

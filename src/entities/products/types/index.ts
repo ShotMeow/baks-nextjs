@@ -3,15 +3,10 @@ export interface ProductType {
   name: string;
   pictureUrl: string;
   price: number;
-  created_at: Date;
+  createdAt: Date;
 }
 
-export interface CreateProductType {
-  name: string;
-  pictureUrl: string;
-  price: number;
-}
-
-export interface UpdateProductType extends CreateProductType {
-  id: number;
+export interface ProductFormType
+  extends Omit<ProductType, "id" | "createdAt" | "pictureUrl"> {
+  imageFile: File;
 }

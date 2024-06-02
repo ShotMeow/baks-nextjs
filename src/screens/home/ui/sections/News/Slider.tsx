@@ -1,13 +1,13 @@
 "use client";
 import type { FC } from "react";
 import { useGetNews } from "@/src/entities/news";
+import { Spin } from "@gravity-ui/uikit";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
 import Slide from "./Slide";
-import { Spin } from "@gravity-ui/uikit";
 
 const Slider: FC = () => {
   const { data: news } = useGetNews();

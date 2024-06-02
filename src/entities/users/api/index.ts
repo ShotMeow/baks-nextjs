@@ -1,4 +1,5 @@
 import { API_URL } from "@/src/shared/constants";
+
 import type { UpdateUserType, UserType } from "../types";
 
 export const getUsers = async () => {

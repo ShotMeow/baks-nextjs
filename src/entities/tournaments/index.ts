@@ -4,4 +4,4 @@ export {
   useUpdateTournament,
 } from "./mutations";
 export { useGetTournamentById, useGetTournaments } from "./queries";
-export type { TournamentType, CreateTournamentType } from "./types";
+export type { TournamentType, TournamentFormType } from "./types";

@@ -1,14 +1,9 @@
-import {
-  type Dispatch,
-  type FC,
-  type FormEvent,
-  type SetStateAction,
-  useEffect,
-  useState,
-} from "react";
-import { DialogTitle, Field, Input, Label, Select } from "@headlessui/react";
+import { type Dispatch, type FC, type SetStateAction } from "react";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { TextInput, Select } from "@gravity-ui/uikit";
+
 import Button from "@/src/shared/ui/Button";
-import Error from "@/src/shared/ui/Error";
+
 import { useSignUp } from "../../mutations";
 import type { SignUpType } from "../../types";
 
@@ -17,117 +12,137 @@ interface Props {
 }
 
 const SignUp: FC<Props> = ({ onClose }) => {
-  const [formState, setFormState] = useState<SignUpType>({
-    email: "",
-    password: "",
-    nickname: "",
-    name: "",
-    role: "tank",
+  const {
+    register,
+    formState: { errors },
+    watch,
+    handleSubmit,
+    control,
+    setValue,
+  } = useForm<SignUpType>({
+    defaultValues: {
+      email: "",
+      password: "",
+      nickname: "",
+      name: "",
+      role: "tank",
+    },
   });
-  const [formError, setFormError] = useState<string | null>(null);
-  const { mutate, error } = useSignUp();
+  const { mutate: signUp } = useSignUp();
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    const formData = new FormData(event.currentTarget);
-    if (formState.password !== formData.get("repeatPassword")) {
-      setFormError("Пароли не совпадают");
+  const onSubmit: SubmitHandler<SignUpType> = (data) => {
+    if (data.password !== data.repeatPassword) {
       return;
     }
 
-    mutate(formState);
+    signUp(data);
     onClose(false);
   };
 
-  useEffect(() => {
-    error && setFormError(error.message);
-  }, [error]);
-
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <DialogTitle className="text-xl font-bold">Регистрация</DialogTitle>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">E-mail</Label>
-        <Input
-          required
-          value={formState.email}
-          onChange={(event) =>
-            setFormState({ ...formState, email: event.target.value })
-          }
-          name="email"
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+      <h3 className="text-xl font-bold">Регистрация</h3>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">E-mail</span>
+        <TextInput
+          {...register("email", {
+            required: "E-mail обязателен для заполнения",
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: "Неверный формат E-mail",
+            },
+          })}
+          errorPlacement="inside"
+          validationState={errors?.email && "invalid"}
+          errorMessage={errors?.email?.message}
           type="email"
-          placeholder="E-mail"
-          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+          view="clear"
+          className="rounded-md bg-white/5 px-2 py-1"
         />
-      </Field>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">Пароль</Label>
-        <Input
-          required
-          value={formState.password}
-          onChange={(event) =>
-            setFormState({ ...formState, password: event.target.value })
-          }
-          name="password"
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Пароль</span>
+        <TextInput
+          {...register("password", {
+            required: "Пароль обязателен для заполнения",
+            minLength: {
+              value: 6,
+              message: "Пароль должен быть не менее 6 символов",
+            },
+          })}
+          errorPlacement="inside"
+          validationState={errors?.password && "invalid"}
+          errorMessage={errors?.password?.message}
           type="password"
-          placeholder="Пароль"
-          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+          view="clear"
+          className="rounded-md bg-white/5 px-2 py-1"
         />
-      </Field>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">
-          Подтвердите пароль
-        </Label>
-        <Input
-          required
-          name="repeatPassword"
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Пароль</span>
+        <TextInput
+          {...register("repeatPassword", {
+            required: "Подтверждение пароля обязательно для заполнения",
+            validate: (value: string) => {
+              if (watch("password") !== value) {
+                return "Пароли не совпадают";
+              }
+            },
+          })}
+          errorPlacement="inside"
+          validationState={errors?.repeatPassword && "invalid"}
+          errorMessage={errors?.repeatPassword?.message}
           type="password"
-          placeholder="Подтвердите пароль"
-          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+          view="clear"
+          className="rounded-md bg-white/5 px-2 py-1"
         />
-      </Field>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">Никнейм</Label>
-        <Input
-          required
-          value={formState.nickname}
-          onChange={(event) =>
-            setFormState({ ...formState, nickname: event.target.value })
-          }
-          name="nickname"
-          placeholder="Никнейм"
-          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Никнейм</span>
+        <TextInput
+          {...register("nickname", {
+            required: "Никнейм обязателен для заполнения",
+          })}
+          errorPlacement="inside"
+          validationState={errors?.nickname && "invalid"}
+          errorMessage={errors?.nickname?.message}
+          view="clear"
+          className="rounded-md bg-white/5 px-2 py-1"
         />
-      </Field>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">Имя</Label>
-        <Input
-          required
-          value={formState.name}
-          onChange={(event) =>
-            setFormState({ ...formState, name: event.target.value })
-          }
-          name="name"
-          placeholder="Имя"
-          className="mt-3 block w-full rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Имя</span>
+        <TextInput
+          {...register("name", {
+            required: "Никнейм обязателен для заполнения",
+          })}
+          errorPlacement="inside"
+          validationState={errors?.name && "invalid"}
+          errorMessage={errors?.name?.message}
+          view="clear"
+          className="rounded-md bg-white/5 px-2 py-1"
         />
-      </Field>
-      <Field>
-        <Label className="text-sm/6 font-medium text-white">Роль</Label>
-        <Select
-          required
-          value={formState.role}
-          onChange={(event) =>
-            setFormState({ ...formState, role: event.target.value })
-          }
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Роль</span>
+        <Controller
+          render={({ field: { value, ...field } }) => (
+            <Select
+              {...field}
+              filterable
+              className="rounded-md bg-white/5 px-2 py-1"
+              onUpdate={(value) => setValue("role", value[0])}
+            >
+              <Select.Option value="tank">Танк</Select.Option>
+              <Select.Option value="attack">Нападение</Select.Option>
+              <Select.Option value="sniper">Снайпер</Select.Option>
+              <Select.Option value="support">Поддержка</Select.Option>
+            </Select>
+          )}
           name="role"
-          className="mt-3 block w-full appearance-none rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25 [&>option]:bg-black"
-        >
-          <option value="tank">Танк</option>
-          <option value="attack">Нападение</option>
-          <option value="sniper">Снайпер</option>
-          <option value="support">Поддержка</option>
-        </Select>
-      </Field>
+          control={control}
+        />
+      </label>
       <div className="mt-4 flex gap-4">
         <Button
           type="button"
@@ -140,9 +155,6 @@ const SignUp: FC<Props> = ({ onClose }) => {
           Зарегистрироваться
         </Button>
       </div>
-      {formError && (
-        <Error message={formError} onClose={() => setFormError(null)} />
-      )}
     </form>
   );
 };

@@ -1,13 +1,7 @@
 import type { Dispatch, FC, PropsWithChildren, SetStateAction } from "react";
-import {
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-  Transition,
-  TransitionChild,
-} from "@headlessui/react";
-import Button from "@/src/shared/ui/Button";
 import { Modal } from "@gravity-ui/uikit";
+
+import Button from "@/src/shared/ui/Button";
 
 interface Props {
   open: boolean;

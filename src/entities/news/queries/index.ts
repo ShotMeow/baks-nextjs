@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { getNews, getNewsById } from "../api";
 import type { NewsType } from "../types";
 

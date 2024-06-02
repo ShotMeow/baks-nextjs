@@ -1,6 +1,7 @@
 "use client";
 import type { FC } from "react";
 import Image from "next/image";
+
 import { useGetProductById } from "@/src/entities/products";
 import Button from "@/src/shared/ui/Button";
 

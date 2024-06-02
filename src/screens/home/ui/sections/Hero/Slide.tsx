@@ -1,12 +1,12 @@
 import type { FC } from "react";
 import Image from "next/image";
 import classNames from "classnames";
+import Link from "next/link";
 
 import { useSwiperSlide } from "swiper/react";
 
 import Button from "@/src/shared/ui/Button";
-import { NewsType } from "@/src/entities/news";
-import Link from "next/link";
+import type { NewsType } from "@/src/entities/news";
 
 interface Props extends NewsType {}
 
