@@ -7,6 +7,7 @@ import Button from "@/src/shared/ui/Button";
 import { useGetTournaments } from "@/src/entities/tournaments";
 import Star from "@/src/shared/ui/icons/Star";
 import { Spin } from "@gravity-ui/uikit";
+import { API_URL } from "@/src/shared/constants";
 
 const Tournaments: FC = () => {
   const { data: tournaments } = useGetTournaments();
@@ -44,7 +45,7 @@ const Tournaments: FC = () => {
                     },
                     "w-full h-full object-cover",
                   )}
-                  src={tournament.artworkUrl}
+                  src={`${API_URL}/images/${tournament.artworkUrl}`}
                   alt={tournament.name}
                   width={388}
                   height={211}

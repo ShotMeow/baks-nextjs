@@ -3,19 +3,21 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { signIn, signUp } from "../api";
 import type { SignInType, SignUpType, AuthResponseType } from "../types";
 
+// Мутация для авторизации
 export const useSignIn = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (data: SignInType) => signIn(data),
     onSuccess: (data: AuthResponseType) => {
-      localStorage.setItem("jwtToken", data.jwtToken);
-      window.dispatchEvent(new Event("storage"));
-      queryClient.invalidateQueries({ queryKey: ["auth"] });
+      localStorage.setItem("jwtToken", data.jwtToken); // Записываем токен в хранилище
+      window.dispatchEvent(new Event("storage")); // Вызываем ивент обновления хранилища
+      queryClient.invalidateQueries({ queryKey: ["auth"] }); // Инвалидируем ключ 'auth'
     },
   });
 };
 
+// Мутация для регистрации
 export const useSignUp = () => {
   const queryClient = useQueryClient();
 
@@ -23,8 +25,8 @@ export const useSignUp = () => {
     mutationFn: (data: SignUpType) => signUp(data),
     onSuccess: (data: AuthResponseType) => {
       localStorage.setItem("jwtToken", data.jwtToken);
-      window.dispatchEvent(new Event("storage"));
-      queryClient.invalidateQueries({ queryKey: ["auth"] });
+      window.dispatchEvent(new Event("storage")); // Вызываем ивент обновления хранилища
+      queryClient.invalidateQueries({ queryKey: ["auth"] }); // Инвалидируем ключ 'auth'
     },
   });
 };

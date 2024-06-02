@@ -23,13 +23,7 @@ section {
     @apply my-24;
 }
 
-h2 {
-    @apply text-3xl md:text-5xl font-semibold;
-}
-
-h3 {
-    @apply text-xl md:text-4xl font-semibold;
-}
+/* Стилизация скроллбара */
 
 *::-webkit-scrollbar {
     @apply size-1;
@@ -44,6 +38,9 @@ h3 {
     @apply bg-yellow;
     border-radius: 0;
 }
+
+
+/* Брендирование Gravity UI */
 
 .g-popup {
     @apply bg-zinc-900 rounded-b-lg;

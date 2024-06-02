@@ -98,7 +98,7 @@ const Slide: FC<Props> = ({ posterUrl, channel, description, title }) => {
           "absolute inset-x-4 bottom-4 lg:inset-x-14 lg:bottom-14 transition-all duration-500",
         )}
       >
-        <h3 className="line-clamp-1 font-semibold sm:text-3xl">{title}</h3>
+        <h4 className="line-clamp-1 font-semibold sm:text-3xl">{title}</h4>
         <p className="line-clamp-2 sm:text-lg">{description}</p>
       </div>
     </div>

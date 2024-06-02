@@ -7,6 +7,7 @@ import { useGetTeamById } from "@/src/entities/teams";
 
 import { getRoleIcon } from "../utils/getRoleIcon";
 import { numberFloater } from "../utils/numberFloater";
+import { API_URL } from "@/src/shared/constants";
 
 interface Props {
   slug: string;
@@ -25,7 +26,7 @@ const Team: FC<Props> = ({ slug }) => {
                 {team.logoUrl && (
                   <div className="bg-white/5 p-2">
                     <Image
-                      src={team.logoUrl}
+                      src={`${API_URL}/images/${team.logoUrl}`}
                       alt={team.name}
                       width={48}
                       height={48}
@@ -74,7 +75,7 @@ const Team: FC<Props> = ({ slug }) => {
                       {player.pictureUrl && (
                         <Image
                           className="h-full w-auto object-contain"
-                          src={player.pictureUrl}
+                          src={`${API_URL}/images/${player.pictureUrl}`}
                           alt={player.nickname}
                           width={200}
                           height={220}

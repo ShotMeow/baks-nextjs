@@ -5,6 +5,7 @@ export interface SignInType {
 
 export interface SignUpType {
   email: string;
+  imageFile: File;
   password: string;
   repeatPassword: string;
   nickname: string;

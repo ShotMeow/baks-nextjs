@@ -3,14 +3,14 @@ import { Tabs } from "@gravity-ui/uikit";
 
 import Button from "@/src/shared/ui/Button";
 
-import { tabsData } from "../constants/tabs";
+import { tabs } from "../constants/tabs";
 import type { TabType } from "../types/tabs.types";
 import List from "./List";
 import { getTabPanelButton } from "../utils/getTabPanels";
 import FormModal from "./modals/FormModal";
 
 const Editor: FC = () => {
-  const [activeTab, setActiveTab] = useState<TabType["type"]>(tabsData[0].type);
+  const [activeTab, setActiveTab] = useState<TabType["type"]>(tabs[0].type);
   const [modalShown, setModalShown] = useState<boolean>(false);
   return (
     <div>
@@ -18,7 +18,7 @@ const Editor: FC = () => {
         className="my-4"
         size="xl"
         activeTab={activeTab}
-        items={tabsData.map((tab) => {
+        items={tabs.map((tab) => {
           return {
             id: tab.type,
             title: tab.name,
@@ -26,8 +26,7 @@ const Editor: FC = () => {
         })}
         onSelectTab={(tabId) =>
           setActiveTab(
-            tabsData.find((tab) => tab.type === tabId)?.type ||
-              tabsData[0].type,
+            tabs.find((tab) => tab.type === tabId)?.type || tabs[0].type,
           )
         }
       />

@@ -8,6 +8,8 @@ import { Spin } from "@gravity-ui/uikit";
 
 import Button from "@/src/shared/ui/Button";
 import { useGetProducts } from "@/src/entities/products";
+import Subtitle from "@/src/shared/ui/Subtitle";
+import { API_URL } from "@/src/shared/constants";
 
 const Shop: FC = () => {
   const router = useRouter();
@@ -16,7 +18,7 @@ const Shop: FC = () => {
   return (
     <section className="container">
       <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-        <h2>Магазин</h2>
+        <Subtitle>Магазин</Subtitle>
         <Button onClick={() => router.push("/shop")} variant="more">
           Посмотреть все
         </Button>
@@ -46,7 +48,7 @@ const Shop: FC = () => {
               key={product.id}
             >
               <Image
-                src={product.pictureUrl}
+                src={`${API_URL}/images/${product.pictureUrl}`}
                 width={400}
                 height={350}
                 alt={product.name}

@@ -4,6 +4,7 @@ import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 
 import { useGetNewsById } from "@/src/entities/news";
+import { API_URL } from "@/src/shared/constants";
 
 interface Props {
   slug: string;
@@ -19,7 +20,7 @@ const Post: FC<Props> = ({ slug }) => {
             <div className="absolute left-0 top-0 size-full bg-gradient-to-t from-black/50 to-transparent" />
             <Image
               className="h-[300px] w-full object-cover md:h-[600px]"
-              src={post.artworkUrl}
+              src={`${API_URL}/images/${post.artworkUrl}`}
               alt={post.title}
               width={1256}
               height={600}
@@ -45,7 +46,7 @@ const Post: FC<Props> = ({ slug }) => {
                     ))}
                 </div>
               </div>
-              <h2 className="line-clamp-3 text-xl md:text-3xl">{post.title}</h2>
+              <h3 className="line-clamp-3 text-xl md:text-3xl">{post.title}</h3>
             </div>
           </div>
           <div className="prose prose-zinc prose-invert my-6 max-w-none">

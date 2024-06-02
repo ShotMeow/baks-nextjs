@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Spin } from "@gravity-ui/uikit";
 
 import { useGetProducts } from "@/src/entities/products";
+import { API_URL } from "@/src/shared/constants";
 
 const Shop: FC = () => {
   const { data: products } = useGetProducts();
@@ -30,7 +31,7 @@ const Shop: FC = () => {
               key={product.id}
             >
               <Image
-                src={product.pictureUrl}
+                src={`${API_URL}/images/${product.pictureUrl}`}
                 width={400}
                 height={350}
                 alt={product.name}

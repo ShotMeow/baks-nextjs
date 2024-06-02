@@ -4,8 +4,8 @@ import { TextInput } from "@gravity-ui/uikit";
 
 import Button from "@/src/shared/ui/Button";
 
-import { useSignIn } from "../../mutations";
-import type { SignInType } from "../../types";
+import { useSignIn } from "../mutations";
+import type { SignInType } from "../types";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -21,7 +21,7 @@ const SignIn: FC<Props> = ({ onClose }) => {
 
   const onSubmit: SubmitHandler<SignInType> = (data) => {
     signIn(data);
-    onClose(false);
+    onClose(false); // Закрываем модальное окно
   };
 
   return (

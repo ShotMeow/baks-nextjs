@@ -3,6 +3,7 @@ import Image from "next/image";
 import classNames from "classnames";
 
 import { StreamType } from "@/src/entities/streams";
+import { API_URL } from "@/src/shared/constants";
 
 interface Props {
   streams: StreamType[];
@@ -30,7 +31,7 @@ const StreamsList: FC<Props> = ({
           >
             <Image
               className="h-60 w-full object-cover"
-              src={stream.posterUrl}
+              src={`${API_URL}/images/${stream.posterUrl}`}
               alt={stream.title}
               width={320}
               height={400}

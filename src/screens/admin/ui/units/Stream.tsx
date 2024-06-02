@@ -24,9 +24,7 @@ const Stream: FC<Props> = ({ stream }) => {
   return (
     <>
       <li className="flex items-center justify-between">
-        <span>
-          {stream.id}. {stream.title}
-        </span>
+        <span>{stream.title}</span>
         <div className="flex items-center gap-2">
           <Button
             onClick={() => setUpdateModalShown(true)}

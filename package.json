@@ -1,6 +1,6 @@
 {
   "name": "fitgital-nextjs-new",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^2.0.3",
     "@tanstack/react-query": "^5.36.2",
     "@tanstack/react-query-next-experimental": "^5.36.2",
     "@uiw/react-md-editor": "^4.0.4",

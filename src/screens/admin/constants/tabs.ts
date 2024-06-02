@@ -1,6 +1,6 @@
 import { TabType } from "../types/tabs.types";
 
-export const tabsData: TabType[] = [
+export const tabs: TabType[] = [
   {
     name: "Новости",
     type: "news",

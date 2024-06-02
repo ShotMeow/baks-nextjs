@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { useGetProductById } from "@/src/entities/products";
 import Button from "@/src/shared/ui/Button";
+import { API_URL } from "@/src/shared/constants";
 
 interface Props {
   slug: string;
@@ -17,7 +18,7 @@ const Product: FC<Props> = ({ slug }) => {
         <div className="grid lg:grid-cols-2 lg:gap-10">
           <div className="bg-white/5 p-6">
             <Image
-              src={product.pictureUrl}
+              src={`${API_URL}/images/${product.pictureUrl}`}
               width={400}
               height={350}
               alt={product.name}

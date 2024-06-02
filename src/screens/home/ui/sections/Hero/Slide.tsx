@@ -7,6 +7,7 @@ import { useSwiperSlide } from "swiper/react";
 
 import Button from "@/src/shared/ui/Button";
 import type { NewsType } from "@/src/entities/news";
+import { API_URL } from "@/src/shared/constants";
 
 interface Props extends NewsType {}
 
@@ -22,16 +23,16 @@ const Slide: FC<Props> = ({ id, artworkUrl, title, description }) => {
           },
           "-z-10 w-full transition-all duration-700 h-full object-cover",
         )}
-        src={artworkUrl}
+        src={`${API_URL}/images/${artworkUrl}`}
         alt={title}
         width={1256}
         height={600}
       />
       <div className="absolute inset-x-6 bottom-6 flex flex-col gap-6 md:inset-x-20 md:bottom-20 lg:flex-row lg:items-end">
         <div className="space-y-4 lg:space-y-8">
-          <h2 className="line-clamp-2 text-xl font-bold lg:text-4xl">
+          <h4 className="line-clamp-2 text-xl font-bold lg:text-4xl">
             {title}
-          </h2>
+          </h4>
           <p className="line-clamp-3 lg:text-lg">{description}</p>
         </div>
         <Button variant="transparent">Подробнее</Button>

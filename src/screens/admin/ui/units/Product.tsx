@@ -25,7 +25,7 @@ const Product: FC<Props> = ({ product }) => {
     <>
       <li className="flex items-center justify-between">
         <span>
-          {product.id}. {product.name} - {product.price} рублей
+          {product.name} - {product.price} рублей
         </span>
         <div className="flex items-center gap-2">
           <Button

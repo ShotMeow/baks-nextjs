@@ -6,6 +6,7 @@ import classNames from "classnames";
 import { Spin } from "@gravity-ui/uikit";
 
 import { useGetNews } from "@/src/entities/news";
+import { API_URL } from "@/src/shared/constants";
 
 const News: FC = () => {
   const { data: news } = useGetNews();
@@ -38,7 +39,7 @@ const News: FC = () => {
                     },
                     "h-[200px] w-full object-cover p-2",
                   )}
-                  src={post.artworkUrl}
+                  src={`${API_URL}/images/${post.artworkUrl}`}
                   alt={post.title}
                   width={1256}
                   height={600}

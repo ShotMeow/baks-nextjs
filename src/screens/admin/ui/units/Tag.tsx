@@ -25,9 +25,7 @@ const Tag: FC<Props> = ({ tag }) => {
   return (
     <>
       <li className="flex items-center justify-between">
-        <span>
-          {tag.id}. {tag.name}
-        </span>
+        <span>{tag.name}</span>
         <div className="flex items-center gap-2">
           <Button
             onClick={() => setUpdateModalShown(true)}

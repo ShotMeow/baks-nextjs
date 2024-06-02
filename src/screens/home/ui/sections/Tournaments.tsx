@@ -9,6 +9,8 @@ import { Spin } from "@gravity-ui/uikit";
 import { useGetTournaments } from "@/src/entities/tournaments";
 import Button from "@/src/shared/ui/Button";
 import Star from "@/src/shared/ui/icons/Star";
+import Subtitle from "@/src/shared/ui/Subtitle";
+import { API_URL } from "@/src/shared/constants";
 
 const Tournaments: FC = () => {
   const router = useRouter();
@@ -17,7 +19,7 @@ const Tournaments: FC = () => {
   return (
     <section className="container">
       <div className="my-10 flex flex-col items-center justify-between gap-8 sm:flex-row">
-        <h2>Турниры</h2>
+        <Subtitle>Турниры</Subtitle>
         <Button onClick={() => router.push("/tournaments")} variant="more">
           Посмотреть все
         </Button>
@@ -53,7 +55,7 @@ const Tournaments: FC = () => {
                     },
                     "w-full h-full object-cover",
                   )}
-                  src={tournament.artworkUrl}
+                  src={`${API_URL}/images/${tournament.artworkUrl}`}
                   alt={tournament.name}
                   width={388}
                   height={211}
@@ -67,9 +69,9 @@ const Tournaments: FC = () => {
                   )}
                 >
                   <div className="space-y-4">
-                    <h3 className="text-xl font-semibold sm:text-3xl">
+                    <h4 className="text-xl font-semibold sm:text-3xl">
                       {tournament.name}
-                    </h3>
+                    </h4>
                     {index === 0 && (
                       <p className="line-clamp-2 hidden text-zinc-500 2xl:block">
                         {tournament.description}

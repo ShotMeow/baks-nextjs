@@ -27,9 +27,7 @@ const Tournament: FC<Props> = ({ tournament }) => {
   return (
     <>
       <li className="flex items-center justify-between">
-        <span>
-          {tournament.id}. {tournament.name}
-        </span>
+        <span>{tournament.name}</span>
         <div className="flex items-center gap-2">
           <Button
             onClick={() => setUpdateModalShown(true)}

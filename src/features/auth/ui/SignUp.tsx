@@ -1,11 +1,11 @@
-import { type Dispatch, type FC, type SetStateAction } from "react";
+import { type Dispatch, type FC, type SetStateAction, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { TextInput, Select } from "@gravity-ui/uikit";
 
 import Button from "@/src/shared/ui/Button";
 
-import { useSignUp } from "../../mutations";
-import type { SignUpType } from "../../types";
+import { useSignUp } from "../mutations";
+import type { SignUpType } from "../types";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -28,15 +28,17 @@ const SignUp: FC<Props> = ({ onClose }) => {
       role: "tank",
     },
   });
+
   const { mutate: signUp } = useSignUp();
 
   const onSubmit: SubmitHandler<SignUpType> = (data) => {
+    // Проверка совпадения паролей
     if (data.password !== data.repeatPassword) {
       return;
     }
 
     signUp(data);
-    onClose(false);
+    onClose(false); // Закрываем модальное окно
   };
 
   return (

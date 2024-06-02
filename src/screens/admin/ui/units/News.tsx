@@ -24,9 +24,7 @@ const News: FC<Props> = ({ news }) => {
   return (
     <>
       <li className="flex items-center justify-between">
-        <span>
-          {news.id}. {news.title}
-        </span>
+        <span>{news.title}</span>
         <div className="flex items-center gap-2">
           <Button
             onClick={() => setUpdateModalShown(true)}

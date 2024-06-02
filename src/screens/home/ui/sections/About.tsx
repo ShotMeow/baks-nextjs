@@ -8,6 +8,7 @@ import Telegram from "@/src/shared/ui/icons/Telegram";
 import Youtube from "@/src/shared/ui/icons/Youtube";
 import Vkontakte from "@/src/shared/ui/icons/Vkontakte";
 import Tiktok from "@/src/shared/ui/icons/Tiktok";
+import Title from "@/src/shared/ui/Title";
 
 const About: FC = () => {
   return (
@@ -17,11 +18,10 @@ const About: FC = () => {
         alt="На фоне в виде логотипа изображены два баскетболиста"
         width={620}
         height={770}
+        priority
       />
       <div className="space-y-8">
-        <h1 className="text-2xl font-bold lg:text-3xl">
-          Приветствуем Вас в Мире Фитжитал Баскетбола!
-        </h1>
+        <Title>Приветствуем Вас в Мире Фитжитал Баскетбола!</Title>
         <p className="lg:text-lg">
           Добро пожаловать в захватывающий мир фитжитал баскетбола, где любовь к
           игре объединяется с передовыми цифровыми технологиями, открывая новые

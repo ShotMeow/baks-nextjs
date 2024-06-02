@@ -7,6 +7,7 @@ import { getRoleIcon } from "@/src/screens/teams/utils/getRoleIcon";
 import { numberFloater } from "@/src/screens/teams/utils/numberFloater";
 import classNames from "classnames";
 import ReactMarkdown from "react-markdown";
+import { API_URL } from "@/src/shared/constants";
 
 interface Props {
   slug: string;
@@ -26,7 +27,7 @@ const Tournament: FC<Props> = ({ slug }) => {
         <article>
           <div className="absolute -z-10">
             <Image
-              src={tournament.artworkUrl}
+              src={`${API_URL}/images/${tournament.artworkUrl}`}
               alt={tournament.name}
               width={1920}
               height={1080}
@@ -36,16 +37,18 @@ const Tournament: FC<Props> = ({ slug }) => {
           <div className="container py-40">
             <div>
               <div className="bg-white/5 px-6 py-14 backdrop-blur-md md:px-10 md:py-20">
-                <p>
-                  {new Date(tournament.eventDate.toDate()).toLocaleDateString(
-                    "ru",
-                    {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    },
-                  )}
-                </p>
+                {tournament.eventDate && (
+                  <p>
+                    {new Date(tournament.eventDate.toDate()).toLocaleDateString(
+                      "ru",
+                      {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      },
+                    )}
+                  </p>
+                )}
                 <h1 className="mt-6 text-5xl">{tournament.name}</h1>
                 <p className="mt-4">{tournament.description}</p>
                 <div className="flex flex-wrap items-center justify-between gap-4">
@@ -92,7 +95,7 @@ const Tournament: FC<Props> = ({ slug }) => {
                           <div className="relative flex h-48 items-center justify-center bg-white/10 p-4">
                             {team?.logoUrl && (
                               <Image
-                                src={team.logoUrl}
+                                src={`${API_URL}/images/${team.logoUrl}`}
                                 alt={team.name}
                                 width={120}
                                 height={120}
@@ -133,7 +136,7 @@ const Tournament: FC<Props> = ({ slug }) => {
                               {player.pictureUrl && (
                                 <Image
                                   className="h-full w-auto object-contain"
-                                  src={player.pictureUrl}
+                                  src={`${API_URL}/images/${player.pictureUrl}`}
                                   alt={player.nickname}
                                   width={200}
                                   height={220}
@@ -179,7 +182,7 @@ const Tournament: FC<Props> = ({ slug }) => {
                       >
                         {team.logoUrl ? (
                           <Image
-                            src={team.logoUrl}
+                            src={`${API_URL}/images/${team.logoUrl}`}
                             alt={team.name}
                             width={60}
                             height={60}

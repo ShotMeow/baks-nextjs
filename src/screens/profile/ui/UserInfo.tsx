@@ -7,6 +7,7 @@ import { UserType } from "@/src/entities/users";
 import Button from "@/src/shared/ui/Button";
 import { logOut } from "@/src/features/auth";
 import Avatar from "@/src/shared/ui/icons/Avatar";
+import { API_URL } from "@/src/shared/constants";
 
 interface Props extends Omit<UserType, "createdAt"> {}
 
@@ -34,7 +35,7 @@ const UserInfo: FC<Props> = ({ nickname, name, pictureUrl, team }) => {
               >
                 {team.logoUrl && (
                   <Image
-                    src={team.logoUrl}
+                    src={`${API_URL}/images/${team.logoUrl}`}
                     alt={team.name}
                     width={32}
                     height={32}

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import type { NewsType } from "@/src/entities/news";
+import { API_URL } from "@/src/shared/constants";
 
 interface Props extends NewsType {}
 
@@ -11,7 +12,7 @@ const Slide: FC<Props> = ({ id, artworkUrl, title, tags, createdAt }) => {
     <Link className="flex h-full flex-col justify-between" href={`/news/${id}`}>
       <Image
         className="h-[200px] w-full object-cover p-2"
-        src={artworkUrl}
+        src={`${API_URL}/images/${artworkUrl}`}
         alt={title}
         width={1256}
         height={600}
@@ -25,7 +26,7 @@ const Slide: FC<Props> = ({ id, artworkUrl, title, tags, createdAt }) => {
               day: "numeric",
             })}
           </p>
-          <h2 className="line-clamp-3 text-xl">{title}</h2>
+          <h4 className="line-clamp-3 text-xl">{title}</h4>
         </div>
         <div className="mt-6 flex items-center gap-2 text-xs">
           {tags?.map((tag) => (

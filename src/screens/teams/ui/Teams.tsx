@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 
 import { useGetTeams } from "@/src/entities/teams";
 import Button from "@/src/shared/ui/Button";
+import { API_URL } from "@/src/shared/constants";
 
 const Teams: FC = () => {
   const router = useRouter();
@@ -23,7 +24,7 @@ const Teams: FC = () => {
               {team?.logoUrl && (
                 <div className="flex items-center justify-center bg-white/5 p-4">
                   <Image
-                    src={team.logoUrl}
+                    src={`${API_URL}/images/${team.logoUrl}`}
                     alt={team.name}
                     width={48}
                     height={48}
