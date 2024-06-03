@@ -1,5 +1,5 @@
-import { type Dispatch, type FC, type SetStateAction, useState } from "react";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import type { Dispatch, FC, SetStateAction } from "react";
+import { Controller, type SubmitHandler, useForm } from "react-hook-form";
 import { TextInput, Select } from "@gravity-ui/uikit";
 
 import Button from "@/src/shared/ui/Button";

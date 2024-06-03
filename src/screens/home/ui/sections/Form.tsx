@@ -9,7 +9,7 @@ const Form: FC = () => {
     <section className="my-40 bg-zinc-900 pt-12 lg:py-12">
       <div className="container relative flex flex-col items-center gap-8 lg:grid lg:grid-cols-12">
         <form className="col-span-5 flex flex-col gap-8">
-          <h3 className="text-xl md:text-4xl font-semibold">
+          <h3 className="text-xl font-semibold md:text-4xl">
             Будь в курсе новых турниров, <br />
             <span className="text-yellow">подписывайся!</span>
           </h3>
