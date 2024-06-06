@@ -19,6 +19,7 @@
     "react-hook-form": "^7.51.5",
     "react-markdown": "^9.0.1",
     "react-twitch-embed": "^3.0.2",
+    "sharp": "^0.33.4",
     "swiper": "^11.1.1"
   },
   "devDependencies": {
