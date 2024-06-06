@@ -1,6 +1,6 @@
-import type { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction, useEffect } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import { TextInput } from "@gravity-ui/uikit";
+import { Label, Portal, TextInput, useToaster } from "@gravity-ui/uikit";
 
 import Button from "@/src/shared/ui/Button";
 
@@ -17,12 +17,26 @@ const SignIn: FC<Props> = ({ onClose }) => {
     formState: { errors },
     handleSubmit,
   } = useForm<SignInType>();
-  const { mutate: signIn } = useSignIn();
+  const { add } = useToaster();
+  const { mutate: signIn, isError, isSuccess } = useSignIn();
 
   const onSubmit: SubmitHandler<SignInType> = (data) => {
     signIn(data);
-    onClose(false); // Закрываем модальное окно
   };
+
+  useEffect(() => {
+    isSuccess && onClose(false);
+  }, [isSuccess, onClose]);
+
+  useEffect(() => {
+    isError &&
+      add({
+        name: "sign-in-error",
+        title: "Авторизация не прошла успешно",
+        content: "E-mail или пароль не совпадают",
+        theme: "warning",
+      });
+  }, [add, isError]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">

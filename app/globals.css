@@ -4,6 +4,10 @@
 
 :root {
     --g-color-line-brand: #F0F424;
+    --g-color-base-warning-light: #070707;
+    --g-color-text-warning-heavy: #F0F424;
+    --g-text-subheader-3-font-size: 20px;
+    --g-text-subheader-font-weight: bold;
 }
 
 html,body {

@@ -14,6 +14,9 @@ export const useSignIn = () => {
       window.dispatchEvent(new Event("storage")); // Вызываем ивент обновления хранилища
       queryClient.invalidateQueries({ queryKey: ["auth"] }); // Инвалидируем ключ 'auth'
     },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
+    },
   });
 };
 
@@ -27,6 +30,9 @@ export const useSignUp = () => {
       localStorage.setItem("jwtToken", data.jwtToken);
       window.dispatchEvent(new Event("storage")); // Вызываем ивент обновления хранилища
       queryClient.invalidateQueries({ queryKey: ["auth"] }); // Инвалидируем ключ 'auth'
+    },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
     },
   });
 };

@@ -1,6 +1,6 @@
-import type { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction, useEffect } from "react";
 import { Controller, type SubmitHandler, useForm } from "react-hook-form";
-import { TextInput, Select } from "@gravity-ui/uikit";
+import { TextInput, Select, useToaster } from "@gravity-ui/uikit";
 
 import Button from "@/src/shared/ui/Button";
 
@@ -28,8 +28,9 @@ const SignUp: FC<Props> = ({ onClose }) => {
       role: "tank",
     },
   });
+  const { add } = useToaster();
 
-  const { mutate: signUp } = useSignUp();
+  const { mutate: signUp, isSuccess, isError } = useSignUp();
 
   const onSubmit: SubmitHandler<SignUpType> = (data) => {
     // Проверка совпадения паролей
@@ -38,8 +39,21 @@ const SignUp: FC<Props> = ({ onClose }) => {
     }
 
     signUp(data);
-    onClose(false); // Закрываем модальное окно
   };
+
+  useEffect(() => {
+    isSuccess && onClose(false);
+  }, [isSuccess, onClose]);
+
+  useEffect(() => {
+    isError &&
+      add({
+        name: "sign-in-error",
+        title: "Регистрация не прошла успешно",
+        content: "E-mail или никнейм уже заняты",
+        theme: "warning",
+      });
+  }, [add, isError]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
