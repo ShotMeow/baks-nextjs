@@ -26,7 +26,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: phygtal-nextjs:latest
+        tags: shotmeow/phygtal-nextjs:latest
       env:
         NEXT_PUBLIC_ADMIN_LOGIN: ${{ secrets.ADMIN_LOGIN  }}
         NEXT_PUBLIC_ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD  }}
