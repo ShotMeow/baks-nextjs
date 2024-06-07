@@ -27,6 +27,16 @@ section {
     @apply my-24;
 }
 
+/* Стилизация полей ввода при автозаполнении */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #141414 inset;
+    -webkit-text-fill-color: #FFFFFF;
+}
+
 /* Брендирование выделения текста */
 
 ::selection {

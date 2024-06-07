@@ -77,7 +77,7 @@ const SignIn: FC<Props> = ({ onClose }) => {
           className="rounded-md bg-white/5 px-2 py-1"
         />
       </label>
-      <div className="mt-4 flex flex-col gap-4 sm:flex-row">
+      <div className="mt-4 flex flex-wrap gap-4">
         <Button
           type="button"
           variant="transparent"

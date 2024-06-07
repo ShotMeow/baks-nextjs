@@ -34,7 +34,7 @@ const About: FC = () => {
           баскетбола, где цифровой мир расширяет границы возможного и приглашает
           каждого стать частью глобальной спортивной революции.
         </p>
-        <ul className="flex flex-wrap items-center justify-between gap-8 text-black md:justify-start">
+        <ul className="flex items-center justify-center xl:justify-start flex-wrap gap-8 text-black">
           <li>
             <Link aria-label="Ссылка на сообщество" href="#">
               <Message width={60} height={60} />
