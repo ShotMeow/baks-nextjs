@@ -19,20 +19,13 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-    - name: Extract metadata (tags, labels) for Docker
-      id: meta
-      uses: docker/metadata-action@v5
-      with:
-        images: shotmeow/phygital-nextjs
-
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
+        tags: shotmeow/phygital-nextjs:latest
       env:
         NEXT_PUBLIC_ADMIN_LOGIN: ${{ secrets.ADMIN_LOGIN  }}
         NEXT_PUBLIC_ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD  }}
@@ -46,5 +39,6 @@ jobs:
         username: ${{ secrets.REMOTE_USERNAME }}
         password: ${{ secrets.REMOTE_PASSWORD }}
         script: |
-          docker-compose pull
-          docker-compose restart
+          docker-compose down
+          docker image rm shotmeow/phygital-nextjs:latest
+          docker-compose up
