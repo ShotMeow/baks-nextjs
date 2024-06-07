@@ -6,32 +6,33 @@ on:
       - main
 
 jobs:
-  build:
+  build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Build Docker image
-      run: |
-        docker build . --file Dockerfile --tag shotmeow/phygital-nextjs:$(date +%s)
-    
-  push-to-docker-hub:
-    runs-on: ubuntu-latest
-
-    steps:
     - name: Log in to Docker Hub
-      run: echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-    
-    - name: Push Docker image to Docker Hub
-      run: docker push shotmeow/phygital-nextjs
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-  deploy-to-server:
-    runs-on: ubuntu-latest
+    - name: Build and push Docker image
+      id: push
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: shotmeow/phygtal-nextjs:latest
+      env:
+        NEXT_PUBLIC_ADMIN_LOGIN: ${{ secrets.ADMIN_LOGIN  }}
+        NEXT_PUBLIC_ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD  }}
+        NEXT_PUBLIC_API_URL: ${{ secrets.API_URL  }}
 
-    steps:
-    - name: SSH and start Docker container on remote server
+    - name: SSH and restart docker-compose with new image
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.REMOTE_HOST }}
