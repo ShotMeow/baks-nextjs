@@ -12,7 +12,7 @@ import Pagination from "./Pagination";
 
 const Slider: FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0); // Инициализируем начальный индекс
-  const { data: news } = useGetNews();
+  const { data: news, isLoading, isSuccess } = useGetNews();
 
   return (
     <>
@@ -26,13 +26,13 @@ const Slider: FC = () => {
         slidesPerView={1}
         onSlideChange={({ activeIndex }) => setActiveIndex(activeIndex)}
       >
-        {news ? (
+        {isSuccess &&
           news.slice(0, 5).map((post) => (
             <SwiperSlide key={post.id}>
               <Slide {...post} />
             </SwiperSlide>
-          ))
-        ) : (
+          ))}
+        {isLoading && (
           <SwiperSlide className="!flex items-center justify-center">
             <Spin size="xl" />
           </SwiperSlide>
