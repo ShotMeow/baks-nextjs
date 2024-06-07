@@ -27,10 +27,16 @@ section {
     @apply my-24;
 }
 
+/* Брендирование выделения текста */
+
+::selection {
+    @apply bg-yellow text-black;
+}
+
 /* Стилизация скроллбара */
 
 *::-webkit-scrollbar {
-    @apply size-1;
+    @apply w-1 h-0;
 }
 
 *::-webkit-scrollbar-track {

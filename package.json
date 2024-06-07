@@ -1,7 +1,9 @@
 {
-  "name": "fitgital-nextjs-new",
-  "version": "0.5.2",
-  "private": true,
+  "name": "phygital-nextjs",
+  "description": "Frontend release for Phygital Basketball on Next.js",
+  "author": "Kai Goldman",
+  "version": "0.5.3",
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -13,7 +15,6 @@
     "@tanstack/react-query-next-experimental": "^5.36.2",
     "@uiw/react-md-editor": "^4.0.4",
     "next": "14.2.3",
-    "nextjs-progressbar": "^0.0.16",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.5",
