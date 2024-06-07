@@ -19,12 +19,6 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-    - name: Extract metadata (tags, labels) for Docker
-      id: meta
-      uses: docker/metadata-action@v5
-      with:
-        images: shotmeow/phygital-nextjs
-
     - name: Build and push Docker image
       id: push
       uses: docker/build-push-action@v5
@@ -32,10 +26,13 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
+        tags: shotmeow/phygtal-nextjs:latest
+      env:
+        NEXT_PUBLIC_ADMIN_LOGIN: ${{ secrets.ADMIN_LOGIN  }}
+        NEXT_PUBLIC_ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD  }}
+        NEXT_PUBLIC_API_URL: ${{ secrets.API_URL  }}
 
-    - name: SSH and start Docker container on remote server
+    - name: SSH and restart docker-compose with new image
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.REMOTE_HOST }}
