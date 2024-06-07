@@ -21,9 +21,9 @@ jobs:
 
     - name: Create env file
       run: |
-        echo "NEXT_PUBLIC_ADMIN_LOGIN=${{ secrets.NEXT_PUBLIC_ADMIN_LOGIN }}" >> .env.production
-        echo "NEXT_PUBLIC_ADMIN_PASSWORD=${{ secrets.NEXT_PUBLIC_ADMIN_PASSWORD }}" >> .env.production
-        echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" >> .env.production
+        echo "NEXT_PUBLIC_ADMIN_LOGIN=${{ secrets.NEXT_PUBLIC_ADMIN_LOGIN }}" >> .env.local
+        echo "NEXT_PUBLIC_ADMIN_PASSWORD=${{ secrets.NEXT_PUBLIC_ADMIN_PASSWORD }}" >> .env.local
+        echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" >> .env.local
       working-directory: ${{ github.workspace }}
       
     - name: Build and push Docker image
