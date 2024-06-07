@@ -1,0 +1,43 @@
+name: Deploy to Docker Hub and Push to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Build Docker image
+      run: |
+        docker build . --file Dockerfile --tag shotmeow/phygital-nextjs:$(date +%s)
+    
+  push-to-docker-hub:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Log in to Docker Hub
+      run: echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+    
+    - name: Push Docker image to Docker Hub
+      run: docker push shotmeow/phygital-nextjs
+
+  deploy-to-server:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: SSH and start Docker container on remote server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.REMOTE_HOST }}
+        port: ${{ secrets.REMOTE_PORT }}
+        username: ${{ secrets.REMOTE_USERNAME }}
+        password: ${{ secrets.REMOTE_PASSWORD }}
+        script: |
+          docker-compose pull
+          docker-compose restart
