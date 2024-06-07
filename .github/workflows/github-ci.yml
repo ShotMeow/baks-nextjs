@@ -21,7 +21,7 @@ jobs:
 
     - name: Extract metadata (tags, labels) for Docker
       id: meta
-      uses: docker/metadata-action@3
+      uses: docker/metadata-action@5
       with:
         images: shotmeow/phygital-nextjs
 
