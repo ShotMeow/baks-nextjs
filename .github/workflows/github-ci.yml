@@ -19,6 +19,9 @@ jobs:
 
     - name: Log in to Docker Hub
       run: echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+      env:
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
 
     - name: Push Docker image to Docker Hub
       run: docker push shotmeow/phygital-nextjs
