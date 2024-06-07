@@ -1,7 +1,6 @@
 import type { FC, PropsWithChildren } from "react";
 import type { Metadata } from "next";
 import { Readex_Pro } from "next/font/google";
-import { PublicEnvScript } from "next-runtime-env";
 
 import "./globals.css";
 
@@ -40,7 +39,6 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
             </QueryProvider>
           </GravityToastProvider>
         </GravityThemeProvider>
-        <PublicEnvScript />
       </body>
     </html>
   );
