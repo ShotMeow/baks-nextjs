@@ -1,6 +1,7 @@
 import type { Dispatch, FC, SetStateAction } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { TextInput } from "@gravity-ui/uikit";
+import { env } from 'next-runtime-env';
 
 import Button from "@/src/shared/ui/Button";
 
@@ -22,8 +23,8 @@ const Login: FC<Props> = ({ setIsLogin }) => {
   } = useForm<AdminFormType>();
 
   const onSubmit: SubmitHandler<AdminFormType> = (data) => {
-    const currentLogin = process.env.NEXT_PUBLIC_ADMIN_LOGIN as string;
-    const currentPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD as string;
+    const currentLogin = env("NEXT_PUBLIC_ADMIN_LOGIN") as string;
+    const currentPassword = env("NEXT_PUBLIC_ADMIN_PASSWORD") as string;
 
     if (data.login === currentLogin && data.password === currentPassword) {
       setIsLogin(true);

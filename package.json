@@ -2,7 +2,7 @@
   "name": "phygital-nextjs",
   "description": "Frontend release for Phygital Basketball on Next.js",
   "author": "Kai Goldman",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "private": false,
   "scripts": {
     "dev": "next dev",
@@ -15,6 +15,7 @@
     "@tanstack/react-query-next-experimental": "^5.36.2",
     "@uiw/react-md-editor": "^4.0.4",
     "next": "14.2.3",
+    "next-runtime-env": "^3.2.2",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.5",
