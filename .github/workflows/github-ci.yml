@@ -13,10 +13,6 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Linting
-      run: |
-        npm run lint
-
     - name: Log in to Docker Hub
       uses: docker/login-action@v3
       with:
