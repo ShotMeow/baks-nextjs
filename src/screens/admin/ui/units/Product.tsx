@@ -58,7 +58,9 @@ const Product: FC<Props> = ({ product }) => {
           onClose={setDeleteModalShown}
           action={handleDelete}
         >
-          Вы точно хотите удалить товар &quot;{product.name}&quot;?
+          Вы точно хотите удалить товар <br />
+          &quot;
+          <span className="font-bold">{product.name}</span>&quot;?
         </DeleteModal>
       )}
     </>

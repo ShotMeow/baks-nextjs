@@ -53,7 +53,9 @@ const Team: FC<Props> = ({ team }) => {
           onClose={setDeleteModalShown}
           action={handleDelete}
         >
-          Вы точно хотите удалить команду &quot;{team.name}&quot;?
+          Вы точно хотите удалить команду <br />
+          &quot;
+          <span className="font-bold">{team.name}</span>&quot;?
         </DeleteModal>
       )}
     </>

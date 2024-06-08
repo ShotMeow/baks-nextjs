@@ -1,6 +1,6 @@
 import type { Dispatch, FC, SetStateAction } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import { TextInput } from "@gravity-ui/uikit";
+import { TextInput, useToaster } from "@gravity-ui/uikit";
 
 import Button from "@/src/shared/ui/Button";
 
@@ -18,8 +18,8 @@ const Login: FC<Props> = ({ setIsLogin }) => {
     register,
     formState: { errors },
     handleSubmit,
-    setError,
   } = useForm<AdminFormType>();
+  const { add } = useToaster();
 
   const onSubmit: SubmitHandler<AdminFormType> = (data) => {
     const currentLogin = process.env.NEXT_PUBLIC_ADMIN_LOGIN as string;
@@ -28,9 +28,11 @@ const Login: FC<Props> = ({ setIsLogin }) => {
     if (data.login === currentLogin && data.password === currentPassword) {
       setIsLogin(true);
     } else {
-      setError("password", {
-        type: "custom",
-        message: "Неверный логин или пароль",
+      add({
+        name: "admin-sign-in-error",
+        title: "Авторизация не прошла успешно",
+        content: "Логин или пароль не совпадают",
+        theme: "warning",
       });
     }
   };

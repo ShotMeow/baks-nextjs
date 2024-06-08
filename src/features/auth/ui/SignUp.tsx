@@ -159,7 +159,7 @@ const SignUp: FC<Props> = ({ onClose }) => {
           control={control}
         />
       </label>
-      <div className="mt-4 flex flex-wrap gap-4">
+      <div className="mt-4 flex flex-col gap-4 sm:flex-row">
         <Button
           type="button"
           variant="transparent"

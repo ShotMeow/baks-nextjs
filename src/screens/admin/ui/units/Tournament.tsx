@@ -59,7 +59,9 @@ const Tournament: FC<Props> = ({ tournament }) => {
           onClose={setDeleteModalShown}
           action={handleDelete}
         >
-          Вы точно хотите удалить турнир &quot;{tournament.name}&quot;?
+          Вы точно хотите удалить турнир <br />
+          &quot;
+          <span className="font-bold">{tournament.name}</span>&quot;?
         </DeleteModal>
       )}
     </>

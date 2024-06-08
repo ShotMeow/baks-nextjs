@@ -53,7 +53,9 @@ const Tag: FC<Props> = ({ tag }) => {
           onClose={setDeleteModalShown}
           action={handleDelete}
         >
-          Вы точно хотите удалить тег &quot;{tag.name}&quot;?
+          Вы точно хотите удалить тег <br />
+          &quot;
+          <span className="font-bold">{tag.name}</span>&quot;?
         </DeleteModal>
       )}
     </>

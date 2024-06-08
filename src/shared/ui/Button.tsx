@@ -19,7 +19,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
             variant === "primary",
           "bg-lilac rounded-full text-lg font-semibold":
             variant === "secondary",
-          "text-yellow text-xl backdrop-blur-lg bg-yellow/20 rounded-full":
+          "text-yellow backdrop-blur-lg bg-yellow/20 rounded-full":
             variant === "transparent",
           "text-yellow bg-zinc-800/50 px-6 py-3 rounded-r-full":
             variant === "more",

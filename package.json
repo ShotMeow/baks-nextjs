@@ -2,7 +2,7 @@
   "name": "phygital-nextjs",
   "description": "Frontend release for Phygital Basketball on Next.js",
   "author": "Kai Goldman",
-  "version": "0.5.7",
+  "version": "0.6.0",
   "private": false,
   "scripts": {
     "dev": "next dev",

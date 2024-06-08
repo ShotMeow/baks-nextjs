@@ -15,6 +15,7 @@ import {
 import { useGetTeams } from "@/src/entities/teams";
 import { API_URL } from "@/src/shared/constants";
 import { useGetTags } from "@/src/entities/tags";
+import { dateTimeParse } from "@gravity-ui/date-utils";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -272,12 +273,16 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
           Дата проведения турнира
         </span>
         <Controller
-          render={({ field }) => (
+          render={() => (
             <DatePicker
-              {...field}
+              onUpdate={(value) =>
+                setValue("eventDate", value?.toDate().toISOString())
+              }
               view="clear"
               format="DD.MM.YYYY"
+              defaultValue={dateTimeParse(tournament?.eventDate)}
               className="rounded-md bg-white/5 px-2 py-1"
+              {...register("eventDate")}
             />
           )}
           name="eventDate"

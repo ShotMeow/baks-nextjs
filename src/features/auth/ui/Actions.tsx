@@ -7,32 +7,30 @@ interface Props {
 
 const Actions: FC<Props> = ({ modalType, setModalType }) => {
   return (
-    <div>
-      <p className="mt-4">
-        {modalType === "sign-in" && (
-          <span>
-            Нет аккаунта?{" "}
-            <button
-              className="text-yellow"
-              onClick={() => setModalType("sign-up")}
-            >
-              Зарегистрироваться
-            </button>
-          </span>
-        )}
-        {modalType === "sign-up" && (
-          <span>
-            У вас уже есть аккаунт?{" "}
-            <button
-              className="text-yellow"
-              onClick={() => setModalType("sign-in")}
-            >
-              Войти
-            </button>
-          </span>
-        )}
-      </p>
-    </div>
+    <p className="mt-4">
+      {modalType === "sign-in" && (
+        <span>
+          Нет аккаунта?{" "}
+          <button
+            className="text-yellow"
+            onClick={() => setModalType("sign-up")}
+          >
+            Зарегистрироваться
+          </button>
+        </span>
+      )}
+      {modalType === "sign-up" && (
+        <span>
+          У вас уже есть аккаунт?{" "}
+          <button
+            className="text-yellow"
+            onClick={() => setModalType("sign-in")}
+          >
+            Войти
+          </button>
+        </span>
+      )}
+    </p>
   );
 };
 

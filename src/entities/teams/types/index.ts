@@ -1,6 +1,5 @@
 import type { UserType } from "@/src/entities/users";
 import type { TournamentType } from "@/src/entities/tournaments";
-import type { DateTime } from "@gravity-ui/date-utils";
 
 export interface TeamType {
   id: number;
@@ -11,7 +10,7 @@ export interface TeamType {
   logoUrl?: string;
   players: UserType[];
   tournaments: TournamentType[];
-  lastMatch?: DateTime;
+  lastMatch?: string;
   createdAt: Date;
 }
 

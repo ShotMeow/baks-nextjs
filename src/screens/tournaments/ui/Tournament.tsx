@@ -46,14 +46,11 @@ const Tournament: FC<Props> = ({ slug }) => {
                 </div>
                 {tournament.eventDate && (
                   <p>
-                    {new Date(tournament.eventDate.toDate()).toLocaleDateString(
-                      "ru",
-                      {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      },
-                    )}
+                    {new Date(tournament.eventDate).toLocaleDateString("ru", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
                   </p>
                 )}
                 <h1 className="mt-6 text-5xl">{tournament.name}</h1>

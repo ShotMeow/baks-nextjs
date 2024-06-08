@@ -52,7 +52,9 @@ const News: FC<Props> = ({ news }) => {
           onClose={setDeleteModalShown}
           action={handleDelete}
         >
-          Вы точно хотите удалить пост &quot;{news.title}&quot;?
+          Вы точно хотите удалить пост <br />
+          &quot;
+          <span className="font-bold">{news.title}</span>&quot;?
         </DeleteModal>
       )}
     </>

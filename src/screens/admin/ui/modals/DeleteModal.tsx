@@ -16,9 +16,15 @@ const DeleteModal: FC<PropsWithChildren<Props>> = ({
   children,
 }) => {
   return (
-    <Modal open={open} onClose={() => onClose}>
-      <div className="flex flex-col items-center rounded-xl bg-black p-6">
-        <h4 className="text-base/7 font-medium text-white">{children}</h4>
+    <Modal
+      className="bg-black/20 backdrop-blur-sm"
+      open={open}
+      onClose={() => onClose}
+    >
+      <div className="flex w-full max-w-[600px] flex-col items-center rounded-xl border-2 border-white/10 bg-black p-6">
+        <h4 className="text-center text-base/7 font-medium text-white">
+          {children}
+        </h4>
         <div className="mt-4 flex items-center gap-4">
           <Button variant="transparent" onClick={() => onClose(false)}>
             Отмена

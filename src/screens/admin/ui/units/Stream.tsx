@@ -56,7 +56,9 @@ const Stream: FC<Props> = ({ stream }) => {
           onClose={setDeleteModalShown}
           action={handleDelete}
         >
-          Вы точно хотите удалить трансляцию &quot;{stream.title}&quot;?
+          Вы точно хотите удалить трансляцию <br />
+          &quot;
+          <span className="font-bold">{stream.title}</span>&quot;?
         </DeleteModal>
       )}
     </>

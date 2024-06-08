@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { Select, TextInput } from "@gravity-ui/uikit";
 import { DatePicker } from "@gravity-ui/date-components";
+import { dateTimeParse } from "@gravity-ui/date-utils";
 
 import Button from "@/src/shared/ui/Button";
 import {
@@ -227,11 +228,14 @@ const TeamsForm: FC<Props> = ({ onClose, team, type }) => {
           Дата последнего матча
         </span>
         <Controller
-          render={({ field }) => (
+          render={() => (
             <DatePicker
-              {...field}
+              onUpdate={(value) =>
+                setValue("lastMatch", value?.toDate().toISOString())
+              }
               view="clear"
               format="DD.MM.YYYY"
+              defaultValue={dateTimeParse(team?.lastMatch)}
               className="rounded-md bg-white/5 px-2 py-1"
             />
           )}

@@ -26,14 +26,11 @@ const TournamentsList: FC<Props> = ({ tournaments }) => {
             {tournament.eventDate && (
               <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-yellow px-4 py-2 text-sm font-semibold uppercase text-black">
                 <span>
-                  {new Date(tournament.eventDate.toDate()).toLocaleDateString(
-                    "ru",
-                    {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    },
-                  )}
+                  {new Date(tournament.eventDate).toLocaleDateString("ru", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
                 </span>
               </div>
             )}

@@ -6,7 +6,7 @@ const GravityToastProvider: FC<PropsWithChildren> = ({ children }) => {
   return (
     <ToasterProvider>
       {children}
-      <ToasterComponent hasPortal={false} />
+      <ToasterComponent />
     </ToasterProvider>
   );
 };
