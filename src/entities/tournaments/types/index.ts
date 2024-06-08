@@ -1,5 +1,6 @@
 import type { TeamType } from "@/src/entities/teams";
 import type { DateTime } from "@gravity-ui/date-utils";
+import { TagType } from "@/src/entities/tags";
 
 export interface TournamentType {
   id: number;
@@ -12,6 +13,7 @@ export interface TournamentType {
   artworkUrl: string;
   teams: TeamType[];
   address: string;
+  tags: TagType[];
   eventDate: DateTime;
   createdAt: Date;
 }

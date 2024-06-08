@@ -14,6 +14,7 @@ import {
 } from "@/src/entities/tournaments";
 import { useGetTeams } from "@/src/entities/teams";
 import { API_URL } from "@/src/shared/constants";
+import { useGetTags } from "@/src/entities/tags";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -39,6 +40,7 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
       teams: tournament?.teams,
       address: tournament?.address,
       eventDate: tournament?.eventDate,
+      tags: tournament?.tags,
     },
   });
   const [imageUrl, setImageUrl] = useState<string | null>(
@@ -50,6 +52,7 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
   const { mutate: createTournamentMutation } = useCreateTournament();
   const { mutate: updateTournamentMutation } = useUpdateTournament();
   const { data: teams } = useGetTeams();
+  const { data: tags } = useGetTags();
 
   const onSubmit: SubmitHandler<TournamentFormType> = (data) => {
     switch (type) {
@@ -224,6 +227,35 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
             control={control}
           />
         )}
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Теги</span>
+        <Controller
+          render={({ field: { value, ...field } }) => (
+            <Select
+              {...field}
+              multiple
+              filterable
+              className="rounded-md bg-white/5 px-2 py-1"
+              defaultValue={value?.map((tag) => String(tag.id))}
+              onUpdate={(value) =>
+                tags &&
+                setValue(
+                  "tags",
+                  tags.filter((tag) => value.includes(String(tag.id))),
+                )
+              }
+            >
+              {tags?.map((tag) => (
+                <Select.Option value={String(tag.id)} key={tag.id}>
+                  {tag.name}
+                </Select.Option>
+              ))}
+            </Select>
+          )}
+          name="tags"
+          control={control}
+        />
       </label>
       <label className="flex flex-col gap-2">
         <span className="text-sm/6 font-medium text-white">

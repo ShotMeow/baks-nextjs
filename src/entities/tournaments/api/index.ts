@@ -17,6 +17,7 @@ export const createTournament = async (data: TournamentFormType) => {
   const formData = createFormData({
     ...data,
     teams: data.teams?.map((team) => team.id),
+    tags: data.tags?.map((tag) => tag.id),
   });
   const response = await fetch(`${API_URL}/tournaments`, {
     method: "POST",
@@ -32,6 +33,7 @@ export const updateTournament = async (
   const formData = createFormData({
     ...data,
     teams: data.teams?.map((team) => team.id),
+    tags: data.tags?.map((tag) => tag.id),
   });
   const response = await fetch(`${API_URL}/tournaments/${id}`, {
     method: "PATCH",
