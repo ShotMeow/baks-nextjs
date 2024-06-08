@@ -1,8 +1,5 @@
 "use client";
 import type { FC } from "react";
-import Image from "next/image";
-import classNames from "classnames";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Spin } from "@gravity-ui/uikit";
 
@@ -12,9 +9,7 @@ import {
   useGetTournaments,
 } from "@/src/entities/tournaments";
 import Button from "@/src/shared/ui/Button";
-import Star from "@/src/shared/ui/icons/Star";
 import Subtitle from "@/src/shared/ui/Subtitle";
-import { API_URL } from "@/src/shared/constants";
 
 const Tournaments: FC = () => {
   const router = useRouter();

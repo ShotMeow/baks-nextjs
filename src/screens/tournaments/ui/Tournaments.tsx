@@ -1,17 +1,11 @@
 "use client";
 import type { FC } from "react";
-import Link from "next/link";
-import classNames from "classnames";
-import Image from "next/image";
-import Button from "@/src/shared/ui/Button";
 import {
   TournamentLarge,
   TournamentSmall,
   useGetTournaments,
 } from "@/src/entities/tournaments";
-import Star from "@/src/shared/ui/icons/Star";
 import { Spin } from "@gravity-ui/uikit";
-import { API_URL } from "@/src/shared/constants";
 
 const Tournaments: FC = () => {
   const { data: tournaments } = useGetTournaments();
