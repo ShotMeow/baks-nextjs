@@ -3,8 +3,15 @@ import { createFormData } from "@/src/shared/utils/createFormData";
 
 import type { TournamentFormType, TournamentType } from "../types";
 
-export const getTournaments = async () => {
-  const response = await fetch(`${API_URL}/tournaments`);
+export const getTournaments = async ({
+  searchQuery,
+}: {
+  searchQuery: string;
+}) => {
+  const queryParams =
+    searchQuery && new URLSearchParams({ search: searchQuery });
+
+  const response = await fetch(`${API_URL}/tournaments?${queryParams}`);
   return response.json();
 };
 

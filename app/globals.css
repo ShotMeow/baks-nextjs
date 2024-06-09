@@ -7,6 +7,7 @@
     --g-color-base-warning-light: #070707;
     --g-color-text-warning-heavy: #F0F424;
     --g-text-subheader-3-font-size: 20px;
+    --g-text-input-placeholder-color: #A1A1AA;
     --g-text-subheader-font-weight: bold;
 }
 
@@ -69,4 +70,9 @@ input:-webkit-autofill:focus {
 .g-text-input__error-icon {
     @apply absolute right-0 top-0;
     color: var(--g-color-line-brand) !important;
+}
+
+.g-toast {
+    position: fixed;
+    z-index: 100;
 }

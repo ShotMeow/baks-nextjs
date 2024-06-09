@@ -13,7 +13,9 @@ import Subtitle from "@/src/shared/ui/Subtitle";
 
 const Tournaments: FC = () => {
   const router = useRouter();
-  const { data: tournaments } = useGetTournaments();
+  const { data: tournaments } = useGetTournaments({
+    searchQuery: "",
+  });
 
   return (
     <section className="container">

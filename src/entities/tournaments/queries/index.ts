@@ -3,10 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import { getTournamentById, getTournaments } from "../api";
 import { TournamentType } from "../types";
 
-export const useGetTournaments = () => {
+export const useGetTournaments = ({ searchQuery }: { searchQuery: string }) => {
   return useQuery<TournamentType[]>({
-    queryKey: ["tournaments"],
-    queryFn: getTournaments,
+    queryKey: ["tournaments", searchQuery],
+    queryFn: () => getTournaments({ searchQuery }),
   });
 };
 

@@ -15,7 +15,7 @@ const Footer: FC = () => {
             className="flex shrink-0 items-center gap-2 px-4 text-3xl font-semibold md:text-5xl"
           >
             <Logo width={100} height={100} className="shrink-0" />
-            <span>phygital basketball</span>
+            <span>baks.gg</span>
           </Link>
           <p className="text-center font-semibold xl:text-left">
             – это инновационная платформа, объединяющая киберспорт и современные

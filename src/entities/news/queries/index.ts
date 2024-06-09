@@ -3,10 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import { getNews, getNewsById } from "../api";
 import type { NewsType } from "../types";
 
-export const useGetNews = () => {
+export const useGetNews = ({ searchQuery }: { searchQuery: string }) => {
   return useQuery<NewsType[]>({
-    queryKey: ["news"],
-    queryFn: getNews,
+    queryKey: ["news", { searchQuery }],
+    queryFn: () => getNews({ searchQuery }),
   });
 };
 

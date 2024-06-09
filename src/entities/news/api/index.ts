@@ -3,8 +3,11 @@ import { createFormData } from "@/src/shared/utils/createFormData";
 
 import type { NewsFormType, NewsType } from "../types";
 
-export const getNews = async () => {
-  const response = await fetch(`${API_URL}/news`);
+export const getNews = async ({ searchQuery }: { searchQuery: string }) => {
+  const queryParams =
+    searchQuery && new URLSearchParams({ search: searchQuery });
+
+  const response = await fetch(`${API_URL}/news?${queryParams}`);
   return response.json();
 };
 

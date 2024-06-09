@@ -12,7 +12,13 @@ import Pagination from "./Pagination";
 
 const Slider: FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0); // Инициализируем начальный индекс
-  const { data: news, isLoading, isSuccess } = useGetNews();
+  const {
+    data: news,
+    isLoading,
+    isSuccess,
+  } = useGetNews({
+    searchQuery: "",
+  });
 
   return (
     <>

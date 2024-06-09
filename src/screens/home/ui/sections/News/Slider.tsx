@@ -10,7 +10,10 @@ import "swiper/css";
 import Slide from "./Slide";
 
 const Slider: FC = () => {
-  const { data: news } = useGetNews();
+  const { data: news } = useGetNews({
+    searchQuery: "",
+  });
+
   return (
     <Swiper
       className="container my-10 h-[440px] !overflow-visible"
