@@ -34,7 +34,7 @@ const Filter: FC<Props> = ({
   setDropdownState,
   dropdownState,
 }) => {
-  const [filterShown, setFilterShown] = useState(true);
+  const [filterShown, setFilterShown] = useState(false);
 
   return (
     <div className="flex flex-wrap items-center gap-4">
