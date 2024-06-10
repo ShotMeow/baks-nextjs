@@ -48,11 +48,11 @@ const Filter: FC<Props> = ({
       <div
         className={classNames(
           {
-            "flex absolute max-h-96 top-full left-0 right-0 z-40 bg-zinc-900 p-4":
+            "flex absolute top-full left-0 right-0 z-30 bg-zinc-900 p-4":
               filterShown,
-            "hidden max-h-0": !filterShown,
+            hidden: !filterShown,
           },
-          "items-center gap-2 lg:static lg:flex lg:p-0",
+          "flex-wrap items-center gap-2 lg:flex lg:static lg:p-0",
         )}
       >
         <CategoryButton

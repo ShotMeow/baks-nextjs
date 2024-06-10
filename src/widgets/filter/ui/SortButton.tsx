@@ -22,7 +22,7 @@ const SortButton: FC<PropsWithChildren<Props>> = ({
   ...props
 }) => {
   return (
-    <div className="flex flex-wrap items-center gap-2">
+    <div className="flex items-center gap-2">
       <Button
         className={classNames({
           "!text-white": sort,

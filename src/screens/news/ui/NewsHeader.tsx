@@ -30,9 +30,9 @@ const NewsHeader: FC<Props> = ({
 
   return (
     <header className="container relative mb-4 flex flex-wrap items-center justify-between gap-6 bg-zinc-900 p-4 md:px-8 md:py-4">
-      <div className="flex w-full flex-col gap-6 sm:flex-row sm:items-center">
+      <div className="flex w-full flex-wrap gap-6 sm:items-center">
         <h3 className="text-2xl font-semibold">Новости</h3>
-        <div className="flex w-full items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-4">
           <SearchInput
             placeholder="Поиск новостей"
             value={search}
