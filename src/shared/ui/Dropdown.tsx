@@ -41,7 +41,7 @@ const Dropdown: FC<PropsWithChildren<Props>> = ({
         {
           "pointer-events-auto opacity-100": isShow,
         },
-        "opacity-0 pointer-events-none transition-all absolute left-0 right-0 lg:left-auto lg:right-4 top-full z-20 space-y-6 border-2 border-white/10 bg-zinc-900/50 px-6 py-10 backdrop-blur-md",
+        "opacity-0 pointer-events-none transition-all absolute left-0 right-0 lg:left-auto lg:right-4 top-full z-20 border-2 border-white/10 bg-zinc-900/50 px-6 py-4 backdrop-blur-md",
       )}
     >
       {children}

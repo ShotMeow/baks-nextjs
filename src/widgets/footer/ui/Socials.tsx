@@ -12,7 +12,7 @@ const Socials: FC = () => {
   return (
     <div>
       <h4 className="mb-4 text-xl font-semibold">Наши социальные сети</h4>
-      <ul className="flex flex-wrap items-center justify-between gap-8 md:justify-start">
+      <ul className="flex flex-wrap items-center justify-center gap-8 text-black xl:justify-start">
         <li>
           <Link aria-label="Ссылка на сообщество" href="#">
             <Message width={60} height={60} />
