@@ -20,8 +20,8 @@ const TournamentLarge: FC<Props> = ({ tournament }) => {
       key={tournament.id}
       href={`/tournaments/${tournament.id}`}
     >
-      <article className="flex flex-col bg-white/5 2xl:grid 2xl:grid-cols-3">
-        <div className="relative col-span-2">
+      <article className="flex h-full flex-col bg-white/5 2xl:grid 2xl:grid-cols-3">
+        <div className="relative col-span-2 min-h-[200px] 2xl:h-full">
           {tournament.artworkUrl && (
             <Image
               className="size-full object-cover"
@@ -39,16 +39,16 @@ const TournamentLarge: FC<Props> = ({ tournament }) => {
             {tournament.tags?.map((tag) => <TagChip tag={tag} key={tag.id} />)}
           </div>
         </div>
-        <div className="col-span-1 flex h-full flex-col justify-between p-10">
+        <div className="col-span-1 flex h-full flex-col justify-between p-6 2xl:p-10">
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold sm:text-3xl">
+            <h3 className="text-lg font-semibold md:text-3xl">
               {tournament.name}
             </h3>
             <p className="line-clamp-2 hidden text-zinc-500 2xl:block">
               {tournament.description}
             </p>
           </div>
-          <div className="mt-6 grid grid-cols-2 gap-6 lg:grid-cols-3">
+          <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-3">
             {tournament.prize && (
               <p className="col-span-2 text-zinc-500 sm:col-span-1 2xl:col-span-3">
                 Призовой фонд <br />

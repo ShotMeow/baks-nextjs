@@ -9,7 +9,7 @@ import { Footer } from "@/src/widgets/footer";
 
 import QueryProvider from "@/src/shared/libs/tanstack-query/QueryProvider";
 import GravityThemeProvider from "@/src/shared/libs/gravity-ui/GravityThemeProvider";
-import GravityToastProvider from "@/src/shared/libs/gravity-ui/GravityToastProvider";
+import { NotificationContextProvider } from "@/src/features/notification";
 
 const readexPro = Readex_Pro({
   subsets: ["latin"],
@@ -27,7 +27,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
     <html lang="ru">
       <body className={readexPro.className}>
         <GravityThemeProvider>
-          <GravityToastProvider>
+          <NotificationContextProvider>
             <QueryProvider>
               <div className="flex h-full flex-col justify-between">
                 <div>
@@ -37,7 +37,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
                 <Footer />
               </div>
             </QueryProvider>
-          </GravityToastProvider>
+          </NotificationContextProvider>
         </GravityThemeProvider>
       </body>
     </html>

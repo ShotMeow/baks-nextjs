@@ -1,11 +1,12 @@
 import { type Dispatch, type FC, type SetStateAction, useEffect } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import { TextInput, useToaster } from "@gravity-ui/uikit";
+import { TextInput } from "@gravity-ui/uikit";
 
 import Button from "@/src/shared/ui/Button";
 
 import { useSignIn } from "../mutations";
 import type { SignInType } from "../types";
+import { useNotificationContext } from "@/src/features/notification";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -17,7 +18,7 @@ const SignIn: FC<Props> = ({ onClose }) => {
     formState: { errors },
     handleSubmit,
   } = useForm<SignInType>();
-  const { add } = useToaster();
+  const { setError, setSuccess } = useNotificationContext();
   const { mutate: signIn, isError, isSuccess } = useSignIn();
 
   const onSubmit: SubmitHandler<SignInType> = (data) => {
@@ -25,18 +26,15 @@ const SignIn: FC<Props> = ({ onClose }) => {
   };
 
   useEffect(() => {
-    isSuccess && onClose(false);
-  }, [isSuccess, onClose]);
+    if (isSuccess) {
+      onClose(false);
+      setSuccess("Вы успешно авторизировались");
+    }
+  }, [setSuccess, isSuccess, onClose]);
 
   useEffect(() => {
-    isError &&
-      add({
-        name: "sign-in-error",
-        title: "Авторизация не прошла успешно",
-        content: "E-mail или пароль не совпадают",
-        theme: "warning",
-      });
-  }, [add, isError]);
+    isError && setError("E-mail или пароль не совпадают");
+  }, [isError, setError]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">

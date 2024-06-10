@@ -12,9 +12,9 @@ interface Props {
 const PostLarge: FC<Props> = ({ post }) => {
   return (
     <Link className="sm:col-span-2 lg:col-span-4" href={`/news/${post.id}`}>
-      <article className="relative flex h-full flex-col justify-between bg-zinc-900 lg:flex-row">
+      <article className="relative grid h-full grid-cols-1 justify-between bg-zinc-900 lg:grid-cols-2">
         <Image
-          className="h-[400px] w-full object-cover p-2"
+          className="h-[200px] w-full object-cover p-2 md:h-[400px]"
           src={`${API_URL}/images/${post.artworkUrl}`}
           alt={post.title}
           width={1256}
@@ -44,8 +44,8 @@ const PostLarge: FC<Props> = ({ post }) => {
                 day: "numeric",
               })}
             </p>
-            <h2 className="line-clamp-3 text-3xl">{post.title}</h2>
-            <p className="mt-5 line-clamp-5 text-lg font-medium text-zinc-500">
+            <h2 className="line-clamp-3 text-xl md:text-3xl">{post.title}</h2>
+            <p className="mt-5 line-clamp-5 text-base font-medium text-zinc-500 md:text-lg">
               {post.description}
             </p>
           </div>

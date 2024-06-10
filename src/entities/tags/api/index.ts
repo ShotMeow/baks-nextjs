@@ -3,8 +3,11 @@ import { createFormData } from "@/src/shared/utils/createFormData";
 
 import type { TagsFormType } from "../types";
 
-export const getTags = async () => {
-  const response = await fetch(`${API_URL}/tags`);
+export const getTags = async ({ searchQuery }: { searchQuery: string }) => {
+  const queryParams =
+    searchQuery && new URLSearchParams({ search: searchQuery });
+  console.log(searchQuery);
+  const response = await fetch(`${API_URL}/tags?${queryParams}`);
   return response.json();
 };
 

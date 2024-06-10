@@ -1,11 +1,12 @@
 import { type Dispatch, type FC, type SetStateAction, useEffect } from "react";
 import { Controller, type SubmitHandler, useForm } from "react-hook-form";
-import { TextInput, Select, useToaster } from "@gravity-ui/uikit";
+import { TextInput, Select } from "@gravity-ui/uikit";
 
 import Button from "@/src/shared/ui/Button";
 
 import { useSignUp } from "../mutations";
 import type { SignUpType } from "../types";
+import { useNotificationContext } from "@/src/features/notification";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -28,7 +29,7 @@ const SignUp: FC<Props> = ({ onClose }) => {
       role: "tank",
     },
   });
-  const { add } = useToaster();
+  const { setError, setSuccess } = useNotificationContext();
 
   const { mutate: signUp, isSuccess, isError } = useSignUp();
 
@@ -42,18 +43,15 @@ const SignUp: FC<Props> = ({ onClose }) => {
   };
 
   useEffect(() => {
-    isSuccess && onClose(false);
-  }, [isSuccess, onClose]);
+    if (isSuccess) {
+      onClose(false);
+      setSuccess("Вы успешно зарегистрировались");
+    }
+  }, [isSuccess, onClose, setSuccess]);
 
   useEffect(() => {
-    isError &&
-      add({
-        name: "sign-in-error",
-        title: "Регистрация не прошла успешно",
-        content: "E-mail или никнейм уже заняты",
-        theme: "warning",
-      });
-  }, [add, isError]);
+    isError && setError("E-mail или никнейм уже заняты");
+  }, [isError, setError]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">

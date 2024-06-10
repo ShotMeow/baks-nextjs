@@ -5,11 +5,18 @@ import type { TournamentFormType, TournamentType } from "../types";
 
 export const getTournaments = async ({
   searchQuery,
+  tagQuery,
+  sortQuery,
 }: {
   searchQuery: string;
+  tagQuery: string;
+  sortQuery: string;
 }) => {
-  const queryParams =
-    searchQuery && new URLSearchParams({ search: searchQuery });
+  const queryParams = new URLSearchParams();
+
+  searchQuery && queryParams.append("search", searchQuery);
+  tagQuery && queryParams.append("tag", tagQuery);
+  sortQuery && queryParams.append("sort", sortQuery);
 
   const response = await fetch(`${API_URL}/tournaments?${queryParams}`);
   return response.json();

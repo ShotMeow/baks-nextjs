@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes, FC, PropsWithChildren } from "react";
 import classNames from "classnames";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: "primary" | "transparent" | "secondary" | "more";
+  variant: "primary" | "transparent" | "secondary" | "more" | "dropdown";
 }
 
 const Button: FC<PropsWithChildren<Props>> = ({
@@ -15,16 +15,18 @@ const Button: FC<PropsWithChildren<Props>> = ({
     <button
       className={classNames(
         {
-          "bg-gradient-to-r from-yellow to-lilac rounded-full font-semibold":
+          "bg-gradient-to-r from-yellow to-lilac py-3 rounded-full font-semibold":
             variant === "primary",
-          "bg-lilac rounded-full text-lg font-semibold":
+          "bg-lilac rounded-full text-lg py-3 font-semibold":
             variant === "secondary",
-          "text-yellow backdrop-blur-lg bg-yellow/20 rounded-full":
+          "text-yellow backdrop-blur-lg py-3 bg-yellow/20 rounded-full":
             variant === "transparent",
           "text-yellow bg-zinc-800/50 px-6 py-3 rounded-r-full":
             variant === "more",
+          "text-zinc-400 bg-zinc-800 rounded-full px-6 py-2":
+            variant === "dropdown",
         },
-        "flex items-center text-center justify-center px-10 py-3 gap-2 text-black",
+        "flex items-center text-center justify-center px-10 gap-2 text-black",
         className,
       )}
       {...props}

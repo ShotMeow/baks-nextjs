@@ -10,17 +10,30 @@ import PostSmall from "@/src/entities/news/ui/PostSmall";
 import { useDebounce } from "@/src/shared/hooks/useDebounce";
 
 const News: FC = () => {
+  const [tag, setTag] = useState<string>("");
+  const [sort, setSort] = useState<string>("");
   const [search, setSearch] = useState<string>("");
   const debounceSearch = useDebounce(search, 500);
   const {
     data: news,
     isLoading,
     isSuccess,
-  } = useGetNews({ searchQuery: debounceSearch });
+  } = useGetNews({
+    searchQuery: debounceSearch,
+    tagQuery: tag,
+    sortQuery: sort,
+  });
 
   return (
     <main className="container">
-      <NewsHeader search={search} setSearch={setSearch} />
+      <NewsHeader
+        search={search}
+        setSearch={setSearch}
+        tag={tag}
+        setTag={setTag}
+        sort={sort}
+        setSort={setSort}
+      />
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {isSuccess &&
           news.map((post, index) =>
