@@ -39,7 +39,9 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
     news?.artworkUrl ? `${API_URL}/images/${news?.artworkUrl}` : null,
   );
 
-  const { data: tags } = useGetTags();
+  const { data: tags } = useGetTags({
+    searchQuery: "",
+  });
   const { mutate: createNewsMutation } = useCreateNews();
   const { mutate: updateNewsMutation } = useUpdateNews();
 

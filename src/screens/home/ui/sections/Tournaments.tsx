@@ -15,6 +15,8 @@ const Tournaments: FC = () => {
   const router = useRouter();
   const { data: tournaments } = useGetTournaments({
     searchQuery: "",
+    tagQuery: "",
+    sortQuery: "",
   });
 
   return (

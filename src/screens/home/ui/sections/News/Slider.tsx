@@ -12,6 +12,8 @@ import Slide from "./Slide";
 const Slider: FC = () => {
   const { data: news } = useGetNews({
     searchQuery: "",
+    tagQuery: "",
+    sortQuery: "",
   });
 
   return (

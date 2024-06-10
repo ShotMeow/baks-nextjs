@@ -18,6 +18,8 @@ const Slider: FC = () => {
     isSuccess,
   } = useGetNews({
     searchQuery: "",
+    tagQuery: "",
+    sortQuery: "",
   });
 
   return (

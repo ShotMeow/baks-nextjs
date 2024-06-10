@@ -3,7 +3,9 @@ import { useGetTags } from "@/src/entities/tags";
 import Tag from "../units/Tag";
 
 const TagsList: FC = () => {
-  const { data } = useGetTags();
+  const { data } = useGetTags({
+    searchQuery: "",
+  });
 
   return (
     <ul className="flex flex-col gap-6">

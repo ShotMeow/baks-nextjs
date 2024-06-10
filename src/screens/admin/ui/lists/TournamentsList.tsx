@@ -5,6 +5,8 @@ import Tournament from "../units/Tournament";
 const TagsList: FC = () => {
   const { data } = useGetTournaments({
     searchQuery: "",
+    tagQuery: "",
+    sortQuery: "",
   });
 
   return (

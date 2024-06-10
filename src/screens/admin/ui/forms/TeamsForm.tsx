@@ -51,6 +51,8 @@ const TeamsForm: FC<Props> = ({ onClose, team, type }) => {
   const { data: players } = useGetUsers();
   const { data: tournaments } = useGetTournaments({
     searchQuery: "",
+    tagQuery: "",
+    sortQuery: "",
   });
 
   const onSubmit: SubmitHandler<TeamFormType> = (data) => {

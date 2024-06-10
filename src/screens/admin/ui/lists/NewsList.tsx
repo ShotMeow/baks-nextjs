@@ -5,6 +5,8 @@ import News from "../units/News";
 const TagsList: FC = () => {
   const { data } = useGetNews({
     searchQuery: "",
+    tagQuery: "",
+    sortQuery: "",
   });
 
   return (

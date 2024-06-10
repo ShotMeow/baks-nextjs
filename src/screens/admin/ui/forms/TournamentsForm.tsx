@@ -53,7 +53,9 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
   const { mutate: createTournamentMutation } = useCreateTournament();
   const { mutate: updateTournamentMutation } = useUpdateTournament();
   const { data: teams } = useGetTeams();
-  const { data: tags } = useGetTags();
+  const { data: tags } = useGetTags({
+    searchQuery: "",
+  });
 
   const onSubmit: SubmitHandler<TournamentFormType> = (data) => {
     switch (type) {
