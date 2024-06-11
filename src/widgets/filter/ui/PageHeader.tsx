@@ -1,9 +1,11 @@
-import { Dispatch, FC, SetStateAction, useState } from "react";
+import { type Dispatch, type FC, type SetStateAction, useState } from "react";
 
 import SearchInput from "@/src/shared/ui/SearchInput";
-import { Filter } from "@/src/widgets/filter";
+import Filter from "./Filter";
 
 interface Props {
+  title: string;
+  searchPlaceholder: string;
   search: string;
   setSearch: Dispatch<SetStateAction<string>>;
   tag: string;
@@ -12,7 +14,9 @@ interface Props {
   setSort: Dispatch<SetStateAction<string>>;
 }
 
-const NewsHeader: FC<Props> = ({
+const PageHeader: FC<Props> = ({
+  title,
+  searchPlaceholder,
   search,
   setSearch,
   tag,
@@ -30,11 +34,11 @@ const NewsHeader: FC<Props> = ({
 
   return (
     <header className="container relative mb-4 flex flex-wrap items-center justify-between gap-6 bg-zinc-900 p-4 md:px-8 md:py-4">
-      <div className="flex w-full flex-wrap gap-6 sm:items-center">
-        <h3 className="text-2xl font-semibold">Новости</h3>
-        <div className="flex items-center justify-between gap-4">
+      <div className="flex w-full flex-col gap-6 sm:flex-row sm:items-center">
+        <h3 className="text-2xl font-semibold">{title}</h3>
+        <div className="flex w-full items-center justify-between gap-4">
           <SearchInput
-            placeholder="Поиск новостей"
+            placeholder={searchPlaceholder}
             value={search}
             setValue={setSearch}
           />
@@ -52,4 +56,4 @@ const NewsHeader: FC<Props> = ({
   );
 };
 
-export default NewsHeader;
+export default PageHeader;

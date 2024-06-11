@@ -40,7 +40,12 @@ const Filter: FC<Props> = ({
     <div className="flex flex-wrap items-center gap-4">
       <Button
         onClick={() => setFilterShown(!filterShown)}
-        className="!p-3 lg:hidden"
+        className={classNames(
+          {
+            "!text-yellow": filterShown,
+          },
+          "!p-3 lg:hidden",
+        )}
         variant="dropdown"
       >
         <FilterIcon />
@@ -48,11 +53,10 @@ const Filter: FC<Props> = ({
       <div
         className={classNames(
           {
-            "flex absolute top-full left-0 right-0 z-30 bg-zinc-900 p-4":
-              filterShown,
-            hidden: !filterShown,
+            "max-h-96 pb-4": filterShown,
+            "max-h-0": !filterShown,
           },
-          "flex-wrap items-center gap-2 lg:flex lg:static lg:p-0",
+          "absolute bg-zinc-900 flex px-4 flex-wrap overflow-hidden z-30 top-full left-0 right-0 transition-all items-center gap-2 lg:flex lg:static lg:p-0 lg:max-h-96",
         )}
       >
         <CategoryButton

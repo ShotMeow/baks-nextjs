@@ -1,13 +1,13 @@
 "use client";
-import { FC, useState } from "react";
+import { type FC, useState } from "react";
 import { Spin } from "@gravity-ui/uikit";
 
 import { useGetNews } from "@/src/entities/news";
 
-import NewsHeader from "./NewsHeader";
 import PostLarge from "@/src/entities/news/ui/PostLarge";
 import PostSmall from "@/src/entities/news/ui/PostSmall";
 import { useDebounce } from "@/src/shared/hooks/useDebounce";
+import { PageHeader } from "@/src/widgets/filter";
 
 const News: FC = () => {
   const [tag, setTag] = useState<string>("");
@@ -26,7 +26,9 @@ const News: FC = () => {
 
   return (
     <main className="container">
-      <NewsHeader
+      <PageHeader
+        title="Новости"
+        searchPlaceholder="Поиск новостей"
         search={search}
         setSearch={setSearch}
         tag={tag}

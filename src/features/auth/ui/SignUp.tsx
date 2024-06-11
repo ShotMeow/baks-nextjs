@@ -111,32 +111,34 @@ const SignUp: FC<Props> = ({ onClose }) => {
           className="rounded-md bg-white/5 px-2 py-1"
         />
       </label>
-      <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Никнейм</span>
-        <TextInput
-          {...register("nickname", {
-            required: "Никнейм обязателен для заполнения",
-          })}
-          errorPlacement="inside"
-          validationState={errors?.nickname && "invalid"}
-          errorMessage={errors?.nickname?.message}
-          view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
-        />
-      </label>
-      <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Имя</span>
-        <TextInput
-          {...register("name", {
-            required: "Никнейм обязателен для заполнения",
-          })}
-          errorPlacement="inside"
-          validationState={errors?.name && "invalid"}
-          errorMessage={errors?.name?.message}
-          view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
-        />
-      </label>
+      <div className="flex flex-wrap gap-4">
+        <label className="flex flex-col gap-2 w-full sm:w-auto">
+          <span className="text-sm/6 font-medium text-white">Никнейм</span>
+          <TextInput
+            {...register("nickname", {
+              required: "Никнейм обязателен для заполнения",
+            })}
+            errorPlacement="inside"
+            validationState={errors?.nickname && "invalid"}
+            errorMessage={errors?.nickname?.message}
+            view="clear"
+            className="rounded-md bg-white/5 px-2 py-1"
+          />
+        </label>
+        <label className="flex flex-col gap-2 w-full sm:w-auto">
+          <span className="text-sm/6 font-medium text-white">Имя</span>
+          <TextInput
+            {...register("name", {
+              required: "Никнейм обязателен для заполнения",
+            })}
+            errorPlacement="inside"
+            validationState={errors?.name && "invalid"}
+            errorMessage={errors?.name?.message}
+            view="clear"
+            className="rounded-md bg-white/5 px-2 py-1"
+          />
+        </label>
+      </div>
       <label className="flex flex-col gap-2">
         <span className="text-sm/6 font-medium text-white">Роль</span>
         <Controller

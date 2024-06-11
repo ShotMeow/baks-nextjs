@@ -7,7 +7,7 @@ import {
 } from "@/src/entities/tournaments";
 import { Spin } from "@gravity-ui/uikit";
 import { useDebounce } from "@/src/shared/hooks/useDebounce";
-import TournamentsHeader from "@/src/screens/tournaments/ui/TournamentsHeader";
+import { PageHeader } from "@/src/widgets/filter";
 
 const Tournaments: FC = () => {
   const [tag, setTag] = useState<string>("");
@@ -26,7 +26,9 @@ const Tournaments: FC = () => {
 
   return (
     <main className="container">
-      <TournamentsHeader
+      <PageHeader
+        title="Турниры"
+        searchPlaceholder="Поиск турниров"
         search={search}
         setSearch={setSearch}
         tag={tag}

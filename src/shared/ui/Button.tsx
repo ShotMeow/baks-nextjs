@@ -26,7 +26,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
           "text-zinc-400 bg-zinc-800 rounded-full px-6 py-2":
             variant === "dropdown",
         },
-        "flex items-center text-center justify-center px-10 gap-2 text-black",
+        "flex items-center text-center justify-center px-10 gap-2 text-black active:scale-95 transition-all",
         className,
       )}
       {...props}

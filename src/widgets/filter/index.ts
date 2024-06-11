@@ -1,1 +1,1 @@
-export { default as Filter } from "./ui/Filter";
+export { default as PageHeader } from "./ui/PageHeader";
