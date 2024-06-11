@@ -42,11 +42,11 @@ const Post: FC<Props> = ({ slug }) => {
                 </div>
               </div>
               <h3 className="text-xl md:text-3xl">{post.title}</h3>
-              <p className="mt-5 text-base font-medium text-zinc-300 md:text-lg">
-                {post.description}
-              </p>
             </div>
           </div>
+          <p className="mt-5 text-base font-medium md:text-lg">
+            {post.description}
+          </p>
           <div className="prose prose-zinc prose-invert my-6 max-w-none">
             <ReactMarkdown>{post.body}</ReactMarkdown>
           </div>
