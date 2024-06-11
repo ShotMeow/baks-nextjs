@@ -7,7 +7,7 @@ interface Props {
 
 const TagChip: FC<Props> = ({ tag }) => {
   return (
-    <span className="mr-2 mt-2 rounded-full bg-white/5 px-4 py-2 uppercase text-zinc-400">
+    <span className="line-clamp-1 rounded-full bg-white/10 px-4 py-2 uppercase text-white/80 backdrop-blur-md">
       {tag.name}
     </span>
   );

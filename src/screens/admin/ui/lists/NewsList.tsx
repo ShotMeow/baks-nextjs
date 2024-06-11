@@ -3,11 +3,7 @@ import { useGetNews } from "@/src/entities/news";
 import News from "../units/News";
 
 const TagsList: FC = () => {
-  const { data } = useGetNews({
-    searchQuery: "",
-    tagQuery: "",
-    sortQuery: "",
-  });
+  const { data } = useGetNews({});
 
   return (
     <ul className="flex flex-col gap-6">

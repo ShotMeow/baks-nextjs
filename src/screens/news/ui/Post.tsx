@@ -5,6 +5,8 @@ import ReactMarkdown from "react-markdown";
 
 import { useGetNewsById } from "@/src/entities/news";
 import { API_URL } from "@/src/shared/constants";
+import DarkGradientToTop from "@/src/shared/ui/DarkGradientToTop";
+import { TagChip } from "@/src/entities/tags";
 
 interface Props {
   slug: string;
@@ -16,37 +18,33 @@ const Post: FC<Props> = ({ slug }) => {
     <main className="container">
       {post && (
         <article>
-          <div className="relative">
-            <div className="absolute left-0 top-0 size-full bg-gradient-to-t from-black/50 to-transparent" />
+          <div className="relative md:h-[600px]">
+            <DarkGradientToTop />
             <Image
-              className="h-[300px] w-full object-cover md:h-[600px]"
+              className="absolute -z-20 size-full object-cover"
               src={`${API_URL}/images/${post.artworkUrl}`}
               alt={post.title}
               width={1256}
               height={600}
             />
-            <div className="absolute bottom-0 left-0 flex flex-col justify-between p-4 font-semibold md:p-12">
-              <div className="mb-4 flex items-center gap-4">
+            <div className="flex h-full flex-col justify-end p-4 font-semibold md:p-12">
+              <div className="mb-4 flex flex-wrap items-center gap-4">
                 <p className="text-white">
-                  {new Date(post.createdAt).toLocaleDateString("ru", {
+                  {new Date(post.updatedAt).toLocaleDateString("ru", {
                     year: "numeric",
                     month: "short",
                     day: "numeric",
                   })}
                 </p>
-                <div className="flex items-center gap-2 text-xs">
+                <div className="flex flex-wrap items-center gap-2 text-xs">
                   {post.tags.length > 0 &&
-                    post.tags.map((tag) => (
-                      <span
-                        key={tag.id}
-                        className="mr-2 rounded-full bg-white/5 px-4 py-2 uppercase text-zinc-400 backdrop-blur-lg"
-                      >
-                        {tag.name}
-                      </span>
-                    ))}
+                    post.tags.map((tag) => <TagChip tag={tag} key={tag.id} />)}
                 </div>
               </div>
-              <h3 className="line-clamp-3 text-xl md:text-3xl">{post.title}</h3>
+              <h3 className="text-xl md:text-3xl">{post.title}</h3>
+              <p className="mt-5 text-base font-medium text-zinc-300 md:text-lg">
+                {post.description}
+              </p>
             </div>
           </div>
           <div className="prose prose-zinc prose-invert my-6 max-w-none">

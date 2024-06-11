@@ -13,7 +13,7 @@ export const getUserById = async (id: UserType["id"]) => {
 };
 
 export const updateUser = async (user: UpdateUserType) => {
-  const response = await fetch(`${API_URL}/users/${user.id}`, {
+  const response = await fetch(`${API_URL}/users/${user.id}/update`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -24,7 +24,7 @@ export const updateUser = async (user: UpdateUserType) => {
 };
 
 export const deleteUser = async (id: UserType["id"]) => {
-  const response = await fetch(`${API_URL}/users/${id}`, {
+  const response = await fetch(`${API_URL}/users/${id}/delete`, {
     method: "DELETE",
   });
   return response.json();

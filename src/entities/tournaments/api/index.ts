@@ -4,19 +4,22 @@ import { createFormData } from "@/src/shared/utils/createFormData";
 import type { TournamentFormType, TournamentType } from "../types";
 
 export const getTournaments = async ({
-  searchQuery,
-  tagQuery,
-  sortQuery,
+  search,
+  tag,
+  sort,
+  take,
 }: {
-  searchQuery: string;
-  tagQuery: string;
-  sortQuery: string;
+  search?: string;
+  tag?: string;
+  sort?: string;
+  take?: number;
 }) => {
   const queryParams = new URLSearchParams();
 
-  searchQuery && queryParams.append("search", searchQuery);
-  tagQuery && queryParams.append("tag", tagQuery);
-  sortQuery && queryParams.append("sort", sortQuery);
+  search && queryParams.append("search", search);
+  tag && queryParams.append("tag", tag);
+  sort && queryParams.append("sort", sort);
+  take && queryParams.append("take", String(take));
 
   const response = await fetch(`${API_URL}/tournaments?${queryParams}`);
   return response.json();
@@ -33,7 +36,7 @@ export const createTournament = async (data: TournamentFormType) => {
     teams: data.teams?.map((team) => team.id),
     tags: data.tags?.map((tag) => tag.id),
   });
-  const response = await fetch(`${API_URL}/tournaments`, {
+  const response = await fetch(`${API_URL}/tournaments/create`, {
     method: "POST",
     body: formData,
   });
@@ -49,7 +52,7 @@ export const updateTournament = async (
     teams: data.teams?.map((team) => team.id),
     tags: data.tags?.map((tag) => tag.id),
   });
-  const response = await fetch(`${API_URL}/tournaments/${id}`, {
+  const response = await fetch(`${API_URL}/tournaments/${id}/update`, {
     method: "PATCH",
     body: formData,
   });
@@ -57,7 +60,7 @@ export const updateTournament = async (
 };
 
 export const deleteTournament = async (id: TournamentType["id"]) => {
-  const response = await fetch(`${API_URL}/tournaments/${id}`, {
+  const response = await fetch(`${API_URL}/tournaments/${id}/delete`, {
     method: "DELETE",
   });
   return response.json();

@@ -4,19 +4,22 @@ import { createFormData } from "@/src/shared/utils/createFormData";
 import type { NewsFormType, NewsType } from "../types";
 
 export const getNews = async ({
-  searchQuery,
-  tagQuery,
-  sortQuery,
+  search,
+  tag,
+  sort,
+  take,
 }: {
-  searchQuery: string;
-  tagQuery: string;
-  sortQuery: string;
+  search?: string;
+  tag?: string;
+  sort?: string;
+  take?: number;
 }) => {
   const queryParams = new URLSearchParams();
 
-  searchQuery && queryParams.append("search", searchQuery);
-  tagQuery && queryParams.append("tag", tagQuery);
-  sortQuery && queryParams.append("sort", sortQuery);
+  search && queryParams.append("search", search);
+  tag && queryParams.append("tag", tag);
+  sort && queryParams.append("sort", sort);
+  take && queryParams.append("take", String(take));
 
   const response = await fetch(`${API_URL}/news?${queryParams}`);
   return response.json();
@@ -33,7 +36,7 @@ export const createNews = async (data: NewsFormType) => {
     tags: data.tags?.map((tag) => tag.id),
   });
 
-  const response = await fetch(`${API_URL}/news`, {
+  const response = await fetch(`${API_URL}/news/create`, {
     method: "POST",
     body: formData,
   });
@@ -46,7 +49,7 @@ export const updateNews = async (id: number, data: NewsFormType) => {
     tags: data.tags?.map((tag) => tag.id),
   });
 
-  const response = await fetch(`${API_URL}/news/${id}`, {
+  const response = await fetch(`${API_URL}/news/${id}/update`, {
     method: "PATCH",
     body: formData,
   });
@@ -54,7 +57,7 @@ export const updateNews = async (id: number, data: NewsFormType) => {
 };
 
 export const deleteNews = async (id: NewsType["id"]) => {
-  const response = await fetch(`${API_URL}/news/${id}`, {
+  const response = await fetch(`${API_URL}/news/${id}/delete`, {
     method: "DELETE",
   });
   return response.json();

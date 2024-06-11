@@ -13,7 +13,9 @@ import { API_URL } from "@/src/shared/constants";
 
 const Shop: FC = () => {
   const router = useRouter();
-  const { data: products } = useGetProducts();
+  const { data: products } = useGetProducts({
+    take: 6,
+  });
 
   return (
     <section className="container">
@@ -25,7 +27,7 @@ const Shop: FC = () => {
       </div>
       <div className="my-10 grid-cols-12 grid-rows-[1fr,200px,1fr,1fr] justify-items-center gap-6 space-y-4 md:grid md:space-y-0 lg:grid-rows-6">
         {products ? (
-          products?.slice(0, 6).map((product, index) => (
+          products?.map((product, index) => (
             <Link
               href={`/shop/${product.id}`}
               className={classNames(

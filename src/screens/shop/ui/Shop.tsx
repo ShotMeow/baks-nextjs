@@ -9,7 +9,7 @@ import { useGetProducts } from "@/src/entities/products";
 import { API_URL } from "@/src/shared/constants";
 
 const Shop: FC = () => {
-  const { data: products } = useGetProducts();
+  const { data: products } = useGetProducts({});
   return (
     <main className="container">
       <div className="my-10 grid-cols-12 justify-items-center gap-6 space-y-4 md:grid md:space-y-0">

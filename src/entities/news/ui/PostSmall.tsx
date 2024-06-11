@@ -4,6 +4,8 @@ import Link from "next/link";
 
 import { API_URL } from "@/src/shared/constants";
 import type { NewsType } from "../types";
+import { isNewPost } from "../utils/isNewPost";
+import NewChip from "./NewChip";
 
 interface Props {
   post: NewsType;
@@ -16,17 +18,20 @@ const PostSmall: FC<Props> = ({ post }) => {
         className="relative flex h-full flex-col justify-between bg-zinc-900"
         key={post.id}
       >
-        <Image
-          className="h-[200px] w-full object-cover p-2"
-          src={`${API_URL}/images/${post.artworkUrl}`}
-          alt={post.title}
-          width={1256}
-          height={600}
-        />
+        <div className="relative max-h-[200px] min-h-[200px] w-full">
+          <Image
+            className="size-full object-cover p-2"
+            src={`${API_URL}/images/${post.artworkUrl}`}
+            alt={post.title}
+            width={1256}
+            height={600}
+          />
+          {isNewPost(new Date(post.updatedAt)) && <NewChip />}
+        </div>
         <div className="flex h-full flex-col justify-between p-4 font-semibold">
           <div>
             <p className="mb-2 text-green">
-              {new Date(post.createdAt).toLocaleDateString("ru", {
+              {new Date(post.updatedAt).toLocaleDateString("ru", {
                 year: "numeric",
                 month: "short",
                 day: "numeric",

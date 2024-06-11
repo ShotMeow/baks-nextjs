@@ -14,7 +14,10 @@ import Pagination from "./Pagination";
 
 const Slider: FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0); // Инициализируем начальный индекс
-  const { data: streams } = useGetStreams();
+  const { data: streams } = useGetStreams({
+    take: 5,
+  });
+
   return (
     <>
       <Swiper
@@ -33,7 +36,7 @@ const Slider: FC = () => {
         onSlideChange={({ activeIndex }) => setActiveIndex(activeIndex)}
       >
         {streams ? (
-          streams?.slice(0, 5).map((stream) => (
+          streams?.map((stream) => (
             <SwiperSlide className="relative !max-w-[1100px]" key={stream.id}>
               <Slide {...stream} />
             </SwiperSlide>
@@ -45,9 +48,7 @@ const Slider: FC = () => {
         )}
       </Swiper>
       <div className="mt-10 h-4">
-        {streams && (
-          <Pagination streams={streams.slice(0, 5)} activeIndex={activeIndex} />
-        )}
+        {streams && <Pagination streams={streams} activeIndex={activeIndex} />}
       </div>
     </>
   );

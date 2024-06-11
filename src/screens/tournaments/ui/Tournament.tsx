@@ -39,24 +39,28 @@ const Tournament: FC<Props> = ({ slug }) => {
           <div className="container py-40">
             <div>
               <div className="relative bg-white/5 px-6 py-14 backdrop-blur-md md:px-10 md:py-20">
-                <div className="absolute right-4 top-4 flex items-center gap-2 text-xs">
-                  {tournament.tags?.map((tag) => (
-                    <TagChip tag={tag} key={tag.id} />
-                  ))}
+                <div className="flex flex-wrap items-center gap-4">
+                  {tournament.eventDate && (
+                    <p>
+                      {new Date(tournament.eventDate).toLocaleDateString("ru", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                  <div className="flex flex-wrap items-center gap-2 text-xs">
+                    {tournament.tags?.map((tag) => (
+                      <TagChip tag={tag} key={tag.id} />
+                    ))}
+                  </div>
                 </div>
-                {tournament.eventDate && (
-                  <p>
-                    {new Date(tournament.eventDate).toLocaleDateString("ru", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
-                  </p>
-                )}
-                <h1 className="mt-6 text-5xl">{tournament.name}</h1>
-                <p className="mt-4">{tournament.description}</p>
+                <h1 className="mt-6 text-2xl md:text-5xl">{tournament.name}</h1>
+                <p className="mt-5 text-base font-medium text-zinc-300 md:text-lg">
+                  {tournament.description}
+                </p>
                 <div className="flex flex-wrap items-center justify-between gap-4">
-                  <div className="mt-6 flex flex-wrap items-center gap-8 [&>p>span]:text-3xl [&>p>span]:font-semibold">
+                  <div className="mt-6 flex flex-wrap items-center gap-8 [&>p>span]:text-xl [&>p>span]:md:text-3xl [&>p>span]:font-semibold">
                     {tournament.prize && (
                       <p className="text-zinc-300">
                         Призовой фонд <br />
@@ -87,7 +91,7 @@ const Tournament: FC<Props> = ({ slug }) => {
                   </Button>
                 </div>
               </div>
-              <div className="space-y-16 bg-black p-10">
+              <div className="space-y-16 bg-black py-4 md:p-10">
                 <div className="prose prose-zinc prose-invert max-w-none">
                   <ReactMarkdown>{tournament.body}</ReactMarkdown>
                 </div>

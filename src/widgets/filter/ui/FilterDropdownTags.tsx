@@ -25,7 +25,7 @@ const FilterDropdownTags: FC<Props> = ({ tag: activeTag, setTag }) => {
         value={tagSearch}
         setValue={setTagSearch}
       />
-      <div className="mt-6 max-h-96 space-y-4 overflow-y-auto">
+      <div className="mt-6 max-h-48 space-y-4 overflow-y-auto md:max-h-96">
         {tags?.map((tag) => (
           <Radio
             onClick={() => setTag(tag.name)}

@@ -11,9 +11,7 @@ import Slide from "./Slide";
 
 const Slider: FC = () => {
   const { data: news } = useGetNews({
-    searchQuery: "",
-    tagQuery: "",
-    sortQuery: "",
+    take: 8,
   });
 
   return (
@@ -27,7 +25,7 @@ const Slider: FC = () => {
       slidesPerView="auto"
     >
       {news ? (
-        news?.slice(0, 8).map((post) => (
+        news?.map((post) => (
           <SwiperSlide
             className="bg-white/5 !transition-all !duration-700 lg:!w-[350px] hover:lg:!w-[600px]"
             key={post.id}

@@ -15,7 +15,7 @@ const TournamentSmall: FC<Props> = ({ tournament }) => {
   return (
     <Link key={tournament.id} href={`/tournaments/${tournament.id}`}>
       <article className="flex h-full flex-col bg-white/5">
-        <div className="relative min-h-[200px]">
+        <div className="relative max-h-[200px] min-h-[200px]">
           {tournament.artworkUrl && (
             <Image
               className="size-full object-cover"

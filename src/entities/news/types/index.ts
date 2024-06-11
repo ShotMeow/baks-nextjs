@@ -7,10 +7,11 @@ export interface NewsType {
   body: string;
   artworkUrl: string;
   tags: TagType[];
+  updatedAt: Date;
   createdAt: Date;
 }
 
 export interface NewsFormType
-  extends Omit<NewsType, "id" | "createdAt" | "artworkUrl"> {
+  extends Omit<NewsType, "id" | "updatedAt" | "createdAt" | "artworkUrl"> {
   imageFile: File;
 }

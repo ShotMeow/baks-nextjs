@@ -2,13 +2,19 @@
   "name": "phygital-nextjs",
   "description": "Frontend release for Phygital Basketball on Next.js",
   "author": "Kai Goldman",
-  "version": "0.6.4",
+  "version": "0.7.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShotMeow/phygital-nextjs.git"
+  },
   "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --check ./",
+    "format:fix": "prettier --write ./"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.36.2",
@@ -41,5 +47,9 @@
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "format"
+  ]
 }

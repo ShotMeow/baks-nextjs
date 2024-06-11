@@ -4,17 +4,19 @@ import { getTournamentById, getTournaments } from "../api";
 import { TournamentType } from "../types";
 
 export const useGetTournaments = ({
-  searchQuery,
-  tagQuery,
-  sortQuery,
+  search,
+  tag,
+  sort,
+  take,
 }: {
-  searchQuery: string;
-  tagQuery: string;
-  sortQuery: string;
+  search?: string;
+  tag?: string;
+  sort?: string;
+  take?: number;
 }) => {
   return useQuery<TournamentType[]>({
-    queryKey: ["tournaments", { searchQuery, tagQuery, sortQuery }],
-    queryFn: () => getTournaments({ searchQuery, tagQuery, sortQuery }),
+    queryKey: ["tournaments", { search, tag, sort, take }],
+    queryFn: () => getTournaments({ search, tag, sort, take }),
   });
 };
 

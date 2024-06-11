@@ -8,6 +8,7 @@ import { useSwiperSlide } from "swiper/react";
 import Button from "@/src/shared/ui/Button";
 import type { NewsType } from "@/src/entities/news";
 import { API_URL } from "@/src/shared/constants";
+import DarkGradientToTop from "@/src/shared/ui/DarkGradientToTop";
 
 interface Props extends NewsType {}
 
@@ -15,7 +16,7 @@ const Slide: FC<Props> = ({ id, artworkUrl, title, description }) => {
   const { isActive } = useSwiperSlide();
   return (
     <Link href={`/news/${id}`}>
-      <div className="absolute left-0 top-0 size-full bg-gradient-to-t from-black/50 to-transparent" />
+      <DarkGradientToTop />
       <Image
         className={classNames(
           {
@@ -28,7 +29,7 @@ const Slide: FC<Props> = ({ id, artworkUrl, title, description }) => {
         width={1256}
         height={600}
       />
-      <div className="absolute inset-x-6 bottom-6 flex flex-col gap-6 md:inset-x-20 md:bottom-20 lg:flex-row lg:items-end">
+      <div className="absolute inset-x-6 bottom-6 flex flex-col gap-6 md:inset-x-20 md:bottom-20 lg:flex-row lg:items-end lg:justify-between">
         <div className="space-y-4 lg:space-y-8">
           <h4 className="line-clamp-2 text-xl font-bold lg:text-4xl">
             {title}

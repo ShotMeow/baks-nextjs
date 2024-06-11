@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import type { StreamType } from "@/src/entities/streams";
 import { API_URL } from "@/src/shared/constants";
+import DarkGradientToTop from "@/src/shared/ui/DarkGradientToTop";
 
 interface Props extends StreamType {}
 
@@ -22,6 +23,7 @@ const ActiveStream: FC<Props> = ({
   return (
     <div className="relative">
       <div className="h-[240px] md:h-[400px] xl:h-[600px]">
+        <DarkGradientToTop />
         {isPlaying ? (
           <TwitchPlayer
             onPause={handleClick}

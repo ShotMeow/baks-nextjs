@@ -17,9 +17,7 @@ const Slider: FC = () => {
     isLoading,
     isSuccess,
   } = useGetNews({
-    searchQuery: "",
-    tagQuery: "",
-    sortQuery: "",
+    takeQuery: 5,
   });
 
   return (
@@ -35,7 +33,7 @@ const Slider: FC = () => {
         onSlideChange={({ activeIndex }) => setActiveIndex(activeIndex)}
       >
         {isSuccess &&
-          news.slice(0, 5).map((post) => (
+          news.map((post) => (
             <SwiperSlide key={post.id}>
               <Slide {...post} />
             </SwiperSlide>
@@ -47,9 +45,7 @@ const Slider: FC = () => {
         )}
       </Swiper>
       <div className="mt-6 h-1">
-        {news && (
-          <Pagination news={news.slice(0, 5)} activeIndex={activeIndex} />
-        )}
+        {news && <Pagination news={news} activeIndex={activeIndex} />}
       </div>
     </>
   );

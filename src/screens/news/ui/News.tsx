@@ -19,9 +19,9 @@ const News: FC = () => {
     isLoading,
     isSuccess,
   } = useGetNews({
-    searchQuery: debounceSearch,
-    tagQuery: tag,
-    sortQuery: sort,
+    search: debounceSearch,
+    tag,
+    sort,
   });
 
   return (
@@ -39,7 +39,7 @@ const News: FC = () => {
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {isSuccess &&
           news.map((post, index) =>
-            index === 0 ? (
+            index === 0 && !debounceSearch ? (
               <PostLarge post={post} key={post.id} />
             ) : (
               <PostSmall post={post} key={post.id} />

@@ -19,9 +19,9 @@ const Tournaments: FC = () => {
     isSuccess,
     isLoading,
   } = useGetTournaments({
-    searchQuery: debounceSearch,
-    tagQuery: tag,
-    sortQuery: sort,
+    search: debounceSearch,
+    tag,
+    sort,
   });
 
   return (
@@ -39,7 +39,7 @@ const Tournaments: FC = () => {
       <div className="grid gap-6 sm:grid-cols-2 2xl:grid-cols-3">
         {isSuccess &&
           tournaments.map((tournament, index) =>
-            index === 0 ? (
+            index === 0 && !debounceSearch ? (
               <TournamentLarge tournament={tournament} key={tournament.id} />
             ) : (
               <TournamentSmall tournament={tournament} key={tournament.id} />

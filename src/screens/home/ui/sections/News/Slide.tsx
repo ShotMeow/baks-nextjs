@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import type { NewsType } from "@/src/entities/news";
 import { API_URL } from "@/src/shared/constants";
+import { TagChip } from "@/src/entities/tags";
 
 interface Props extends NewsType {}
 
@@ -29,14 +30,7 @@ const Slide: FC<Props> = ({ id, artworkUrl, title, tags, createdAt }) => {
           <h4 className="line-clamp-3 text-xl">{title}</h4>
         </div>
         <div className="mt-6 flex items-center gap-2 text-xs">
-          {tags?.map((tag) => (
-            <span
-              key={tag.id}
-              className="mr-2 mt-2 rounded-full bg-white/5 px-4 py-2 uppercase text-zinc-400"
-            >
-              {tag.name}
-            </span>
-          ))}
+          {tags?.map((tag) => <TagChip tag={tag} key={tag.id} />)}
         </div>
       </div>
     </Link>

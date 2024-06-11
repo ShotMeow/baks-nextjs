@@ -184,7 +184,7 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Режим</span>
+        <span className="text-sm/6 font-medium text-white">Формат</span>
         <Controller
           render={({ field: { value, ...field } }) => (
             <Select

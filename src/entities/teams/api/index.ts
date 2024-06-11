@@ -19,7 +19,7 @@ export const createTeam = async (data: TeamFormType) => {
     players: data.players?.map((player) => player.id),
     tournaments: data.tournaments?.map((tournament) => tournament.id),
   });
-  const response = await fetch(`${API_URL}/teams`, {
+  const response = await fetch(`${API_URL}/teams/create`, {
     method: "POST",
     body: formData,
   });
@@ -32,7 +32,7 @@ export const updateTeam = async (id: number, data: TeamFormType) => {
     players: data.players.map((player) => player.id),
     tournaments: data.tournaments.map((tournament) => tournament.id),
   });
-  const response = await fetch(`${API_URL}/teams/${id}`, {
+  const response = await fetch(`${API_URL}/teams/${id}/update`, {
     method: "PATCH",
     body: formData,
   });
@@ -40,7 +40,7 @@ export const updateTeam = async (id: number, data: TeamFormType) => {
 };
 
 export const deleteTeam = async (id: TeamType["id"]) => {
-  const response = await fetch(`${API_URL}/teams/${id}`, {
+  const response = await fetch(`${API_URL}/teams/${id}/delete`, {
     method: "DELETE",
   });
   return response.json();

@@ -3,7 +3,11 @@ import { createFormData } from "@/src/shared/utils/createFormData";
 
 import type { ProductFormType } from "../types";
 
-export const getProducts = async () => {
+export const getProducts = async ({ take }: { take?: number }) => {
+  const queryParams = new URLSearchParams();
+
+  take && queryParams.append("take", String(take));
+
   const response = await fetch(`${API_URL}/products`);
   return response.json();
 };
@@ -15,7 +19,7 @@ export const getProductById = async (id: number) => {
 
 export const createProduct = async (data: ProductFormType) => {
   const formData = createFormData(data);
-  const response = await fetch(`${API_URL}/products`, {
+  const response = await fetch(`${API_URL}/products/create`, {
     method: "POST",
     body: formData,
   });
@@ -24,7 +28,7 @@ export const createProduct = async (data: ProductFormType) => {
 
 export const updateProduct = async (id: number, data: ProductFormType) => {
   const formData = createFormData(data);
-  const response = await fetch(`${API_URL}/products/${id}`, {
+  const response = await fetch(`${API_URL}/products/${id}/update`, {
     method: "PATCH",
     body: formData,
   });
@@ -32,7 +36,7 @@ export const updateProduct = async (id: number, data: ProductFormType) => {
 };
 
 export const deleteProduct = async (id: number) => {
-  const response = await fetch(`${API_URL}/products/${id}`, {
+  const response = await fetch(`${API_URL}/products/${id}/delete`, {
     method: "DELETE",
   });
   return response.json();

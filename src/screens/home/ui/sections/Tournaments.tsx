@@ -14,9 +14,7 @@ import Subtitle from "@/src/shared/ui/Subtitle";
 const Tournaments: FC = () => {
   const router = useRouter();
   const { data: tournaments } = useGetTournaments({
-    searchQuery: "",
-    tagQuery: "",
-    sortQuery: "",
+    take: 4,
   });
 
   return (
@@ -29,15 +27,13 @@ const Tournaments: FC = () => {
       </div>
       <div className="grid gap-6 lg:grid-cols-2 2xl:grid-cols-3">
         {tournaments ? (
-          tournaments
-            ?.slice(0, 4)
-            .map((tournament, index) =>
-              index === 0 ? (
-                <TournamentLarge tournament={tournament} key={tournament.id} />
-              ) : (
-                <TournamentSmall tournament={tournament} key={tournament.id} />
-              ),
-            )
+          tournaments?.map((tournament, index) =>
+            index === 0 ? (
+              <TournamentLarge tournament={tournament} key={tournament.id} />
+            ) : (
+              <TournamentSmall tournament={tournament} key={tournament.id} />
+            ),
+          )
         ) : (
           <div className="col-span-full row-span-full flex items-center justify-center">
             <Spin size="xl" />

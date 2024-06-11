@@ -3,11 +3,7 @@ import { useGetTournaments } from "@/src/entities/tournaments";
 import Tournament from "../units/Tournament";
 
 const TagsList: FC = () => {
-  const { data } = useGetTournaments({
-    searchQuery: "",
-    tagQuery: "",
-    sortQuery: "",
-  });
+  const { data } = useGetTournaments({});
 
   return (
     <ul className="flex flex-col gap-6">

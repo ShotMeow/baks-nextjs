@@ -3,7 +3,11 @@ import { createFormData } from "@/src/shared/utils/createFormData";
 
 import type { StreamFormType } from "../types";
 
-export const getStreams = async () => {
+export const getStreams = async ({ take }: { take?: number }) => {
+  const queryParams = new URLSearchParams();
+
+  take && queryParams.append("take", String(take));
+
   const response = await fetch(`${API_URL}/streams`);
   return response.json();
 };
@@ -16,7 +20,7 @@ export const getStreamById = async (id: number) => {
 export const createStream = async (data: StreamFormType) => {
   const formData = createFormData(data);
 
-  const response = await fetch(`${API_URL}/streams`, {
+  const response = await fetch(`${API_URL}/streams/create`, {
     method: "POST",
     body: formData,
   });
@@ -26,7 +30,7 @@ export const createStream = async (data: StreamFormType) => {
 export const updateStream = async (id: number, data: StreamFormType) => {
   const formData = createFormData(data);
 
-  const response = await fetch(`${API_URL}/streams/${id}`, {
+  const response = await fetch(`${API_URL}/streams/${id}/update`, {
     method: "PATCH",
     body: formData,
   });
@@ -34,7 +38,7 @@ export const updateStream = async (id: number, data: StreamFormType) => {
 };
 
 export const deleteStream = async (id: number) => {
-  const response = await fetch(`${API_URL}/streams/${id}`, {
+  const response = await fetch(`${API_URL}/streams/${id}/delete`, {
     method: "DELETE",
   });
   return response.json();

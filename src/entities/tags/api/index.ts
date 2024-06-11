@@ -18,7 +18,7 @@ export const getTagById = async (id: number) => {
 
 export const createTag = async (data: TagsFormType) => {
   const formData = createFormData(data);
-  const response = await fetch(`${API_URL}/tags`, {
+  const response = await fetch(`${API_URL}/tags/create`, {
     method: "POST",
     body: formData,
   });
@@ -27,7 +27,7 @@ export const createTag = async (data: TagsFormType) => {
 
 export const updateTag = async (id: number, data: TagsFormType) => {
   const formData = createFormData(data);
-  const response = await fetch(`${API_URL}/tags/${id}`, {
+  const response = await fetch(`${API_URL}/tags/${id}/update`, {
     method: "PATCH",
     body: formData,
   });
@@ -35,7 +35,7 @@ export const updateTag = async (id: number, data: TagsFormType) => {
 };
 
 export const deleteTag = async (id: number) => {
-  const response = await fetch(`${API_URL}/tags/${id}`, {
+  const response = await fetch(`${API_URL}/tags/${id}/delete`, {
     method: "DELETE",
   });
   return response.json();

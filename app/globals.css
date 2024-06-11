@@ -3,29 +3,30 @@
 @tailwind utilities;
 
 :root {
-    --g-color-line-brand: #F0F424;
-    --g-color-base-warning-light: #070707;
-    --g-color-text-warning-heavy: #F0F424;
-    --g-text-subheader-3-font-size: 20px;
-    --g-text-input-placeholder-color: #A1A1AA;
-    --g-text-subheader-font-weight: bold;
+  --g-color-line-brand: #f0f424;
+  --g-color-base-warning-light: #070707;
+  --g-color-text-warning-heavy: #f0f424;
+  --g-text-subheader-3-font-size: 20px;
+  --g-text-input-placeholder-color: #a1a1aa;
+  --g-text-subheader-font-weight: bold;
 }
 
-html,body {
-    @apply h-full;
-    scrollbar-gutter: stable;
+html,
+body {
+  @apply h-full;
+  scrollbar-gutter: stable;
 }
 
 body {
-    @apply bg-black text-white;
+  @apply bg-black text-white;
 }
 
 main {
-    @apply my-32;
+  @apply my-32;
 }
 
 section {
-    @apply my-24;
+  @apply my-24;
 }
 
 /* Стилизация полей ввода при автозаполнении */
@@ -34,45 +35,44 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:active,
 input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0 1000px #141414 inset;
-    -webkit-text-fill-color: #FFFFFF;
+  -webkit-box-shadow: 0 0 0 1000px #141414 inset;
+  -webkit-text-fill-color: #ffffff;
 }
 
 /* Брендирование выделения текста */
 
 ::selection {
-    @apply bg-yellow text-black;
+  @apply bg-yellow text-black;
 }
 
 /* Стилизация скроллбара */
 
 *::-webkit-scrollbar {
-    @apply w-1 h-0;
+  @apply w-1 h-0;
 }
 
 *::-webkit-scrollbar-track {
-    border-radius: 0;
-    background-color: rgba(0, 0, 0, 0);
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 *::-webkit-scrollbar-thumb {
-    @apply bg-yellow;
-    border-radius: 0;
+  @apply bg-yellow;
+  border-radius: 0;
 }
-
 
 /* Брендирование Gravity UI */
 
 .g-popup {
-    @apply bg-zinc-900 rounded-b-lg;
+  @apply bg-zinc-900 rounded-b-lg;
 }
 
 .g-text-input__error-icon {
-    @apply absolute right-0 top-0;
-    color: var(--g-color-line-brand) !important;
+  @apply absolute right-0 top-0;
+  color: var(--g-color-line-brand) !important;
 }
 
 .g-toast {
-    position: fixed;
-    z-index: 100;
+  position: fixed;
+  z-index: 100;
 }

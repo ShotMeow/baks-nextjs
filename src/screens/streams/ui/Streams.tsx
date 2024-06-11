@@ -8,7 +8,7 @@ import ActiveStream from "./ActiveStream";
 
 const Streams: FC = () => {
   const [activeStream, setActiveStream] = useState<StreamType | null>(null);
-  const { data: streams } = useGetStreams();
+  const { data: streams } = useGetStreams({});
 
   useEffect(() => {
     streams && setActiveStream(streams[0]);
