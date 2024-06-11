@@ -112,7 +112,7 @@ const SignUp: FC<Props> = ({ onClose }) => {
         />
       </label>
       <div className="flex flex-wrap gap-4">
-        <label className="flex flex-col gap-2 w-full sm:w-auto">
+        <label className="flex w-full flex-col gap-2 sm:w-auto">
           <span className="text-sm/6 font-medium text-white">Никнейм</span>
           <TextInput
             {...register("nickname", {
