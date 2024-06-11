@@ -25,7 +25,7 @@ const TournamentSmall: FC<Props> = ({ tournament }) => {
               height={240}
             />
           )}
-          <div className="absolute bottom-4 left-4 flex items-center gap-2 text-xs">
+          <div className="absolute bottom-4 left-4 flex flex-wrap items-center gap-2 text-xs">
             {tournament.tags?.map((tag) => <TagChip tag={tag} key={tag.id} />)}
           </div>
         </div>

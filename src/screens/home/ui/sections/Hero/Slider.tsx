@@ -17,7 +17,7 @@ const Slider: FC = () => {
     isLoading,
     isSuccess,
   } = useGetNews({
-    takeQuery: 5,
+    take: 5,
   });
 
   return (

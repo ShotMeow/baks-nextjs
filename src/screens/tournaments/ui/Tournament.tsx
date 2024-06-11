@@ -5,11 +5,10 @@ import classNames from "classnames";
 import ReactMarkdown from "react-markdown";
 
 import Button from "@/src/shared/ui/Button";
-import { getRoleIcon } from "@/src/screens/teams/utils/getRoleIcon";
-import { numberFloater } from "@/src/screens/teams/utils/numberFloater";
 import { API_URL } from "@/src/shared/constants";
 import { useGetTournamentById } from "@/src/entities/tournaments";
 import { TagChip } from "@/src/entities/tags";
+import { PlayerCard } from "@/src/entities/teams";
 
 interface Props {
   slug: string;
@@ -60,7 +59,7 @@ const Tournament: FC<Props> = ({ slug }) => {
                   {tournament.description}
                 </p>
                 <div className="flex flex-wrap items-center justify-between gap-4">
-                  <div className="mt-6 flex flex-wrap items-center gap-8 [&>p>span]:text-xl [&>p>span]:md:text-3xl [&>p>span]:font-semibold">
+                  <div className="mt-6 flex flex-wrap items-center gap-8 [&>p>span]:text-xl [&>p>span]:font-semibold [&>p>span]:md:text-3xl">
                     {tournament.prize && (
                       <p className="text-zinc-300">
                         Призовой фонд <br />
@@ -147,47 +146,7 @@ const Tournament: FC<Props> = ({ slug }) => {
                         {tournament.teams
                           .find((team) => team.id === activeTeam)
                           ?.players.map((player) => (
-                            <div className="bg-white/10 p-2" key={player.id}>
-                              <div className="relative h-48">
-                                <div className="absolute left-1/2 flex h-full -translate-x-1/2 items-start sm:left-0 sm:translate-x-0 xl:left-12">
-                                  {player.pictureUrl && (
-                                    <Image
-                                      className="h-full w-auto object-contain"
-                                      src={`${API_URL}/images/${player.pictureUrl}`}
-                                      alt={player.nickname}
-                                      width={200}
-                                      height={220}
-                                    />
-                                  )}
-                                  <div className="mt-10">
-                                    {getRoleIcon(player.role)}
-                                  </div>
-                                </div>
-                              </div>
-                              <p className="bg-white/5 p-4 text-lg backdrop-blur-md lg:text-xl">
-                                {player.nickname} |{" "}
-                                <span className="text-zinc-400">
-                                  {player.name}
-                                </span>
-                              </p>
-                              <div className="mt-2 grid grid-cols-3 gap-2 text-lg [&>p]:bg-white/5 [&>p]:p-2 [&>p]:text-center">
-                                {player.killDeaths ? (
-                                  <p>KD | {numberFloater(player.killDeaths)}</p>
-                                ) : (
-                                  ""
-                                )}
-                                {player.deaths ? (
-                                  <p>D | {numberFloater(player.deaths)}</p>
-                                ) : (
-                                  ""
-                                )}
-                                {player.assists ? (
-                                  <p>A | {numberFloater(player.assists)}</p>
-                                ) : (
-                                  ""
-                                )}
-                              </div>
-                            </div>
+                            <PlayerCard player={player} key={player.id} />
                           ))}
                       </div>
                       <div className="mt-8 flex items-center justify-center gap-6">

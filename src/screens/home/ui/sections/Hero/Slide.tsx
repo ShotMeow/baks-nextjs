@@ -22,7 +22,7 @@ const Slide: FC<Props> = ({ id, artworkUrl, title, description }) => {
           {
             "grayscale opacity-20": !isActive,
           },
-          "-z-10 w-full transition-all duration-700 h-full object-cover",
+          "relative -z-20 w-full transition-all duration-700 h-full object-cover",
         )}
         src={`${API_URL}/images/${artworkUrl}`}
         alt={title}
