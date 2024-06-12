@@ -13,7 +13,7 @@ const TeamCard: FC<Props> = ({ team }) => {
   const router = useRouter();
 
   return (
-    <article className="flex flex-col justify-between bg-white/5 p-4">
+    <article className="flex flex-col justify-between bg-zinc-900 p-4">
       <div className="mb-4 flex gap-4">
         {team?.logoUrl && (
           <div className="flex items-center justify-center bg-white/5 p-4">

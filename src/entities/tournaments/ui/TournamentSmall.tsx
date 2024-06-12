@@ -14,7 +14,7 @@ interface Props {
 const TournamentSmall: FC<Props> = ({ tournament }) => {
   return (
     <Link key={tournament.id} href={`/tournaments/${tournament.id}`}>
-      <article className="flex h-full flex-col bg-white/5">
+      <article className="flex h-full flex-col bg-zinc-900">
         <div className="relative max-h-[200px] min-h-[200px]">
           {tournament.artworkUrl && (
             <Image

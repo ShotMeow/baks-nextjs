@@ -33,7 +33,7 @@ const ActiveStream: FC<Props> = ({
           />
         ) : (
           <Image
-            className="size-full object-cover"
+            className="relative -z-20 size-full object-cover"
             width={1920}
             height={1080}
             src={`${API_URL}/images/${posterUrl}`}
