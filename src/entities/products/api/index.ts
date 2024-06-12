@@ -8,7 +8,7 @@ export const getProducts = async ({ take }: { take?: number }) => {
 
   take && queryParams.append("take", String(take));
 
-  const response = await fetch(`${API_URL}/products`);
+  const response = await fetch(`${API_URL}/products?${queryParams}`);
   return response.json();
 };
 

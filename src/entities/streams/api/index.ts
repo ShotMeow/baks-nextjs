@@ -8,7 +8,7 @@ export const getStreams = async ({ take }: { take?: number }) => {
 
   take && queryParams.append("take", String(take));
 
-  const response = await fetch(`${API_URL}/streams`);
+  const response = await fetch(`${API_URL}/streams?${queryParams}`);
   return response.json();
 };
 
