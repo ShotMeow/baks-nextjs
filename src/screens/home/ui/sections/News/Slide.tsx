@@ -11,13 +11,15 @@ interface Props extends NewsType {}
 const Slide: FC<Props> = ({ id, artworkUrl, title, tags, createdAt }) => {
   return (
     <Link className="flex h-full flex-col justify-between" href={`/news/${id}`}>
-      <Image
-        className="h-[200px] w-full object-cover p-2"
-        src={`${API_URL}/images/${artworkUrl}`}
-        alt={title}
-        width={1256}
-        height={600}
-      />
+      <div className="max-h-[200px] min-h-[200px] w-full">
+        <Image
+          className="size-full object-cover p-2"
+          src={`${API_URL}/images/${artworkUrl}`}
+          alt={title}
+          width={1256}
+          height={600}
+        />
+      </div>
       <div className="flex h-full flex-col justify-between p-4 font-semibold">
         <div>
           <p className="mb-2 text-green">
