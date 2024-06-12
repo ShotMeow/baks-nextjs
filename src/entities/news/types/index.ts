@@ -6,12 +6,16 @@ export interface NewsType {
   description: string;
   body: string;
   artworkUrl: string;
+  views: number;
   tags: TagType[];
   updatedAt: Date;
   createdAt: Date;
 }
 
 export interface NewsFormType
-  extends Omit<NewsType, "id" | "updatedAt" | "createdAt" | "artworkUrl"> {
+  extends Omit<
+    NewsType,
+    "id" | "updatedAt" | "createdAt" | "views" | "artworkUrl"
+  > {
   imageFile: File;
 }

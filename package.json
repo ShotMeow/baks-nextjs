@@ -2,7 +2,7 @@
   "name": "phygital-nextjs",
   "description": "Frontend release for Phygital Basketball on Next.js",
   "author": "Kai Goldman",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/ShotMeow/phygital-nextjs.git"

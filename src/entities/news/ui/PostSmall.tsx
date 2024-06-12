@@ -6,6 +6,7 @@ import { API_URL } from "@/src/shared/constants";
 import type { NewsType } from "../types";
 import { isNewPost } from "../utils/isNewPost";
 import NewChip from "./NewChip";
+import ViewsChip from "./ViewsChip";
 
 interface Props {
   post: NewsType;
@@ -26,7 +27,8 @@ const PostSmall: FC<Props> = ({ post }) => {
             width={1256}
             height={600}
           />
-          {isNewPost(new Date(post.updatedAt)) && <NewChip />}
+          {isNewPost(new Date(post.createdAt)) && <NewChip />}
+          <ViewsChip className="absolute bottom-6 left-6" views={post.views} />
         </div>
         <div className="flex h-full flex-col justify-between p-4 font-semibold">
           <div>

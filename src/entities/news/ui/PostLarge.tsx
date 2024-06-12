@@ -6,6 +6,7 @@ import type { NewsType } from "../types";
 import { API_URL } from "@/src/shared/constants";
 import { isNewPost } from "../utils/isNewPost";
 import NewChip from "./NewChip";
+import ViewsChip from "./ViewsChip";
 
 interface Props {
   post: NewsType;
@@ -15,7 +16,7 @@ const PostLarge: FC<Props> = ({ post }) => {
   return (
     <Link className="sm:col-span-2 lg:col-span-4" href={`/news/${post.id}`}>
       <article className="relative grid h-full grid-cols-1 justify-between bg-zinc-900 lg:grid-cols-2">
-        <div className="min-h-[200px] md:min-h-[400px]">
+        <div className="max-h-[200px] min-h-[200px] md:max-h-[400px] md:min-h-[400px]">
           <Image
             className="size-full object-cover p-2"
             src={`${API_URL}/images/${post.artworkUrl}`}
@@ -24,7 +25,8 @@ const PostLarge: FC<Props> = ({ post }) => {
             height={600}
           />
         </div>
-        {isNewPost(new Date(post.updatedAt)) && <NewChip />}
+        {isNewPost(new Date(post.createdAt)) && <NewChip />}
+        <ViewsChip className="absolute bottom-6 left-6" views={post.views} />
         <div className="flex h-full flex-col justify-between px-4 py-10 font-semibold">
           <div>
             <p className="mb-2 text-green">

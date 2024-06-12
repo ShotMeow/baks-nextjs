@@ -3,6 +3,11 @@ import { createFormData } from "@/src/shared/utils/createFormData";
 
 import type { NewsFormType, NewsType } from "../types";
 
+export const addViewToPost = async (id: number) => {
+  const response = await fetch(`${API_URL}/news/${id}/view`);
+  return response.json();
+};
+
 export const getNews = async ({
   search,
   tag,

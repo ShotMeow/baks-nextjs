@@ -1,5 +1,5 @@
 "use client";
-import type { FC } from "react";
+import { type FC, useEffect, useRef } from "react";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 
@@ -7,6 +7,8 @@ import { useGetNewsById } from "@/src/entities/news";
 import { API_URL } from "@/src/shared/constants";
 import DarkGradientToTop from "@/src/shared/ui/DarkGradientToTop";
 import { TagChip } from "@/src/entities/tags";
+import { addViewToPost } from "@/src/entities/news/api";
+import ViewsChip from "@/src/entities/news/ui/ViewsChip";
 
 interface Props {
   slug: string;
@@ -14,6 +16,15 @@ interface Props {
 
 const Post: FC<Props> = ({ slug }) => {
   const { data: post } = useGetNewsById(+slug);
+  const dataFetch = useRef(false);
+
+  useEffect(() => {
+    if (dataFetch.current) return;
+    dataFetch.current = true;
+
+    addViewToPost(+slug);
+  }, [slug]);
+
   return (
     <main className="container">
       {post && (
@@ -36,8 +47,9 @@ const Post: FC<Props> = ({ slug }) => {
                     day: "numeric",
                   })}
                 </p>
+                <ViewsChip views={post.views} />
                 <div className="flex flex-wrap items-center gap-2 text-xs">
-                  {post.tags.length > 0 &&
+                  {post.tags?.length > 0 &&
                     post.tags.map((tag) => <TagChip tag={tag} key={tag.id} />)}
                 </div>
               </div>
