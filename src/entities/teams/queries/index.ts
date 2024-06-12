@@ -3,10 +3,18 @@ import { useQuery } from "@tanstack/react-query";
 import { getTeamById, getTeams } from "../api";
 import type { TeamType } from "../types";
 
-export const useGetTeams = () => {
+export const useGetTeams = ({
+  search,
+  sort,
+  take,
+}: {
+  search?: string;
+  sort?: string;
+  take?: number;
+}) => {
   return useQuery<TeamType[]>({
-    queryKey: ["teams"],
-    queryFn: getTeams,
+    queryKey: ["teams", { search, sort, take }],
+    queryFn: () => getTeams({ search, sort, take }),
   });
 };
 

@@ -52,7 +52,7 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
 
   const { mutate: createTournamentMutation } = useCreateTournament();
   const { mutate: updateTournamentMutation } = useUpdateTournament();
-  const { data: teams } = useGetTeams();
+  const { data: teams } = useGetTeams({});
   const { data: tags } = useGetTags({
     searchQuery: "",
   });

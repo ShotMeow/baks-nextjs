@@ -6,12 +6,12 @@ import Filter from "./Filter";
 interface Props {
   title: string;
   searchPlaceholder: string;
-  search: string;
-  setSearch: Dispatch<SetStateAction<string>>;
-  tag: string;
-  setTag: Dispatch<SetStateAction<string>>;
-  sort: string;
-  setSort: Dispatch<SetStateAction<string>>;
+  search?: string;
+  setSearch?: Dispatch<SetStateAction<string>>;
+  tag?: string;
+  setTag?: Dispatch<SetStateAction<string>>;
+  sort?: string;
+  setSort?: Dispatch<SetStateAction<string>>;
 }
 
 const PageHeader: FC<Props> = ({
@@ -37,11 +37,13 @@ const PageHeader: FC<Props> = ({
       <div className="flex w-full flex-col gap-6 sm:flex-row sm:items-center">
         <h3 className="text-2xl font-semibold">{title}</h3>
         <div className="flex w-full items-center justify-between gap-4">
-          <SearchInput
-            placeholder={searchPlaceholder}
-            value={search}
-            setValue={setSearch}
-          />
+          {typeof search !== "undefined" && setSearch && searchPlaceholder && (
+            <SearchInput
+              placeholder={searchPlaceholder}
+              value={search}
+              setValue={setSearch}
+            />
+          )}
           <Filter
             setTag={setTag}
             sort={sort}

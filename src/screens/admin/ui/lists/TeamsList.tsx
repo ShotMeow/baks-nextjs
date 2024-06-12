@@ -3,7 +3,7 @@ import { useGetTeams } from "@/src/entities/teams";
 import Team from "../units/Team";
 
 const TagsList: FC = () => {
-  const { data } = useGetTeams();
+  const { data } = useGetTeams({});
 
   return (
     <ul className="flex flex-col gap-6">

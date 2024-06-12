@@ -10,10 +10,10 @@ import FilterIcon from "@/src/shared/ui/icons/Filter";
 import Button from "@/src/shared/ui/Button";
 
 interface Props {
-  tag: string;
-  setTag: Dispatch<SetStateAction<string>>;
-  sort: string;
-  setSort: Dispatch<SetStateAction<string>>;
+  tag?: string;
+  setTag?: Dispatch<SetStateAction<string>>;
+  sort?: string;
+  setSort?: Dispatch<SetStateAction<string>>;
   dropdownState: {
     visible: boolean;
     type: string | null;
@@ -59,38 +59,42 @@ const Filter: FC<Props> = ({
           "absolute bg-zinc-900 flex px-4 flex-wrap overflow-hidden z-30 top-full left-0 right-0 transition-all items-center gap-2 lg:flex lg:static lg:p-0 lg:max-h-96",
         )}
       >
-        <CategoryButton
-          tag={tag}
-          setTag={setTag}
-          onClick={() => {
-            setFilterShown(false);
-            setDropdownState({
-              visible: true,
-              type: "tags",
-            });
-          }}
-        >
-          {tag || "Категория"}
-          <ArrowToggle
-            direction={dropdownState.type === "tags" ? "top" : "bottom"}
-          />
-        </CategoryButton>
-        <SortButton
-          sort={sort}
-          setSort={setSort}
-          onClick={() => {
-            setFilterShown(false);
-            setDropdownState({
-              visible: true,
-              type: "sort",
-            });
-          }}
-        >
-          {getSortValue(sort)}
-          <ArrowToggle
-            direction={dropdownState.type === "sort" ? "top" : "bottom"}
-          />
-        </SortButton>
+        {typeof tag !== "undefined" && setTag && (
+          <CategoryButton
+            tag={tag}
+            setTag={setTag}
+            onClick={() => {
+              setFilterShown(false);
+              setDropdownState({
+                visible: true,
+                type: "tags",
+              });
+            }}
+          >
+            {tag || "Категория"}
+            <ArrowToggle
+              direction={dropdownState.type === "tags" ? "top" : "bottom"}
+            />
+          </CategoryButton>
+        )}
+        {typeof sort !== "undefined" && setSort && (
+          <SortButton
+            sort={sort}
+            setSort={setSort}
+            onClick={() => {
+              setFilterShown(false);
+              setDropdownState({
+                visible: true,
+                type: "sort",
+              });
+            }}
+          >
+            {getSortValue(sort)}
+            <ArrowToggle
+              direction={dropdownState.type === "sort" ? "top" : "bottom"}
+            />
+          </SortButton>
+        )}
       </div>
       <FilterDropdown
         sort={sort}
