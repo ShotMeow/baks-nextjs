@@ -41,7 +41,7 @@ const PostSmall: FC<Props> = ({ post }) => {
             </p>
             <h2 className="line-clamp-3 text-xl">{post.title}</h2>
           </div>
-          <div className="mt-6 flex items-center gap-2 text-xs">
+          <div className="mt-6 flex flex-wrap items-center gap-2 text-xs">
             {post.tags.map((tag) => (
               <span
                 key={tag.id}

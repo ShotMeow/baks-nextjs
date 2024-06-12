@@ -16,7 +16,7 @@ const PostLarge: FC<Props> = ({ post }) => {
   return (
     <Link className="sm:col-span-2 lg:col-span-4" href={`/news/${post.id}`}>
       <article className="relative grid h-full grid-cols-1 justify-between bg-zinc-900 lg:grid-cols-2">
-        <div className="max-h-[200px] min-h-[200px] md:max-h-[400px] md:min-h-[400px]">
+        <div className="relative max-h-[200px] min-h-[200px] md:max-h-[400px] md:min-h-[400px]">
           <Image
             className="size-full object-cover p-2"
             src={`${API_URL}/images/${post.artworkUrl}`}
@@ -24,9 +24,9 @@ const PostLarge: FC<Props> = ({ post }) => {
             width={1256}
             height={600}
           />
+          {isNewPost(new Date(post.createdAt)) && <NewChip />}
+          <ViewsChip className="absolute bottom-6 left-6" views={post.views} />
         </div>
-        {isNewPost(new Date(post.createdAt)) && <NewChip />}
-        <ViewsChip className="absolute bottom-6 left-6" views={post.views} />
         <div className="flex h-full flex-col justify-between px-4 py-10 font-semibold">
           <div>
             <p className="mb-2 text-green">
@@ -41,7 +41,7 @@ const PostLarge: FC<Props> = ({ post }) => {
               {post.description}
             </p>
           </div>
-          <div className="mt-6 flex items-center gap-2 text-xs">
+          <div className="mt-6 flex flex-wrap items-center gap-2 text-xs">
             {post.tags.map((tag) => (
               <span
                 key={tag.id}
