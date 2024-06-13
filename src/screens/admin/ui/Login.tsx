@@ -4,6 +4,7 @@ import { TextInput } from "@gravity-ui/uikit";
 
 import Button from "@/src/shared/ui/Button";
 import { useNotificationContext } from "@/src/features/notification";
+import Subtitle from "@/src/shared/ui/Subtitle";
 
 interface Props {
   setIsLogin: Dispatch<SetStateAction<boolean>>;
@@ -34,41 +35,46 @@ const Login: FC<Props> = ({ setIsLogin }) => {
     }
   };
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="my-10 flex flex-col gap-4"
-    >
-      <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Логин</span>
-        <TextInput
-          {...register("login", {
-            required: "Логин обязателен для заполнения",
-          })}
-          errorPlacement="inside"
-          validationState={errors?.login && "invalid"}
-          errorMessage={errors?.login?.message}
-          view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
-        />
-      </label>
-      <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Пароль</span>
-        <TextInput
-          {...register("password", {
-            required: "Пароль обязателен для заполнения",
-          })}
-          errorPlacement="inside"
-          validationState={errors?.password && "invalid"}
-          errorMessage={errors?.password?.message}
-          type="password"
-          view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
-        />
-      </label>
-      <Button type="submit" variant="primary">
-        Войти
-      </Button>
-    </form>
+    <div className="flex min-h-[60vh] flex-col items-center justify-center">
+      <Subtitle>Админ-панель</Subtitle>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="my-10 flex flex-col gap-4"
+      >
+        <div className="flex items-center gap-4">
+          <label className="flex flex-col gap-2">
+            <span className="text-sm/6 font-medium text-white">Логин</span>
+            <TextInput
+              {...register("login", {
+                required: "Логин обязателен для заполнения",
+              })}
+              errorPlacement="inside"
+              validationState={errors?.login && "invalid"}
+              errorMessage={errors?.login?.message}
+              view="clear"
+              className="rounded-md bg-white/5 px-2 py-1"
+            />
+          </label>
+          <label className="flex flex-col gap-2">
+            <span className="text-sm/6 font-medium text-white">Пароль</span>
+            <TextInput
+              {...register("password", {
+                required: "Пароль обязателен для заполнения",
+              })}
+              errorPlacement="inside"
+              validationState={errors?.password && "invalid"}
+              errorMessage={errors?.password?.message}
+              type="password"
+              view="clear"
+              className="rounded-md bg-white/5 px-2 py-1"
+            />
+          </label>
+        </div>
+        <Button type="submit" variant="primary">
+          Войти
+        </Button>
+      </form>
+    </div>
   );
 };
 

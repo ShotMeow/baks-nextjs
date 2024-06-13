@@ -23,10 +23,8 @@ const Product: FC<Props> = ({ product }) => {
 
   return (
     <>
-      <li className="flex items-center justify-between">
-        <span>
-          {product.name} - {product.price} рублей
-        </span>
+      <li className="flex items-center justify-between gap-6">
+        <span>{product.name}</span>
         <div className="flex items-center gap-2">
           <Button
             onClick={() => setUpdateModalShown(true)}

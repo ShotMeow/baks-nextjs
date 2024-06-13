@@ -3,10 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 import type { ProductType } from "../types";
 import { getProductById, getProducts } from "../api";
 
-export const useGetProducts = ({ take }: { take?: number }) => {
+export const useGetProducts = ({
+  search,
+  take,
+}: {
+  search?: string;
+  take?: number;
+}) => {
   return useQuery<ProductType[]>({
-    queryKey: ["products", { take }],
-    queryFn: () => getProducts({ take }),
+    queryKey: ["products", { search, take }],
+    queryFn: () => getProducts({ search, take }),
   });
 };
 

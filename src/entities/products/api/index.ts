@@ -3,9 +3,16 @@ import { createFormData } from "@/src/shared/utils/createFormData";
 
 import type { ProductFormType } from "../types";
 
-export const getProducts = async ({ take }: { take?: number }) => {
+export const getProducts = async ({
+  search,
+  take,
+}: {
+  search?: string;
+  take?: number;
+}) => {
   const queryParams = new URLSearchParams();
 
+  search && queryParams.append("search", String(search));
   take && queryParams.append("take", String(take));
 
   const response = await fetch(`${API_URL}/products?${queryParams}`);

@@ -11,20 +11,32 @@ const Radio: FC<PropsWithChildren<Props>> = ({
   ...props
 }) => {
   return (
-    <label className="flex items-center gap-2">
+    <label
+      className={classNames(
+        {
+          "text-white": isActive,
+          "text-zinc-400": !isActive,
+        },
+        "flex items-center gap-2 transition-all",
+      )}
+    >
       <button
         className={classNames(
           {
             "bg-yellow": isActive,
           },
-          "size-6 rounded-full border-2 border-white/50 flex items-center justify-center p-2",
+          "size-6 rounded-full border-2 border-white/50 flex items-center justify-center p-2 transition-all duration-500",
         )}
         {...props}
       >
         <span
-          className={classNames({
-            "size-3 bg-black rounded-full flex-shrink-0": isActive,
-          })}
+          className={classNames(
+            {
+              "size-3": isActive,
+              "size-0": !isActive,
+            },
+            "flex-shrink-0 bg-black rounded-full transition-all duration-500",
+          )}
         />
       </button>
       {children}

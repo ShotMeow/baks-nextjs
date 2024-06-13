@@ -3,9 +3,16 @@ import { createFormData } from "@/src/shared/utils/createFormData";
 
 import type { StreamFormType } from "../types";
 
-export const getStreams = async ({ take }: { take?: number }) => {
+export const getStreams = async ({
+  search,
+  take,
+}: {
+  search?: string;
+  take?: number;
+}) => {
   const queryParams = new URLSearchParams();
 
+  search && queryParams.append("search", String(search));
   take && queryParams.append("take", String(take));
 
   const response = await fetch(`${API_URL}/streams?${queryParams}`);

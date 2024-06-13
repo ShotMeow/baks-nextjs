@@ -3,10 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import { getTagById, getTags } from "../api";
 import type { TagType } from "../types";
 
-export const useGetTags = ({ searchQuery }: { searchQuery: string }) => {
+export const useGetTags = ({ search }: { search?: string }) => {
   return useQuery<TagType[]>({
-    queryKey: ["tags", { searchQuery }],
-    queryFn: () => getTags({ searchQuery }),
+    queryKey: ["tags", { search }],
+    queryFn: () => getTags({ search }),
   });
 };
 

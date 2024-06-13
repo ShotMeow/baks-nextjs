@@ -13,7 +13,7 @@ const Editor: FC = () => {
   const [activeTab, setActiveTab] = useState<TabType["type"]>(tabs[0].type);
   const [modalShown, setModalShown] = useState<boolean>(false);
   return (
-    <div>
+    <div className="w-full">
       <Tabs
         className="my-4"
         size="xl"

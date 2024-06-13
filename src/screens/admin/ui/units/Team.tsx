@@ -24,7 +24,7 @@ const Team: FC<Props> = ({ team }) => {
 
   return (
     <>
-      <li className="flex items-center justify-between">
+      <li className="flex items-center justify-between gap-6">
         <span>{team.name}</span>
         <div className="flex items-center gap-2">
           <Button

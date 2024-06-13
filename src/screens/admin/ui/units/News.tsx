@@ -23,7 +23,7 @@ const News: FC<Props> = ({ news }) => {
 
   return (
     <>
-      <li className="flex items-center justify-between">
+      <li className="flex items-center justify-between gap-6">
         <span>{news.title}</span>
         <div className="flex items-center gap-2">
           <Button

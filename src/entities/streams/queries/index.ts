@@ -3,10 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 import { getStreamById, getStreams } from "../api";
 import type { StreamType } from "../types";
 
-export const useGetStreams = ({ take }: { take?: number }) => {
+export const useGetStreams = ({
+  search,
+  take,
+}: {
+  search?: string;
+  take?: number;
+}) => {
   return useQuery<StreamType[]>({
-    queryKey: ["streams", { take }],
-    queryFn: () => getStreams({ take }),
+    queryKey: ["streams", { search, take }],
+    queryFn: () => getStreams({ search, take }),
   });
 };
 
