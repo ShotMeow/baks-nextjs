@@ -24,9 +24,9 @@ const Tag: FC<Props> = ({ tag }) => {
 
   return (
     <>
-      <li className="flex items-center justify-between gap-6">
+      <li className="flex flex-wrap items-center justify-between gap-6">
         <span>{tag.name}</span>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <Button
             onClick={() => setUpdateModalShown(true)}
             variant="transparent"
