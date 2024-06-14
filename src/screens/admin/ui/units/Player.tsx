@@ -38,14 +38,10 @@ const Player: FC<Props> = ({ player }) => {
       {updateModalShown && (
         <FormModal
           open={updateModalShown}
-          activeTab="tags"
+          activeTab="users"
           onClose={setUpdateModalShown}
         >
-          <PlayersForm
-            player={player}
-            onClose={setUpdateModalShown}
-            type="edit"
-          />
+          <PlayersForm player={player} onClose={setUpdateModalShown} />
         </FormModal>
       )}
     </>

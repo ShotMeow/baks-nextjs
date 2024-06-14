@@ -3,15 +3,18 @@ import { Controller, type SubmitHandler, useForm } from "react-hook-form";
 import { Select, TextInput } from "@gravity-ui/uikit";
 
 import Button from "@/src/shared/ui/Button";
-import { UserType, UserFormType, useUpdateUser } from "@/src/entities/users";
+import {
+  type UserType,
+  type UserFormType,
+  useUpdateUser,
+} from "@/src/entities/users";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
-  player?: UserType;
-  type: "create" | "edit";
+  player: UserType;
 }
 
-const PlayersForm: FC<Props> = ({ onClose, player, type }) => {
+const PlayersForm: FC<Props> = ({ onClose, player }) => {
   const {
     register,
     formState: { errors },
@@ -20,32 +23,26 @@ const PlayersForm: FC<Props> = ({ onClose, player, type }) => {
     setValue,
   } = useForm<UserFormType>({
     defaultValues: {
-      nickname: player?.nickname,
-      name: player?.name,
-      role: player?.role,
-      killDeaths: player?.killDeaths,
-      deaths: player?.deaths,
-      assists: player?.assists,
+      nickname: player.nickname,
+      name: player.name,
+      role: player.role,
+      killDeaths: player.killDeaths,
+      deaths: player.deaths,
+      assists: player.assists,
     },
   });
 
   const { mutate: updateUserMutation } = useUpdateUser();
 
   const onSubmit: SubmitHandler<UserFormType> = (data) => {
-    switch (type) {
-      case "edit":
-        player && updateUserMutation({ id: player.id, data });
-        break;
-    }
+    updateUserMutation({ id: player.id, data });
 
     onClose(false);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      <h4 className="text-xl font-bold">
-        {type === "create" ? "Добавить тег" : "Изменить тег"}
-      </h4>
+      <h4 className="text-xl font-bold">Изменить пользователя</h4>
       <label className="flex flex-col gap-2">
         <span className="text-sm/6 font-medium text-white">Никнейм</span>
         <TextInput
@@ -81,7 +78,7 @@ const PlayersForm: FC<Props> = ({ onClose, player, type }) => {
               filterable
               className="rounded-md bg-white/5 px-2 py-1"
               onUpdate={(value) => setValue("role", value[0])}
-              defaultValue={[player?.role || "tank"]}
+              defaultValue={[player.role]}
             >
               <Select.Option value="tank">Танк</Select.Option>
               <Select.Option value="attack">Нападение</Select.Option>

@@ -1,8 +1,8 @@
 import { type Dispatch, type FC, type SetStateAction, useState } from "react";
-import { TextInput } from "@gravity-ui/uikit";
+import { TextArea, TextInput } from "@gravity-ui/uikit";
 import Image from "next/image";
 import Button from "@/src/shared/ui/Button";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { Controller, type SubmitHandler, useForm } from "react-hook-form";
 
 import {
   type ProductType,
@@ -27,6 +27,7 @@ const ProductsForm: FC<Props> = ({ onClose, product, type }) => {
   } = useForm<ProductFormType>({
     defaultValues: {
       name: product?.name,
+      description: product?.description,
       price: product?.price,
     },
   });
@@ -64,6 +65,15 @@ const ProductsForm: FC<Props> = ({ onClose, product, type }) => {
           errorPlacement="inside"
           validationState={errors?.name && "invalid"}
           errorMessage={errors?.name?.message}
+          view="clear"
+          className="rounded-md bg-white/5 px-2 py-1"
+        />
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">Описание</span>
+        <TextArea
+          {...register("description")}
+          errorPlacement="inside"
           view="clear"
           className="rounded-md bg-white/5 px-2 py-1"
         />
