@@ -1,7 +1,7 @@
 import { API_URL } from "@/src/shared/constants";
 import { createFormData } from "@/src/shared/utils/createFormData";
 
-import type { ProductFormType } from "../types";
+import type { ProductFormType, ProductType } from "../types";
 
 export const getProducts = async ({
   search,
@@ -19,7 +19,7 @@ export const getProducts = async ({
   return response.json();
 };
 
-export const getProductById = async (id: number) => {
+export const getProductById = async (id: ProductType["id"]) => {
   const response = await fetch(`${API_URL}/products/${id}`);
   return response.json();
 };
@@ -33,7 +33,10 @@ export const createProduct = async (data: ProductFormType) => {
   return response.json();
 };
 
-export const updateProduct = async (id: number, data: ProductFormType) => {
+export const updateProduct = async (
+  id: ProductType["id"],
+  data: ProductFormType,
+) => {
   const formData = createFormData(data);
   const response = await fetch(`${API_URL}/products/${id}/edit`, {
     method: "PATCH",
@@ -42,7 +45,7 @@ export const updateProduct = async (id: number, data: ProductFormType) => {
   return response.json();
 };
 
-export const deleteProduct = async (id: number) => {
+export const deleteProduct = async (id: ProductType["id"]) => {
   const response = await fetch(`${API_URL}/products/${id}/delete`, {
     method: "DELETE",
   });

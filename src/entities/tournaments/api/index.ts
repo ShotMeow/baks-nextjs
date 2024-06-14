@@ -44,7 +44,7 @@ export const createTournament = async (data: TournamentFormType) => {
 };
 
 export const updateTournament = async (
-  id: number,
+  id: TournamentType["id"],
   data: TournamentFormType,
 ) => {
   const formData = createFormData({

@@ -1,15 +1,17 @@
+import { UserType } from "@/src/entities/users";
+
 export interface SignInType {
-  email: string;
+  email: UserType["role"];
   password: string;
 }
 
 export interface SignUpType {
-  email: string;
+  email: UserType["email"];
   imageFile: File;
   password: string;
   repeatPassword: string;
-  nickname: string;
-  name: string;
+  nickname: UserType["nickname"];
+  name: UserType["name"];
   role: string;
 }
 

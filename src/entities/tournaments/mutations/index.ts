@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { createTournament, deleteTournament, updateTournament } from "../api";
-import type { TournamentFormType } from "../types";
+import type { TournamentFormType, TournamentType } from "../types";
 
 export const useCreateTournament = () => {
   const queryClient = useQueryClient();
@@ -18,8 +18,13 @@ export const useUpdateTournament = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, data }: { id: number; data: TournamentFormType }) =>
-      updateTournament(id, data),
+    mutationFn: ({
+      id,
+      data,
+    }: {
+      id: TournamentType["id"];
+      data: TournamentFormType;
+    }) => updateTournament(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tournaments"] });
     },

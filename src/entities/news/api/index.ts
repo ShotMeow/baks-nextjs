@@ -48,7 +48,7 @@ export const createNews = async (data: NewsFormType) => {
   return response.json();
 };
 
-export const updateNews = async (id: number, data: NewsFormType) => {
+export const updateNews = async (id: NewsType["id"], data: NewsFormType) => {
   const formData = createFormData({
     ...data,
     tags: data.tags?.map((tag) => tag.id),

@@ -8,7 +8,7 @@ const TagsList: FC = () => {
   const [search, setSearch] = useState<string>("");
   const debounceSearch = useDebounce(search, 500);
 
-  const { data } = useGetProducts({
+  const { data: products } = useGetProducts({
     search: debounceSearch,
   });
 
@@ -19,7 +19,9 @@ const TagsList: FC = () => {
         setValue={setSearch}
         placeholder="Найти товары"
       />
-      {data?.map((product) => <Product product={product} key={product.id} />)}
+      {products?.map((product) => (
+        <Product product={product} key={product.id} />
+      ))}
     </ul>
   );
 };

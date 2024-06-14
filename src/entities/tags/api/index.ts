@@ -1,7 +1,7 @@
 import { API_URL } from "@/src/shared/constants";
 import { createFormData } from "@/src/shared/utils/createFormData";
 
-import type { TagsFormType } from "../types";
+import type { TagsFormType, TagType } from "../types";
 
 export const getTags = async ({ search }: { search?: string }) => {
   const queryParams = new URLSearchParams();
@@ -12,7 +12,7 @@ export const getTags = async ({ search }: { search?: string }) => {
   return response.json();
 };
 
-export const getTagById = async (id: number) => {
+export const getTagById = async (id: TagType["id"]) => {
   const response = await fetch(`${API_URL}/tags/${id}`);
   return response.json();
 };
@@ -26,7 +26,7 @@ export const createTag = async (data: TagsFormType) => {
   return response.json();
 };
 
-export const updateTag = async (id: number, data: TagsFormType) => {
+export const updateTag = async (id: TagType["id"], data: TagsFormType) => {
   const formData = createFormData(data);
   const response = await fetch(`${API_URL}/tags/${id}/edit`, {
     method: "PATCH",
@@ -35,7 +35,7 @@ export const updateTag = async (id: number, data: TagsFormType) => {
   return response.json();
 };
 
-export const deleteTag = async (id: number) => {
+export const deleteTag = async (id: TagType["id"]) => {
   const response = await fetch(`${API_URL}/tags/${id}/delete`, {
     method: "DELETE",
   });

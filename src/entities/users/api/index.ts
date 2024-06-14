@@ -1,9 +1,14 @@
 import { API_URL } from "@/src/shared/constants";
 
-import type { UpdateUserType, UserType } from "../types";
+import type { UserFormType, UserType } from "../types";
+import { createFormData } from "@/src/shared/utils/createFormData";
 
-export const getUsers = async () => {
-  const response = await fetch(`${API_URL}/users`);
+export const getUsers = async ({ search }: { search?: string }) => {
+  const queryParams = new URLSearchParams();
+
+  search && queryParams.append("search", String(search));
+
+  const response = await fetch(`${API_URL}/users?${queryParams}`);
   return response.json();
 };
 
@@ -12,13 +17,12 @@ export const getUserById = async (id: UserType["id"]) => {
   return response.json();
 };
 
-export const updateUser = async (user: UpdateUserType) => {
-  const response = await fetch(`${API_URL}/users/${user.id}/edit`, {
+export const updateUser = async (id: UserType["id"], data: UserFormType) => {
+  const formData = createFormData(data);
+
+  const response = await fetch(`${API_URL}/users/${id}/edit`, {
     method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(user),
+    body: formData,
   });
   return response.json();
 };

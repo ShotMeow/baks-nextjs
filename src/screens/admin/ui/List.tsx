@@ -6,6 +6,7 @@ import ProductsList from "./lists/ProductsList";
 import NewsList from "./lists/NewsList";
 import TeamsList from "./lists/TeamsList";
 import TournamentsList from "./lists/TournamentsList";
+import PlayersList from "./lists/PlayersList";
 
 interface Props {
   type: string;
@@ -20,6 +21,7 @@ const List: FC<Props> = ({ type }) => {
       {type === "news" && <NewsList />}
       {type === "teams" && <TeamsList />}
       {type === "tournaments" && <TournamentsList />}
+      {type === "players" && <PlayersList />}
     </div>
   );
 };

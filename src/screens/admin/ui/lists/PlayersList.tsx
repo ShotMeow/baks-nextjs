@@ -1,14 +1,15 @@
-import { FC, useState } from "react";
-import { useGetStreams } from "@/src/entities/streams";
-import Stream from "../units/Stream";
+import { type FC, useState } from "react";
 import SearchInput from "@/src/shared/ui/SearchInput";
 import { useDebounce } from "@/src/shared/hooks/useDebounce";
 
-const TagsList: FC = () => {
+import Player from "../units/Player";
+import { useGetUsers } from "@/src/entities/users";
+
+const PlayersList: FC = () => {
   const [search, setSearch] = useState<string>("");
   const debounceSearch = useDebounce(search, 500);
 
-  const { data: streams } = useGetStreams({
+  const { data: players } = useGetUsers({
     search: debounceSearch,
   });
 
@@ -17,11 +18,11 @@ const TagsList: FC = () => {
       <SearchInput
         value={search}
         setValue={setSearch}
-        placeholder="Найти трансляции"
+        placeholder="Найти игроков"
       />
-      {streams?.map((stream) => <Stream stream={stream} key={stream.id} />)}
+      {players?.map((player) => <Player player={player} key={player.id} />)}
     </ul>
   );
 };
 
-export default TagsList;
+export default PlayersList;

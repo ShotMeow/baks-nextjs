@@ -25,4 +25,8 @@ export const tabs: TabType[] = [
     name: "Товары",
     type: "products",
   },
+  {
+    name: "Игроки",
+    type: "players",
+  },
 ];

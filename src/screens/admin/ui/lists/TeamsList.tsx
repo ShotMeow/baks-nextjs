@@ -8,7 +8,7 @@ const TagsList: FC = () => {
   const [search, setSearch] = useState<string>("");
   const debounceSearch = useDebounce(search, 500);
 
-  const { data } = useGetTeams({
+  const { data: teams } = useGetTeams({
     search: debounceSearch,
   });
 
@@ -19,7 +19,7 @@ const TagsList: FC = () => {
         setValue={setSearch}
         placeholder="Найти команды"
       />
-      {data?.map((team) => <Team team={team} key={team.id} />)}
+      {teams?.map((team) => <Team team={team} key={team.id} />)}
     </ul>
   );
 };

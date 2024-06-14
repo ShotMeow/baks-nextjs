@@ -48,7 +48,7 @@ const TeamsForm: FC<Props> = ({ onClose, team, type }) => {
   const { mutate: createTeamMutation } = useCreateTeam();
   const { mutate: updateTeamMutation } = useUpdateTeam();
 
-  const { data: players } = useGetUsers();
+  const { data: players } = useGetUsers({});
   const { data: tournaments } = useGetTournaments({});
 
   const onSubmit: SubmitHandler<TeamFormType> = (data) => {

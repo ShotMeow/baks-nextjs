@@ -1,7 +1,7 @@
 import { API_URL } from "@/src/shared/constants";
 import { createFormData } from "@/src/shared/utils/createFormData";
 
-import type { StreamFormType } from "../types";
+import type { StreamFormType, StreamType } from "../types";
 
 export const getStreams = async ({
   search,
@@ -19,7 +19,7 @@ export const getStreams = async ({
   return response.json();
 };
 
-export const getStreamById = async (id: number) => {
+export const getStreamById = async (id: StreamType["id"]) => {
   const response = await fetch(`${API_URL}/streams/${id}`);
   return response.json();
 };
@@ -34,7 +34,10 @@ export const createStream = async (data: StreamFormType) => {
   return response.json();
 };
 
-export const updateStream = async (id: number, data: StreamFormType) => {
+export const updateStream = async (
+  id: StreamType["id"],
+  data: StreamFormType,
+) => {
   const formData = createFormData(data);
 
   const response = await fetch(`${API_URL}/streams/${id}/edit`, {
@@ -44,7 +47,7 @@ export const updateStream = async (id: number, data: StreamFormType) => {
   return response.json();
 };
 
-export const deleteStream = async (id: number) => {
+export const deleteStream = async (id: StreamType["id"]) => {
   const response = await fetch(`${API_URL}/streams/${id}/delete`, {
     method: "DELETE",
   });

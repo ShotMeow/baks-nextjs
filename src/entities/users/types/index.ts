@@ -14,4 +14,7 @@ export interface UserType {
   createdAt: Date;
 }
 
-export interface UpdateUserType extends Partial<UserType> {}
+export interface UserFormType
+  extends Omit<UserType, "id" | "pictureUrl" | "role" | "createdAt"> {
+  role: string;
+}

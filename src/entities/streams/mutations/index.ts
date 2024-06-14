@@ -18,8 +18,13 @@ export const useUpdateStream = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, data }: { id: number; data: StreamFormType }) =>
-      updateStream(id, data),
+    mutationFn: ({
+      id,
+      data,
+    }: {
+      id: StreamType["id"];
+      data: StreamFormType;
+    }) => updateStream(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["streams"] });
     },

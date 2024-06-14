@@ -129,7 +129,7 @@ const SignUp: FC<Props> = ({ onClose }) => {
           <span className="text-sm/6 font-medium text-white">Имя</span>
           <TextInput
             {...register("name", {
-              required: "Никнейм обязателен для заполнения",
+              required: "Имя обязательно для заполнения",
             })}
             errorPlacement="inside"
             validationState={errors?.name && "invalid"}

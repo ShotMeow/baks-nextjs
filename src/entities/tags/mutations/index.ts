@@ -18,7 +18,7 @@ export const useUpdateTag = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, data }: { id: number; data: TagsFormType }) =>
+    mutationFn: ({ id, data }: { id: TagType["id"]; data: TagsFormType }) =>
       updateTag(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tags"] });

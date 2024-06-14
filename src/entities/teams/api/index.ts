@@ -40,7 +40,7 @@ export const createTeam = async (data: TeamFormType) => {
   return response.json();
 };
 
-export const updateTeam = async (id: number, data: TeamFormType) => {
+export const updateTeam = async (id: TeamType["id"], data: TeamFormType) => {
   const formData = createFormData({
     ...data,
     players: data.players.map((player) => player.id),

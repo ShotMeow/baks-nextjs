@@ -18,8 +18,13 @@ export const useUpdateProduct = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, data }: { id: number; data: ProductFormType }) =>
-      updateProduct(id, data),
+    mutationFn: ({
+      id,
+      data,
+    }: {
+      id: ProductType["id"];
+      data: ProductFormType;
+    }) => updateProduct(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
     },

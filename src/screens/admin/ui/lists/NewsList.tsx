@@ -8,7 +8,7 @@ const TagsList: FC = () => {
   const [search, setSearch] = useState<string>("");
   const debounceSearch = useDebounce(search, 500);
 
-  const { data } = useGetNews({
+  const { data: news } = useGetNews({
     search: debounceSearch,
   });
 
@@ -19,7 +19,7 @@ const TagsList: FC = () => {
         setValue={setSearch}
         placeholder="Найти новости"
       />
-      {data?.map((news) => <News news={news} key={news.id} />)}
+      {news?.map((post) => <News news={post} key={post.id} />)}
     </ul>
   );
 };
