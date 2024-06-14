@@ -17,9 +17,9 @@ const readexPro = Readex_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "Phygital Basketball",
+  title: "Baks.gg",
   description:
-    "Игроки со всего мира собираются, чтобы продемонстрировать свои уникальные навыки и техники в фиджитал-баскетболе, соревнуясь за звание мастера мяча.",
+    "Игроки со всего мира собираются, чтобы продемонстрировать свои уникальные навыки и техники в киберспорте, соревнуясь за звание мастера.",
 };
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {

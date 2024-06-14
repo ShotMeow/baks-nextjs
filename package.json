@@ -1,11 +1,11 @@
 {
-  "name": "phygital-nextjs",
-  "description": "Frontend release for Phygital Basketball on Next.js",
+  "name": "baks-nextjs",
+  "description": "Frontend release for Baks.gg on Next.js",
   "author": "Kai Goldman",
   "version": "0.9.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ShotMeow/phygital-nextjs.git"
+    "url": "https://github.com/ShotMeow/baks-nextjs.git"
   },
   "private": false,
   "scripts": {
