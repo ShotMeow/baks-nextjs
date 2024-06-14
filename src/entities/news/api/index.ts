@@ -54,7 +54,7 @@ export const updateNews = async (id: number, data: NewsFormType) => {
     tags: data.tags?.map((tag) => tag.id),
   });
 
-  const response = await fetch(`${API_URL}/news/${id}/update`, {
+  const response = await fetch(`${API_URL}/news/${id}/edit`, {
     method: "PATCH",
     body: formData,
   });

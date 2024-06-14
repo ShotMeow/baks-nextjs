@@ -27,7 +27,7 @@ export const getStreamById = async (id: number) => {
 export const createStream = async (data: StreamFormType) => {
   const formData = createFormData(data);
 
-  const response = await fetch(`${API_URL}/streams/create`, {
+  const response = await fetch(`${API_URL}/streams/edit`, {
     method: "POST",
     body: formData,
   });
@@ -37,7 +37,7 @@ export const createStream = async (data: StreamFormType) => {
 export const updateStream = async (id: number, data: StreamFormType) => {
   const formData = createFormData(data);
 
-  const response = await fetch(`${API_URL}/streams/${id}/update`, {
+  const response = await fetch(`${API_URL}/streams/${id}/edit`, {
     method: "PATCH",
     body: formData,
   });

@@ -52,7 +52,7 @@ export const updateTournament = async (
     teams: data.teams?.map((team) => team.id),
     tags: data.tags?.map((tag) => tag.id),
   });
-  const response = await fetch(`${API_URL}/tournaments/${id}/update`, {
+  const response = await fetch(`${API_URL}/tournaments/${id}/edit`, {
     method: "PATCH",
     body: formData,
   });

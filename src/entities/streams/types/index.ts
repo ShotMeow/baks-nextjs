@@ -1,9 +1,9 @@
 export interface StreamType {
   id: number;
   title: string;
-  description: string;
+  description?: string;
   channel: string;
-  posterUrl: string;
+  posterUrl?: string;
   createdAt: Date;
 }
 

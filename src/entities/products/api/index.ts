@@ -35,7 +35,7 @@ export const createProduct = async (data: ProductFormType) => {
 
 export const updateProduct = async (id: number, data: ProductFormType) => {
   const formData = createFormData(data);
-  const response = await fetch(`${API_URL}/products/${id}/update`, {
+  const response = await fetch(`${API_URL}/products/${id}/edit`, {
     method: "PATCH",
     body: formData,
   });

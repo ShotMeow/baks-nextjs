@@ -5,7 +5,7 @@ export interface NewsType {
   title: string;
   description: string;
   body: string;
-  artworkUrl: string;
+  artworkUrl?: string;
   views: number;
   tags: TagType[];
   updatedAt: Date;

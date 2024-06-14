@@ -4,7 +4,7 @@ import type { TournamentType } from "@/src/entities/tournaments";
 export interface TeamType {
   id: number;
   name: string;
-  body: string;
+  body?: string;
   winsPercent?: number;
   gamesCount?: number;
   logoUrl?: string;

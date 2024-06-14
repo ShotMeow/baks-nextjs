@@ -13,7 +13,7 @@ export const getUserById = async (id: UserType["id"]) => {
 };
 
 export const updateUser = async (user: UpdateUserType) => {
-  const response = await fetch(`${API_URL}/users/${user.id}/update`, {
+  const response = await fetch(`${API_URL}/users/${user.id}/edit`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

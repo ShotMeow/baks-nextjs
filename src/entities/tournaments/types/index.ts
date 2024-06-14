@@ -5,15 +5,16 @@ export interface TournamentType {
   id: number;
   name: string;
   description: string;
-  body: string;
-  prize: number;
-  mode: string;
-  type: string;
-  artworkUrl: string;
+  body?: string;
+  prize?: number;
+  mode?: string;
+  type?: string;
+  artworkUrl?: string;
   teams: TeamType[];
-  address: string;
+  address?: string;
   tags: TagType[];
   eventDate?: string;
+  gridUrl?: string;
   createdAt: Date;
 }
 

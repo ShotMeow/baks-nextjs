@@ -28,7 +28,7 @@ export const createTag = async (data: TagsFormType) => {
 
 export const updateTag = async (id: number, data: TagsFormType) => {
   const formData = createFormData(data);
-  const response = await fetch(`${API_URL}/tags/${id}/update`, {
+  const response = await fetch(`${API_URL}/tags/${id}/edit`, {
     method: "PATCH",
     body: formData,
   });
