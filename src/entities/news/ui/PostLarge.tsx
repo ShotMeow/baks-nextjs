@@ -7,6 +7,7 @@ import { API_URL } from "@/src/shared/constants";
 import { isNewPost } from "../utils/isNewPost";
 import NewChip from "./NewChip";
 import ViewsChip from "./ViewsChip";
+import { TagChip } from "@/src/entities/tags";
 
 interface Props {
   post: NewsType;
@@ -15,7 +16,7 @@ interface Props {
 const PostLarge: FC<Props> = ({ post }) => {
   return (
     <Link className="sm:col-span-2 lg:col-span-4" href={`/news/${post.id}`}>
-      <article className="relative grid h-full grid-cols-1 justify-between bg-zinc-900 lg:grid-cols-2">
+      <article className="relative grid h-full grid-cols-1 justify-between bg-white lg:grid-cols-2 dark:bg-zinc-900">
         <div className="relative max-h-[200px] min-h-[200px] md:max-h-[400px] md:min-h-[400px]">
           <Image
             className="size-full object-cover p-2"
@@ -43,12 +44,7 @@ const PostLarge: FC<Props> = ({ post }) => {
           </div>
           <div className="mt-6 flex flex-wrap items-center gap-2 text-xs">
             {post.tags.map((tag) => (
-              <span
-                key={tag.id}
-                className="mr-2 mt-2 rounded-full bg-white/5 px-4 py-2 uppercase text-zinc-400"
-              >
-                {tag.name}
-              </span>
+              <TagChip tag={tag} key={tag.id} />
             ))}
           </div>
         </div>

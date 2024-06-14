@@ -18,7 +18,7 @@ const Team: FC<Props> = ({ slug }) => {
     <main>
       {team && (
         <article>
-          <header className="bg-white/10">
+          <header className="bg-white dark:bg-white/10">
             <div className="container flex flex-wrap items-center justify-between gap-4 py-3">
               <div className="flex items-center gap-4">
                 {team.logoUrl && (
@@ -35,21 +35,21 @@ const Team: FC<Props> = ({ slug }) => {
               </div>
               <div className="flex flex-wrap items-center gap-4">
                 {team.winsPercent ? (
-                  <p className="bg-white/5 p-2">
+                  <p className="bg-black/5 p-2 dark:bg-white/5">
                     Процент побед | {team.winsPercent}%
                   </p>
                 ) : (
                   ""
                 )}
                 {team.gamesCount ? (
-                  <p className="bg-white/5 p-2">
+                  <p className="bg-black/5 p-2 dark:bg-white/5">
                     Количество игр | {team.gamesCount}
                   </p>
                 ) : (
                   ""
                 )}
                 {team.lastMatch && (
-                  <p className="bg-white/5 p-2">
+                  <p className="bg-black/5 p-2 dark:bg-white/5">
                     Последний матч |{" "}
                     {new Date(team.lastMatch).toLocaleDateString("ru", {
                       year: "numeric",
@@ -67,7 +67,7 @@ const Team: FC<Props> = ({ slug }) => {
                 <PlayerCard player={player} key={player.id} />
               ))}
             </div>
-            <div className="prose prose-zinc prose-invert my-6 max-w-none">
+            <div className="prose prose-zinc prose-invert my-6 max-w-none text-black dark:text-inherit">
               <ReactMarkdown>{team.body}</ReactMarkdown>
             </div>
           </div>

@@ -40,7 +40,7 @@ const SignIn: FC<Props> = ({ onClose }) => {
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <h3 className="text-xl font-bold">Авторизация</h3>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">E-mail</span>
+        <span className="text-sm/6 font-medium">E-mail</span>
         <TextInput
           {...register("email", {
             required: "E-mail обязателен для заполнения",
@@ -54,11 +54,11 @@ const SignIn: FC<Props> = ({ onClose }) => {
           errorMessage={errors?.email?.message}
           type="email"
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Пароль</span>
+        <span className="text-sm/6 font-medium">Пароль</span>
         <TextInput
           {...register("password", {
             required: "Пароль обязателен для заполнения",
@@ -72,7 +72,7 @@ const SignIn: FC<Props> = ({ onClose }) => {
           errorMessage={errors?.password?.message}
           type="password"
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <div className="mt-4 flex flex-col gap-4 sm:flex-row">

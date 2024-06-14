@@ -1,7 +1,21 @@
-import type { FC, PropsWithChildren } from "react";
+import type { FC, HTMLAttributes, PropsWithChildren } from "react";
+import classNames from "classnames";
 
-const Subtitle: FC<PropsWithChildren> = ({ children }) => {
-  return <h2 className="text-3xl font-semibold md:text-5xl">{children}</h2>;
+interface Props extends HTMLAttributes<HTMLHeadingElement> {}
+
+const Subtitle: FC<PropsWithChildren<Props>> = ({
+  children,
+  className,
+  ...props
+}) => {
+  return (
+    <h2
+      className={classNames("text-3xl font-semibold md:text-5xl", className)}
+      {...props}
+    >
+      {children}
+    </h2>
+  );
 };
 
 export default Subtitle;

@@ -19,7 +19,7 @@ const AuthModal: FC<Props> = ({ open, onClose }) => {
       open={open}
       onClose={() => onClose}
     >
-      <div className="rounded-xl border-2 border-white/10 bg-black p-6">
+      <div className="rounded-xl border-2 border-white/10 bg-white p-6 dark:bg-black">
         {modalType === "sign-in" && <SignIn onClose={onClose} />}
         {modalType === "sign-up" && <SignUp onClose={onClose} />}
         <Actions modalType={modalType} setModalType={setModalType} />

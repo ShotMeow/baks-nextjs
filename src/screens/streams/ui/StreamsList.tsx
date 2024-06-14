@@ -23,8 +23,8 @@ const StreamsList: FC<Props> = ({
           <article
             className={classNames(
               {
-                "bg-white/10": activeStreamId === stream.id,
-                "bg-white/5": activeStreamId !== stream.id,
+                "bg-black/10 dark:bg-white/10": activeStreamId === stream.id,
+                "bg-black/5 dark:bg-white/5": activeStreamId !== stream.id,
               },
               "p-4 flex flex-col items-start text-start justify-between gap-6 h-full transition-all",
             )}

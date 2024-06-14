@@ -57,7 +57,7 @@ const SignUp: FC<Props> = ({ onClose }) => {
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <h3 className="text-xl font-bold">Регистрация</h3>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">E-mail</span>
+        <span className="text-sm/6 font-medium">E-mail</span>
         <TextInput
           {...register("email", {
             required: "E-mail обязателен для заполнения",
@@ -71,11 +71,11 @@ const SignUp: FC<Props> = ({ onClose }) => {
           errorMessage={errors?.email?.message}
           type="email"
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Пароль</span>
+        <span className="text-sm/6 font-medium">Пароль</span>
         <TextInput
           {...register("password", {
             required: "Пароль обязателен для заполнения",
@@ -89,11 +89,11 @@ const SignUp: FC<Props> = ({ onClose }) => {
           errorMessage={errors?.password?.message}
           type="password"
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Пароль</span>
+        <span className="text-sm/6 font-medium">Пароль</span>
         <TextInput
           {...register("repeatPassword", {
             required: "Подтверждение пароля обязательно для заполнения",
@@ -108,12 +108,12 @@ const SignUp: FC<Props> = ({ onClose }) => {
           errorMessage={errors?.repeatPassword?.message}
           type="password"
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <div className="flex flex-wrap gap-4">
         <label className="flex w-full flex-col gap-2 sm:w-auto">
-          <span className="text-sm/6 font-medium text-white">Никнейм</span>
+          <span className="text-sm/6 font-medium">Никнейм</span>
           <TextInput
             {...register("nickname", {
               required: "Никнейм обязателен для заполнения",
@@ -122,11 +122,11 @@ const SignUp: FC<Props> = ({ onClose }) => {
             validationState={errors?.nickname && "invalid"}
             errorMessage={errors?.nickname?.message}
             view="clear"
-            className="rounded-md bg-white/5 px-2 py-1"
+            className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
           />
         </label>
         <label className="flex w-full flex-col gap-2 sm:w-auto">
-          <span className="text-sm/6 font-medium text-white">Имя</span>
+          <span className="text-sm/6 font-medium">Имя</span>
           <TextInput
             {...register("name", {
               required: "Имя обязательно для заполнения",
@@ -135,18 +135,18 @@ const SignUp: FC<Props> = ({ onClose }) => {
             validationState={errors?.name && "invalid"}
             errorMessage={errors?.name?.message}
             view="clear"
-            className="rounded-md bg-white/5 px-2 py-1"
+            className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
           />
         </label>
       </div>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Роль</span>
+        <span className="text-sm/6 font-medium">Роль</span>
         <Controller
           render={({ field: { value, ...field } }) => (
             <Select
               {...field}
               filterable
-              className="rounded-md bg-white/5 px-2 py-1"
+              className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
               onUpdate={(value) => setValue("role", value[0])}
             >
               <Select.Option value="tank">Танк</Select.Option>

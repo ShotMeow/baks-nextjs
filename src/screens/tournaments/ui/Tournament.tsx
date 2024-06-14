@@ -90,8 +90,8 @@ const Tournament: FC<Props> = ({ slug }) => {
                   </Button>
                 </div>
               </div>
-              <div className="space-y-16 bg-black py-4 md:p-10">
-                <div className="prose prose-zinc prose-invert max-w-none">
+              <div className="space-y-16 bg-light py-4 md:p-10 dark:bg-black">
+                <div className="prose prose-zinc prose-invert max-w-none text-black dark:text-inherit">
                   <ReactMarkdown>{tournament.body}</ReactMarkdown>
                 </div>
                 {tournament.teams.length !== 0 && (
@@ -106,8 +106,8 @@ const Tournament: FC<Props> = ({ slug }) => {
                       <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                         {tournament.teams.map((team) => (
                           <article className="group" key={team.id}>
-                            <div className="flex flex-col">
-                              <div className="relative flex h-48 items-center justify-center bg-white/10 p-4">
+                            <div className="flex flex-col bg-white dark:bg-transparent">
+                              <div className="relative flex h-48 items-center justify-center bg-white p-4 dark:bg-white/10">
                                 {team?.logoUrl && (
                                   <Image
                                     src={`${API_URL}/images/${team.logoUrl}`}
@@ -122,7 +122,7 @@ const Tournament: FC<Props> = ({ slug }) => {
                                   ))}
                                 </ul>
                               </div>
-                              <h4 className="bg-white/5 p-4 text-xl transition-all group-hover:text-yellow">
+                              <h4 className="bg-white/5 p-4 text-xl transition-all group-hover:text-green dark:group-hover:text-yellow">
                                 {team.name}
                               </h4>
                             </div>

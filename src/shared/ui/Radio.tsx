@@ -14,7 +14,7 @@ const Radio: FC<PropsWithChildren<Props>> = ({
     <label
       className={classNames(
         {
-          "text-white": isActive,
+          "text-black dark:text-white": isActive,
           "text-zinc-400": !isActive,
         },
         "flex items-center gap-2 transition-all",
@@ -25,7 +25,7 @@ const Radio: FC<PropsWithChildren<Props>> = ({
           {
             "bg-yellow": isActive,
           },
-          "size-6 rounded-full border-2 border-white/50 flex items-center justify-center p-2 transition-all duration-500",
+          "size-6 rounded-full border-2 border-black/30 dark:border-white/50 flex items-center justify-center p-2 transition-all duration-500",
         )}
         {...props}
       >

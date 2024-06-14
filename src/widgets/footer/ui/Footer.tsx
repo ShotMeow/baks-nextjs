@@ -6,7 +6,7 @@ import Navigation from "./Navigation";
 
 const Footer: FC = () => {
   return (
-    <footer className="bg-yellow text-black">
+    <footer className="bg-green text-white dark:bg-yellow dark:text-black">
       <div className="container">
         <Navigation />
         <div className="flex flex-col items-center justify-between gap-10 py-14 xl:flex-row xl:gap-20">

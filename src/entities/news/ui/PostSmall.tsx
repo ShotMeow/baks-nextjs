@@ -7,6 +7,7 @@ import type { NewsType } from "../types";
 import { isNewPost } from "../utils/isNewPost";
 import NewChip from "./NewChip";
 import ViewsChip from "./ViewsChip";
+import { TagChip } from "@/src/entities/tags";
 
 interface Props {
   post: NewsType;
@@ -16,7 +17,7 @@ const PostSmall: FC<Props> = ({ post }) => {
   return (
     <Link href={`/news/${post.id}`}>
       <article
-        className="relative flex h-full flex-col justify-between bg-zinc-900"
+        className="relative flex h-full flex-col justify-between bg-white dark:bg-zinc-900"
         key={post.id}
       >
         <div className="relative max-h-[200px] min-h-[200px] w-full">
@@ -43,12 +44,7 @@ const PostSmall: FC<Props> = ({ post }) => {
           </div>
           <div className="mt-6 flex flex-wrap items-center gap-2 text-xs">
             {post.tags.map((tag) => (
-              <span
-                key={tag.id}
-                className="mr-2 mt-2 rounded-full bg-white/5 px-4 py-2 uppercase text-zinc-400"
-              >
-                {tag.name}
-              </span>
+              <TagChip key={tag.id} tag={tag} />
             ))}
           </div>
         </div>

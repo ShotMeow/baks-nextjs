@@ -57,7 +57,7 @@ const StreamsForm: FC<Props> = ({ onClose, stream, type }) => {
         {type === "create" ? "Новая трансляция" : "Редактировать трансляцию"}
       </h4>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Название</span>
+        <span className="text-sm/6 font-medium">Название</span>
         <TextInput
           {...register("title", {
             required: "Название трансляции не может быть пустым",
@@ -66,19 +66,19 @@ const StreamsForm: FC<Props> = ({ onClose, stream, type }) => {
           validationState={errors?.title && "invalid"}
           errorMessage={errors?.title?.message}
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Описание</span>
+        <span className="text-sm/6 font-medium">Описание</span>
         <TextArea
           {...register("description")}
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Twitch-канал</span>
+        <span className="text-sm/6 font-medium">Twitch-канал</span>
         <TextInput
           {...register("channel", {
             required: "Название канала не может быть пустым",
@@ -87,11 +87,11 @@ const StreamsForm: FC<Props> = ({ onClose, stream, type }) => {
           validationState={errors?.channel && "invalid"}
           errorMessage={errors?.channel?.message}
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Постер</span>
+        <span className="text-sm/6 font-medium">Постер</span>
         <Controller
           render={({ field: { value, onChange, ...field } }) => (
             <input
@@ -103,7 +103,7 @@ const StreamsForm: FC<Props> = ({ onClose, stream, type }) => {
               }}
               type="file"
               accept="image/*"
-              className="rounded-md bg-white/5 px-2 py-1"
+              className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
             />
           )}
           name="imageFile"

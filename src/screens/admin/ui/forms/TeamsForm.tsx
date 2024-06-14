@@ -76,7 +76,7 @@ const TeamsForm: FC<Props> = ({ onClose, team, type }) => {
           : `Редактировать команду ${team?.name}`}
       </h4>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Название</span>
+        <span className="text-sm/6 font-medium">Название</span>
         <TextInput
           {...register("name", {
             required: "Название команды не может быть пустым",
@@ -85,11 +85,11 @@ const TeamsForm: FC<Props> = ({ onClose, team, type }) => {
           validationState={errors?.name && "invalid"}
           errorMessage={errors?.name?.message}
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Описание</span>
+        <span className="text-sm/6 font-medium">Описание</span>
         <Controller
           render={({ field }) => (
             <MDEditor
@@ -104,7 +104,7 @@ const TeamsForm: FC<Props> = ({ onClose, team, type }) => {
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Игроки</span>
+        <span className="text-sm/6 font-medium">Игроки</span>
         {players && (
           <Controller
             render={({ field: { value, ...field } }) => (
@@ -112,7 +112,8 @@ const TeamsForm: FC<Props> = ({ onClose, team, type }) => {
                 {...field}
                 multiple
                 filterable
-                className="rounded-md bg-white/5 px-2 py-1"
+                className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
+                popupClassName="text-white"
                 defaultValue={value?.map((player) => String(player.id))}
                 onUpdate={(value) =>
                   setValue(
@@ -136,7 +137,7 @@ const TeamsForm: FC<Props> = ({ onClose, team, type }) => {
         )}
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Турниры</span>
+        <span className="text-sm/6 font-medium">Турниры</span>
         {tournaments && (
           <Controller
             render={({ field: { value, ...field } }) => (
@@ -144,7 +145,8 @@ const TeamsForm: FC<Props> = ({ onClose, team, type }) => {
                 {...field}
                 multiple
                 filterable
-                className="rounded-md bg-white/5 px-2 py-1"
+                className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
+                popupClassName="text-white"
                 defaultValue={value?.map((tournament) => String(tournament.id))}
                 onUpdate={(value) =>
                   setValue(
@@ -171,29 +173,29 @@ const TeamsForm: FC<Props> = ({ onClose, team, type }) => {
         )}
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Процент побед</span>
+        <span className="text-sm/6 font-medium">Процент побед</span>
         <TextInput
           {...register("winsPercent", {
             valueAsNumber: true,
           })}
           type="number"
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Количество игр</span>
+        <span className="text-sm/6 font-medium">Количество игр</span>
         <TextInput
           {...register("gamesCount", {
             valueAsNumber: true,
           })}
           view="clear"
           type="number"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Логотип</span>
+        <span className="text-sm/6 font-medium">Логотип</span>
         <Controller
           render={({ field: { value, onChange, ...field } }) => (
             <input
@@ -205,7 +207,7 @@ const TeamsForm: FC<Props> = ({ onClose, team, type }) => {
               }}
               type="file"
               accept="image/*"
-              className="rounded-md bg-white/5 px-2 py-1"
+              className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
             />
           )}
           name="imageFile"
@@ -224,9 +226,7 @@ const TeamsForm: FC<Props> = ({ onClose, team, type }) => {
         </div>
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">
-          Дата последнего матча
-        </span>
+        <span className="text-sm/6 font-medium">Дата последнего матча</span>
         <Controller
           render={() => (
             <DatePicker
@@ -236,7 +236,7 @@ const TeamsForm: FC<Props> = ({ onClose, team, type }) => {
               view="clear"
               format="DD.MM.YYYY"
               defaultValue={dateTimeParse(team?.lastMatch)}
-              className="rounded-md bg-white/5 px-2 py-1"
+              className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
             />
           )}
           name="lastMatch"

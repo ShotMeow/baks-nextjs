@@ -18,7 +18,7 @@ body {
 }
 
 body {
-  @apply bg-black text-white;
+  @apply bg-light dark:bg-black dark:text-white;
 }
 
 main {
@@ -42,7 +42,7 @@ input:-webkit-autofill:focus {
 /* Брендирование выделения текста */
 
 ::selection {
-  @apply bg-yellow text-black;
+  @apply bg-green text-white dark:bg-yellow dark:text-black;
 }
 
 /* Стилизация скроллбара */
@@ -57,7 +57,7 @@ input:-webkit-autofill:focus {
 }
 
 *::-webkit-scrollbar-thumb {
-  @apply bg-yellow;
+  @apply bg-green dark:bg-yellow;
   border-radius: 0;
 }
 

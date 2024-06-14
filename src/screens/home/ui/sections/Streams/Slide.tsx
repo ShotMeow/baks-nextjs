@@ -95,7 +95,7 @@ const Slide: FC<Props> = ({ posterUrl, channel, description, title }) => {
           {
             "opacity-0": isPlaying,
           },
-          "absolute inset-x-4 bottom-4 lg:inset-x-14 lg:bottom-14 transition-all duration-500",
+          "absolute inset-x-4 bottom-4 lg:inset-x-14 lg:bottom-14 transition-all duration-500 text-white dark:text-black",
         )}
       >
         <h4 className="line-clamp-1 font-semibold sm:text-3xl">{title}</h4>

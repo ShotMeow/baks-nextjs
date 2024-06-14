@@ -15,7 +15,7 @@ const Pagination: FC<Props> = ({ streams, activeIndex }) => {
         <div
           className={classNames(
             {
-              "bg-yellow h-4": index === activeIndex,
+              "bg-lilac dark:bg-yellow h-4": index === activeIndex,
               "bg-zinc-700/50 h-2": index !== activeIndex,
             },
             "w-2 transition-all",

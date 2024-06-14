@@ -15,11 +15,12 @@ const Product: FC<Props> = ({ slug }) => {
   const router = useRouter();
 
   const { data: product } = useGetProductById(+slug);
+
   return (
     <main className="container">
       {product && (
         <div className="grid lg:grid-cols-2 lg:gap-10">
-          <div className="bg-white/5 p-6">
+          <div className="bg-white p-6 dark:bg-white/5">
             <Image
               src={`${API_URL}/images/${product.pictureUrl}`}
               width={400}
@@ -44,7 +45,9 @@ const Product: FC<Props> = ({ slug }) => {
               >
                 Купить
               </Button>
-              <p className="text-xl text-yellow">{product.price} рублей</p>
+              <p className="text-xl text-green dark:text-yellow">
+                {product.price} рублей
+              </p>
             </div>
           </div>
         </div>

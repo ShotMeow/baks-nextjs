@@ -43,7 +43,7 @@ const Login: FC<Props> = ({ setIsLogin }) => {
       >
         <div className="flex items-center gap-4">
           <label className="flex flex-col gap-2">
-            <span className="text-sm/6 font-medium text-white">Логин</span>
+            <span className="text-sm/6 font-medium">Логин</span>
             <TextInput
               {...register("login", {
                 required: "Логин обязателен для заполнения",
@@ -52,11 +52,11 @@ const Login: FC<Props> = ({ setIsLogin }) => {
               validationState={errors?.login && "invalid"}
               errorMessage={errors?.login?.message}
               view="clear"
-              className="rounded-md bg-white/5 px-2 py-1"
+              className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
             />
           </label>
           <label className="flex flex-col gap-2">
-            <span className="text-sm/6 font-medium text-white">Пароль</span>
+            <span className="text-sm/6 font-medium">Пароль</span>
             <TextInput
               {...register("password", {
                 required: "Пароль обязателен для заполнения",
@@ -66,7 +66,7 @@ const Login: FC<Props> = ({ setIsLogin }) => {
               errorMessage={errors?.password?.message}
               type="password"
               view="clear"
-              className="rounded-md bg-white/5 px-2 py-1"
+              className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
             />
           </label>
         </div>

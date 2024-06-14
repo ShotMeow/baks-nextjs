@@ -27,7 +27,7 @@ const Slider: FC = () => {
       {news ? (
         news?.map((post) => (
           <SwiperSlide
-            className="bg-white/5 !transition-all !duration-700 lg:!w-[350px] hover:lg:!w-[600px]"
+            className="!transition-all !duration-700 lg:!w-[350px] hover:lg:!w-[600px]"
             key={post.id}
           >
             <Slide {...post} />

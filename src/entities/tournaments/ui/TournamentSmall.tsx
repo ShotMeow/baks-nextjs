@@ -14,7 +14,7 @@ interface Props {
 const TournamentSmall: FC<Props> = ({ tournament }) => {
   return (
     <Link key={tournament.id} href={`/tournaments/${tournament.id}`}>
-      <article className="flex h-full flex-col bg-zinc-900">
+      <article className="flex h-full flex-col bg-white dark:bg-zinc-900">
         <div className="relative max-h-[200px] min-h-[200px]">
           {tournament.artworkUrl && (
             <Image
@@ -31,15 +31,24 @@ const TournamentSmall: FC<Props> = ({ tournament }) => {
         </div>
         <div className="flex h-full flex-col justify-between p-6">
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold md:text-3xl">
+            <h3 className="line-clamp-1 text-lg font-semibold text-black md:text-3xl dark:text-white">
               {tournament.name}
             </h3>
+            {tournament.eventDate && (
+              <p>
+                {new Date(tournament.eventDate).toLocaleDateString("ru", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </p>
+            )}
           </div>
           <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-3">
             {tournament.prize && (
               <p className="col-span-2 text-zinc-500 sm:col-span-1">
                 Призовой фонд <br />
-                <span className="font-semibold text-yellow sm:text-xl">
+                <span className="font-semibold text-green sm:text-xl dark:text-yellow">
                   {tournament.prize}
                   <span>р</span>
                 </span>
@@ -48,7 +57,7 @@ const TournamentSmall: FC<Props> = ({ tournament }) => {
             {tournament.mode && (
               <p className="text-zinc-500">
                 Режим <br />
-                <span className="font-semibold text-white sm:text-xl">
+                <span className="font-semibold text-black sm:text-xl dark:text-white">
                   {tournament.mode}
                 </span>
               </p>
@@ -56,7 +65,7 @@ const TournamentSmall: FC<Props> = ({ tournament }) => {
             {tournament.type && (
               <p className="text-zinc-500">
                 Регистрация <br />
-                <span className="font-semibold text-white sm:text-xl">
+                <span className="font-semibold text-black sm:text-xl dark:text-white">
                   {tournament.type === "closed" ? "Закрытая" : "Бесплатная"}
                 </span>
               </p>

@@ -21,7 +21,7 @@ const FormModal: FC<PropsWithChildren<Props>> = ({
       open={open}
       onClose={() => onClose}
     >
-      <div className="w-full max-w-[600px] rounded-xl border-2 border-white/10 bg-black p-6">
+      <div className="w-full max-w-[600px] rounded-xl border-2 border-white/10 bg-white p-6 dark:bg-black">
         {children ?? getCurrentForm(activeTab, onClose)}
       </div>
     </Modal>

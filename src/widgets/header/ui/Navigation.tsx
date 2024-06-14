@@ -10,12 +10,13 @@ const Navigation: FC = () => {
   const pathname = usePathname();
   return (
     <nav>
-      <ul className="hidden text-sm lg:flex lg:items-center lg:gap-8 xl:text-base">
+      <ul className="hidden text-sm text-black lg:flex lg:items-center lg:gap-8 xl:text-base dark:text-white">
         {headerNavigationData.map((navItem) => (
           <li key={navItem.url}>
             <Link
               className={classNames({
-                "text-yellow": pathname.startsWith(navItem.url),
+                "text-green font-semibold dark:font-medium dark:text-yellow":
+                  pathname.startsWith(navItem.url),
               })}
               href={navItem.url}
             >

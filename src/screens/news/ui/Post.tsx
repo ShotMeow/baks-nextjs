@@ -53,13 +53,13 @@ const Post: FC<Props> = ({ slug }) => {
                     post.tags.map((tag) => <TagChip tag={tag} key={tag.id} />)}
                 </div>
               </div>
-              <h3 className="text-xl md:text-3xl">{post.title}</h3>
+              <h3 className="text-xl text-white md:text-3xl">{post.title}</h3>
             </div>
           </div>
           <p className="mt-5 text-base font-medium md:text-lg">
             {post.description}
           </p>
-          <div className="prose prose-zinc prose-invert my-6 max-w-none">
+          <div className="prose prose-zinc prose-invert my-6 max-w-none text-black dark:text-inherit">
             <ReactMarkdown>{post.body}</ReactMarkdown>
           </div>
         </article>

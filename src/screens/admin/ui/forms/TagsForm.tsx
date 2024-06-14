@@ -49,7 +49,7 @@ const TagsForm: FC<Props> = ({ onClose, tag, type }) => {
         {type === "create" ? "Добавить тег" : "Изменить тег"}
       </h4>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Название</span>
+        <span className="text-sm/6 font-medium">Название</span>
         <TextInput
           {...register("name", {
             required: "Название не может быть пустым",
@@ -58,7 +58,7 @@ const TagsForm: FC<Props> = ({ onClose, tag, type }) => {
           validationState={errors?.name && "invalid"}
           errorMessage={errors?.name?.message}
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <div className="mt-4 flex gap-4">

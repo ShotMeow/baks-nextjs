@@ -57,7 +57,7 @@ const ProductsForm: FC<Props> = ({ onClose, product, type }) => {
         {type === "create" ? "Добавить товар" : "Редактировать товар"}
       </h4>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Название</span>
+        <span className="text-sm/6 font-medium">Название</span>
         <TextInput
           {...register("name", {
             required: "Название товара не может быть пустым",
@@ -66,33 +66,31 @@ const ProductsForm: FC<Props> = ({ onClose, product, type }) => {
           validationState={errors?.name && "invalid"}
           errorMessage={errors?.name?.message}
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Описание</span>
+        <span className="text-sm/6 font-medium">Описание</span>
         <TextArea
           {...register("description")}
           errorPlacement="inside"
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Цена</span>
+        <span className="text-sm/6 font-medium">Цена</span>
         <TextInput
           {...register("price", {
             valueAsNumber: true,
           })}
           type="number"
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">
-          Изображение товара
-        </span>
+        <span className="text-sm/6 font-medium">Изображение товара</span>
         <Controller
           render={({ field: { value, onChange, ...field } }) => (
             <input
@@ -104,7 +102,7 @@ const ProductsForm: FC<Props> = ({ onClose, product, type }) => {
               }}
               type="file"
               accept="image/*"
-              className="rounded-md bg-white/5 px-2 py-1"
+              className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
             />
           )}
           name="imageFile"

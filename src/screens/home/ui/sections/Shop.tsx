@@ -45,7 +45,7 @@ const Shop: FC = () => {
                   "hidden lg:flex col-start-10 col-end-13 row-start-5 row-end-7":
                     index === 5,
                 },
-                "group bg-white/5 flex flex-col justify-between p-6 items-center gap-4 w-full",
+                "group bg-white dark:bg-white/5 flex flex-col justify-between p-6 items-center gap-4 w-full",
               )}
               key={product.id}
             >
@@ -63,7 +63,9 @@ const Shop: FC = () => {
               />
               <div className="flex w-full items-center justify-between gap-10">
                 <p className="line-clamp-1 lg:text-xl">{product.name}</p>
-                <p className="text-lg text-yellow">{product.price}р</p>
+                <p className="text-lg text-green dark:text-yellow">
+                  {product.price}р
+                </p>
               </div>
             </Link>
           ))

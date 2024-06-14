@@ -9,6 +9,7 @@ const config: Config = {
         lilac: "#FFC5F0",
         green: "#075D44",
         black: "#070707",
+        light: "#F5F5F5",
       },
     },
     container: {

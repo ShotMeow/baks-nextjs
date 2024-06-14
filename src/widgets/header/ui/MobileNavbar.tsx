@@ -39,7 +39,7 @@ const MobileNavbar: FC = () => {
       )}
     >
       <div className="container">
-        <nav className="relative rounded-full border border-white/5 bg-white/5 p-4 text-xs backdrop-blur-lg before:absolute before:left-0 before:top-0 before:-z-10 before:size-full before:rounded-full before:bg-gradient-to-r before:from-yellow/5 before:via-black before:to-lilac/5 sm:gap-8">
+        <nav className="relative rounded-full border border-white/5 bg-white/5 from-white to-white p-4 text-xs backdrop-blur-lg before:absolute before:left-0 before:top-0 before:-z-10 before:size-full before:rounded-full before:bg-gradient-to-r sm:gap-8 dark:before:from-yellow/5 dark:before:via-black dark:before:to-lilac/5">
           <ul className="flex items-center justify-between gap-6 overflow-x-auto px-4">
             {headerNavigationData.map((navItem) => (
               <li key={navItem.url}>

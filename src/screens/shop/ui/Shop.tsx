@@ -26,7 +26,7 @@ const Shop: FC = () => {
                   "col-start-7 col-end-13 lg:col-span-6 lg:row-start-2 lg:row-end-3":
                     index === 2,
                 },
-                "group bg-white/5 flex flex-col justify-between p-6 items-center gap-4 w-full col-span-4",
+                "group bg-white dark:bg-white/5 flex flex-col justify-between p-6 items-center gap-4 w-full col-span-4",
               )}
               key={product.id}
             >

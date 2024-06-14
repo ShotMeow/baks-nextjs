@@ -33,7 +33,7 @@ const PageHeader: FC<Props> = ({
   });
 
   return (
-    <header className="container relative mb-4 flex flex-wrap items-center justify-between gap-6 bg-zinc-900 p-4 md:px-8 md:py-4">
+    <header className="container relative mb-4 flex flex-wrap items-center justify-between gap-6 bg-white p-4 md:px-8 md:py-4 dark:bg-zinc-900">
       <div className="flex w-full flex-col gap-6 sm:flex-row sm:items-center">
         <h3 className="text-2xl font-semibold">{title}</h3>
         <div className="flex w-full items-center justify-between gap-4">

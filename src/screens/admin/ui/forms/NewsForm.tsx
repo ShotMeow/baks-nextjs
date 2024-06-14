@@ -66,7 +66,7 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
         {type === "create" ? "Добавить новость" : "Редактировать статью"}
       </h4>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Название</span>
+        <span className="text-sm/6 font-medium">Название</span>
         <TextInput
           {...register("title", {
             required: "Заголовок не может быть пустым",
@@ -75,11 +75,11 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
           validationState={errors?.title && "invalid"}
           errorMessage={errors?.title?.message}
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Описание</span>
+        <span className="text-sm/6 font-medium">Описание</span>
         <TextInput
           {...register("description", {
             required: "Описание не может быть пустым",
@@ -88,11 +88,11 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
           validationState={errors?.description && "invalid"}
           errorMessage={errors?.description?.message}
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Постер</span>
+        <span className="text-sm/6 font-medium">Постер</span>
         <Controller
           render={({ field: { value, onChange, ...field } }) => (
             <input
@@ -104,7 +104,7 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
               }}
               type="file"
               accept="image/*"
-              className="rounded-md bg-white/5 px-2 py-1"
+              className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
             />
           )}
           name="imageFile"
@@ -123,14 +123,15 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
         </div>
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Теги</span>
+        <span className="text-sm/6 font-medium">Теги</span>
         <Controller
           render={({ field: { value, ...field } }) => (
             <Select
               {...field}
               multiple
               filterable
-              className="rounded-md bg-white/5 px-2 py-1"
+              className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
+              popupClassName="text-white"
               defaultValue={value?.map((tag) => String(tag.id))}
               onUpdate={(value) =>
                 tags &&
@@ -152,7 +153,7 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
         />
       </label>
       <label>
-        <span className="text-sm/6 font-medium text-white">Тело поста</span>
+        <span className="text-sm/6 font-medium">Тело поста</span>
         <Controller
           render={({ field }) => (
             <MDEditor

@@ -44,7 +44,7 @@ const PlayersForm: FC<Props> = ({ onClose, player }) => {
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <h4 className="text-xl font-bold">Изменить пользователя</h4>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Никнейм</span>
+        <span className="text-sm/6 font-medium">Никнейм</span>
         <TextInput
           {...register("nickname", {
             required: "Никнейм не может быть пустым",
@@ -53,11 +53,11 @@ const PlayersForm: FC<Props> = ({ onClose, player }) => {
           validationState={errors?.nickname && "invalid"}
           errorMessage={errors?.nickname?.message}
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Имя</span>
+        <span className="text-sm/6 font-medium">Имя</span>
         <TextInput
           {...register("name", {
             required: "Имя не может быть пустым",
@@ -66,17 +66,18 @@ const PlayersForm: FC<Props> = ({ onClose, player }) => {
           validationState={errors?.name && "invalid"}
           errorMessage={errors?.name?.message}
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Роль</span>
+        <span className="text-sm/6 font-medium">Роль</span>
         <Controller
           render={({ field: { value, ...field } }) => (
             <Select
               {...field}
               filterable
-              className="rounded-md bg-white/5 px-2 py-1"
+              className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
+              popupClassName="text-white"
               onUpdate={(value) => setValue("role", value[0])}
               defaultValue={[player.role]}
             >
@@ -91,40 +92,36 @@ const PlayersForm: FC<Props> = ({ onClose, player }) => {
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">K/D</span>
+        <span className="text-sm/6 font-medium">K/D</span>
         <input
           {...register("killDeaths", {
             valueAsNumber: true,
           })}
           step="0.1"
           type="number"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">
-          Коэффициент смертей
-        </span>
+        <span className="text-sm/6 font-medium">Коэффициент смертей</span>
         <input
           {...register("deaths", {
             valueAsNumber: true,
           })}
           step="0.1"
           type="number"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">
-          Коэффициент помощи
-        </span>
+        <span className="text-sm/6 font-medium">Коэффициент помощи</span>
         <input
           {...register("assists", {
             valueAsNumber: true,
           })}
           step="0.1"
           type="number"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <div className="mt-4 flex gap-4">

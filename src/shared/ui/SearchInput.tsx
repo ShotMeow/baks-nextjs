@@ -13,7 +13,7 @@ const SearchInput: FC<Props> = ({ placeholder = "", value, setValue }) => {
     <label className="relative">
       <TextInput
         view="clear"
-        className="border-2 border-white/5 px-2 py-1"
+        className="border-2 border-black/5 px-2 py-1 dark:border-white/5"
         placeholder={placeholder}
         value={value}
         onChange={(event) => setValue(event.target.value)}

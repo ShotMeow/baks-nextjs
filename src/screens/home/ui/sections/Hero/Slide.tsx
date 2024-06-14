@@ -30,7 +30,7 @@ const Slide: FC<Props> = ({ id, artworkUrl, title, description }) => {
         height={600}
       />
       <div className="absolute inset-x-6 bottom-6 flex flex-col gap-6 md:inset-x-20 md:bottom-20 lg:flex-row lg:items-end lg:justify-between">
-        <div className="space-y-4 lg:space-y-8">
+        <div className="space-y-4 text-white lg:space-y-8">
           <h4 className="line-clamp-2 text-xl font-bold lg:text-4xl">
             {title}
           </h4>

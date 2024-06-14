@@ -15,7 +15,7 @@ const Pagination: FC<Props> = ({ activeIndex, news }) => {
         <div
           className={classNames(
             {
-              "w-8 bg-yellow": index === activeIndex,
+              "w-8 bg-lilac dark:bg-yellow": index === activeIndex,
               "bg-zinc-800": index !== activeIndex,
             },
             "h-1 w-4 rounded-full transition-all duration-500",

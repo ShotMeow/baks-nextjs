@@ -81,7 +81,7 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
           : `Редактировать турнир ${tournament?.name}`}
       </h4>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Название</span>
+        <span className="text-sm/6 font-medium">Название</span>
         <TextInput
           {...register("name", {
             required: "Название турнира не может быть пустым",
@@ -90,11 +90,11 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
           validationState={errors?.name && "invalid"}
           errorMessage={errors?.name?.message}
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Описание</span>
+        <span className="text-sm/6 font-medium">Описание</span>
         <TextInput
           {...register("description", {
             required: "Описание турнира не может быть пустым",
@@ -103,11 +103,11 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
           validationState={errors?.description && "invalid"}
           errorMessage={errors?.description?.message}
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Описание</span>
+        <span className="text-sm/6 font-medium">Описание</span>
         <Controller
           render={({ field }) => (
             <MDEditor
@@ -122,7 +122,7 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Изображение</span>
+        <span className="text-sm/6 font-medium">Изображение</span>
         <Controller
           render={({ field: { value, onChange, ...field } }) => (
             <input
@@ -134,7 +134,7 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
               }}
               type="file"
               accept="image/*"
-              className="rounded-md bg-white/5 px-2 py-1"
+              className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
             />
           )}
           name="imageFile"
@@ -153,24 +153,25 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
         </div>
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Приз</span>
+        <span className="text-sm/6 font-medium">Приз</span>
         <TextInput
           {...register("prize", {
             valueAsNumber: true,
           })}
           view="clear"
           type="number"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Режим</span>
+        <span className="text-sm/6 font-medium">Режим</span>
         <Controller
           render={({ field: { value, ...field } }) => (
             <Select
               {...field}
               filterable
-              className="rounded-md bg-white/5 px-2 py-1"
+              className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
+              popupClassName="text-white"
               onUpdate={(value) => setValue("mode", value[0])}
             >
               <Select.Option value="1x1">1x1</Select.Option>
@@ -183,13 +184,14 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Формат</span>
+        <span className="text-sm/6 font-medium">Формат</span>
         <Controller
           render={({ field: { value, ...field } }) => (
             <Select
               {...field}
               filterable
-              className="rounded-md bg-white/5 px-2 py-1"
+              className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
+              popupClassName="text-white"
               onUpdate={(value) => setValue("type", value[0])}
             >
               <Select.Option value="opened">Открытый</Select.Option>
@@ -201,7 +203,7 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Команды</span>
+        <span className="text-sm/6 font-medium">Команды</span>
         {teams && (
           <Controller
             render={({ field: { value, ...field } }) => (
@@ -209,7 +211,8 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
                 {...field}
                 multiple
                 filterable
-                className="rounded-md bg-white/5 px-2 py-1"
+                className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
+                popupClassName="text-white"
                 defaultValue={value?.map((team) => String(team.id))}
                 onUpdate={(value) =>
                   setValue(
@@ -231,14 +234,15 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
         )}
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">Теги</span>
+        <span className="text-sm/6 font-medium">Теги</span>
         <Controller
           render={({ field: { value, ...field } }) => (
             <Select
               {...field}
               multiple
               filterable
-              className="rounded-md bg-white/5 px-2 py-1"
+              className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
+              popupClassName="text-white"
               defaultValue={value?.map((tag) => String(tag.id))}
               onUpdate={(value) =>
                 tags &&
@@ -260,30 +264,24 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">
-          Ссылка на сетку
-        </span>
+        <span className="text-sm/6 font-medium">Ссылка на сетку</span>
         <TextInput
           {...register("gridUrl")}
           errorPlacement="inside"
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">
-          Адрес проведения
-        </span>
+        <span className="font-medium text-sm/6">Адрес проведения</span>
         <TextInput
           {...register("address")}
           view="clear"
-          className="rounded-md bg-white/5 px-2 py-1"
+          className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm/6 font-medium text-white">
-          Дата проведения турнира
-        </span>
+        <span className="text-sm/6 font-medium">Дата проведения турнира</span>
         <Controller
           render={() => (
             <DatePicker
@@ -293,7 +291,7 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
               view="clear"
               format="DD.MM.YYYY"
               defaultValue={dateTimeParse(tournament?.eventDate)}
-              className="rounded-md bg-white/5 px-2 py-1"
+              className="rounded-md bg-black/5 px-2 py-1 dark:bg-white/5"
               {...register("eventDate")}
             />
           )}
