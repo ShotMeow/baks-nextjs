@@ -11,7 +11,7 @@ import { API_URL } from "@/src/shared/constants";
 
 interface Props extends Omit<UserType, "createdAt"> {}
 
-const UserInfo: FC<Props> = ({ nickname, name, pictureUrl, team }) => {
+const UserInfo: FC<Props> = ({ nickname, name, team }) => {
   const router = useRouter();
   const handleLogout = () => {
     logOut();
@@ -19,7 +19,7 @@ const UserInfo: FC<Props> = ({ nickname, name, pictureUrl, team }) => {
   };
 
   return (
-    <aside className="flex w-full flex-col items-center justify-center gap-8 rounded-xl bg-white/5 p-10 text-center lg:col-span-1">
+    <aside className="flex w-full flex-col items-center justify-center gap-8 rounded-xl bg-white p-10 text-center shadow-2xl lg:col-span-1 dark:bg-white/5 dark:shadow-none">
       <div className="flex flex-col items-center gap-4">
         <Avatar />
         <div>
