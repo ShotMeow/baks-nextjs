@@ -175,6 +175,24 @@ const Tournament: FC<Props> = ({ slug }) => {
                   </>
                 )}
               </div>
+              {tournament.gridUrl && (
+                <div className="my-4 space-y-4">
+                  <h3 className="text-[32px] font-semibold">Турнирная сетка</h3>
+                  <iframe
+                    src={tournament.gridUrl}
+                    width="100%"
+                    height="600px"
+                  />
+                </div>
+              )}
+              {tournament.address && (
+                <div className="my-4 space-y-4">
+                  <h3 className="text-[32px] font-semibold">
+                    Адрес проведения
+                  </h3>
+                  <p>{tournament.address}</p>
+                </div>
+              )}
             </div>
           </div>
         </article>

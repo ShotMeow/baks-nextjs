@@ -2,6 +2,7 @@ import { type Dispatch, type FC, type SetStateAction, useState } from "react";
 import { TextInput, Select } from "@gravity-ui/uikit";
 import Image from "next/image";
 import { DatePicker } from "@gravity-ui/date-components";
+import { dateTimeParse } from "@gravity-ui/date-utils";
 import MDEditor from "@uiw/react-md-editor";
 import { Controller, type SubmitHandler, useForm } from "react-hook-form";
 
@@ -15,7 +16,6 @@ import {
 import { useGetTeams } from "@/src/entities/teams";
 import { API_URL } from "@/src/shared/constants";
 import { useGetTags } from "@/src/entities/tags";
-import { dateTimeParse } from "@gravity-ui/date-utils";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -41,6 +41,7 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
       teams: tournament?.teams,
       address: tournament?.address,
       eventDate: tournament?.eventDate,
+      gridUrl: tournament?.gridUrl,
       tags: tournament?.tags,
     },
   });
@@ -53,9 +54,7 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
   const { mutate: createTournamentMutation } = useCreateTournament();
   const { mutate: updateTournamentMutation } = useUpdateTournament();
   const { data: teams } = useGetTeams({});
-  const { data: tags } = useGetTags({
-    searchQuery: "",
-  });
+  const { data: tags } = useGetTags({});
 
   const onSubmit: SubmitHandler<TournamentFormType> = (data) => {
     switch (type) {
@@ -258,6 +257,17 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
           )}
           name="tags"
           control={control}
+        />
+      </label>
+      <label className="flex flex-col gap-2">
+        <span className="text-sm/6 font-medium text-white">
+          Ссылка на сетку
+        </span>
+        <TextInput
+          {...register("gridUrl")}
+          errorPlacement="inside"
+          view="clear"
+          className="rounded-md bg-white/5 px-2 py-1"
         />
       </label>
       <label className="flex flex-col gap-2">

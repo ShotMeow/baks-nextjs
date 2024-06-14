@@ -15,7 +15,7 @@ const FilterDropdownTags: FC<Props> = ({ tag: activeTag, setTag }) => {
   const debounceSearch = useDebounce(tagSearch, 500);
 
   const { data: tags } = useGetTags({
-    searchQuery: debounceSearch,
+    search: debounceSearch,
   });
 
   return (
