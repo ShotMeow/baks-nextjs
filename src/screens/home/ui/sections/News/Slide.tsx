@@ -34,7 +34,7 @@ const Slide: FC<Props> = ({ id, artworkUrl, title, tags, createdAt }) => {
           </p>
           <h4 className="line-clamp-3 text-xl">{title}</h4>
         </div>
-        <div className="mt-6 flex items-center gap-2 text-xs">
+        <div className="mt-6 flex flex-wrap items-center gap-2 text-xs">
           {tags?.map((tag) => <TagChip tag={tag} key={tag.id} />)}
         </div>
       </div>

@@ -58,7 +58,7 @@ const Shop: FC = () => {
                   {
                     "p-10 sm:p-20": index === 0,
                   },
-                  "w-full object-contain group-hover:scale-110 transition-transform duration-500",
+                  "w-full h-48 object-contain group-hover:scale-110 transition-transform duration-500",
                 )}
               />
               <div className="flex w-full items-center justify-between gap-10">
