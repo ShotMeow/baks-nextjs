@@ -11,7 +11,7 @@ const Form: FC = () => {
         <form className="col-span-5 flex flex-col gap-8">
           <h3 className="text-xl font-semibold md:text-4xl">
             Будь в курсе новых турниров, <br />
-            <span className="text-yellow">подписывайся!</span>
+            <span className="text-green dark:text-yellow">подписывайся!</span>
           </h3>
           <Field placeholder="Введите имя" />
           <Field placeholder="Введите e-mail" />

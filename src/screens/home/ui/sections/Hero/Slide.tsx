@@ -36,7 +36,9 @@ const Slide: FC<Props> = ({ id, artworkUrl, title, description }) => {
           </h4>
           <p className="line-clamp-3 lg:text-lg">{description}</p>
         </div>
-        <Button variant="transparent">Подробнее</Button>
+        <Button className="!bg-lilac/20 !text-yellow" variant="transparent">
+          Подробнее
+        </Button>
       </div>
     </Link>
   );

@@ -44,7 +44,9 @@ const Shop: FC = () => {
               />
               <div className="flex w-full items-center justify-between gap-10">
                 <p className="line-clamp-1 lg:text-xl">{product.name}</p>
-                <p className="text-lg text-yellow">{product.price}р</p>
+                <p className="text-lg text-green dark:text-yellow">
+                  {product.price} р
+                </p>
               </div>
             </Link>
           ))

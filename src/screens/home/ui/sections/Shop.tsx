@@ -34,9 +34,9 @@ const Shop: FC = () => {
                 {
                   "col-span-full justify-self-stretch row-start-1 row-end-4 lg:row-span-full lg:col-span-5 lg:[&>img]:h-full":
                     index === 0,
-                  "col-start-1 col-end-7 row-start-4 row-end-6 lg:col-start-6 lg:col-end-10 lg:row-start-1 lg:row-end-4 lg:[&>img]:h-60":
+                  "col-start-1 col-end-7 row-start-4 row-end-6 lg:col-start-6 lg:col-end-10 lg:row-start-1 lg:row-end-4 lg:[&>img]:h-72":
                     index === 1,
-                  "col-start-7 col-end-13 row-start-4 row-end-6 lg:col-start-6 lg:col-end-10 lg:row-start-4 lg:row-end-7 lg:[&>img]:h-60":
+                  "col-start-7 col-end-13 row-start-4 row-end-6 lg:col-start-6 lg:col-end-10 lg:row-start-4 lg:row-end-7 lg:[&>img]:h-72":
                     index === 2,
                   "col-start-1 col-end-7 row-start-6 row-end-6 lg:col-start-10 lg:col-end-13 lg:row-start-1 lg:row-end-3 lg:[&>img]:h-40":
                     index === 3,
@@ -64,7 +64,7 @@ const Shop: FC = () => {
               <div className="flex w-full items-center justify-between gap-10">
                 <p className="line-clamp-1 lg:text-xl">{product.name}</p>
                 <p className="text-lg text-green dark:text-yellow">
-                  {product.price}р
+                  {product.price} р
                 </p>
               </div>
             </Link>

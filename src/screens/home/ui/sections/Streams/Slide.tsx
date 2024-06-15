@@ -18,7 +18,7 @@ const Slide: FC<Props> = ({ posterUrl, channel, description, title }) => {
     <div
       className={classNames(
         {
-          "before:absolute before:left-0 before:top-0 before:size-full before:bg-gradient-to-t before:from-black/70 before:via-transparent before:to-transparent":
+          "before:absolute before:left-0 before:top-0 before:size-full before:bg-gradient-to-t before:from-white/70 dark:before:from-black/70 before:via-transparent before:to-transparent":
             !isPlaying,
         },
         "h-full",
@@ -95,7 +95,7 @@ const Slide: FC<Props> = ({ posterUrl, channel, description, title }) => {
           {
             "opacity-0": isPlaying,
           },
-          "absolute inset-x-4 bottom-4 lg:inset-x-14 lg:bottom-14 transition-all duration-500 text-white dark:text-black",
+          "absolute inset-x-4 bottom-4 lg:inset-x-14 lg:bottom-14 transition-all duration-500",
         )}
       >
         <h4 className="line-clamp-1 font-semibold sm:text-3xl">{title}</h4>

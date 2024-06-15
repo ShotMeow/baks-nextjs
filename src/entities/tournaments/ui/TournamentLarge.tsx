@@ -21,7 +21,7 @@ const TournamentLarge: FC<Props> = ({ tournament }) => {
       href={`/tournaments/${tournament.id}`}
     >
       <article className="flex h-full flex-col bg-white 2xl:grid 2xl:grid-cols-3 dark:bg-zinc-900">
-        <div className="relative col-span-2 min-h-[200px] 2xl:h-full">
+        <div className="relative col-span-2 max-h-[540px] min-h-[200px] 2xl:h-full">
           {tournament.artworkUrl && (
             <Image
               className="size-full object-cover"
