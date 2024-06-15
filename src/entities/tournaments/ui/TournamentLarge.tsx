@@ -21,7 +21,7 @@ const TournamentLarge: FC<Props> = ({ tournament }) => {
       href={`/tournaments/${tournament.id}`}
     >
       <article className="flex h-full flex-col bg-white 2xl:grid 2xl:grid-cols-3 dark:bg-zinc-900">
-        <div className="relative col-span-2 max-h-[540px] min-h-[200px] 2xl:h-full">
+        <div className="relative col-span-2 max-h-[200px] min-h-[200px] 2xl:h-full 2xl:max-h-[540px]">
           {tournament.artworkUrl && (
             <Image
               className="size-full object-cover"
@@ -53,7 +53,7 @@ const TournamentLarge: FC<Props> = ({ tournament }) => {
                 })}
               </p>
             )}
-            <p className="line-clamp-2 hidden text-zinc-500 2xl:block">
+            <p className="hidden text-zinc-500 2xl:line-clamp-6">
               {tournament.description}
             </p>
           </div>
