@@ -19,11 +19,11 @@ const Shop: FC = () => {
               href={`/shop/${product.id}`}
               className={classNames(
                 {
-                  "col-span-full justify-self-stretch row-start-1 row-end-3 lg:col-span-6":
+                  "col-span-full justify-self-stretch row-start-1 row-end-3 lg:col-span-6 lg:[&>img]:h-full":
                     index === 0,
-                  "col-start-1 col-end-7 lg:col-span-6 lg:row-start-1 lg:row-end-2":
+                  "col-start-1 col-end-7 lg:col-span-6 lg:row-start-1 lg:row-end-2 lg:[&>img]:h-72":
                     index === 1,
-                  "col-start-7 col-end-13 lg:col-span-6 lg:row-start-2 lg:row-end-3":
+                  "col-start-7 col-end-13 lg:col-span-6 lg:row-start-2 lg:row-end-3 lg:[&>img]:h-72":
                     index === 2,
                 },
                 "group bg-white dark:bg-white/5 flex flex-col justify-between p-6 items-center gap-4 w-full col-span-4",
@@ -39,7 +39,7 @@ const Shop: FC = () => {
                   {
                     "p-10 sm:p-20 h-auto": index === 0,
                   },
-                  "w-full h-72 object-contain group-hover:scale-110 transition-transform duration-500",
+                  "w-full h-48 object-contain group-hover:scale-110 transition-transform duration-500",
                 )}
               />
               <div className="flex w-full items-center justify-between gap-10">
