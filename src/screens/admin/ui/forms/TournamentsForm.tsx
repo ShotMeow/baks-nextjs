@@ -273,7 +273,7 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
         />
       </label>
       <label className="flex flex-col gap-2">
-        <span className="font-medium text-sm/6">Адрес проведения</span>
+        <span className="text-sm/6 font-medium">Адрес проведения</span>
         <TextInput
           {...register("address")}
           view="clear"

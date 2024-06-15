@@ -3,16 +3,25 @@ import Button from "@/src/shared/ui/Button";
 import { API_URL } from "@/src/shared/constants";
 
 import FormModal from "../modals/FormModal";
-import type { UserType } from "@/src/entities/users";
+import { useDeleteUser, UserType } from "@/src/entities/users";
 import PlayersForm from "@/src/screens/admin/ui/forms/PlayersForm";
 import Image from "next/image";
+import DeleteModal from "@/src/screens/admin/ui/modals/DeleteModal";
 
 interface Props {
   player: UserType;
 }
 
 const Player: FC<Props> = ({ player }) => {
+  const [deleteModalShown, setDeleteModalShown] = useState<boolean>(false);
   const [updateModalShown, setUpdateModalShown] = useState<boolean>(false);
+
+  const mutation = useDeleteUser();
+
+  const handleDelete = () => {
+    mutation.mutate(player.id);
+    setDeleteModalShown(false);
+  };
 
   return (
     <>
@@ -31,9 +40,17 @@ const Player: FC<Props> = ({ player }) => {
             />
           )}
         </div>
-        <Button onClick={() => setUpdateModalShown(true)} variant="transparent">
-          Изменить
-        </Button>
+        <div className="flex flex-wrap items-center gap-2">
+          <Button
+            onClick={() => setUpdateModalShown(true)}
+            variant="transparent"
+          >
+            Изменить
+          </Button>
+          <Button onClick={() => setDeleteModalShown(true)} variant="primary">
+            Удалить
+          </Button>
+        </div>
       </li>
       {updateModalShown && (
         <FormModal
@@ -43,6 +60,17 @@ const Player: FC<Props> = ({ player }) => {
         >
           <PlayersForm player={player} onClose={setUpdateModalShown} />
         </FormModal>
+      )}
+      {deleteModalShown && (
+        <DeleteModal
+          open={deleteModalShown}
+          onClose={setDeleteModalShown}
+          action={handleDelete}
+        >
+          Вы точно хотите удалить пользователя <br />
+          &quot;
+          <span className="font-bold">{player.nickname}</span>&quot;?
+        </DeleteModal>
       )}
     </>
   );

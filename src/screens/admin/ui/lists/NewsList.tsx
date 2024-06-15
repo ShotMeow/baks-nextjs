@@ -1,10 +1,10 @@
-import { FC, useState } from "react";
+import { FC, PropsWithChildren, useState } from "react";
 import { useGetNews } from "@/src/entities/news";
 import News from "../units/News";
 import SearchInput from "@/src/shared/ui/SearchInput";
 import { useDebounce } from "@/src/shared/hooks/useDebounce";
 
-const TagsList: FC = () => {
+const TagsList: FC<PropsWithChildren> = ({ children }) => {
   const [search, setSearch] = useState<string>("");
   const debounceSearch = useDebounce(search, 500);
 
@@ -19,6 +19,7 @@ const TagsList: FC = () => {
         setValue={setSearch}
         placeholder="Найти новости"
       />
+      {children}
       {news?.map((post) => <News news={post} key={post.id} />)}
     </ul>
   );

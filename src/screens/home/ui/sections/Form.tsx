@@ -27,8 +27,15 @@ const Form: FC = () => {
           </div>
         </form>
         <Image
-          className="-top-14 right-0 lg:absolute 2xl:-top-24"
-          src="/images/statue.png"
+          className="-top-14 right-0 hidden lg:absolute 2xl:-top-24 dark:block"
+          src="/images/statue_dark.png"
+          alt="Статуя держит в руках басктебольный мяч и телефон"
+          width={607}
+          height={521}
+        />
+        <Image
+          className="-top-14 right-0 lg:absolute 2xl:-top-24 dark:hidden"
+          src="/images/statue_light.png"
           alt="Статуя держит в руках басктебольный мяч и телефон"
           width={607}
           height={521}

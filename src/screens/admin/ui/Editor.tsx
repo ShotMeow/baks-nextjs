@@ -30,17 +30,19 @@ const Editor: FC = () => {
           )
         }
       />
-      <List type={activeTab} />
-      {activeTab !== "players" && (
-        <Button
-          onClick={() => {
-            setModalShown(true);
-          }}
-          variant="transparent"
-        >
-          {getTabPanelButton(activeTab)} +
-        </Button>
-      )}
+      <List type={activeTab}>
+        {activeTab !== "players" && (
+          <Button
+            onClick={() => {
+              setModalShown(true);
+            }}
+            variant="transparent"
+            className="w-full"
+          >
+            {getTabPanelButton(activeTab)} +
+          </Button>
+        )}
+      </List>
       <FormModal
         activeTab={activeTab}
         open={modalShown}

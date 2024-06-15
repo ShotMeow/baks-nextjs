@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import type { FC, PropsWithChildren } from "react";
 
 import TagsList from "./lists/TagsList";
 import StreamsList from "./lists/StreamsList";
@@ -12,16 +12,16 @@ interface Props {
   type: string;
 }
 
-const List: FC<Props> = ({ type }) => {
+const List: FC<PropsWithChildren<Props>> = ({ type, children }) => {
   return (
     <div className="mb-6 text-xl">
-      {type === "tags" && <TagsList />}
-      {type === "streams" && <StreamsList />}
-      {type === "products" && <ProductsList />}
-      {type === "news" && <NewsList />}
-      {type === "teams" && <TeamsList />}
-      {type === "tournaments" && <TournamentsList />}
-      {type === "players" && <PlayersList />}
+      {type === "tags" && <TagsList>{children}</TagsList>}
+      {type === "streams" && <StreamsList>{children}</StreamsList>}
+      {type === "products" && <ProductsList>{children}</ProductsList>}
+      {type === "news" && <NewsList>{children}</NewsList>}
+      {type === "teams" && <TeamsList>{children}</TeamsList>}
+      {type === "tournaments" && <TournamentsList>{children}</TournamentsList>}
+      {type === "players" && <PlayersList>{children}</PlayersList>}
     </div>
   );
 };

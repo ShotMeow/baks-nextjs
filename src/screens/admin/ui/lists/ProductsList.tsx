@@ -1,10 +1,10 @@
-import { FC, useState } from "react";
+import { FC, PropsWithChildren, useState } from "react";
 import { useGetProducts } from "@/src/entities/products";
 import Product from "../units/Product";
 import SearchInput from "@/src/shared/ui/SearchInput";
 import { useDebounce } from "@/src/shared/hooks/useDebounce";
 
-const TagsList: FC = () => {
+const TagsList: FC<PropsWithChildren> = ({ children }) => {
   const [search, setSearch] = useState<string>("");
   const debounceSearch = useDebounce(search, 500);
 
@@ -19,6 +19,7 @@ const TagsList: FC = () => {
         setValue={setSearch}
         placeholder="Найти товары"
       />
+      {children}
       {products?.map((product) => (
         <Product product={product} key={product.id} />
       ))}

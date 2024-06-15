@@ -27,13 +27,13 @@ const PlayerCard: FC<Props> = ({ player }) => {
           <div className="mt-10">{getRoleIcon(player.role)}</div>
         </div>
       </div>
-      <p className="bg-white/5 p-4 text-lg backdrop-blur-md lg:text-xl">
+      <p className="bg-black/5 p-4 text-lg backdrop-blur-md lg:text-xl dark:bg-white/5">
         {player.nickname}
         <span className="line-clamp-1 text-base text-zinc-400">
           {player.name}
         </span>
       </p>
-      <div className="mt-2 grid grid-cols-3 gap-2 text-lg [&>p]:bg-black/5 [&>p]:p-2 [&>p]:text-center dark:[&>p]:bg-white/5">
+      <div className="mt-2 grid grid-cols-3 gap-2 text-sm md:text-lg [&>p]:bg-black/5 [&>p]:p-2 [&>p]:text-center dark:[&>p]:bg-white/5">
         {player.killDeaths ? (
           <p>KD | {numberFloater(player.killDeaths)}</p>
         ) : (

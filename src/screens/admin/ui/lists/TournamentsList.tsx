@@ -1,10 +1,10 @@
-import { FC, useState } from "react";
+import { FC, PropsWithChildren, useState } from "react";
 import { useGetTournaments } from "@/src/entities/tournaments";
 import Tournament from "../units/Tournament";
 import SearchInput from "@/src/shared/ui/SearchInput";
 import { useDebounce } from "@/src/shared/hooks/useDebounce";
 
-const TagsList: FC = () => {
+const TagsList: FC<PropsWithChildren> = ({ children }) => {
   const [search, setSearch] = useState<string>("");
   const debounceSearch = useDebounce(search, 500);
 
@@ -19,6 +19,7 @@ const TagsList: FC = () => {
         setValue={setSearch}
         placeholder="Найти турниры"
       />
+      {children}
       {tournaments?.map((tournament) => (
         <Tournament tournament={tournament} key={tournament.id} />
       ))}

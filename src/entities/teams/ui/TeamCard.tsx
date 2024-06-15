@@ -14,7 +14,7 @@ const TeamCard: FC<Props> = ({ team }) => {
 
   return (
     <article className="flex flex-col justify-between bg-white p-4 dark:bg-zinc-900">
-      <div className="mb-4 flex gap-4">
+      <div className="mb-4 flex h-full gap-4">
         {team?.logoUrl && (
           <div className="flex items-center justify-center bg-black/5 p-4 dark:bg-white/5">
             <Image

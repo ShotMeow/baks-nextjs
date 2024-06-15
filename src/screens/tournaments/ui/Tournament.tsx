@@ -33,7 +33,7 @@ const Tournament: FC<Props> = ({ slug }) => {
               width={1920}
               height={1080}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-light to-transparent dark:from-black" />
           </div>
           <div className="container py-40">
             <div>
@@ -54,24 +54,26 @@ const Tournament: FC<Props> = ({ slug }) => {
                     ))}
                   </div>
                 </div>
-                <h1 className="mt-6 text-2xl md:text-5xl">{tournament.name}</h1>
-                <p className="mt-5 text-base font-medium text-zinc-300 md:text-lg">
+                <h1 className="mt-6 text-2xl text-black md:text-5xl dark:text-white">
+                  {tournament.name}
+                </h1>
+                <p className="mt-5 text-base font-medium text-zinc-700 md:text-lg dark:text-zinc-300">
                   {tournament.description}
                 </p>
                 <div className="flex flex-wrap items-center justify-between gap-4">
                   <div className="mt-6 flex flex-wrap items-center gap-8 [&>p>span]:text-xl [&>p>span]:font-semibold [&>p>span]:md:text-3xl">
                     {tournament.prize && (
-                      <p className="text-zinc-300">
+                      <p className="text-zinc-500 dark:text-zinc-300">
                         Призовой фонд <br />
-                        <span className="text-yellow">
+                        <span className="text-green dark:text-yellow">
                           {tournament.prize} рублей
                         </span>
                       </p>
                     )}
                     {tournament.type && (
-                      <p className="text-zinc-300">
+                      <p className="text-zinc-500 dark:text-zinc-300">
                         Регистрация <br />
-                        <span className="text-white">
+                        <span className="text-black dark:text-white">
                           {tournament.type === "closed"
                             ? "Закрытая"
                             : "Бесплатная"}
@@ -79,9 +81,11 @@ const Tournament: FC<Props> = ({ slug }) => {
                       </p>
                     )}
                     {tournament.mode && (
-                      <p className="text-zinc-300">
+                      <p className="text-zinc-500 dark:text-zinc-300">
                         Режим <br />
-                        <span className="text-white">{tournament.mode}</span>
+                        <span className="text-black dark:text-white">
+                          {tournament.mode}
+                        </span>
                       </p>
                     )}
                   </div>
@@ -91,7 +95,7 @@ const Tournament: FC<Props> = ({ slug }) => {
                 </div>
               </div>
               <div className="space-y-16 bg-light py-4 md:p-10 dark:bg-black">
-                <div className="prose prose-zinc prose-invert max-w-none text-black dark:text-inherit">
+                <div className="prose prose-zinc max-w-none dark:prose-invert">
                   <ReactMarkdown>{tournament.body}</ReactMarkdown>
                 </div>
                 {tournament.teams.length !== 0 && (
@@ -99,7 +103,7 @@ const Tournament: FC<Props> = ({ slug }) => {
                     <div>
                       <h3>
                         Команды{" "}
-                        <span className="text-yellow">
+                        <span className="text-green dark:text-yellow">
                           • {tournament.teams.length}
                         </span>
                       </h3>
@@ -133,7 +137,7 @@ const Tournament: FC<Props> = ({ slug }) => {
                     <div>
                       <h3>
                         Составы{" "}
-                        <span className="text-yellow">
+                        <span className="text-green dark:text-yellow">
                           •{" "}
                           {
                             tournament.teams.find(
