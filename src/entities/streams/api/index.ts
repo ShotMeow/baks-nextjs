@@ -27,7 +27,7 @@ export const getStreamById = async (id: StreamType["id"]) => {
 export const createStream = async (data: StreamFormType) => {
   const formData = createFormData(data);
 
-  const response = await fetch(`${API_URL}/streams`, {
+  const response = await fetch(`${API_URL}/streams/create`, {
     method: "POST",
     body: formData,
   });
