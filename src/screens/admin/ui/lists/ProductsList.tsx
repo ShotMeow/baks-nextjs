@@ -25,7 +25,7 @@ const TagsList: FC<PropsWithChildren> = ({ children }) => {
         placeholder="Найти товары"
       />
       {children}
-      {products?.data.map((product) => (
+      {products?.data?.map((product) => (
         <Product product={product} key={product.id} />
       ))}
       {products && <Pagination pagination={products.pagination} />}

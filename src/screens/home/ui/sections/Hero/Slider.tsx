@@ -33,7 +33,7 @@ const Slider: FC = () => {
         onSlideChange={({ activeIndex }) => setActiveIndex(activeIndex)}
       >
         {isSuccess &&
-          news.data.map((post) => (
+          news.data?.map((post) => (
             <SwiperSlide key={post.id}>
               <Slide {...post} />
             </SwiperSlide>

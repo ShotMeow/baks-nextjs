@@ -25,7 +25,7 @@ const TagsList: FC<PropsWithChildren> = ({ children }) => {
         placeholder="Найти трансляции"
       />
       {children}
-      {streams?.data.map((stream) => (
+      {streams?.data?.map((stream) => (
         <Stream stream={stream} key={stream.id} />
       ))}
       {streams && <Pagination pagination={streams.pagination} />}

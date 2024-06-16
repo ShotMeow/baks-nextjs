@@ -27,7 +27,7 @@ const FilterDropdownTags: FC = () => {
         setValue={setTagSearch}
       />
       <div className="mt-6 max-h-48 space-y-4 overflow-y-auto md:max-h-96">
-        {tags?.data.map((tag) => (
+        {tags?.data?.map((tag) => (
           <Radio
             onClick={() => handleClick(tag.name)}
             isActive={query.tag === tag.name}

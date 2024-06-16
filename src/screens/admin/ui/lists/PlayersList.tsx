@@ -26,7 +26,7 @@ const PlayersList: FC<PropsWithChildren> = ({ children }) => {
         placeholder="Найти игроков"
       />
       {children}
-      {players?.data.map((player) => (
+      {players?.data?.map((player) => (
         <Player player={player} key={player.id} />
       ))}
       {players && <Pagination pagination={players.pagination} />}

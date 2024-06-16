@@ -158,7 +158,7 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
                 )
               }
             >
-              {tags?.data.map((tag) => (
+              {tags?.data?.map((tag) => (
                 <Select.Option value={String(tag.id)} key={tag.id}>
                   {tag.name}
                 </Select.Option>

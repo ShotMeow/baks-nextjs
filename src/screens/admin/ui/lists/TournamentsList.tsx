@@ -25,7 +25,7 @@ const TagsList: FC<PropsWithChildren> = ({ children }) => {
         placeholder="Найти турниры"
       />
       {children}
-      {tournaments?.data.map((tournament) => (
+      {tournaments?.data?.map((tournament) => (
         <Tournament tournament={tournament} key={tournament.id} />
       ))}
       {tournaments && <Pagination pagination={tournaments.pagination} />}

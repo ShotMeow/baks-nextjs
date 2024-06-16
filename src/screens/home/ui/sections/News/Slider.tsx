@@ -25,7 +25,7 @@ const Slider: FC = () => {
       slidesPerView="auto"
     >
       {news ? (
-        news?.data.map((post) => (
+        news.data?.map((post) => (
           <SwiperSlide
             className="!transition-all !duration-700 lg:!w-[350px] hover:lg:!w-[600px]"
             key={post.id}

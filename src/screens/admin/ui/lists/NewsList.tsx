@@ -25,7 +25,7 @@ const TagsList: FC<PropsWithChildren> = ({ children }) => {
         placeholder="Найти новости"
       />
       {children}
-      {news?.data.map((post) => <News news={post} key={post.id} />)}
+      {news?.data?.map((post) => <News news={post} key={post.id} />)}
       {news && <Pagination pagination={news.pagination} />}
     </ul>
   );

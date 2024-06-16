@@ -25,7 +25,7 @@ const TagsList: FC<PropsWithChildren> = ({ children }) => {
         placeholder="Найти теги"
       />
       {children}
-      {tags?.data.map((tag) => <Tag tag={tag} key={tag.id} />)}
+      {tags?.data?.map((tag) => <Tag tag={tag} key={tag.id} />)}
       {tags && <Pagination pagination={tags.pagination} />}
     </ul>
   );

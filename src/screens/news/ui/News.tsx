@@ -33,7 +33,7 @@ const News: FC = () => {
       />
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {isSuccess &&
-          news.data.map((post, index) =>
+          news.data?.map((post, index) =>
             index === 0 &&
             !debounceSearch &&
             (String(query.page || "") === "1" ||

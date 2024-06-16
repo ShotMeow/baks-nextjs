@@ -27,7 +27,7 @@ const Shop: FC = () => {
       </div>
       <div className="my-10 grid-cols-12 justify-items-center gap-6 space-y-4 md:grid md:space-y-0 lg:grid-rows-6">
         {products ? (
-          products?.data.map((product, index) => (
+          products.data?.map((product, index) => (
             <Link
               href={`/shop/${product.id}`}
               className={classNames(

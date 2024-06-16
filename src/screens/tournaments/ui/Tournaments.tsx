@@ -34,7 +34,7 @@ const Tournaments: FC = () => {
       />
       <div className="grid gap-6 sm:grid-cols-2 2xl:grid-cols-3">
         {isSuccess &&
-          tournaments.data.map((tournament, index) =>
+          tournaments.data?.map((tournament, index) =>
             index === 0 &&
             !debounceSearch &&
             (String(query.page || "") === "1" ||

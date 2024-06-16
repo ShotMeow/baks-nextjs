@@ -36,7 +36,7 @@ const Slider: FC = () => {
         onSlideChange={({ activeIndex }) => setActiveIndex(activeIndex)}
       >
         {streams ? (
-          streams?.data.map((stream) => (
+          streams.data?.map((stream) => (
             <SwiperSlide className="relative !max-w-[1100px]" key={stream.id}>
               <Slide {...stream} />
             </SwiperSlide>

@@ -240,7 +240,7 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
                   )
                 }
               >
-                {teams.data.map((team) => (
+                {teams.data?.map((team) => (
                   <Select.Option value={String(team.id)} key={team.id}>
                     {team.name}
                   </Select.Option>
@@ -271,7 +271,7 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
                 )
               }
             >
-              {tags?.data.map((tag) => (
+              {tags?.data?.map((tag) => (
                 <Select.Option value={String(tag.id)} key={tag.id}>
                   {tag.name}
                 </Select.Option>
