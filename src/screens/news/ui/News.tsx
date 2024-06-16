@@ -34,7 +34,10 @@ const News: FC = () => {
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {isSuccess &&
           news.data.map((post, index) =>
-            index === 0 && !debounceSearch ? (
+            index === 0 &&
+            !debounceSearch &&
+            (String(query.page || "") === "1" ||
+              String(query.page || "") === "") ? (
               <PostLarge post={post} key={post.id} />
             ) : (
               <PostSmall post={post} key={post.id} />
