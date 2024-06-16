@@ -11,6 +11,10 @@ const config: Config = {
         black: "#070707",
         light: "#F5F5F5",
       },
+      boxShadow: {
+        "autofill-light": "inset 0 0 0px 1000px #E9E9E9",
+        "autofill-dark": "inset 0 0 0px 1000px #141414",
+      },
     },
     container: {
       center: true,

@@ -35,9 +35,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:active,
 input:-webkit-autofill:focus {
-  @apply autofill:shadow-[inset_0_0_0px_1000px_#E9E9E9] dark:autofill:text-fill-white dark:autofill:shadow-[inset_0_0_0px_1000px_#141414];
-  /* -webkit-box-shadow: 0 0 0 1000px #141414 inset; */
-  /* -webkit-text-fill-color: #ffffff; */
+  @apply dark:autofill:text-fill-white autofill:shadow-autofill-light dark:autofill:shadow-autofill-dark;
 }
 
 /* Брендирование выделения текста */
