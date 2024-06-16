@@ -1,5 +1,5 @@
 "use client";
-import { type FC, useEffect, useState } from "react";
+import { type FC, useState } from "react";
 import { Spin } from "@gravity-ui/uikit";
 
 import { useGetNews } from "@/src/entities/news";
