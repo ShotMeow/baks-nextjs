@@ -5,6 +5,11 @@ import type { PostFormType, PostType } from "../types";
 
 export const addViewToPost = async (id: number) => {
   const response = await fetch(`${API_URL}/news/${id}/view`);
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };
 
@@ -30,6 +35,11 @@ export const getNews = async ({
   take && queryParams.append("take", String(take));
 
   const response = await fetch(`${API_URL}/news?${queryParams}`);
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };
 
