@@ -1,5 +1,5 @@
 "use client";
-import { type FC, useEffect, useState } from "react";
+import { type FC, useState } from "react";
 import {
   TournamentLarge,
   TournamentSmall,
@@ -13,13 +13,14 @@ import { Pagination } from "@/src/widgets/pagination";
 
 const Tournaments: FC = () => {
   const [search, setSearch] = useState<string>("");
-  const { query, push } = useQueryParams();
+  const { query } = useQueryParams();
   const debounceSearch = useDebounce(search, 500);
 
-  const { data: tournaments, isSuccess, isLoading } = useGetTournaments(query);
-  useEffect(() => {
-    push("search", debounceSearch);
-  }, [debounceSearch, push]);
+  const {
+    data: tournaments,
+    isSuccess,
+    isLoading,
+  } = useGetTournaments({ ...query, search: debounceSearch });
 
   return (
     <main className="container">

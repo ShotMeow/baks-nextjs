@@ -14,12 +14,12 @@ import { useQueryParams } from "@/src/shared/hooks/useQueryParams";
 const News: FC = () => {
   const [search, setSearch] = useState<string>("");
   const debounceSearch = useDebounce(search, 500);
-  const { query, push } = useQueryParams();
-  const { data: news, isLoading, isSuccess } = useGetNews(query);
-
-  useEffect(() => {
-    push("search", debounceSearch);
-  }, [debounceSearch, push]);
+  const { query } = useQueryParams();
+  const {
+    data: news,
+    isLoading,
+    isSuccess,
+  } = useGetNews({ ...query, search: debounceSearch });
 
   return (
     <main className="container">

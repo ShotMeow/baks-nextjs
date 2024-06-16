@@ -56,7 +56,7 @@ const Shop: FC = () => {
                 alt={product.name}
                 className="h-48 w-full object-contain transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="flex w-full items-center justify-between gap-10">
+              <div className="flex w-full items-center justify-between gap-4">
                 <p className="line-clamp-1 lg:text-xl">{product.name}</p>
                 <p className="line-clamp-1 text-lg text-green dark:text-yellow">
                   {product.price} р

@@ -1,5 +1,5 @@
 "use client";
-import { type FC, useEffect, useState } from "react";
+import { type FC, useState } from "react";
 import { Spin } from "@gravity-ui/uikit";
 
 import { useGetTeams } from "@/src/entities/teams";
@@ -11,13 +11,13 @@ import { Pagination } from "@/src/widgets/pagination";
 
 const Teams: FC = () => {
   const [search, setSearch] = useState<string>("");
-  const { query, push } = useQueryParams();
+  const { query } = useQueryParams();
   const debounceSearch = useDebounce(search, 500);
-  const { data: teams, isSuccess, isLoading } = useGetTeams(query);
-
-  useEffect(() => {
-    push("search", debounceSearch);
-  }, [debounceSearch, push]);
+  const {
+    data: teams,
+    isSuccess,
+    isLoading,
+  } = useGetTeams({ ...query, search: debounceSearch });
 
   return (
     <main className="container">

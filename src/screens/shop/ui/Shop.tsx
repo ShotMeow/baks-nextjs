@@ -1,5 +1,5 @@
 "use client";
-import type { FC } from "react";
+import { FC, useState } from "react";
 import Link from "next/link";
 import classNames from "classnames";
 import Image from "next/image";
@@ -9,13 +9,27 @@ import { useGetProducts } from "@/src/entities/products";
 import { API_URL } from "@/src/shared/constants";
 import { Pagination } from "@/src/widgets/pagination";
 import { useQueryParams } from "@/src/shared/hooks/useQueryParams";
+import { useDebounce } from "@/src/shared/hooks/useDebounce";
+import { PageHeader } from "@/src/widgets/filter";
 
 const Shop: FC = () => {
+  const [search, setSearch] = useState<string>("");
   const { query } = useQueryParams();
-  const { data: products } = useGetProducts(query);
+  const debounceSearch = useDebounce(search, 500);
+
+  const { data: products } = useGetProducts({
+    ...query,
+    search: debounceSearch,
+  });
 
   return (
     <main className="container">
+      <PageHeader
+        title="Магазин"
+        searchPlaceholder="Поиск товаров"
+        search={search}
+        setSearch={setSearch}
+      />
       <div className="my-10 grid-cols-12 justify-items-center gap-6 space-y-4 md:grid md:space-y-0">
         {products ? (
           products.data.map((product, index) => (
@@ -23,20 +37,23 @@ const Shop: FC = () => {
               href={`/shop/${product.id}`}
               className={classNames(
                 {
-                  "col-span-full justify-self-stretch row-start-1 row-end-3 lg:col-span-6 lg:[&>img]:h-full":
+                  "col-span-full justify-self-stretch lg:row-start-1 lg:row-end-3 lg:col-span-6 lg:[&>img]:h-full":
                     index === 0 &&
                     (String(query.page || "") === "1" ||
-                      String(query.page || "") === ""),
+                      String(query.page || "") === "") &&
+                    !debounceSearch,
                   "col-start-1 col-end-7 lg:col-span-6 lg:row-start-1 lg:row-end-2 lg:[&>img]:h-72":
                     index === 1 &&
                     (String(query.page || "") === "1" ||
-                      String(query.page || "") === ""),
+                      String(query.page || "") === "") &&
+                    !debounceSearch,
                   "col-start-7 col-end-13 lg:col-span-6 lg:row-start-2 lg:row-end-3 lg:[&>img]:h-72":
                     index === 2 &&
                     (String(query.page || "") === "1" ||
-                      String(query.page || "") === ""),
+                      String(query.page || "") === "") &&
+                    !debounceSearch,
                 },
-                "group bg-white dark:bg-white/5 flex flex-col justify-between p-6 items-center gap-4 w-full col-span-4",
+                "group bg-white dark:bg-zinc-900 flex flex-col justify-between p-6 items-center gap-4 w-full col-span-4",
               )}
               key={product.id}
             >
@@ -45,19 +62,11 @@ const Shop: FC = () => {
                 width={400}
                 height={350}
                 alt={product.name}
-                className={classNames(
-                  {
-                    "p-10 sm:p-20 h-auto":
-                      index === 0 &&
-                      (String(query.page || "") === "1" ||
-                        String(query.page || "") === ""),
-                  },
-                  "w-full h-48 object-contain group-hover:scale-110 transition-transform duration-500",
-                )}
+                className="h-48 w-full object-contain transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="flex w-full items-center justify-between gap-10">
+              <div className="flex w-full items-center justify-between gap-4">
                 <p className="line-clamp-1 lg:text-xl">{product.name}</p>
-                <p className="text-lg text-green dark:text-yellow">
+                <p className="line-clamp-1 text-lg text-green dark:text-yellow">
                   {product.price} р
                 </p>
               </div>
