@@ -10,6 +10,7 @@ import { useDebounce } from "@/src/shared/hooks/useDebounce";
 import { PageHeader } from "@/src/widgets/filter";
 import { useQueryParams } from "@/src/shared/hooks/useQueryParams";
 import { Pagination } from "@/src/widgets/pagination";
+import ListNotFound from "@/src/shared/ui/ListNotFound";
 
 const Tournaments: FC = () => {
   const [search, setSearch] = useState<string>("");
@@ -34,7 +35,8 @@ const Tournaments: FC = () => {
       />
       <div className="grid gap-6 sm:grid-cols-2 2xl:grid-cols-3">
         {isSuccess &&
-          tournaments.data?.map((tournament, index) =>
+          tournaments.data.length !== 0 &&
+          tournaments.data.map((tournament, index) =>
             index === 0 &&
             !debounceSearch &&
             (String(query.page || "") === "1" ||
@@ -44,6 +46,11 @@ const Tournaments: FC = () => {
               <TournamentSmall tournament={tournament} key={tournament.id} />
             ),
           )}
+        {isSuccess && tournaments.data.length === 0 && (
+          <ListNotFound className="col-span-full">
+            Таких турниров нет
+          </ListNotFound>
+        )}
         {isLoading && (
           <div className="col-span-full row-span-full flex h-[10vh] items-center justify-center">
             <Spin size="xl" />

@@ -11,13 +11,18 @@ import { Pagination } from "@/src/widgets/pagination";
 import { useQueryParams } from "@/src/shared/hooks/useQueryParams";
 import { useDebounce } from "@/src/shared/hooks/useDebounce";
 import { PageHeader } from "@/src/widgets/filter";
+import ListNotFound from "@/src/shared/ui/ListNotFound";
 
 const Shop: FC = () => {
   const [search, setSearch] = useState<string>("");
   const { query } = useQueryParams();
   const debounceSearch = useDebounce(search, 500);
 
-  const { data: products } = useGetProducts({
+  const {
+    data: products,
+    isSuccess,
+    isLoading,
+  } = useGetProducts({
     ...query,
     search: debounceSearch,
   });
@@ -31,8 +36,9 @@ const Shop: FC = () => {
         setSearch={setSearch}
       />
       <div className="my-10 grid-cols-12 justify-items-center gap-6 space-y-4 md:grid md:space-y-0">
-        {products ? (
-          products?.data?.map((product, index) => (
+        {isSuccess &&
+          products.data.length !== 0 &&
+          products.data.map((product, index) => (
             <Link
               href={`/shop/${product.id}`}
               className={classNames(
@@ -71,8 +77,13 @@ const Shop: FC = () => {
                 </p>
               </div>
             </Link>
-          ))
-        ) : (
+          ))}
+        {isSuccess && products.data.length === 0 && (
+          <ListNotFound className="col-span-full">
+            Таких товаров нет
+          </ListNotFound>
+        )}
+        {isLoading && (
           <div className="col-span-full row-span-full flex h-[60vh] items-center justify-center">
             <Spin size="xl" />
           </div>

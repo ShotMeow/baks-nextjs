@@ -27,7 +27,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
             variant === "secondary",
           "text-green font-semibold dark:font-medium dark:text-yellow backdrop-blur-lg px-10 py-3 bg-yellow/20 rounded-full":
             variant === "transparent",
-          "text-green dark:text-yellow bg-yellow dark:bg-zinc-800/50 px-6 py-3 rounded-r-full":
+          "text-green dark:text-yellow bg-yellow dark:bg-zinc-800/50 px-6 py-3 rounded-r-full hover:dark:bg-zinc-800/70 hover:dark:text-lilac hover:text-yellow hover:bg-green":
             variant === "more",
           "dark:text-zinc-400 bg-zinc-200 dark:bg-zinc-800 rounded-full px-6 py-2":
             variant === "dropdown",

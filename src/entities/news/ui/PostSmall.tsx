@@ -15,14 +15,14 @@ interface Props {
 
 const PostSmall: FC<Props> = ({ post }) => {
   return (
-    <Link href={`/news/${post.id}`}>
+    <Link className="group" href={`/news/${post.id}`}>
       <article
-        className="relative flex h-full flex-col justify-between bg-white dark:bg-zinc-900"
+        className="relative flex h-full flex-col justify-between bg-white transition-all duration-500 dark:bg-zinc-900 group-hover:dark:bg-zinc-800"
         key={post.id}
       >
-        <div className="relative max-h-[200px] min-h-[200px] w-full">
+        <div className="relative max-h-[200px] min-h-[200px] w-full overflow-hidden">
           <Image
-            className="size-full object-cover p-2"
+            className="size-full object-cover p-2 transition-transform duration-500 group-hover:scale-110"
             src={`${API_URL}/images/${post.artworkUrl}`}
             alt={post.title}
             width={1256}

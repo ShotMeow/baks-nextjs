@@ -23,7 +23,7 @@ const Slider: FC = () => {
   return (
     <>
       <Swiper
-        className="container h-[300px] md:h-[600px]"
+        className="container h-[300px] !overflow-visible md:h-[600px]"
         modules={[Autoplay]}
         autoplay={{
           delay: 5000,

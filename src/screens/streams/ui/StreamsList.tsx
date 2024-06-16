@@ -26,7 +26,7 @@ const StreamsList: FC<Props> = ({
                 "bg-black/5 dark:bg-white/10": activeStreamId === stream.id,
                 "bg-white dark:bg-white/5": activeStreamId !== stream.id,
               },
-              "p-4 flex flex-col items-start text-start justify-between gap-6 h-full transition-all",
+              "p-4 flex flex-col items-start text-start justify-between gap-6 h-full hover:scale-95 transition-all duration-500",
             )}
           >
             <Image

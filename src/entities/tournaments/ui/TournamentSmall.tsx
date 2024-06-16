@@ -13,12 +13,16 @@ interface Props {
 
 const TournamentSmall: FC<Props> = ({ tournament }) => {
   return (
-    <Link key={tournament.id} href={`/tournaments/${tournament.id}`}>
-      <article className="flex h-full flex-col bg-white dark:bg-zinc-900">
-        <div className="relative max-h-[200px] min-h-[200px]">
+    <Link
+      className="group"
+      key={tournament.id}
+      href={`/tournaments/${tournament.id}`}
+    >
+      <article className="flex h-full flex-col bg-white transition-all duration-500 group-hover:bg-zinc-800 dark:bg-zinc-900">
+        <div className="relative max-h-[200px] min-h-[200px] overflow-hidden">
           {tournament.artworkUrl && (
             <Image
-              className="size-full object-cover"
+              className="size-full object-cover transition-transform duration-500 group-hover:scale-110"
               src={`${API_URL}/images/${tournament.artworkUrl}`}
               alt={tournament.name}
               width={388}

@@ -9,13 +9,18 @@ import { Pagination } from "@/src/widgets/pagination";
 import { PageHeader } from "@/src/widgets/filter";
 import { useQueryParams } from "@/src/shared/hooks/useQueryParams";
 import { useDebounce } from "@/src/shared/hooks/useDebounce";
+import ListNotFound from "@/src/shared/ui/ListNotFound";
 
 const Streams: FC = () => {
   const [search, setSearch] = useState<string>("");
   const { query } = useQueryParams();
   const debounceSearch = useDebounce(search, 500);
   const [activeStream, setActiveStream] = useState<StreamType | null>(null);
-  const { data: streams } = useGetStreams({ ...query, search: debounceSearch });
+  const {
+    data: streams,
+    isSuccess,
+    isLoading,
+  } = useGetStreams({ ...query, search: debounceSearch });
 
   useEffect(() => {
     streams && setActiveStream(streams.data[0]);
@@ -29,7 +34,7 @@ const Streams: FC = () => {
         search={search}
         setSearch={setSearch}
       />
-      {streams ? (
+      {isSuccess && streams.data.length !== 0 && (
         <>
           {activeStream && <ActiveStream {...activeStream} />}
           {streams && activeStream && (
@@ -40,7 +45,13 @@ const Streams: FC = () => {
             />
           )}
         </>
-      ) : (
+      )}
+      {isSuccess && streams.data.length === 0 && (
+        <ListNotFound className="col-span-full">
+          Таких трансляций нет
+        </ListNotFound>
+      )}
+      {isLoading && (
         <div className="flex h-screen items-center justify-center">
           <Spin size="xl" />
         </div>
