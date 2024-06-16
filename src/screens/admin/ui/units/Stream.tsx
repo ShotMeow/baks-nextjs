@@ -1,10 +1,11 @@
 import { type FC, useState } from "react";
 import Button from "@/src/shared/ui/Button";
-import { StreamType, useDeleteStream } from "@/src/entities/streams";
 
+import { type StreamType, useDeleteStream } from "@/src/entities/streams";
 import DeleteModal from "../modals/DeleteModal";
 import FormModal from "../modals/FormModal";
 import StreamsForm from "../forms/StreamsForm";
+import { useNotificationCall } from "../../hooks/useNotificationCall";
 
 interface Props {
   stream: StreamType;
@@ -14,12 +15,25 @@ const Stream: FC<Props> = ({ stream }) => {
   const [deleteModalShown, setDeleteModalShown] = useState<boolean>(false);
   const [updateModalShown, setUpdateModalShown] = useState<boolean>(false);
 
-  const mutation = useDeleteStream();
+  const {
+    mutate: deleteStream,
+    isSuccess: isDeleteSuccess,
+    isError: isDeleteError,
+  } = useDeleteStream();
 
   const handleDelete = () => {
-    mutation.mutate(stream.id);
-    setDeleteModalShown(false);
+    deleteStream(stream.id);
   };
+
+  useNotificationCall({
+    isDeleteSuccess,
+    isDeleteError,
+    onClose: () => setDeleteModalShown(false),
+    deleteText: [
+      "Трансляция успешно удалена",
+      "Ошибка при удалении трансляции",
+    ],
+  });
 
   return (
     <>

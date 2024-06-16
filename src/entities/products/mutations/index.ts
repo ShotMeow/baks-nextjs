@@ -11,6 +11,9 @@ export const useCreateProduct = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
     },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
+    },
   });
 };
 
@@ -28,6 +31,9 @@ export const useUpdateProduct = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
     },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
+    },
   });
 };
 
@@ -38,6 +44,9 @@ export const useDeleteProduct = () => {
     mutationFn: (id: ProductType["id"]) => deleteProduct(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
+    },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
     },
   });
 };

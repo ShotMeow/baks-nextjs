@@ -12,6 +12,9 @@ export const useUpdateUser = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
+    },
   });
 };
 
@@ -22,6 +25,9 @@ export const useDeleteUser = () => {
     mutationFn: deleteUser,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
+    },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
     },
   });
 };

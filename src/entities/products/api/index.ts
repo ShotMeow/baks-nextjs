@@ -16,11 +16,21 @@ export const getProducts = async ({
   take && queryParams.append("take", String(take));
 
   const response = await fetch(`${API_URL}/products?${queryParams}`);
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };
 
 export const getProductById = async (id: ProductType["id"]) => {
   const response = await fetch(`${API_URL}/products/${id}`);
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };
 
@@ -30,6 +40,11 @@ export const createProduct = async (data: ProductFormType) => {
     method: "POST",
     body: formData,
   });
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };
 
@@ -42,6 +57,11 @@ export const updateProduct = async (
     method: "PATCH",
     body: formData,
   });
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };
 
@@ -49,5 +69,10 @@ export const deleteProduct = async (id: ProductType["id"]) => {
   const response = await fetch(`${API_URL}/products/${id}/delete`, {
     method: "DELETE",
   });
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };

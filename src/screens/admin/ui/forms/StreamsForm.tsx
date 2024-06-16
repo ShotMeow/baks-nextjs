@@ -11,6 +11,7 @@ import {
   useUpdateStream,
 } from "@/src/entities/streams";
 import { API_URL } from "@/src/shared/constants";
+import { useNotificationCall } from "../../hooks/useNotificationCall";
 
 interface Props {
   stream?: StreamType;
@@ -35,8 +36,32 @@ const StreamsForm: FC<Props> = ({ onClose, stream, type }) => {
     stream?.posterUrl ? `${API_URL}/images/${stream?.posterUrl}` : null,
   );
 
-  const { mutate: createStreamMutation } = useCreateStream();
-  const { mutate: updateStreamMutation } = useUpdateStream();
+  const {
+    mutate: createStreamMutation,
+    isSuccess: isCreateSuccess,
+    isError: isCreateError,
+  } = useCreateStream();
+  const {
+    mutate: updateStreamMutation,
+    isSuccess: isUpdateSuccess,
+    isError: isUpdateError,
+  } = useUpdateStream();
+
+  useNotificationCall({
+    isCreateSuccess,
+    isCreateError,
+    isUpdateSuccess,
+    isUpdateError,
+    onClose,
+    createText: [
+      "Трансляция успешно создана",
+      "Ошибка при создании трансляции",
+    ],
+    updateText: [
+      "Трансляция успешно обновлена",
+      "Ошибка при обновлении трансляции",
+    ],
+  });
 
   const onSubmit: SubmitHandler<StreamFormType> = (data) => {
     switch (type) {
@@ -47,8 +72,6 @@ const StreamsForm: FC<Props> = ({ onClose, stream, type }) => {
         stream && updateStreamMutation({ id: stream.id, data });
         break;
     }
-
-    onClose(false);
   };
 
   return (

@@ -8,6 +8,7 @@ import {
   type UserFormType,
   useUpdateUser,
 } from "@/src/entities/users";
+import { useNotificationCall } from "../../hooks/useNotificationCall";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -32,12 +33,24 @@ const PlayersForm: FC<Props> = ({ onClose, player }) => {
     },
   });
 
-  const { mutate: updateUserMutation } = useUpdateUser();
+  const {
+    mutate: updateUserMutation,
+    isSuccess: isUpdateSuccess,
+    isError: isUpdateError,
+  } = useUpdateUser();
+
+  useNotificationCall({
+    isUpdateSuccess,
+    isUpdateError,
+    onClose,
+    updateText: [
+      "Данные пользователя успешно обновлены",
+      "Ошибка при обновлении данных пользователя",
+    ],
+  });
 
   const onSubmit: SubmitHandler<UserFormType> = (data) => {
     updateUserMutation({ id: player.id, data });
-
-    onClose(false);
   };
 
   return (

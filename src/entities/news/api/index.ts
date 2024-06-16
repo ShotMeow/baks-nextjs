@@ -32,6 +32,11 @@ export const getNews = async ({
 
 export const getNewsById = async (id: NewsType["id"]) => {
   const response = await fetch(`${API_URL}/news/${id}`);
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };
 
@@ -45,6 +50,11 @@ export const createNews = async (data: NewsFormType) => {
     method: "POST",
     body: formData,
   });
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };
 
@@ -58,6 +68,11 @@ export const updateNews = async (id: NewsType["id"], data: NewsFormType) => {
     method: "PATCH",
     body: formData,
   });
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };
 
@@ -65,5 +80,10 @@ export const deleteNews = async (id: NewsType["id"]) => {
   const response = await fetch(`${API_URL}/news/${id}/delete`, {
     method: "DELETE",
   });
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };

@@ -16,6 +16,7 @@ import {
 import { useGetTeams } from "@/src/entities/teams";
 import { API_URL } from "@/src/shared/constants";
 import { useGetTags } from "@/src/entities/tags";
+import { useNotificationCall } from "../../hooks/useNotificationCall";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -51,10 +52,28 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
       : null,
   );
 
-  const { mutate: createTournamentMutation } = useCreateTournament();
-  const { mutate: updateTournamentMutation } = useUpdateTournament();
   const { data: teams } = useGetTeams({});
   const { data: tags } = useGetTags({});
+  const {
+    mutate: createTournamentMutation,
+    isSuccess: isCreateSuccess,
+    isError: isCreateError,
+  } = useCreateTournament();
+  const {
+    mutate: updateTournamentMutation,
+    isSuccess: isUpdateSuccess,
+    isError: isUpdateError,
+  } = useUpdateTournament();
+
+  useNotificationCall({
+    isCreateSuccess,
+    isCreateError,
+    isUpdateSuccess,
+    isUpdateError,
+    onClose,
+    createText: ["Турнир успешно создан", "Ошибка при создании турнира"],
+    updateText: ["Турнин успешно обновлен", "Ошибка при обновлении турнира"],
+  });
 
   const onSubmit: SubmitHandler<TournamentFormType> = (data) => {
     switch (type) {
@@ -69,8 +88,6 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
           });
         break;
     }
-
-    onClose(false);
   };
 
   return (

@@ -1,10 +1,11 @@
-import { FC, useState } from "react";
+import { type FC, useState } from "react";
 import Button from "@/src/shared/ui/Button";
-import DeleteModal from "@/src/screens/admin/ui/modals/DeleteModal";
-import FormModal from "@/src/screens/admin/ui/modals/FormModal";
-import { ProductType } from "@/src/entities/products/types";
-import { useDeleteProduct } from "@/src/entities/products";
-import ProductsForm from "@/src/screens/admin/ui/forms/ProductsForm";
+import { useDeleteProduct, type ProductType } from "@/src/entities/products";
+
+import DeleteModal from "../modals/DeleteModal";
+import FormModal from "../modals/FormModal";
+import ProductsForm from "../forms/ProductsForm";
+import { useNotificationCall } from "../../hooks/useNotificationCall";
 
 interface Props {
   product: ProductType;
@@ -14,12 +15,22 @@ const Product: FC<Props> = ({ product }) => {
   const [deleteModalShown, setDeleteModalShown] = useState<boolean>(false);
   const [updateModalShown, setUpdateModalShown] = useState<boolean>(false);
 
-  const mutation = useDeleteProduct();
+  const {
+    mutate: deleteProduct,
+    isSuccess: isDeleteSuccess,
+    isError: isDeleteError,
+  } = useDeleteProduct();
 
   const handleDelete = () => {
-    mutation.mutate(product.id);
-    setDeleteModalShown(false);
+    deleteProduct(product.id);
   };
+
+  useNotificationCall({
+    isDeleteSuccess,
+    isDeleteError,
+    onClose: () => setDeleteModalShown(false),
+    deleteText: ["Продукт успешно удален", "Ошибка при удалении продукта"],
+  });
 
   return (
     <>

@@ -11,6 +11,7 @@ import {
   useUpdateProduct,
 } from "@/src/entities/products";
 import { API_URL } from "@/src/shared/constants";
+import { useNotificationCall } from "../../hooks/useNotificationCall";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -35,8 +36,26 @@ const ProductsForm: FC<Props> = ({ onClose, product, type }) => {
     product?.pictureUrl ? `${API_URL}/images/${product?.pictureUrl}` : null,
   );
 
-  const { mutate: createProductMutation } = useCreateProduct();
-  const { mutate: updateProductMutation } = useUpdateProduct();
+  const {
+    mutate: createProductMutation,
+    isSuccess: isCreateSuccess,
+    isError: isCreateError,
+  } = useCreateProduct();
+  const {
+    mutate: updateProductMutation,
+    isSuccess: isUpdateSuccess,
+    isError: isUpdateError,
+  } = useUpdateProduct();
+
+  useNotificationCall({
+    isCreateSuccess,
+    isCreateError,
+    isUpdateSuccess,
+    isUpdateError,
+    onClose,
+    createText: ["Продукт успешно создан", "Ошибка при создании продукта"],
+    updateText: ["Продукт успешно обновлен", "Ошибка при обновлении продукта"],
+  });
 
   const onSubmit: SubmitHandler<ProductFormType> = (data) => {
     switch (type) {
@@ -47,8 +66,6 @@ const ProductsForm: FC<Props> = ({ onClose, product, type }) => {
         product && updateProductMutation({ id: product.id, data });
         break;
     }
-
-    onClose(false);
   };
 
   return (

@@ -11,6 +11,9 @@ export const useCreateTournament = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tournaments"] });
     },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
+    },
   });
 };
 
@@ -28,6 +31,9 @@ export const useUpdateTournament = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tournaments"] });
     },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
+    },
   });
 };
 
@@ -38,6 +44,9 @@ export const useDeleteTournament = () => {
     mutationFn: deleteTournament,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tournaments"] });
+    },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
     },
   });
 };

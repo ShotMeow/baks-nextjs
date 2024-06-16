@@ -1,12 +1,13 @@
 import { type FC, useState } from "react";
 import Button from "@/src/shared/ui/Button";
+import Image from "next/image";
 import { API_URL } from "@/src/shared/constants";
 
+import { useDeleteUser, type UserType } from "@/src/entities/users";
 import FormModal from "../modals/FormModal";
-import { useDeleteUser, UserType } from "@/src/entities/users";
-import PlayersForm from "@/src/screens/admin/ui/forms/PlayersForm";
-import Image from "next/image";
-import DeleteModal from "@/src/screens/admin/ui/modals/DeleteModal";
+import PlayersForm from "../forms/PlayersForm";
+import DeleteModal from "../modals/DeleteModal";
+import { useNotificationCall } from "../../hooks/useNotificationCall";
 
 interface Props {
   player: UserType;
@@ -16,12 +17,25 @@ const Player: FC<Props> = ({ player }) => {
   const [deleteModalShown, setDeleteModalShown] = useState<boolean>(false);
   const [updateModalShown, setUpdateModalShown] = useState<boolean>(false);
 
-  const mutation = useDeleteUser();
+  const {
+    mutate: deletePlayer,
+    isSuccess: isDeleteSuccess,
+    isError: isDeleteError,
+  } = useDeleteUser();
 
   const handleDelete = () => {
-    mutation.mutate(player.id);
-    setDeleteModalShown(false);
+    deletePlayer(player.id);
   };
+
+  useNotificationCall({
+    isDeleteSuccess,
+    isDeleteError,
+    onClose: () => setDeleteModalShown(false),
+    deleteText: [
+      "Пользователь успешно удален",
+      "Ошибка при удалении пользователя",
+    ],
+  });
 
   return (
     <>

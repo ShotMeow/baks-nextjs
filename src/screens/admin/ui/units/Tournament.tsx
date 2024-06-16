@@ -8,6 +8,7 @@ import {
 import DeleteModal from "../modals/DeleteModal";
 import FormModal from "../modals/FormModal";
 import TournamentsForm from "../forms/TournamentsForm";
+import { useNotificationCall } from "../../hooks/useNotificationCall";
 
 interface Props {
   tournament: TournamentType;
@@ -17,12 +18,22 @@ const Tournament: FC<Props> = ({ tournament }) => {
   const [deleteModalShown, setDeleteModalShown] = useState<boolean>(false);
   const [updateModalShown, setUpdateModalShown] = useState<boolean>(false);
 
-  const mutation = useDeleteTournament();
+  const {
+    mutate: deleteTournament,
+    isSuccess: isDeleteSuccess,
+    isError: isDeleteError,
+  } = useDeleteTournament();
 
   const handleDelete = () => {
-    mutation.mutate(tournament.id);
-    setDeleteModalShown(false);
+    deleteTournament(tournament.id);
   };
+
+  useNotificationCall({
+    isDeleteSuccess,
+    isDeleteError,
+    onClose: () => setDeleteModalShown(false),
+    deleteText: ["Турнир успешно удален", "Ошибка при удалении турнира"],
+  });
 
   return (
     <>

@@ -9,6 +9,7 @@ import {
   useCreateTag,
   useUpdateTag,
 } from "@/src/entities/tags";
+import { useNotificationCall } from "../../hooks/useNotificationCall";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -27,8 +28,26 @@ const TagsForm: FC<Props> = ({ onClose, tag, type }) => {
     },
   });
 
-  const { mutate: createTagMutation } = useCreateTag();
-  const { mutate: updateTagMutation } = useUpdateTag();
+  const {
+    mutate: createTagMutation,
+    isSuccess: isCreateSuccess,
+    isError: isCreateError,
+  } = useCreateTag();
+  const {
+    mutate: updateTagMutation,
+    isSuccess: isUpdateSuccess,
+    isError: isUpdateError,
+  } = useUpdateTag();
+
+  useNotificationCall({
+    isCreateSuccess,
+    isCreateError,
+    isUpdateSuccess,
+    isUpdateError,
+    onClose,
+    createText: ["Тег успешно создан", "Ошибка при создании тега"],
+    updateText: ["Тег успешно обновлен", "Ошибка при обновлении тега"],
+  });
 
   const onSubmit: SubmitHandler<TagsFormType> = (data) => {
     switch (type) {
@@ -39,8 +58,6 @@ const TagsForm: FC<Props> = ({ onClose, tag, type }) => {
         tag && updateTagMutation({ id: tag.id, data });
         break;
     }
-
-    onClose(false);
   };
 
   return (

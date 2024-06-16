@@ -11,6 +11,9 @@ export const useCreateTag = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tags"] });
     },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
+    },
   });
 };
 
@@ -23,6 +26,9 @@ export const useUpdateTag = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tags"] });
     },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
+    },
   });
 };
 
@@ -33,6 +39,9 @@ export const useDeleteTag = () => {
     mutationFn: (id: TagType["id"]) => deleteTag(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tags"] });
+    },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
     },
   });
 };

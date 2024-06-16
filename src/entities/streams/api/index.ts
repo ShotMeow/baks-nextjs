@@ -16,11 +16,21 @@ export const getStreams = async ({
   take && queryParams.append("take", String(take));
 
   const response = await fetch(`${API_URL}/streams?${queryParams}`);
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };
 
 export const getStreamById = async (id: StreamType["id"]) => {
   const response = await fetch(`${API_URL}/streams/${id}`);
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };
 
@@ -31,6 +41,11 @@ export const createStream = async (data: StreamFormType) => {
     method: "POST",
     body: formData,
   });
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };
 
@@ -44,6 +59,11 @@ export const updateStream = async (
     method: "PATCH",
     body: formData,
   });
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };
 
@@ -51,5 +71,10 @@ export const deleteStream = async (id: StreamType["id"]) => {
   const response = await fetch(`${API_URL}/streams/${id}/delete`, {
     method: "DELETE",
   });
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };

@@ -1,10 +1,11 @@
 import { type FC, useState } from "react";
 import Button from "@/src/shared/ui/Button";
-import { NewsType, useDeleteNews } from "@/src/entities/news";
+import { type NewsType, useDeleteNews } from "@/src/entities/news";
 
 import DeleteModal from "../modals/DeleteModal";
 import FormModal from "../modals/FormModal";
 import NewsForm from "../forms/NewsForm";
+import { useNotificationCall } from "../../hooks/useNotificationCall";
 
 interface Props {
   news: NewsType;
@@ -14,12 +15,22 @@ const News: FC<Props> = ({ news }) => {
   const [deleteModalShown, setDeleteModalShown] = useState<boolean>(false);
   const [updateModalShown, setUpdateModalShown] = useState<boolean>(false);
 
-  const mutation = useDeleteNews();
+  const {
+    mutate: deleteNews,
+    isSuccess: isDeleteSuccess,
+    isError: isDeleteError,
+  } = useDeleteNews();
 
   const handleDelete = () => {
-    mutation.mutate(news.id);
-    setDeleteModalShown(false);
+    deleteNews(news.id);
   };
+
+  useNotificationCall({
+    isDeleteSuccess,
+    isDeleteError,
+    onClose: () => setDeleteModalShown(false),
+    deleteText: ["Пост успешно удален", "Ошибка при удалении поста"],
+  });
 
   return (
     <>

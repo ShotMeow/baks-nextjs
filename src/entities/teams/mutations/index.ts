@@ -14,6 +14,9 @@ export const useCreateTeam = () => {
         queryClient.invalidateQueries({ queryKey: ["users"] }),
       ]);
     },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
+    },
   });
 };
 
@@ -23,11 +26,15 @@ export const useUpdateTeam = () => {
   return useMutation({
     mutationFn: ({ id, data }: { id: TeamType["id"]; data: TeamFormType }) =>
       updateTeam(id, data),
-    onSuccess: () =>
+    onSuccess: () => {
       Promise.all([
         queryClient.invalidateQueries({ queryKey: ["teams"] }),
         queryClient.invalidateQueries({ queryKey: ["users"] }),
-      ]),
+      ]);
+    },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
+    },
   });
 };
 
@@ -36,10 +43,14 @@ export const useDeleteTeam = () => {
 
   return useMutation({
     mutationFn: deleteTeam,
-    onSuccess: () =>
+    onSuccess: () => {
       Promise.all([
         queryClient.invalidateQueries({ queryKey: ["teams"] }),
         queryClient.invalidateQueries({ queryKey: ["users"] }),
-      ]),
+      ]);
+    },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
+    },
   });
 };

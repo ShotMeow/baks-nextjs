@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction, useState } from "react";
+import { type Dispatch, type FC, type SetStateAction, useState } from "react";
 import { Controller, type SubmitHandler, useForm } from "react-hook-form";
 import { TextInput, Select } from "@gravity-ui/uikit";
 import Image from "next/image";
@@ -13,6 +13,7 @@ import {
   useUpdateNews,
 } from "@/src/entities/news";
 import { API_URL } from "@/src/shared/constants";
+import { useNotificationCall } from "../../hooks/useNotificationCall";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -40,8 +41,26 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
   );
 
   const { data: tags } = useGetTags({});
-  const { mutate: createNewsMutation } = useCreateNews();
-  const { mutate: updateNewsMutation } = useUpdateNews();
+  const {
+    mutate: createNewsMutation,
+    isSuccess: isCreateSuccess,
+    isError: isCreateError,
+  } = useCreateNews();
+  const {
+    mutate: updateNewsMutation,
+    isSuccess: isUpdateSuccess,
+    isError: isUpdateError,
+  } = useUpdateNews();
+
+  useNotificationCall({
+    isCreateSuccess,
+    isCreateError,
+    isUpdateSuccess,
+    isUpdateError,
+    onClose,
+    createText: ["Пост успешно создан", "Ошибка при создании поста"],
+    updateText: ["Пост успешно обновлен", "Ошибка при обновлении поста"],
+  });
 
   const onSubmit: SubmitHandler<NewsFormType> = (data) => {
     switch (type) {
@@ -56,8 +75,6 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
           });
         break;
     }
-
-    onClose(false);
   };
 
   return (

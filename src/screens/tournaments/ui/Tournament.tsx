@@ -26,9 +26,10 @@ const Tournament: FC<Props> = ({ slug }) => {
     <main className="relative">
       {tournament && (
         <article>
-          <div className="absolute -z-10">
+          <div className="absolute -z-10 w-full">
             <Image
               src={`${API_URL}/images/${tournament.artworkUrl}`}
+              className="size-full"
               alt={tournament.name}
               width={1920}
               height={1080}
@@ -153,13 +154,16 @@ const Tournament: FC<Props> = ({ slug }) => {
                             <PlayerCard player={player} key={player.id} />
                           ))}
                       </div>
-                      <div className="mt-8 flex items-center justify-center gap-6">
+                      <div className="mt-8 flex items-center gap-6 overflow-x-auto lg:justify-center">
                         {tournament.teams.map((team) => (
                           <button
                             key={team.id}
-                            className={classNames({
-                              "opacity-50": team.id !== activeTeam,
-                            })}
+                            className={classNames(
+                              {
+                                "opacity-50": team.id !== activeTeam,
+                              },
+                              "flex-shrink-0",
+                            )}
                             onClick={() => setActiveTeam(team.id)}
                           >
                             {team.logoUrl ? (

@@ -6,6 +6,7 @@ import { type TeamType, useDeleteTeam } from "@/src/entities/teams";
 import DeleteModal from "../modals/DeleteModal";
 import FormModal from "../modals/FormModal";
 import TeamsForm from "../forms/TeamsForm";
+import { useNotificationCall } from "../../hooks/useNotificationCall";
 
 interface Props {
   team: TeamType;
@@ -15,12 +16,22 @@ const Team: FC<Props> = ({ team }) => {
   const [deleteModalShown, setDeleteModalShown] = useState<boolean>(false);
   const [updateModalShown, setUpdateModalShown] = useState<boolean>(false);
 
-  const mutation = useDeleteTeam();
+  const {
+    mutate: deleteTeam,
+    isSuccess: isDeleteSuccess,
+    isError: isDeleteError,
+  } = useDeleteTeam();
 
   const handleDelete = () => {
-    mutation.mutate(team.id);
-    setDeleteModalShown(false);
+    deleteTeam(team.id);
   };
+
+  useNotificationCall({
+    isDeleteSuccess,
+    isDeleteError,
+    onClose: () => setDeleteModalShown(false),
+    deleteText: ["Команда успешно удалена", "Ошибка при удалении команды"],
+  });
 
   return (
     <>

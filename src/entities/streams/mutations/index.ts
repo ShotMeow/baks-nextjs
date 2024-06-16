@@ -11,6 +11,9 @@ export const useCreateStream = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["streams"] });
     },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
+    },
   });
 };
 
@@ -28,6 +31,9 @@ export const useUpdateStream = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["streams"] });
     },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
+    },
   });
 };
 
@@ -38,6 +44,9 @@ export const useDeleteStream = () => {
     mutationFn: (id: StreamType["id"]) => deleteStream(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["streams"] });
+    },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
     },
   });
 };

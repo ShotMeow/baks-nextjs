@@ -22,11 +22,21 @@ export const getTournaments = async ({
   take && queryParams.append("take", String(take));
 
   const response = await fetch(`${API_URL}/tournaments?${queryParams}`);
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };
 
 export const getTournamentById = async (id: TournamentType["id"]) => {
   const response = await fetch(`${API_URL}/tournaments/${id}`);
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };
 
@@ -41,6 +51,11 @@ export const createTournament = async (data: TournamentFormType) => {
     method: "POST",
     body: formData,
   });
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };
 
@@ -58,6 +73,11 @@ export const updateTournament = async (
     method: "PATCH",
     body: formData,
   });
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };
 
@@ -65,5 +85,10 @@ export const deleteTournament = async (id: TournamentType["id"]) => {
   const response = await fetch(`${API_URL}/tournaments/${id}/delete`, {
     method: "DELETE",
   });
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
   return response.json();
 };

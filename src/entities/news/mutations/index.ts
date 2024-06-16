@@ -11,6 +11,9 @@ export const useCreateNews = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["news"] });
     },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
+    },
   });
 };
 
@@ -23,6 +26,9 @@ export const useUpdateNews = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["news"] });
     },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
+    },
   });
 };
 
@@ -33,6 +39,9 @@ export const useDeleteNews = () => {
     mutationFn: (id: NewsType["id"]) => deleteNews(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["news"] });
+    },
+    onError: (error) => {
+      console.error("Произошла ошибка при выполнении запроса:", error);
     },
   });
 };

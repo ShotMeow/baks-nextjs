@@ -16,6 +16,7 @@ import {
 import { useGetUsers } from "@/src/entities/users";
 import { useGetTournaments } from "@/src/entities/tournaments";
 import { API_URL } from "@/src/shared/constants";
+import { useNotificationCall } from "../../hooks/useNotificationCall";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -45,8 +46,26 @@ const TeamsForm: FC<Props> = ({ onClose, team, type }) => {
     team?.logoUrl ? `${API_URL}/images/${team?.logoUrl}` : null,
   );
 
-  const { mutate: createTeamMutation } = useCreateTeam();
-  const { mutate: updateTeamMutation } = useUpdateTeam();
+  const {
+    mutate: createTeamMutation,
+    isSuccess: isCreateSuccess,
+    isError: isCreateError,
+  } = useCreateTeam();
+  const {
+    mutate: updateTeamMutation,
+    isSuccess: isUpdateSuccess,
+    isError: isUpdateError,
+  } = useUpdateTeam();
+
+  useNotificationCall({
+    isCreateSuccess,
+    isCreateError,
+    isUpdateSuccess,
+    isUpdateError,
+    onClose,
+    createText: ["Команда успешно создана", "Ошибка при создании команды"],
+    updateText: ["Команда успешно обновлена", "Ошибка при обновлении команды"],
+  });
 
   const { data: players } = useGetUsers({});
   const { data: tournaments } = useGetTournaments({});
@@ -64,8 +83,6 @@ const TeamsForm: FC<Props> = ({ onClose, team, type }) => {
           });
         break;
     }
-
-    onClose(false);
   };
 
   return (

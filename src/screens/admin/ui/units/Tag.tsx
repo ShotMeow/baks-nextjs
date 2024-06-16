@@ -6,6 +6,7 @@ import { type TagType, useDeleteTag } from "@/src/entities/tags";
 import DeleteModal from "../modals/DeleteModal";
 import FormModal from "../modals/FormModal";
 import TagsForm from "../forms/TagsForm";
+import { useNotificationCall } from "../../hooks/useNotificationCall";
 
 interface Props {
   tag: TagType;
@@ -15,12 +16,22 @@ const Tag: FC<Props> = ({ tag }) => {
   const [deleteModalShown, setDeleteModalShown] = useState<boolean>(false);
   const [updateModalShown, setUpdateModalShown] = useState<boolean>(false);
 
-  const mutation = useDeleteTag();
+  const {
+    mutate: deleteTag,
+    isSuccess: isDeleteSuccess,
+    isError: isDeleteError,
+  } = useDeleteTag();
 
   const handleDelete = () => {
-    mutation.mutate(tag.id);
-    setDeleteModalShown(false);
+    deleteTag(tag.id);
   };
+
+  useNotificationCall({
+    isDeleteSuccess,
+    isDeleteError,
+    onClose: () => setDeleteModalShown(false),
+    deleteText: ["Тег успешно удален", "Ошибка при удалении тега"],
+  });
 
   return (
     <>
