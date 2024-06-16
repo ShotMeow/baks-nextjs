@@ -18,7 +18,7 @@ const Home: FC = () => {
       <News />
       <Shop />
       <Form />
-      <p className="container my-40 text-center text-2xl font-semibold text-green md:text-6xl dark:text-black">
+      <p className="container my-40 text-center text-2xl font-semibold text-green md:text-6xl dark:text-white">
         Место, где реальность встречается с игрой!
       </p>
     </main>
