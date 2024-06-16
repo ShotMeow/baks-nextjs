@@ -6,7 +6,7 @@ interface queryType {
 
 export const useQueryParams = () => {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const searchParams = new URLSearchParams(window.location.search);
   const router = useRouter();
 
   const queryObject: queryType = {};
