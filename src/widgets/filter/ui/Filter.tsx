@@ -8,12 +8,9 @@ import { getSortValue } from "@/src/widgets/filter/utils/getSortValue";
 import FilterDropdown from "@/src/widgets/filter/ui/FilterDropdown";
 import FilterIcon from "@/src/shared/ui/icons/Filter";
 import Button from "@/src/shared/ui/Button";
+import { useQueryParams } from "@/src/shared/hooks/useQueryParams";
 
 interface Props {
-  tag?: string;
-  setTag?: Dispatch<SetStateAction<string>>;
-  sort?: string;
-  setSort?: Dispatch<SetStateAction<string>>;
   dropdownState: {
     visible: boolean;
     type: string | null;
@@ -24,17 +21,18 @@ interface Props {
       type: string | null;
     }>
   >;
+  withSort?: boolean;
+  withTags?: boolean;
 }
 
 const Filter: FC<Props> = ({
-  tag,
-  setTag,
-  sort,
-  setSort,
   setDropdownState,
   dropdownState,
+  withTags,
+  withSort,
 }) => {
   const [filterShown, setFilterShown] = useState(false);
+  const { query } = useQueryParams();
 
   return (
     <div className="flex flex-wrap items-center gap-4">
@@ -58,10 +56,8 @@ const Filter: FC<Props> = ({
           "absolute flex px-4 bg-white dark:bg-zinc-900 lg:bg-transparent flex-wrap overflow-hidden z-30 top-full left-0 right-0 transition-all items-center gap-2 lg:flex lg:static lg:p-0 lg:max-h-96",
         )}
       >
-        {typeof tag !== "undefined" && setTag && (
+        {withTags && (
           <CategoryButton
-            tag={tag}
-            setTag={setTag}
             onClick={() => {
               setFilterShown(false);
               setDropdownState({
@@ -70,16 +66,14 @@ const Filter: FC<Props> = ({
               });
             }}
           >
-            {tag || "Категория"}
+            {query.tag || "Категория"}
             <ArrowToggle
               direction={dropdownState.type === "tags" ? "top" : "bottom"}
             />
           </CategoryButton>
         )}
-        {typeof sort !== "undefined" && setSort && (
+        {withSort && (
           <SortButton
-            sort={sort}
-            setSort={setSort}
             onClick={() => {
               setFilterShown(false);
               setDropdownState({
@@ -88,7 +82,7 @@ const Filter: FC<Props> = ({
               });
             }}
           >
-            {getSortValue(sort)}
+            {getSortValue(query.sort as string)}
             <ArrowToggle
               direction={dropdownState.type === "sort" ? "top" : "bottom"}
             />
@@ -96,10 +90,6 @@ const Filter: FC<Props> = ({
         )}
       </div>
       <FilterDropdown
-        sort={sort}
-        setSort={setSort}
-        tag={tag}
-        setTag={setTag}
         setFilterShown={setFilterShown}
         dropdownState={dropdownState}
         setDropdownState={setDropdownState}

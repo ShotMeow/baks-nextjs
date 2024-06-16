@@ -135,13 +135,13 @@ const TeamsForm: FC<Props> = ({ onClose, team, type }) => {
                 onUpdate={(value) =>
                   setValue(
                     "players",
-                    players.filter((player) =>
+                    players.data.filter((player) =>
                       value.includes(String(player.id)),
                     ),
                   )
                 }
               >
-                {players.map((player) => (
+                {players.data.map((player) => (
                   <Select.Option value={String(player.id)} key={player.id}>
                     {player.nickname}
                   </Select.Option>
@@ -168,13 +168,13 @@ const TeamsForm: FC<Props> = ({ onClose, team, type }) => {
                 onUpdate={(value) =>
                   setValue(
                     "tournaments",
-                    tournaments.filter((tournament) =>
+                    tournaments.data.filter((tournament) =>
                       value.includes(String(tournament.id)),
                     ),
                   )
                 }
               >
-                {tournaments.map((tournament) => (
+                {tournaments.data.map((tournament) => (
                   <Select.Option
                     value={String(tournament.id)}
                     key={tournament.id}

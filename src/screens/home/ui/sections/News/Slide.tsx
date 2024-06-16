@@ -2,11 +2,11 @@ import type { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import type { NewsType } from "@/src/entities/news";
+import type { PostType } from "@/src/entities/news";
 import { API_URL } from "@/src/shared/constants";
 import { TagChip } from "@/src/entities/tags";
 
-interface Props extends NewsType {}
+interface Props extends PostType {}
 
 const Slide: FC<Props> = ({ id, artworkUrl, title, tags, createdAt }) => {
   return (

@@ -1,6 +1,6 @@
 import { type FC, useState } from "react";
 import Button from "@/src/shared/ui/Button";
-import { type NewsType, useDeleteNews } from "@/src/entities/news";
+import { type PostType, useDeleteNews } from "@/src/entities/news";
 
 import DeleteModal from "../modals/DeleteModal";
 import FormModal from "../modals/FormModal";
@@ -8,7 +8,7 @@ import NewsForm from "../forms/NewsForm";
 import { useNotificationCall } from "../../hooks/useNotificationCall";
 
 interface Props {
-  news: NewsType;
+  news: PostType;
 }
 
 const News: FC<Props> = ({ news }) => {

@@ -5,13 +5,14 @@ import { type StreamType, useGetStreams } from "@/src/entities/streams";
 
 import StreamsList from "./StreamsList";
 import ActiveStream from "./ActiveStream";
+import { Pagination } from "@/src/widgets/pagination";
 
 const Streams: FC = () => {
   const [activeStream, setActiveStream] = useState<StreamType | null>(null);
   const { data: streams } = useGetStreams({});
 
   useEffect(() => {
-    streams && setActiveStream(streams[0]);
+    streams && setActiveStream(streams.data[0]);
   }, [streams]);
 
   return (
@@ -21,7 +22,7 @@ const Streams: FC = () => {
           {activeStream && <ActiveStream {...activeStream} />}
           {streams && activeStream && (
             <StreamsList
-              streams={streams}
+              streams={streams.data}
               activeStreamId={activeStream.id}
               setActiveStream={setActiveStream}
             />
@@ -32,6 +33,7 @@ const Streams: FC = () => {
           <Spin size="xl" />
         </div>
       )}
+      {streams && <Pagination pagination={streams.pagination} />}
     </main>
   );
 };

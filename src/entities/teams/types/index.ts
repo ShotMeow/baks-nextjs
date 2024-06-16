@@ -1,5 +1,6 @@
 import type { UserType } from "@/src/entities/users";
 import type { TournamentType } from "@/src/entities/tournaments";
+import type { PaginationType } from "@/src/shared/types/global.types";
 
 export interface TeamType {
   id: number;
@@ -17,4 +18,9 @@ export interface TeamType {
 export interface TeamFormType
   extends Omit<TeamType, "id" | "createdAt" | "logoUrl"> {
   imageFile: File;
+}
+
+export interface TeamsType {
+  data: TeamType[];
+  pagination: PaginationType;
 }

@@ -234,11 +234,13 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
                 onUpdate={(value) =>
                   setValue(
                     "teams",
-                    teams.filter((team) => value.includes(String(team.id))),
+                    teams.data.filter((team) =>
+                      value.includes(String(team.id)),
+                    ),
                   )
                 }
               >
-                {teams.map((team) => (
+                {teams.data.map((team) => (
                   <Select.Option value={String(team.id)} key={team.id}>
                     {team.name}
                   </Select.Option>
@@ -265,11 +267,11 @@ const TournamentsForm: FC<Props> = ({ onClose, tournament, type }) => {
                 tags &&
                 setValue(
                   "tags",
-                  tags.filter((tag) => value.includes(String(tag.id))),
+                  tags.data.filter((tag) => value.includes(String(tag.id))),
                 )
               }
             >
-              {tags?.map((tag) => (
+              {tags?.data.map((tag) => (
                 <Select.Option value={String(tag.id)} key={tag.id}>
                   {tag.name}
                 </Select.Option>

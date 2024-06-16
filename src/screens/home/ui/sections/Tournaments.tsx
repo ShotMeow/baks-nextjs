@@ -27,7 +27,7 @@ const Tournaments: FC = () => {
       </div>
       <div className="grid gap-6 lg:grid-cols-2 2xl:grid-cols-3">
         {tournaments ? (
-          tournaments?.map((tournament, index) =>
+          tournaments?.data.map((tournament, index) =>
             index === 0 ? (
               <TournamentLarge tournament={tournament} key={tournament.id} />
             ) : (

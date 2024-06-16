@@ -2,7 +2,13 @@ import type { ButtonHTMLAttributes, FC, PropsWithChildren } from "react";
 import classNames from "classnames";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: "primary" | "transparent" | "secondary" | "more" | "dropdown";
+  variant:
+    | "primary"
+    | "transparent"
+    | "secondary"
+    | "more"
+    | "dropdown"
+    | "pagination";
 }
 
 const Button: FC<PropsWithChildren<Props>> = ({
@@ -15,18 +21,20 @@ const Button: FC<PropsWithChildren<Props>> = ({
     <button
       className={classNames(
         {
-          "bg-gradient-to-r from-yellow to-lilac py-3 rounded-full font-semibold":
+          "bg-gradient-to-r from-yellow to-lilac px-10 py-3 rounded-full font-semibold":
             variant === "primary",
-          "bg-lilac rounded-full text-lg py-3 font-semibold":
+          "bg-lilac rounded-full text-lg px-10 py-3 font-semibold":
             variant === "secondary",
-          "text-green font-semibold dark:font-medium dark:text-yellow backdrop-blur-lg py-3 bg-yellow/20 rounded-full":
+          "text-green font-semibold dark:font-medium dark:text-yellow backdrop-blur-lg px-10 py-3 bg-yellow/20 rounded-full":
             variant === "transparent",
           "text-green dark:text-yellow bg-yellow dark:bg-zinc-800/50 px-6 py-3 rounded-r-full":
             variant === "more",
           "dark:text-zinc-400 bg-zinc-200 dark:bg-zinc-800 rounded-full px-6 py-2":
             variant === "dropdown",
+          "text-zinc-600 dark:text-zinc-400 size-12 border-2 border-zinc-400 dark:border-zinc-800 p-0 disabled:text-zinc-300 disabled:border-zinc-300 dark:disabled:border-zinc-900 dark:disabled:text-zinc-600":
+            variant === "pagination",
         },
-        "flex items-center text-center justify-center px-10 gap-2 text-black active:scale-95 transition-all",
+        "flex items-center text-center justify-center gap-2 text-black active:scale-95 transition-all",
         className,
       )}
       {...props}

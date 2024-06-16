@@ -1,3 +1,5 @@
+import type { PaginationType } from "@/src/shared/types/global.types";
+
 export interface StreamType {
   id: number;
   title: string;
@@ -10,4 +12,9 @@ export interface StreamType {
 export interface StreamFormType
   extends Omit<StreamType, "id" | "createdAt" | "posterUrl"> {
   imageFile: File;
+}
+
+export interface StreamsType {
+  data: StreamType[];
+  pagination: PaginationType;
 }

@@ -1,3 +1,5 @@
+import type { PaginationType } from "@/src/shared/types/global.types";
+
 export interface TagType {
   id: number;
   name: string;
@@ -5,3 +7,8 @@ export interface TagType {
 }
 
 export interface TagsFormType extends Omit<TagType, "id" | "createdAt"> {}
+
+export interface TagsType {
+  data: TagType[];
+  pagination: PaginationType;
+}

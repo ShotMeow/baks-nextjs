@@ -6,11 +6,11 @@ import Link from "next/link";
 import { useSwiperSlide } from "swiper/react";
 
 import Button from "@/src/shared/ui/Button";
-import type { NewsType } from "@/src/entities/news";
+import type { PostType } from "@/src/entities/news";
 import { API_URL } from "@/src/shared/constants";
 import DarkGradientToTop from "@/src/shared/ui/DarkGradientToTop";
 
-interface Props extends NewsType {}
+interface Props extends PostType {}
 
 const Slide: FC<Props> = ({ id, artworkUrl, title, description }) => {
   const { isActive } = useSwiperSlide();

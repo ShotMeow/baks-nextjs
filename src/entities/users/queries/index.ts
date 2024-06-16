@@ -1,12 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { getAuthUser, getUserById, getUsers } from "../api";
-import type { UserType } from "../types";
+import type { UsersType, UserType } from "../types";
 
-export const useGetUsers = ({ search }: { search?: string }) => {
-  return useQuery<UserType[]>({
-    queryKey: ["users", { search }],
-    queryFn: () => getUsers({ search }),
+export const useGetUsers = ({
+  page,
+  take,
+  search,
+}: {
+  page?: string;
+  take?: number;
+  search?: string;
+}) => {
+  return useQuery<UsersType>({
+    queryKey: ["users", { page, take, search }],
+    queryFn: () => getUsers({ page, take, search }),
   });
 };
 

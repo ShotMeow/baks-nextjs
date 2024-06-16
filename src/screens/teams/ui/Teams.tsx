@@ -1,24 +1,23 @@
 "use client";
-import { type FC, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 import { Spin } from "@gravity-ui/uikit";
 
 import { useGetTeams } from "@/src/entities/teams";
 import { PageHeader } from "@/src/widgets/filter";
 import { useDebounce } from "@/src/shared/hooks/useDebounce";
 import TeamCard from "@/src/entities/teams/ui/TeamCard";
+import { useQueryParams } from "@/src/shared/hooks/useQueryParams";
+import { Pagination } from "@/src/widgets/pagination";
 
 const Teams: FC = () => {
-  const [sort, setSort] = useState<string>("");
   const [search, setSearch] = useState<string>("");
+  const { query, push } = useQueryParams();
   const debounceSearch = useDebounce(search, 500);
-  const {
-    data: teams,
-    isSuccess,
-    isLoading,
-  } = useGetTeams({
-    search: debounceSearch,
-    sort,
-  });
+  const { data: teams, isSuccess, isLoading } = useGetTeams(query);
+
+  useEffect(() => {
+    push("search", debounceSearch);
+  }, [debounceSearch, push]);
 
   return (
     <main className="container">
@@ -27,18 +26,18 @@ const Teams: FC = () => {
         searchPlaceholder="Поиск команд"
         search={search}
         setSearch={setSearch}
-        sort={sort}
-        setSort={setSort}
+        withSort
       />
       <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {isSuccess &&
-          teams.map((team) => <TeamCard team={team} key={team.id} />)}
+          teams.data.map((team) => <TeamCard team={team} key={team.id} />)}
         {isLoading && (
           <div className="col-span-full row-span-full flex h-[10vh] items-center justify-center">
             <Spin size="xl" />
           </div>
         )}
       </div>
+      {teams && <Pagination pagination={teams.pagination} />}
     </main>
   );
 };

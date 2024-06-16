@@ -4,11 +4,13 @@ import { createFormData } from "@/src/shared/utils/createFormData";
 import type { TournamentFormType, TournamentType } from "../types";
 
 export const getTournaments = async ({
+  page,
   search,
   tag,
   sort,
   take,
 }: {
+  page?: string;
   search?: string;
   tag?: string;
   sort?: string;
@@ -16,6 +18,7 @@ export const getTournaments = async ({
 }) => {
   const queryParams = new URLSearchParams();
 
+  page && queryParams.append("page", page);
   search && queryParams.append("search", search);
   tag && queryParams.append("tag", tag);
   sort && queryParams.append("sort", sort);

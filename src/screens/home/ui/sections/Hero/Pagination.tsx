@@ -1,11 +1,11 @@
 import type { FC } from "react";
 import classNames from "classnames";
 
-import type { NewsType } from "@/src/entities/news";
+import type { PostType } from "@/src/entities/news";
 
 interface Props {
   activeIndex: number;
-  news: NewsType[];
+  news: PostType[];
 }
 
 const Pagination: FC<Props> = ({ activeIndex, news }) => {

@@ -2,7 +2,7 @@
   "name": "baks-nextjs",
   "description": "Frontend release for Baks.gg on Next.js",
   "author": "Kai Goldman",
-  "version": "0.9.4",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/ShotMeow/baks-nextjs.git"

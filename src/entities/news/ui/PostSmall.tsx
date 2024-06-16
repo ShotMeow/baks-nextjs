@@ -3,14 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { API_URL } from "@/src/shared/constants";
-import type { NewsType } from "../types";
+import type { PostType } from "../types";
 import { isNewPost } from "../utils/isNewPost";
 import NewChip from "./NewChip";
 import ViewsChip from "./ViewsChip";
 import { TagChip } from "@/src/entities/tags";
 
 interface Props {
-  post: NewsType;
+  post: PostType;
 }
 
 const PostSmall: FC<Props> = ({ post }) => {

@@ -1,22 +1,23 @@
-import { type Dispatch, type FC, type SetStateAction, useState } from "react";
+import { type FC, useState } from "react";
 
 import SearchInput from "@/src/shared/ui/SearchInput";
 import Radio from "@/src/shared/ui/Radio";
 import { useGetTags } from "@/src/entities/tags";
 import { useDebounce } from "@/src/shared/hooks/useDebounce";
+import { useQueryParams } from "@/src/shared/hooks/useQueryParams";
 
-interface Props {
-  tag: string;
-  setTag: Dispatch<SetStateAction<string>>;
-}
-
-const FilterDropdownTags: FC<Props> = ({ tag: activeTag, setTag }) => {
+const FilterDropdownTags: FC = () => {
   const [tagSearch, setTagSearch] = useState<string>("");
   const debounceSearch = useDebounce(tagSearch, 500);
+  const { push, query } = useQueryParams();
 
   const { data: tags } = useGetTags({
     search: debounceSearch,
   });
+
+  const handleClick = (tag: string) => {
+    push("tag", tag);
+  };
 
   return (
     <>
@@ -28,8 +29,8 @@ const FilterDropdownTags: FC<Props> = ({ tag: activeTag, setTag }) => {
       <div className="mt-6 max-h-48 space-y-4 overflow-y-auto md:max-h-96">
         {tags?.map((tag) => (
           <Radio
-            onClick={() => setTag(tag.name)}
-            isActive={activeTag === tag.name}
+            onClick={() => handleClick(tag.name)}
+            isActive={query.tag === tag.name}
             key={tag.id}
           >
             {tag.name}

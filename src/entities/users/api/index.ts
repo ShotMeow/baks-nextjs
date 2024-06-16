@@ -3,9 +3,19 @@ import { API_URL } from "@/src/shared/constants";
 import type { UserFormType, UserType } from "../types";
 import { createFormData } from "@/src/shared/utils/createFormData";
 
-export const getUsers = async ({ search }: { search?: string }) => {
+export const getUsers = async ({
+  page,
+  take,
+  search,
+}: {
+  page?: string;
+  take?: number;
+  search?: string;
+}) => {
   const queryParams = new URLSearchParams();
 
+  page && queryParams.append("page", String(page));
+  take && queryParams.append("take", String(take));
   search && queryParams.append("search", String(search));
 
   const response = await fetch(`${API_URL}/users?${queryParams}`);

@@ -7,8 +7,8 @@ import MDEditor from "@uiw/react-md-editor";
 import Button from "@/src/shared/ui/Button";
 import { useGetTags } from "@/src/entities/tags";
 import {
-  type NewsFormType,
-  type NewsType,
+  type PostFormType,
+  type PostType,
   useCreateNews,
   useUpdateNews,
 } from "@/src/entities/news";
@@ -17,7 +17,7 @@ import { useNotificationCall } from "../../hooks/useNotificationCall";
 
 interface Props {
   onClose: Dispatch<SetStateAction<boolean>>;
-  news?: NewsType;
+  news?: PostType;
   type: "create" | "edit";
 }
 
@@ -28,7 +28,7 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
     setValue,
     control,
     handleSubmit,
-  } = useForm<NewsFormType>({
+  } = useForm<PostFormType>({
     defaultValues: {
       title: news?.title,
       description: news?.description,
@@ -62,7 +62,7 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
     updateText: ["Пост успешно обновлен", "Ошибка при обновлении поста"],
   });
 
-  const onSubmit: SubmitHandler<NewsFormType> = (data) => {
+  const onSubmit: SubmitHandler<PostFormType> = (data) => {
     switch (type) {
       case "create":
         createNewsMutation(data);
@@ -154,11 +154,11 @@ const NewsForm: FC<Props> = ({ onClose, news, type }) => {
                 tags &&
                 setValue(
                   "tags",
-                  tags.filter((tag) => value.includes(String(tag.id))),
+                  tags.data.filter((tag) => value.includes(String(tag.id))),
                 )
               }
             >
-              {tags?.map((tag) => (
+              {tags?.data.map((tag) => (
                 <Select.Option value={String(tag.id)} key={tag.id}>
                   {tag.name}
                 </Select.Option>

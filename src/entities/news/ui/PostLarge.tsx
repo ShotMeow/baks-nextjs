@@ -2,7 +2,7 @@ import type { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import type { NewsType } from "../types";
+import type { PostType } from "../types";
 import { API_URL } from "@/src/shared/constants";
 import { isNewPost } from "../utils/isNewPost";
 import NewChip from "./NewChip";
@@ -10,7 +10,7 @@ import ViewsChip from "./ViewsChip";
 import { TagChip } from "@/src/entities/tags";
 
 interface Props {
-  post: NewsType;
+  post: PostType;
 }
 
 const PostLarge: FC<Props> = ({ post }) => {

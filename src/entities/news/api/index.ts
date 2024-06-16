@@ -1,7 +1,7 @@
 import { API_URL } from "@/src/shared/constants";
 import { createFormData } from "@/src/shared/utils/createFormData";
 
-import type { NewsFormType, NewsType } from "../types";
+import type { PostFormType, PostType } from "../types";
 
 export const addViewToPost = async (id: number) => {
   const response = await fetch(`${API_URL}/news/${id}/view`);
@@ -9,11 +9,13 @@ export const addViewToPost = async (id: number) => {
 };
 
 export const getNews = async ({
+  page,
   search,
   tag,
   sort,
   take,
 }: {
+  page?: number;
   search?: string;
   tag?: string;
   sort?: string;
@@ -21,6 +23,7 @@ export const getNews = async ({
 }) => {
   const queryParams = new URLSearchParams();
 
+  page && queryParams.append("page", String(page));
   search && queryParams.append("search", search);
   tag && queryParams.append("tag", tag);
   sort && queryParams.append("sort", sort);
@@ -30,7 +33,7 @@ export const getNews = async ({
   return response.json();
 };
 
-export const getNewsById = async (id: NewsType["id"]) => {
+export const getNewsById = async (id: PostType["id"]) => {
   const response = await fetch(`${API_URL}/news/${id}`);
 
   if (!response.ok) {
@@ -40,7 +43,7 @@ export const getNewsById = async (id: NewsType["id"]) => {
   return response.json();
 };
 
-export const createNews = async (data: NewsFormType) => {
+export const createNews = async (data: PostFormType) => {
   const formData = createFormData({
     ...data,
     tags: data.tags?.map((tag) => tag.id),
@@ -58,7 +61,7 @@ export const createNews = async (data: NewsFormType) => {
   return response.json();
 };
 
-export const updateNews = async (id: NewsType["id"], data: NewsFormType) => {
+export const updateNews = async (id: PostType["id"], data: PostFormType) => {
   const formData = createFormData({
     ...data,
     tags: data.tags?.map((tag) => tag.id),
@@ -76,7 +79,7 @@ export const updateNews = async (id: NewsType["id"], data: NewsFormType) => {
   return response.json();
 };
 
-export const deleteNews = async (id: NewsType["id"]) => {
+export const deleteNews = async (id: PostType["id"]) => {
   const response = await fetch(`${API_URL}/news/${id}/delete`, {
     method: "DELETE",
   });

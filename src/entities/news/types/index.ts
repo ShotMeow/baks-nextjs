@@ -1,6 +1,7 @@
 import type { TagType } from "@/src/entities/tags";
+import type { PaginationType } from "@/src/shared/types/global.types";
 
-export interface NewsType {
+export interface PostType {
   id: number;
   title: string;
   description: string;
@@ -12,10 +13,15 @@ export interface NewsType {
   createdAt: Date;
 }
 
-export interface NewsFormType
+export interface PostFormType
   extends Omit<
-    NewsType,
+    PostType,
     "id" | "updatedAt" | "createdAt" | "views" | "artworkUrl"
   > {
   imageFile: File;
+}
+
+export interface NewsType {
+  data: PostType[];
+  pagination: PaginationType;
 }

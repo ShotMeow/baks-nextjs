@@ -8,7 +8,7 @@ interface Props {
   placeholder?: string;
 }
 
-const SearchInput: FC<Props> = ({ placeholder = "", value, setValue }) => {
+const SearchInput: FC<Props> = ({ value, setValue, placeholder = "" }) => {
   return (
     <label className="relative">
       <TextInput

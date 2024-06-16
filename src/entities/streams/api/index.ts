@@ -4,14 +4,17 @@ import { createFormData } from "@/src/shared/utils/createFormData";
 import type { StreamFormType, StreamType } from "../types";
 
 export const getStreams = async ({
+  page,
   search,
   take,
 }: {
+  page?: string;
   search?: string;
   take?: number;
 }) => {
   const queryParams = new URLSearchParams();
 
+  page && queryParams.append("page", String(page));
   search && queryParams.append("search", String(search));
   take && queryParams.append("take", String(take));
 

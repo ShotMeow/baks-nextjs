@@ -1,18 +1,26 @@
-import type { Dispatch, FC, SetStateAction } from "react";
+import type { FC } from "react";
 import Radio from "@/src/shared/ui/Radio";
+import { useQueryParams } from "@/src/shared/hooks/useQueryParams";
 
-interface Props {
-  sort: string;
-  setSort: Dispatch<SetStateAction<string>>;
-}
+const FilterDropdownSort: FC = () => {
+  const { push, query } = useQueryParams();
 
-const FilterDropdownSort: FC<Props> = ({ sort, setSort }) => {
+  const handleSortChange = (sort: string) => {
+    push("sort", sort);
+  };
+
   return (
     <div className="max-h-96 space-y-4 overflow-y-auto">
-      <Radio onClick={() => setSort("asc")} isActive={sort === "asc"}>
+      <Radio
+        onClick={() => handleSortChange("asc")}
+        isActive={query.sort === "asc"}
+      >
         По возрастанию
       </Radio>
-      <Radio onClick={() => setSort("desc")} isActive={sort === "desc"}>
+      <Radio
+        onClick={() => handleSortChange("desc")}
+        isActive={query.sort === "desc"}
+      >
         По убыванию
       </Radio>
     </div>

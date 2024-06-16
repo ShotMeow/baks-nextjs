@@ -1,5 +1,5 @@
 "use client";
-import { type FC, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 import {
   TournamentLarge,
   TournamentSmall,
@@ -8,21 +8,18 @@ import {
 import { Spin } from "@gravity-ui/uikit";
 import { useDebounce } from "@/src/shared/hooks/useDebounce";
 import { PageHeader } from "@/src/widgets/filter";
+import { useQueryParams } from "@/src/shared/hooks/useQueryParams";
+import { Pagination } from "@/src/widgets/pagination";
 
 const Tournaments: FC = () => {
-  const [tag, setTag] = useState<string>("");
-  const [sort, setSort] = useState<string>("");
   const [search, setSearch] = useState<string>("");
+  const { query, push } = useQueryParams();
   const debounceSearch = useDebounce(search, 500);
-  const {
-    data: tournaments,
-    isSuccess,
-    isLoading,
-  } = useGetTournaments({
-    search: debounceSearch,
-    tag,
-    sort,
-  });
+
+  const { data: tournaments, isSuccess, isLoading } = useGetTournaments(query);
+  useEffect(() => {
+    push("search", debounceSearch);
+  }, [debounceSearch, push]);
 
   return (
     <main className="container">
@@ -31,15 +28,16 @@ const Tournaments: FC = () => {
         searchPlaceholder="Поиск турниров"
         search={search}
         setSearch={setSearch}
-        tag={tag}
-        setTag={setTag}
-        sort={sort}
-        setSort={setSort}
+        withSort
+        withTags
       />
       <div className="grid gap-6 sm:grid-cols-2 2xl:grid-cols-3">
         {isSuccess &&
-          tournaments.map((tournament, index) =>
-            index === 0 && !debounceSearch ? (
+          tournaments.data.map((tournament, index) =>
+            index === 0 &&
+            !debounceSearch &&
+            (String(query.page || "") === "1" ||
+              String(query.page || "") === "") ? (
               <TournamentLarge tournament={tournament} key={tournament.id} />
             ) : (
               <TournamentSmall tournament={tournament} key={tournament.id} />
@@ -51,6 +49,7 @@ const Tournaments: FC = () => {
           </div>
         )}
       </div>
+      {tournaments && <Pagination pagination={tournaments.pagination} />}
     </main>
   );
 };

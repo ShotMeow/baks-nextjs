@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { createNews, deleteNews, updateNews } from "../api";
-import type { NewsFormType, NewsType } from "../types";
+import type { PostFormType, PostType } from "../types";
 
 export const useCreateNews = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (data: NewsFormType) => createNews(data),
+    mutationFn: (data: PostFormType) => createNews(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["news"] });
     },
@@ -21,7 +21,7 @@ export const useUpdateNews = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, data }: { id: NewsType["id"]; data: NewsFormType }) =>
+    mutationFn: ({ id, data }: { id: PostType["id"]; data: PostFormType }) =>
       updateNews(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["news"] });
@@ -36,7 +36,7 @@ export const useDeleteNews = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (id: NewsType["id"]) => deleteNews(id),
+    mutationFn: (id: PostType["id"]) => deleteNews(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["news"] });
     },

@@ -6,10 +6,6 @@ import FilterDropdownTags from "./FilterDropdownTags";
 import FilterDropdownSort from "./FilterDropdownSort";
 
 interface Props {
-  sort?: string;
-  setSort?: Dispatch<SetStateAction<string>>;
-  tag?: string;
-  setTag?: Dispatch<SetStateAction<string>>;
   setFilterShown: Dispatch<SetStateAction<boolean>>;
   dropdownState: {
     visible: boolean;
@@ -26,11 +22,7 @@ interface Props {
 const FilterDropdown: FC<Props> = ({
   dropdownState,
   setDropdownState,
-  sort,
-  setSort,
   setFilterShown,
-  tag,
-  setTag,
 }) => {
   return (
     <Dropdown
@@ -54,12 +46,8 @@ const FilterDropdown: FC<Props> = ({
       >
         <ArrowToggle direction="left" />{" "}
       </button>
-      {dropdownState.type === "tags" &&
-        typeof tag !== "undefined" &&
-        setTag && <FilterDropdownTags setTag={setTag} tag={tag} />}
-      {dropdownState.type === "sort" &&
-        typeof sort !== "undefined" &&
-        setSort && <FilterDropdownSort setSort={setSort} sort={sort} />}
+      {dropdownState.type === "tags" && <FilterDropdownTags />}
+      {dropdownState.type === "sort" && <FilterDropdownSort />}
     </Dropdown>
   );
 };

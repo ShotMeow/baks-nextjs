@@ -1,4 +1,5 @@
 import type { TeamType } from "@/src/entities/teams";
+import type { PaginationType } from "@/src/shared/types/global.types";
 
 export interface UserType {
   id: number;
@@ -17,4 +18,9 @@ export interface UserType {
 export interface UserFormType
   extends Omit<UserType, "id" | "pictureUrl" | "role" | "createdAt"> {
   role: string;
+}
+
+export interface UsersType {
+  data: UserType[];
+  pagination: PaginationType;
 }
