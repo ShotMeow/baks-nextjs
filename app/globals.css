@@ -47,7 +47,7 @@ input:-webkit-autofill:focus {
 /* Стилизация скроллбара */
 
 *::-webkit-scrollbar {
-  @apply w-1 h-0;
+  @apply size-1;
 }
 
 *::-webkit-scrollbar-track {

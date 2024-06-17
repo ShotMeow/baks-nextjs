@@ -20,7 +20,7 @@ const TournamentLarge: FC<Props> = ({ tournament }) => {
       key={tournament.id}
       href={`/tournaments/${tournament.id}`}
     >
-      <article className="flex h-full flex-col bg-white transition-all duration-500 2xl:grid 2xl:grid-cols-3 dark:bg-zinc-900 group-hover:dark:bg-zinc-800">
+      <article className="flex h-full flex-col bg-white transition-all duration-500 dark:bg-zinc-900 group-hover:dark:bg-zinc-800 2xl:grid 2xl:grid-cols-3">
         <div className="relative col-span-2 max-h-[200px] min-h-[200px] overflow-hidden 2xl:h-full 2xl:max-h-[540px]">
           {tournament.artworkUrl && (
             <Image
@@ -41,7 +41,7 @@ const TournamentLarge: FC<Props> = ({ tournament }) => {
         </div>
         <div className="col-span-1 flex h-full flex-col justify-between p-6 2xl:p-10">
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-black md:text-3xl dark:text-white">
+            <h3 className="text-lg font-semibold text-black dark:text-white md:text-3xl">
               {tournament.name}
             </h3>
             {tournament.eventDate && (
@@ -61,7 +61,7 @@ const TournamentLarge: FC<Props> = ({ tournament }) => {
             {tournament.prize && (
               <p className="col-span-2 text-zinc-500 sm:col-span-1 2xl:col-span-3">
                 Призовой фонд <br />
-                <span className="font-semibold text-green sm:text-xl 2xl:text-4xl 2xl:font-bold dark:text-yellow">
+                <span className="font-semibold text-green dark:text-yellow sm:text-xl 2xl:text-4xl 2xl:font-bold">
                   {tournament.prize}
                   <span className="hidden 2xl:inline"> рублей</span>
                   <span className="inline 2xl:hidden">р</span>
@@ -71,7 +71,7 @@ const TournamentLarge: FC<Props> = ({ tournament }) => {
             {tournament.mode && (
               <p className="text-zinc-500">
                 Режим <br />
-                <span className="font-semibold text-black sm:text-xl 2xl:text-4xl 2xl:font-bold dark:text-white">
+                <span className="font-semibold text-black dark:text-white sm:text-xl 2xl:text-4xl 2xl:font-bold">
                   {tournament.mode}
                 </span>
               </p>
@@ -79,7 +79,7 @@ const TournamentLarge: FC<Props> = ({ tournament }) => {
             {tournament.type && (
               <p className="text-zinc-500">
                 Регистрация <br />
-                <span className="font-semibold text-black sm:text-xl 2xl:text-4xl 2xl:font-bold dark:text-white">
+                <span className="font-semibold text-black dark:text-white sm:text-xl 2xl:text-4xl 2xl:font-bold">
                   {tournament.type === "closed" ? "Закрытая" : "Бесплатная"}
                 </span>
               </p>

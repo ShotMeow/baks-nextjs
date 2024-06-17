@@ -12,7 +12,7 @@ const Actions: FC<Props> = ({ modalType, setModalType }) => {
         <span>
           Нет аккаунта?{" "}
           <button
-            className="text-yellow"
+            className="text-green dark:text-yellow"
             onClick={() => setModalType("sign-up")}
           >
             Зарегистрироваться
@@ -23,7 +23,7 @@ const Actions: FC<Props> = ({ modalType, setModalType }) => {
         <span>
           У вас уже есть аккаунт?{" "}
           <button
-            className="text-yellow"
+            className="text-green dark:text-yellow"
             onClick={() => setModalType("sign-in")}
           >
             Войти

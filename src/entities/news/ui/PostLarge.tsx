@@ -19,7 +19,7 @@ const PostLarge: FC<Props> = ({ post }) => {
       className="group sm:col-span-2 lg:col-span-4"
       href={`/news/${post.id}`}
     >
-      <article className="relative grid h-full grid-cols-1 justify-between bg-white transition-all duration-500 group-hover:dark:bg-zinc-800 lg:grid-cols-2 dark:bg-zinc-900">
+      <article className="relative grid h-full grid-cols-1 justify-between bg-white transition-all duration-500 dark:bg-zinc-900 group-hover:dark:bg-zinc-800 lg:grid-cols-2">
         <div className="relative max-h-[200px] min-h-[200px] overflow-hidden md:max-h-[400px] md:min-h-[400px]">
           <Image
             className="size-full object-cover p-2 transition-transform duration-500 group-hover:scale-110"

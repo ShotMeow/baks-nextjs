@@ -27,5 +27,6 @@ const config: Config = {
     require("@tailwindcss/typography"),
     require("tailwindcss-text-fill"),
   ],
+  darkMode: "class",
 };
 export default config;

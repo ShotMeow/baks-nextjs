@@ -18,7 +18,7 @@ const TournamentSmall: FC<Props> = ({ tournament }) => {
       key={tournament.id}
       href={`/tournaments/${tournament.id}`}
     >
-      <article className="flex h-full flex-col bg-white transition-all duration-500 group-hover:bg-zinc-800 dark:bg-zinc-900">
+      <article className="flex h-full flex-col bg-white transition-all duration-500 dark:bg-zinc-900 group-hover:dark:bg-zinc-800">
         <div className="relative max-h-[200px] min-h-[200px] overflow-hidden">
           {tournament.artworkUrl && (
             <Image
@@ -35,7 +35,7 @@ const TournamentSmall: FC<Props> = ({ tournament }) => {
         </div>
         <div className="flex h-full flex-col justify-between p-6">
           <div className="space-y-4">
-            <h3 className="line-clamp-1 text-lg font-semibold text-black md:text-3xl dark:text-white">
+            <h3 className="line-clamp-1 text-lg font-semibold text-black dark:text-white md:text-3xl">
               {tournament.name}
             </h3>
             {tournament.eventDate && (
@@ -52,7 +52,7 @@ const TournamentSmall: FC<Props> = ({ tournament }) => {
             {tournament.prize && (
               <p className="col-span-2 text-zinc-500 sm:col-span-1">
                 Призовой фонд <br />
-                <span className="font-semibold text-green sm:text-xl dark:text-yellow">
+                <span className="font-semibold text-green dark:text-yellow sm:text-xl">
                   {tournament.prize}
                   <span>р</span>
                 </span>
@@ -61,7 +61,7 @@ const TournamentSmall: FC<Props> = ({ tournament }) => {
             {tournament.mode && (
               <p className="text-zinc-500">
                 Режим <br />
-                <span className="font-semibold text-black sm:text-xl dark:text-white">
+                <span className="font-semibold text-black dark:text-white sm:text-xl">
                   {tournament.mode}
                 </span>
               </p>
@@ -69,7 +69,7 @@ const TournamentSmall: FC<Props> = ({ tournament }) => {
             {tournament.type && (
               <p className="text-zinc-500">
                 Регистрация <br />
-                <span className="font-semibold text-black sm:text-xl dark:text-white">
+                <span className="font-semibold text-black dark:text-white sm:text-xl">
                   {tournament.type === "closed" ? "Закрытая" : "Бесплатная"}
                 </span>
               </p>
