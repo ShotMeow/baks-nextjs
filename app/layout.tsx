@@ -8,8 +8,8 @@ import { Header } from "@/src/widgets/header";
 import { Footer } from "@/src/widgets/footer";
 
 import QueryProvider from "@/src/shared/libs/tanstack-query/QueryProvider";
-import GravityThemeProvider from "@/src/shared/libs/gravity-ui/GravityThemeProvider";
 import { NotificationContextProvider } from "@/src/features/notification";
+import { ThemeProvider } from "@/src/features/theme";
 
 const readexPro = Readex_Pro({
   subsets: ["latin"],
@@ -26,7 +26,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <html lang="ru">
       <body className={readexPro.className}>
-        <GravityThemeProvider>
+        <ThemeProvider>
           <NotificationContextProvider>
             <QueryProvider>
               <div className="flex h-full flex-col justify-between">
@@ -38,7 +38,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
               </div>
             </QueryProvider>
           </NotificationContextProvider>
-        </GravityThemeProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

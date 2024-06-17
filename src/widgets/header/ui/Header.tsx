@@ -31,8 +31,8 @@ const Header: FC = () => {
               </span>
             </Link>
             <Navigation />
-            <div className="flex items-center gap-8">
-              <DynamicThemeSwitcher className="hidden lg:flex [&>p]:hidden xl:[&>p]:block" />
+            <div className="relative flex items-center gap-8">
+              <DynamicThemeSwitcher className="absolute -left-20 2xl:-left-56 hidden lg:flex [&>p]:hidden 2xl:[&>p]:block" />
               <Account />
             </div>
           </div>
