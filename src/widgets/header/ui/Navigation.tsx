@@ -10,7 +10,7 @@ const Navigation: FC = () => {
   const pathname = usePathname();
   return (
     <nav>
-      <ul className="hidden text-sm text-black lg:flex lg:items-center lg:gap-8 xl:text-base dark:text-white">
+      <ul className="hidden gap-6 text-sm text-black dark:text-white lg:flex lg:items-center xl:gap-8 xl:text-base">
         {headerNavigationData.map((navItem) => (
           <li key={navItem.url}>
             <Link
