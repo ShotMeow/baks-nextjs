@@ -1,9 +1,10 @@
-import type { FC } from "react";
+import { type FC, useEffect } from "react";
 import { ArrowToggle } from "@gravity-ui/uikit";
-import { PaginationType } from "@/src/shared/types/global.types";
+import classNames from "classnames";
+
+import type { PaginationType } from "@/src/shared/types/global.types";
 import Button from "@/src/shared/ui/Button";
 import { useQueryParams } from "@/src/shared/hooks/useQueryParams";
-import classNames from "classnames";
 
 interface Props {
   pagination: PaginationType;
@@ -11,6 +12,11 @@ interface Props {
 
 const Pagination: FC<Props> = ({ pagination }) => {
   const { push } = useQueryParams();
+
+  useEffect(() => {
+    pagination.currentPage > pagination.lastPage &&
+      push("page", String(pagination.lastPage));
+  }, [pagination, push]);
 
   return (
     <div className="mt-10 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
