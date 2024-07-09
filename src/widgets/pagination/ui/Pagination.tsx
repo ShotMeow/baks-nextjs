@@ -15,6 +15,7 @@ const Pagination: FC<Props> = ({ pagination }) => {
 
   useEffect(() => {
     pagination.currentPage > pagination.lastPage &&
+      pagination.lastPage &&
       push("page", String(pagination.lastPage));
   }, [pagination, push]);
 

@@ -1,11 +1,11 @@
 "use client";
 
 import type { FC, HTMLAttributes } from "react";
+import classNames from "classnames";
 import { Switch } from "@/src/shared/ui/Switch";
 import Moon from "@/src/shared/ui/icons/Moon";
 import Sun from "@/src/shared/ui/icons/Sun";
-import classNames from "classnames";
-import { useColorScheme } from "@/src/features/theme/hooks";
+import { useColorScheme } from "../hooks";
 
 interface Props extends HTMLAttributes<HTMLLabelElement> {}
 

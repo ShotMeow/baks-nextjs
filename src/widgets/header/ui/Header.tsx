@@ -32,7 +32,7 @@ const Header: FC = () => {
             </Link>
             <Navigation />
             <div className="relative flex items-center gap-8">
-              <DynamicThemeSwitcher className="absolute -left-20 2xl:-left-56 hidden lg:flex [&>p]:hidden 2xl:[&>p]:block" />
+              <DynamicThemeSwitcher className="absolute -left-20 hidden lg:flex 2xl:-left-56 [&>p]:hidden 2xl:[&>p]:block" />
               <Account />
             </div>
           </div>
